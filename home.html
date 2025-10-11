@@ -9,7 +9,57 @@
 </head>
 
 <body>
-  <header></header>
+<header><!-- Bandeau Black Friday (statique, sans bouton fermer) -->
+<div class="promo-bar">
+  <div class="container promo-wrap">
+    <div class="promo-left"><span class="promo-badge">Black</span><span>Friday</span></div>
+    <div class="promo-center">Up to <strong>59%</strong> OFF</div>
+    <div class="promo-right"><a class="promo-cta" href="#">SHOP NOW →</a></div>
+  </div>
+</div>
+
+<!-- Superbar : message + réseaux + langue/devise -->
+<div class="superbar">
+  <div class="container super-wrap">
+    <div class="super-left">Welcome to Clicon online eCommerce store.</div>
+    <div class="super-right">
+      <div class="social">Follow us:
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Pinterest">P</a>
+        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="Instagram">◎</a>
+      </div>
+      <div class="pill">Eng ▾</div>
+      <div class="pill">USD ▾</div>
+    </div>
+  </div>
+</div>
+
+<!-- Barre principale -->
+<header class="main-header">
+  <div class="container main-wrap">
+    <a class="brand" href="/">
+      <span class="brand__mark">●</span>
+      <span class="brand__name">SHOPNOW</span>
+    </a>
+
+    <div class="search" role="search">
+      <form action="/recherche" method="get">
+        <label for="q" class="visually-hidden">Rechercher</label>
+        <input id="q" name="q" type="search" placeholder="Search for anything..." />
+        <button type="submit" aria-label="Rechercher">🔍</button>
+      </form>
+    </div>
+
+    <div class="actions" aria-label="Actions utilisateur">
+      <a class="icon-btn" href="/panier" title="Panier">🛒<span class="badge">2</span></a>
+      <a class="icon-btn" href="/favoris" title="Favoris">♡</a>
+      <a class="icon-btn" href="/compte" title="Mon compte">👤</a>
+    </div>
+  </div>
+</header>
+</header>
   <main class="container">
     <!-- premiere ligne -->
     <div class="row">
@@ -221,7 +271,77 @@
     </div>
   </main>
 
-  <footer></footer>
+  <footer><footer class="site-footer" role="contentinfo">
+  <div class="container footer-top">
+    <div class="fgrid">
+      <!-- Brand + contact -->
+      <div class="fbrand">
+        <a class="brand" href="/">
+          <span class="brand__mark">●</span>
+          <span class="brand__name">SHOPNOW</span>
+        </a>
+        <div class="contact">
+          <div><strong>Customer Supports</strong></div>
+          <div>(629) 555-0129</div>
+          <div>4517 Washington Ave.<br>Manchester, Kentucky, 39495</div>
+          <div><a href="mailto:info@skitbone.com">info@skitbone.com</a></div>
+        </div>
+      </div>
+
+      <!-- Top Category -->
+      <nav class="fcol" aria-label="Top Category">
+        <h4>TOP CATEGORY</h4>
+        <a href="#">Computer & Laptops</a>
+        <a href="#">SmartPhone</a>
+        <a href="#">Headphone</a>
+        <a href="#">— <em>Accessories</em></a>
+        <a href="#">Camera & Photo</a>
+        <a href="#">TV & Homes</a>
+        <a class="accent" href="#">Browse All Product →</a>
+      </nav>
+
+      <!-- Quick Links -->
+      <nav class="fcol" aria-label="Quick Links">
+        <h4>QUICK LINKS</h4>
+        <a href="#">Shop Product</a>
+        <a href="#">Shopping Cart</a>
+        <a href="#">Wishlist</a>
+        <a href="#">Compare</a>
+        <a href="#">Track Order</a>
+        <a href="#">Customer Help</a>
+        <a href="#">About Us</a>
+      </nav>
+
+      <!-- Download App -->
+      <div class="fcol" aria-label="Download App">
+        <h4>DOWNLOAD APP</h4>
+        <div class="store-badges">
+          <a class="store" href="#"><span class="logo">▶</span> Get it on <strong>Google Play</strong></a>
+          <a class="store" href="#"><span class="logo"></span> Get it from <strong>App Store</strong></a>
+        </div>
+      </div>
+
+      <!-- Popular Tag -->
+      <div class="fcol" aria-label="Popular Tag">
+        <h4>POPULAR TAG</h4>
+        <div class="tags">
+          <span class="tag">Game</span><span class="tag">iPhone</span><span class="tag">TV</span>
+          <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span class="tag">SSD</span>
+          <span class="tag">Graphics Card</span><span class="tag">Power Bank</span><span class="tag">Smart TV</span>
+          <span class="tag">Speaker</span><span class="tag">Tablet</span><span class="tag">Microwave</span>
+          <span class="tag">Samsung</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container foot-wrap">
+      <div>Kinbo eCommerce Template © 2025. Design by Templatescookie</div>
+    </div>
+  </div>
+</footer>
+</footer>
 </body>
 
 </html>
