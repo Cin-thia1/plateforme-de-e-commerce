@@ -9,11 +9,16 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #f7f7f7;
     color: #333;
-    display: flex;
-    justify-content: center;
-    padding: 40px;
+    
+
+    
 }
 
+.main-container{
+    display: flex;
+    margin: 40px;
+    justify-content: center;
+}
 .product-container {
     max-width: 1400px;
     width: 100%;
