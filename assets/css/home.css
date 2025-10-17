@@ -78,6 +78,9 @@ main {
     color: #475156;
     margin-bottom: 20px;
 }
+.product-link{
+    text-decoration: none;
+}
 
 .shop-now {
     background-color: #FA8232;

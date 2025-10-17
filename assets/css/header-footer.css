@@ -181,7 +181,7 @@
 }
 .fgrid{
     display:grid;
-    grid-template-columns:2fr 1fr 1fr 1fr 1.2fr;
+    grid-template-columns:2fr 1fr 1fr 1fr ;
     gap:28px
 }
 
