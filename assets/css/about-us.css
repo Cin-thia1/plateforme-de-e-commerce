@@ -1,0 +1,147 @@
+/* First Presentation Section */
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    margin-bottom: 50px;
+}
+
+.fist-detail {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fist-detail span {
+    color: #fff;
+    background-color: #2484C2;
+    padding: 7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.fist-detail h3 {
+    font-size: 36px;
+    margin: 10px 0;
+    color: #000;
+}
+
+.fist-detail p {
+    font-size: 16px;
+    color: #475156;
+    line-height: 1.6;
+}
+
+.fist-detail ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fist-detail ul li {
+    font-size: 16px;
+    color: #475156;
+    position: relative;
+    padding-left: 25px;
+}
+
+.fist-detail ul li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #28a745; /* Green color for checkmarks */
+    font-size: 18px;
+}
+
+.Detail-illustration {
+    flex: 1;
+}
+
+.Detail-illustration img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: solid 1px #E4E7E9;
+}
+
+/* Team Section */
+
+.row:has(.title-team){
+    flex-direction: column;
+}
+
+.title-team {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+.team {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.member {
+    background-color: #fff;
+    border: solid 1px #E4E7E9;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.round-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #E4E7E9;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.round-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.member-name {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.member-status {
+    font-size: 14px;
+    color: #475156;
+}
