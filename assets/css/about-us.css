@@ -86,8 +86,7 @@ main {
     padding-left: 25px;
 }
 
-.fist-detail ul li::before {
-    content: '✔';
+.fist-detail i {
     position: absolute;
     left: 0;
     color: #28a745; /* Green color for checkmarks */
@@ -229,8 +228,8 @@ main {
 }
 
 .chat-icon {
-    background-color: #e6ffe6;
-    color: #28a745;
+    background-color: #f6ddcb;
+    color: #e56d45;
 }
 
 .contact-card h4 {
@@ -266,7 +265,7 @@ main {
 }
 
 .chat-btn {
-    background-color: #28a745;
+    background-color: #FA8232;
     color: #fff;
     border: none;
     padding: 10px 20px;
