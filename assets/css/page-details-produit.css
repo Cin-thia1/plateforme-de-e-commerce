@@ -90,8 +90,15 @@ iframe{
 
 .thumbnails i {
     font-size: 24px;
-    color: #828282;
+    color: #ffffff;
     cursor: pointer;
+    background-color: #e8782ebd;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* --- Informations sur le produit --- */
@@ -391,7 +398,7 @@ iframe{
 }
 
 .features-list i {
-    color: #E8772E;
+    color: #e8782ecc;
     font-size: 20px;
 }
 
