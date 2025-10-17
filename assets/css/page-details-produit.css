@@ -34,7 +34,6 @@ iframe{
 .main-container{
     margin-top: 225px;
     display: flex;
-    margin: 40px;
     justify-content: center;
 }
 .product-container {
