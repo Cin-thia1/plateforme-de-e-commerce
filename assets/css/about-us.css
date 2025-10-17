@@ -7,9 +7,31 @@ body {
     background-color: white;
 }
 
+iframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 222px;
+    border: none;
+    z-index: 1000;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 450px; /* Adjust height as needed */
+    border: none;
+    z-index: 1000;
+}
+
 main {
+    margin-top: 25px;
     max-width: 1400px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 20px;
 }
 
@@ -27,7 +49,7 @@ main {
     gap: 20px;
 }
 
-.fist-detail span {
+.fist-detail span, .contact-us-link {
     color: #fff;
     background-color: #2484C2;
     padding: 7px;
@@ -79,7 +101,7 @@ main {
 .Detail-illustration img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 5px;
     border: solid 1px #E4E7E9;
 }
 
@@ -144,4 +166,112 @@ main {
 .member-status {
     font-size: 14px;
     color: #475156;
+}
+
+/* Contact Section */
+.contact-row {
+    flex-direction: column;
+    background-color: #f8f9fa;
+    padding: 40px 20px;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.contact-title {
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.contact-title h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+}
+
+.contact-cards {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.contact-card {
+    background-color: #fff;
+    border: solid 1px #E4E7E9;
+    border-radius: 8px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 30px;
+}
+.contact-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 40px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone-icon {
+    background-color: #e7f5ff;
+    color: #2484C2;
+}
+
+.chat-icon {
+    background-color: #e6ffe6;
+    color: #28a745;
+}
+
+.contact-card h4 {
+    font-size: 18px;
+    color: #000;
+    margin: 0;
+}
+
+.contact-card p {
+    font-size: 14px;
+    color: #475156;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.phone,
+.email {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    margin: 10px 0;
+}
+
+.call-btn {
+    background-color: #2484C2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.chat-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    align-self: flex-start;
 }

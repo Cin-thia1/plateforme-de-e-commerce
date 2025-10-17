@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="assets/css/style1.css">
+  <link rel="stylesheet" href="assets/css/header-footer.css">
+  <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
+</head>
+
+<body>
+  <header class="main-header"><!-- Bandeau Black Friday (statique, sans bouton fermer) -->
+    <!-- Superbar : message + réseaux + langue/devise -->
+    <div class="superbar">
+      <div class="container super-wrap">
+        <div class="super-left">Welcome to SHOPNOW online eCommerce store.</div>
+        <div class="super-right">
+          <div class="social">Follow us:
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="dropdown">
+            <div class="pill">Eng ▾</div>
+            <div class="dropdown-content" id="langue">
+              <a href="#">French</a>
+              <a href="#">English</a>
+              <a href="#">Deush</a>
+              <a href="#">Spanish</a>
+              <a href="#">Japanese</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <div class="pill">USD ▾</div>
+            <div class="dropdown-content" id="devise">
+              <a href="#">EUR</a>
+              <a href="#">XAF</a>
+              <a href="#">XOF</a>
+              <a href="#">YUEN</a>
+              <a href="#">LIVRE</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barre principale -->
+    <div class="container main-wrap">
+      <a class="brand" href="/">
+        <span class="brand__mark">●</span>
+        <span class="brand__name">SHOPNOW</span>
+      </a>
+
+      <div class="search" role="search">
+        <form action="/recherche" method="get">
+          <label for="q" class="visually-hidden">Search</label>
+          <input id="q" name="q" type="search" placeholder="Search for anything..." />
+          <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+
+      <div class="actions" aria-label="Actions utilisateur">
+        <a class="icon-btn" href="/panier" title="Panier"><i class="fas fa-shopping-cart"></i><span
+            class="badge">2</span></a>
+        <a class="icon-btn" href="/favoris" title="Favoris"><i class="fas fa-heart"></i></a>
+        <a class="icon-btn" href="/compte" title="Mon compte"><i class="fas fa-user"></i></a>
+      </div>
+    </div>
+
+    <!-- bottom barre -->
+    <div class="top-bar">
+      <div class="left-section">
+        <div class="dropdown">
+          <button class="dropdown-btn">All Category</button>
+          <div class="dropdown-content">
+            <a href="#">Smartphones</a>
+            <a href="#">Laptops</a>
+            <a href="#">Gaming</a>
+            <a href="#">Accessories</a>
+            <a href="#">Home Appliances</a>
+          </div>
+        </div>
+        <a href="#"><i class="fas fa-house"></i> Home </a>
+        <a href="#"><i class="fas fa-truck"></i> Track Order</a>
+        <a href="#"><i class="fas fa-question-circle"></i> Customer Support</a>
+        <a href="#"><i class="fa-solid fa-users"></i> About Us</a>
+
+      </div>
+
+      <div class="right-section">
+        <i class="fas fa-phone-alt"></i> +237 - 655 884 341
+      </div>
+    </div>
+
+  </header>
+  <div class="auth-container">
+    <div class="auth-box">
+      <h1>Connexion</h1>
+      <form>
+        <div class="input-group">
+          <label for="email">Adresse e-mail</label>
+          <input type="email" id="email" placeholder="aaaaaa@mail.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" placeholder="" required>
+        </div>
+
+        <button type="submit" class="btn">Se connecter</button>
+
+        <p class="switch-link">
+          Pas encore de compte ?
+          <a href="signup.html">S’inscrire</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</body>
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-top">
+    <div class="fgrid">
+      <!-- Brand + contact -->
+      <div class="fbrand">
+        <a class="brand" href="/">
+          <span class="brand__mark">●</span>
+          <span class="brand__name">SHOPNOW</span>
+        </a>
+        <div class="contact">
+          <div><strong>Customer Supports</strong></div>
+          <div>+237-655884341</div>
+          <div>Route de Melen, Yaounde<br></div>
+          <div><a href="mailto:info@skitbone.com">mnye@gmail.com</a></div>
+        </div>
+      </div>
+
+      <!-- Top Category -->
+      <nav class="fcol" aria-label="Top Category">
+        <h4>TOP CATEGORY</h4>
+        <a href="#">Computer & Laptops</a>
+        <a href="#">SmartPhone</a>
+        <a href="#">Headphone</a>
+        <a href="#">— <em>Accessories</em></a>
+        <a href="#">Clothes</a>
+        <a href="#">TV & Homes</a>
+        <a class="accent" href="#">Browse All Product →</a>
+      </nav>
+
+      <!-- Quick Links -->
+      <nav class="fcol" aria-label="Quick Links">
+        <h4>QUICK LINKS</h4>
+        <a href="#">Shop Product</a>
+        <a href="#">Shopping Cart</a>
+        <a href="#">Wishlist</a>
+        <a href="#">Track Order</a>
+        <a href="#">Customer Help</a>
+        <a href="#">About Us</a>
+        <a href="#">Contacts</a>
+
+      </nav>
+
+      <!-- Popular Tag -->
+      <div class="fcol" aria-label="Popular Tag">
+        <h4>POPULAR TAG</h4>
+        <div class="tags">
+          <span class="tag">Game</span><span class="tag">iPhone</span><span class="tag">TV</span>
+          <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span class="tag">SSD</span>
+          <span class="tag">Graphics Card</span><span class="tag">Power Bank</span><span class="tag">Smart TV</span>
+          <span class="tag">Speaker</span><span class="tag">Tablet</span><span class="tag">Microwave</span>
+          <span class="tag">Samsung</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container foot-wrap">
+      <div>ENSPY M1GI ShopNow e-commerce © 2025. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+</html>

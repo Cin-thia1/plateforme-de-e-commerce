@@ -1,217 +1,257 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ et Support Client</title>
-    <link rel="stylesheet" href="assets/css/faq.css">
-    <link rel="stylesheet" href="assets/css/header-footer.css"> 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ et Support Client</title>
+  <link rel="stylesheet" href="assets/css/faq.css">
+  <link rel="stylesheet" href="assets/css/header-footer.css">
+  <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <!-- Bandeau Black Friday (statique, sans bouton fermer) -->
-<div class="promo-bar">
-  <div class="container promo-wrap">
-    <div class="promo-left"><span class="promo-badge">Black</span><span>Friday</span></div>
-    <div class="promo-center">Up to <strong>59%</strong> OFF</div>
-    <div class="promo-right"><a class="promo-cta" href="#">SHOP NOW →</a></div>
-  </div>
-</div>
-
-<!-- Superbar : message + réseaux + langue/devise -->
-<div class="superbar">
-  <div class="container super-wrap">
-    <div class="super-left">Welcome to Clicon online eCommerce store.</div>
-    <div class="super-right">
-      <div class="social">Follow us:
-        <a href="#" aria-label="Twitter">𝕏</a>
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="Pinterest">P</a>
-        <a href="#" aria-label="YouTube">▶</a>
-        <a href="#" aria-label="Instagram">◎</a>
-      </div>
-      <div class="pill">Eng ▾</div>
-      <div class="pill">USD ▾</div>
-    </div>
-  </div>
-</div>
-
-<!-- Barre principale -->
-<header class="main-header">
-  <div class="container main-wrap">
-    <a class="brand" href="/">
-      <span class="brand__mark">●</span>
-      <span class="brand__name">SHOPNOW</span>
-    </a>
-
-    <div class="search" role="search">
-      <form action="/recherche" method="get">
-        <label for="q" class="visually-hidden">Rechercher</label>
-        <input id="q" name="q" type="search" placeholder="Search for anything..." />
-        <button type="submit" aria-label="Rechercher">🔍</button>
-      </form>
-    </div>
-
-    <div class="actions" aria-label="Actions utilisateur">
-      <a class="icon-btn" href="/panier" title="Panier">🛒<span class="badge">2</span></a>
-      <a class="icon-btn" href="/favoris" title="Favoris">♡</a>
-      <a class="icon-btn" href="/compte" title="Mon compte">👤</a>
-    </div>
-  </div>
-</header>
-
-    <div class="main-wrapper"> 
-        
-        <div class="content-wrapper">
-            
-            <section class="faq-section">
-                <h1 class="faq-title">Frequently Asked Questions</h1>
-                <div class="faq-list">
-                    
-                    <details class="faq-item">
-                        <summary>Quels sont les délais de livraison standard ?</summary>
-                        <div class="faq-content">
-                            <p>Nos délais de livraison standard sont généralement de <strong>3 à 5 jours ouvrables</strong> après l'expédition de votre commande. Vous recevrez un e-mail de confirmation d'expédition avec un numéro de suivi dès que votre colis quittera notre entrepôt.</p>
-                        </div>
-                    </details>
-
-                    <details class="faq-item" open>
-                        <summary>Quelles sont vos options et les coûts de livraison ?</summary>
-                        <div class="faq-content">
-                            <p>Nous proposons plusieurs options :</p>
-                            <ul>
-                                <li><strong>Livraison Standard (3-5 jours ouvrables) :</strong> 3500 fcfa ou <strong>Gratuite</strong> pour toute commande supérieure à 3000 fcfa.</li>
-                                <li><strong>Livraison Express (24-48h) :</strong> 6500 fcfa.</li>
-                                <li><strong>Retrait en point relais :</strong> 2000 fcfa.</li>
-                            </ul>
-                            <p>Veuillez consulter notre page de livraison pour plus de détails.</p>
-                        </div>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary>Comment puis-je retourner un article ?</summary>
-                        <div class="faq-content">
-                            <p>Vous disposez de <strong>14 jours</strong> à compter de la réception de votre commande pour effectuer un retour. L'article doit être dans son état d'origine, avec étiquettes.</p>
-                        </div>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary>Quels modes de paiement acceptez-vous ?</summary>
-                        <div class="faq-content">
-                            <p>Nous acceptons les cartes de crédit/débit (Visa, MasterCard, American Express), Orange money, Mobile money et le paiement par virement bancaire.</p>
-                        </div>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary>Mon article est endommagé, que dois-je faire ?</summary>
-                        <div class="faq-content">
-                            <p>Veuillez contacter notre service support immédiatement en utilisant le formulaire ci-contre. Joignez des photos de l'article endommagé ainsi que votre numéro de commande.</p>
-                        </div>
-                    </details>
-
-                </div>
-            </section>
-
-            <section class="support-section">
-                <div class="support-box">
-                    <h2>Don't find your answer, Ask for support.</h2>
-                    <p class="intro-support">
-                        Nous savons que les questions peuvent survenir. N'hésitez pas à nous contacter pour toute demande concernant votre commande, un produit, ou pour signaler un problème. <strong>Nous vous recontacterons très rapidement.</strong>
-                    </p>
-                    
-                    <form action="#" method="post" class="support-form">
-                        <div class="form-group">
-                            <label for="email" class="sr-only">Email address</label>
-                            <input type="email" id="email" name="email" required placeholder="Email address">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject" class="sr-only">Subject</label>
-                            <input type="text" id="subject" name="subject" required placeholder="Subject">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message" class="sr-only">Message</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Message (Optional)"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-button">SEND MESSAGE →</button>
-                    </form>
-                </div>
-            </section>
-
-        </div>
-    </div>
-<footer class="site-footer" role="contentinfo">
-  <div class="container footer-top">
-    <div class="fgrid">
-      <!-- Brand + contact -->
-      <div class="fbrand">
-        <a class="brand" href="/">
-          <span class="brand__mark">●</span>
-          <span class="brand__name">SHOPNOW</span>
-        </a>
-        <div class="contact">
-          <div><strong>Customer Supports</strong></div>
-          <div>(629) 555-0129</div>
-          <div>4517 Washington Ave.<br>Manchester, Kentucky, 39495</div>
-          <div><a href="mailto:info@skitbone.com">info@skitbone.com</a></div>
-        </div>
-      </div>
-
-      <!-- Top Category -->
-      <nav class="fcol" aria-label="Top Category">
-        <h4>TOP CATEGORY</h4>
-        <a href="#">Computer & Laptops</a>
-        <a href="#">SmartPhone</a>
-        <a href="#">Headphone</a>
-        <a href="#">— <em>Accessories</em></a>
-        <a href="#">Camera & Photo</a>
-        <a href="#">TV & Homes</a>
-        <a class="accent" href="#">Browse All Product →</a>
-      </nav>
-
-      <!-- Quick Links -->
-      <nav class="fcol" aria-label="Quick Links">
-        <h4>QUICK LINKS</h4>
-        <a href="#">Shop Product</a>
-        <a href="#">Shopping Cart</a>
-        <a href="#">Wishlist</a>
-        <a href="#">Compare</a>
-        <a href="#">Track Order</a>
-        <a href="#">Customer Help</a>
-        <a href="#">About Us</a>
-      </nav>
-
-      <!-- Download App -->
-      <div class="fcol" aria-label="Download App">
-        <h4>DOWNLOAD APP</h4>
-        <div class="store-badges">
-          <a class="store" href="#"><span class="logo">▶</span> Get it on <strong>Google Play</strong></a>
-          <a class="store" href="#"><span class="logo"></span> Get it from <strong>App Store</strong></a>
-        </div>
-      </div>
-
-      <!-- Popular Tag -->
-      <div class="fcol" aria-label="Popular Tag">
-        <h4>POPULAR TAG</h4>
-        <div class="tags">
-          <span class="tag">Game</span><span class="tag">iPhone</span><span class="tag">TV</span>
-          <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span class="tag">SSD</span>
-          <span class="tag">Graphics Card</span><span class="tag">Power Bank</span><span class="tag">Smart TV</span>
-          <span class="tag">Speaker</span><span class="tag">Tablet</span><span class="tag">Microwave</span>
-          <span class="tag">Samsung</span>
+  <!-- Barre principale -->
+  <header class="main-header"><!-- Bandeau Black Friday (statique, sans bouton fermer) -->
+    <!-- Superbar : message + réseaux + langue/devise -->
+    <div class="superbar">
+      <div class="container super-wrap">
+        <div class="super-left">Welcome to SHOPNOW online eCommerce store.</div>
+        <div class="super-right">
+          <div class="social">Follow us:
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="dropdown">
+            <div class="pill">Eng ▾</div>
+            <div class="dropdown-content" id="langue">
+              <a href="#">French</a>
+              <a href="#">English</a>
+              <a href="#">Deush</a>
+              <a href="#">Spanish</a>
+              <a href="#">Japanese</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <div class="pill">USD ▾</div>
+            <div class="dropdown-content" id="devise">
+              <a href="#">EUR</a>
+              <a href="#">XAF</a>
+              <a href="#">XOF</a>
+              <a href="#">YUEN</a>
+              <a href="#">LIVRE</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="footer-bottom">
-    <div class="container foot-wrap">
-      <div>Kinbo eCommerce Template © 2025. Design by Templatescookie</div>
+    <!-- Barre principale -->
+    <div class="container main-wrap">
+      <a class="brand" href="/">
+        <span class="brand__mark">●</span>
+        <span class="brand__name">SHOPNOW</span>
+      </a>
+
+      <div class="search" role="search">
+        <form action="/recherche" method="get">
+          <label for="q" class="visually-hidden">Search</label>
+          <input id="q" name="q" type="search" placeholder="Search for anything..." />
+          <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+
+      <div class="actions" aria-label="Actions utilisateur">
+        <a class="icon-btn" href="/panier" title="Panier"><i class="fas fa-shopping-cart"></i><span
+            class="badge">2</span></a>
+        <a class="icon-btn" href="/favoris" title="Favoris"><i class="fas fa-heart"></i></a>
+        <a class="icon-btn" href="/compte" title="Mon compte"><i class="fas fa-user"></i></a>
+      </div>
+    </div>
+
+    <!-- bottom barre -->
+    <div class="top-bar">
+      <div class="left-section">
+        <div class="dropdown">
+          <button class="dropdown-btn">All Category</button>
+          <div class="dropdown-content">
+            <a href="#">Smartphones</a>
+            <a href="#">Laptops</a>
+            <a href="#">Gaming</a>
+            <a href="#">Accessories</a>
+            <a href="#">Home Appliances</a>
+          </div>
+        </div>
+        <a href="#"><i class="fas fa-house"></i> Home </a>
+        <a href="#"><i class="fas fa-truck"></i> Track Order</a>
+        <a href="#"><i class="fas fa-question-circle"></i> Customer Support</a>
+        <a href="#"><i class="fa-solid fa-users"></i> About Us</a>
+
+      </div>
+
+      <div class="right-section">
+        <i class="fas fa-phone-alt"></i> +237 - 655 884 341
+      </div>
+    </div>
+
+  </header>
+
+  <div class="main-wrapper">
+
+    <div class="content-wrapper">
+
+      <section class="faq-section">
+        <h1 class="faq-title">Frequently Asked Questions</h1>
+        <div class="faq-list">
+
+          <details class="faq-item">
+            <summary>Quels sont les délais de livraison standard ?</summary>
+            <div class="faq-content">
+              <p>Nos délais de livraison standard sont généralement de <strong>3 à 5 jours ouvrables</strong> après
+                l'expédition de votre commande. Vous recevrez un e-mail de confirmation d'expédition avec un numéro de
+                suivi dès que votre colis quittera notre entrepôt.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" open>
+            <summary>Quelles sont vos options et les coûts de livraison ?</summary>
+            <div class="faq-content">
+              <p>Nous proposons plusieurs options :</p>
+              <ul>
+                <li><strong>Livraison Standard (3-5 jours ouvrables) :</strong> 3500 fcfa ou <strong>Gratuite</strong>
+                  pour toute commande supérieure à 3000 fcfa.</li>
+                <li><strong>Livraison Express (24-48h) :</strong> 6500 fcfa.</li>
+                <li><strong>Retrait en point relais :</strong> 2000 fcfa.</li>
+              </ul>
+              <p>Veuillez consulter notre page de livraison pour plus de détails.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Comment puis-je retourner un article ?</summary>
+            <div class="faq-content">
+              <p>Vous disposez de <strong>14 jours</strong> à compter de la réception de votre commande pour effectuer
+                un retour. L'article doit être dans son état d'origine, avec étiquettes.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Quels modes de paiement acceptez-vous ?</summary>
+            <div class="faq-content">
+              <p>Nous acceptons les cartes de crédit/débit (Visa, MasterCard, American Express), Orange money, Mobile
+                money et le paiement par virement bancaire.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Mon article est endommagé, que dois-je faire ?</summary>
+            <div class="faq-content">
+              <p>Veuillez contacter notre service support immédiatement en utilisant le formulaire ci-contre. Joignez
+                des photos de l'article endommagé ainsi que votre numéro de commande.</p>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <section class="support-section">
+        <div class="support-box">
+          <h2>Don't find your answer, Ask for support.</h2>
+          <p class="intro-support">
+            Nous savons que les questions peuvent survenir. N'hésitez pas à nous contacter pour toute demande concernant
+            votre commande, un produit, ou pour signaler un problème. <strong>Nous vous recontacterons très
+              rapidement.</strong>
+          </p>
+
+          <form action="#" method="post" class="support-form">
+            <div class="form-group">
+              <label for="email" class="sr-only">Email address</label>
+              <input type="email" id="email" name="email" required placeholder="Email address">
+            </div>
+
+            <div class="form-group">
+              <label for="subject" class="sr-only">Subject</label>
+              <input type="text" id="subject" name="subject" required placeholder="Subject">
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="sr-only">Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="Message (Optional)"></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">SEND MESSAGE →</button>
+          </form>
+        </div>
+      </section>
+
     </div>
   </div>
-</footer>
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-top">
+      <div class="fgrid">
+        <!-- Brand + contact -->
+        <div class="fbrand">
+          <a class="brand" href="/">
+            <span class="brand__mark">●</span>
+            <span class="brand__name">SHOPNOW</span>
+          </a>
+          <div class="contact">
+            <div><strong>Customer Supports</strong></div>
+            <div>+237-655884341</div>
+            <div>Route de Melen, Yaounde<br></div>
+            <div><a href="mailto:info@skitbone.com">mnye@gmail.com</a></div>
+          </div>
+        </div>
+
+        <!-- Top Category -->
+        <nav class="fcol" aria-label="Top Category">
+          <h4>TOP CATEGORY</h4>
+          <a href="#">Computer & Laptops</a>
+          <a href="#">SmartPhone</a>
+          <a href="#">Headphone</a>
+          <a href="#">— <em>Accessories</em></a>
+          <a href="#">Clothes</a>
+          <a href="#">TV & Homes</a>
+          <a class="accent" href="#">Browse All Product →</a>
+        </nav>
+
+        <!-- Quick Links -->
+        <nav class="fcol" aria-label="Quick Links">
+          <h4>QUICK LINKS</h4>
+          <a href="#">Shop Product</a>
+          <a href="#">Shopping Cart</a>
+          <a href="#">Wishlist</a>
+          <a href="#">Track Order</a>
+          <a href="#">Customer Help</a>
+          <a href="#">About Us</a>
+          <a href="#">Contacts</a>
+
+        </nav>
+
+        <!-- Popular Tag -->
+        <div class="fcol" aria-label="Popular Tag">
+          <h4>POPULAR TAG</h4>
+          <div class="tags">
+            <span class="tag">Game</span><span class="tag">iPhone</span><span class="tag">TV</span>
+            <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span class="tag">SSD</span>
+            <span class="tag">Graphics Card</span><span class="tag">Power Bank</span><span class="tag">Smart TV</span>
+            <span class="tag">Speaker</span><span class="tag">Tablet</span><span class="tag">Microwave</span>
+            <span class="tag">Samsung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container foot-wrap">
+        <div>ENSPY M1GI ShopNow e-commerce © 2025. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>

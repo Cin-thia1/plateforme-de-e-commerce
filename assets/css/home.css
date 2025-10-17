@@ -27,7 +27,7 @@ iframe {
 }
 
 main {
-    margin-top: 225px;
+    margin-top: 25px;
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
@@ -223,7 +223,7 @@ main {
 
 .charac-features-box i {
     all: unset;
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .charac-features-box div {
@@ -240,12 +240,15 @@ main {
      font-size: 10px;
 }
 
-/*
+
 .charac-features-box h5 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     margin: 0 0 5px 0;
-} */
+}
+.charac-features-box span {
+    font-size: 12px;
+}
 
 /* Best Deals Section */
 .head-best-deals {

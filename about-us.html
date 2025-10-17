@@ -5,11 +5,99 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/css/about-us.css">
+  <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/header-footer.css">
   <title>About Us</title>
 </head>
 
 <body>
-  <header></header>
+  <header class="main-header"><!-- Bandeau Black Friday (statique, sans bouton fermer) -->
+    <!-- Superbar : message + réseaux + langue/devise -->
+    <div class="superbar">
+      <div class="container super-wrap">
+        <div class="super-left">Welcome to SHOPNOW online eCommerce store.</div>
+        <div class="super-right">
+          <div class="social">Follow us:
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="dropdown">
+            <div class="pill">Eng ▾</div>
+            <div class="dropdown-content" id="langue">
+              <a href="#">French</a>
+              <a href="#">English</a>
+              <a href="#">Deush</a>
+              <a href="#">Spanish</a>
+              <a href="#">Japanese</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <div class="pill">USD ▾</div>
+            <div class="dropdown-content" id="devise">
+              <a href="#">EUR</a>
+              <a href="#">XAF</a>
+              <a href="#">XOF</a>
+              <a href="#">YUEN</a>
+              <a href="#">LIVRE</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barre principale -->
+    <div class="container main-wrap">
+      <a class="brand" href="/">
+        <span class="brand__mark">●</span>
+        <span class="brand__name">SHOPNOW</span>
+      </a>
+
+      <div class="search" role="search">
+        <form action="/recherche" method="get">
+          <label for="q" class="visually-hidden">Search</label>
+          <input id="q" name="q" type="search" placeholder="Search for anything..." />
+          <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+
+      <div class="actions" aria-label="Actions utilisateur">
+        <a class="icon-btn" href="/panier" title="Panier"><i class="fas fa-shopping-cart"></i><span
+            class="badge">2</span></a>
+        <a class="icon-btn" href="/favoris" title="Favoris"><i class="fas fa-heart"></i></a>
+        <a class="icon-btn" href="/compte" title="Mon compte"><i class="fas fa-user"></i></a>
+      </div>
+    </div>
+
+    <!-- bottom barre -->
+    <div class="top-bar">
+      <div class="left-section">
+        <div class="dropdown">
+          <button class="dropdown-btn">All Category</button>
+          <div class="dropdown-content">
+            <a href="#">Smartphones</a>
+            <a href="#">Laptops</a>
+            <a href="#">Gaming</a>
+            <a href="#">Accessories</a>
+            <a href="#">Home Appliances</a>
+          </div>
+        </div>
+
+        <a href="#"><i class="fas fa-house"></i> Home </a>
+        <a href="#"><i class="fas fa-truck"></i> Track Order</a>
+        <a href="#"><i class="fas fa-question-circle"></i> Customer Support</a>
+        <a href="#"><i class="fa-solid fa-users"></i> About Us</a>
+
+      </div>
+
+      <div class="right-section">
+        <i class="fas fa-phone-alt"></i> +237 - 655 884 341
+      </div>
+    </div>
+
+  </header>
   <main class="container">
     <!-- first presentation -->
     <div class="row">
@@ -18,8 +106,10 @@
           <span>Who We Are</span>
           <h3>Etudiant ENSPY M1-GI</h3>
           <p>
-            Etudiant a l'Ecole Nationale Superieure Polytechnique de Yaounde, nous sommes passionnés par la conception des applications, 
-            leur implementation et surtout par le developpement web. Nous sommes toujours pret a relever de nouveaux defis !
+            Etudiant a l'Ecole Nationale Superieure Polytechnique de Yaounde, nous sommes passionnés par la conception
+            des applications,
+            leur implementation et surtout par le developpement web. Nous sommes toujours pret a relever de nouveaux
+            defis !
           </p>
         </div>
         <div>
@@ -45,7 +135,7 @@
           </div>
           <div class="member-info">
             <span class="member-name">Ndeffeu Arthur</span>
-            <span class="member-status">bbbbb</span>
+            <span class="member-status">22p690</span>
           </div>
         </div>
         <div class="member">
@@ -54,7 +144,7 @@
           </div>
           <div class="member-info">
             <span class="member-name">Menome Loic</span>
-            <span class="member-status">nnnnnn</span>
+            <span class="member-status">22p680</span>
           </div>
         </div>
         <div class="member">
@@ -63,7 +153,7 @@
           </div>
           <div class="member-info">
             <span class="member-name">Meli Yan</span>
-            <span class="member-status">mmmmmm</span>
+            <span class="member-status">22p624</span>
           </div>
         </div>
         <div class="member">
@@ -72,7 +162,7 @@
           </div>
           <div class="member-info">
             <span class="member-name">Magnye Cabrelle</span>
-            <span class="member-status">vvvvvv</span>
+            <span class="member-status">22p643</span>
           </div>
         </div>
         <div class="member">
@@ -81,7 +171,7 @@
           </div>
           <div class="member-info">
             <span class="member-name">Tsomo Cinthia</span>
-            <span class="member-status"></span>
+            <span class="member-status">22p649</span>
           </div>
         </div>
         <div class="member">
@@ -90,24 +180,130 @@
           </div>
           <div class="member-info">
             <span class="member-name">Yackson Pascal</span>
-            <span class="member-status"></span>
+            <span class="member-status">22p692</span>
+          </div>
+        </div>
+        <div class="member">
+          <div class="round-image">
+            <img src="./assets/images/unknow.jpg" alt="">
+          </div>
+          <div class="member-info">
+            <span class="member-name">Mboua Mboua</span>
+            <span class="member-status">21p473</span>
+          </div>
+        </div>
+        <div class="member">
+          <div class="round-image">
+            <img src="./assets/images/unknow.jpg" alt="">
+          </div>
+          <div class="member-info">
+            <span class="member-name">Noutchat Audrey</span>
+            <span class="member-status">2XXXXX</span>
+          </div>
+        </div>
+        <div class="member">
+          <div class="round-image">
+            <img src="./assets/images/unknow.jpg" alt="">
+          </div>
+          <div class="member-info">
+            <span class="member-name">N'godak Salomon</span>
+            <span class="member-status">XXXXXXX</span>
           </div>
         </div>
 
       </div>
     </div>
     <!-- troisieme ligne -->
-    <!-- <div class="row">
-      <div class="text-on-image">
-        <h3>Faites nous confiance</h3>
-        <p>
-          Nous vous proposons des solutions logicielles adaptées à votre contexte pour vous pernettre d'accroître votre competitivité
-        </p>
+    <!-- Contact Section -->
+    <div class="row contact-row">
+      <div class="contact-title">
+        <span class="contact-us-link">CONTACT US</span>
+        <h2>Don't find your answer, Contact with us.</h2>
       </div>
-      <div class="circle-on-image"></div>
-    </div> -->
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="icon phone-icon">📞</div>
+          <div class="contact-info">
+            <h4>Call us now</h4>
+            <p>We are available online from 9:00 AM to 5:00 PM (GMT+5.45). Talk with us now</p>
+            <p class="phone">+237 - 655 884 341</p>
+            <button class="call-btn">CALL NOW →</button>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="icon chat-icon">💬</div>
+          <div class="contact-info">
+            <h4>Chat with us</h4>
+            <p>We are available online from 9:00 AM to 5:00 PM (GMT+5.45). Talk with us now</p>
+            <p class="email">evradyanmeli@gmail.com</p>
+            <button class="chat-btn">CONTACT US →</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
-  <footer></footer>
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-top">
+      <div class="fgrid">
+        <!-- Brand + contact -->
+        <div class="fbrand">
+          <a class="brand" href="/">
+            <span class="brand__mark">●</span>
+            <span class="brand__name">SHOPNOW</span>
+          </a>
+          <div class="contact">
+            <div><strong>Customer Supports</strong></div>
+            <div>+237-655884341</div>
+            <div>Route de Melen, Yaounde<br></div>
+            <div><a href="mailto:info@skitbone.com">mnye@gmail.com</a></div>
+          </div>
+        </div>
+
+        <!-- Top Category -->
+        <nav class="fcol" aria-label="Top Category">
+          <h4>TOP CATEGORY</h4>
+          <a href="#">Computer & Laptops</a>
+          <a href="#">SmartPhone</a>
+          <a href="#">Headphone</a>
+          <a href="#">— <em>Accessories</em></a>
+          <a href="#">Clothes</a>
+          <a href="#">TV & Homes</a>
+          <a class="accent" href="#">Browse All Product →</a>
+        </nav>
+
+        <!-- Quick Links -->
+        <nav class="fcol" aria-label="Quick Links">
+          <h4>QUICK LINKS</h4>
+          <a href="#">Shop Product</a>
+          <a href="#">Shopping Cart</a>
+          <a href="#">Wishlist</a>
+          <a href="#">Track Order</a>
+          <a href="#">Customer Help</a>
+          <a href="#">About Us</a>
+          <a href="#">Contacts</a>
+
+        </nav>
+
+        <!-- Popular Tag -->
+        <div class="fcol" aria-label="Popular Tag">
+          <h4>POPULAR TAG</h4>
+          <div class="tags">
+            <span class="tag">Game</span><span class="tag">iPhone</span><span class="tag">TV</span>
+            <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span class="tag">SSD</span>
+            <span class="tag">Graphics Card</span><span class="tag">Power Bank</span><span class="tag">Smart TV</span>
+            <span class="tag">Speaker</span><span class="tag">Tablet</span><span class="tag">Microwave</span>
+            <span class="tag">Samsung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container foot-wrap">
+        <div>ENSPY M1GI ShopNow e-commerce © 2025.  All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

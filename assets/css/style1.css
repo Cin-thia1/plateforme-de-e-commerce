@@ -1,0 +1,85 @@
+/* Style global */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Conteneur central */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Boîte du formulaire */
+.auth-box {
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  width: 350px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.auth-box h1 {
+  color: #264653;
+}
+
+/* Champs de saisie */
+.input-group {
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #2a9d8f;
+}
+
+/* Bouton */
+.btn {
+  background-color: #ff7f50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.9rem 1.5rem;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #E8772E;
+}
+
+/* Lien de bas de page */
+.switch-link {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.switch-link a {
+  color: #ff7f50;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.switch-link a:hover {
+  text-decoration: underline;
+}
