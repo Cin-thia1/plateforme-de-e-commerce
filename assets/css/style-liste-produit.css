@@ -46,7 +46,7 @@ iframe {
 
 /* Utilitaires */
 .container{ width: min(1200px, 94%); margin-inline: auto; }
-.sr-only { position: absolute; left: -9999px; }
+.sr-only { position: absolute; left: -9999px; border: solid #eaecee 1px;}
 
 /***
   1) HEADER (logo, nav, recherche)
@@ -88,7 +88,8 @@ iframe {
 /************************
   2) TOOLBAR (breadcrumb + filtres actifs + compteur)
 *************************/
-.toolbar{ background:#fff; border-block:1px solid var(--border); margin-top: 225PX;}
+.toolbar{ background:#fff; border: solid #eaecee 1px;}
+/*.toolbar{ background:#fff; border-block:1px solid var(--border); border: solid #eaecee 1px;}*/
 .toolbar_row{
   display:grid; grid-template-columns: 1fr auto auto;
   gap:12px; align-items:center; padding:12px 0;
@@ -119,10 +120,11 @@ iframe {
 .sidebar{
   position: sticky; top: 16px; /* reste visible au scroll */
   background: var(--card);
-  border: 1px solid var(--border);
+  /*border: 1px solid var(--border);*/
   border-radius: 12px;
   padding: 16px;
   height: max-content;
+  border: solid #eaecee 1px;
 }
 
 .filter + .filter { margin-top: 18px; }
@@ -209,10 +211,16 @@ iframe {
 .product-cart{
   position:relative; display:flex; flex-direction:column; overflow:hidden;
   background:var(--card);
-  border:1px solid var(--border);
+  border: solid #eaecee 1px;
   border-radius: 14px;
   transition: transform .15s ease, box-shadow .15s ease;
   height: 100%;
+  /*border: solid #eaecee 1px;
+    padding: 15px;
+    min-width: 150px;
+    text-align: center;
+    position: relative;
+    border:1px solid var(--border);*/
   
 }
 .product-cart:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
@@ -248,17 +256,21 @@ iframe {
 }
 
 /* Corps */
-.product-cart_body{ padding:12px 14px; display:grid; gap:6px;
-flex: 1;                       /* pousse les boutons en bas */
+.product-cart_body{ padding:12px 14px; 
+  /*display:grid; */
+  /*gap:1px;*/
+/*flex: 1; */                      /* pousse les boutons en bas */
    }
+   
+   
 .title{ font-size:1rem; line-height:1.35; }
 .title a{ color:inherit; text-decoration:none; 
 display: -webkit-box;
-  -webkit-line-clamp: 2;       
+  /*-webkit-line-clamp: 2;       
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-height: calc(1.35em * 2);}
+  min-height: calc(1.35em * 2);*/}
 .title a:hover{ color: var(--primary); }
 
 /* Note (étoiles) : on laisse ton texte ★★★★☆ mais on colore */
@@ -275,21 +287,41 @@ display: -webkit-box;
     margin-top: 4px;
 }
 
-/* Prix actuel  */
+/* Prix actuel  
+.lastPrice {
+    text-decoration: line-through;
+    color: #6c757d;
+    font-size: 14px;
+    margin-right: 5px;
+    text-align: left;
+}
+
+.price {
+    font-size: 14px;
+    color: #2DA5F3;
+    text-align: left; 
+}*/
 .price .current { 
-    font-weight: 800; 
-    color: #111827; 
+    /*font-weight: 800; 
+    color: #2DA5F3; 
     font-size: 16px; 
-    white-space: nowrap; 
+    white-space: nowrap; */
+    font-size: 14px;
+    color: #2DA5F3;
+    text-align: left;
 }
 
 /* Prix barré */
 .price .old { 
-    color: var(--muted); 
+    /*color: var(--muted); 
     text-decoration: line-through; 
      font-size: 12px; 
-    /* s'ssurez-vous qu'il n'y a pas de saut de ligne */
-    white-space: nowrap; 
+    white-space: nowrap; */
+    text-decoration: line-through;
+    color: #6c757d;
+    font-size: 14px;
+    margin-right: 5px;
+    text-align: left;
 }
 
 /* Unité monétaire (FCFA)  */
@@ -306,11 +338,16 @@ display: -webkit-box;
 
 /* Actions (favori / comparer / panier) */
 .product-cart_actions{
-  display:flex; gap:8px; padding: 10px 14px 14px; margin-top:auto;
+  display:flex; 
+  gap:8px; 
+  padding: 10px 14px 14px;
+  
+  /* margin-top:auto;*/
 }
 .product-cart_actions button{
-  flex:1; padding:8px 10px; border:1px solid var(--border);
+  flex:1; padding:8px 10px; border: solid #eaecee 1px;
   background:#fff; border-radius:10px; cursor:pointer;
+  
 }
 .product-cart_actions button:hover{ border-color:#cbd5e1; }
 
