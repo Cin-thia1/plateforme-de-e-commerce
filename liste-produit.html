@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Liste des Produits</title>
-        <link rel="stylesheet" 
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-            crossorigin="anonymous" 
-            referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="assets/css/style-liste-produit.css">
-        <link rel="stylesheet" href="assets/css/header-footer.css">
-    </head>
-    <body>
 
-        <iframe src="partials/header.html" scrolling="no"></iframe>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Produits</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/style-liste-produit.css">
+    <link rel="stylesheet" href="assets/css/header-footer.css">
+</head>
 
+<body>
+
+    <iframe src="partials/header.html" scrolling="no"></iframe>
+    <div class="category-container">
         <section class="toolbar">
             <div class="container toolbar_row">
                 <nav class="breadcrumbs" aria-label="Fil d'Ariane">
@@ -24,22 +24,18 @@
                     <span aria-hidden="true">></span>
                     <strong>Appareils</strong>
                 </nav>
+                
 
-                <div class="active-filters">
-                    <span>Filtres actifs :</span>
-                    <button class="chip" type="button">Electronique ✕</button>
-                    <button class="chip" type="button">Note ≥ 5★</button>
-                </div>
-                <div class="result-count"> 100 résultats</div>
+
             </div>
         </section>
 
         <main class="container layout">
             <aside class="sidebar" aria-label="Filtres de produits">
                 <section class="filter">
-                    <h3 class="filter-title">Catégories</h3>
+                    <h3 class="filter-title">CATEGORIES</h3>
                     <ul class="list-plain">
-                        <li><a href="#">Desktop & Laptop</a></li>
+                        <!--<li><a href="#">Desktop & Laptop</a></li>
                         <li><a href="#">Périphériques & Accesoires</a></li>
                         <li><a href="#">Smartphones</a></li>
                         <li><a href="#">Headphones</a></li>
@@ -50,39 +46,62 @@
                         <li><a href="#">GPS & Navigation</a></li>
                         <li><a href="#">Imprimantes & Scaners</a></li>
                         <li><a href="#">Electroménager</a></li>
-                        <li><a href="#">Electronique</a></li>
+                        <li><a href="#">Electronique</a></li>-->
+                        <li><label><input type="checkbox" /> Desktop & Laptop</label></li>
+                        <li><label><input type="checkbox" /> Périphériques & Accesoires</label></li>
+                        <li><label><input type="checkbox" /> Smartphones</label></li>
+                        <li><label><input type="checkbox" /> Headphones</label></li>
+                        <li><label><input type="checkbox" /> Accessoires téléphones</label></li>
+                        <li><label><input type="checkbox" /> Gaming</label></li>
+                        <li><label><input type="checkbox" /> Caméra & Photo</label></li>
+                        <li><label><input type="checkbox" /> Montres & Accesoires</label></li>
+                        <li><label><input type="checkbox" /> GPS & Navigation</label></li>
+                        <li><label><input type="checkbox" /> Imprimantes & Scaners</label></li>
+                        <li><label><input type="checkbox" /> Electroménager</label></li>
+                        <li><label><input type="checkbox" /> Electronique</label></li>
                     </ul>
                 </section>
+                <hr class="barre">
 
                 <section class="filter">
-                    <h3 class="filter-title">Plage de prix</h3>
+                    <h3 class="filter-title">PLAGE DE PRIX</h3>
                     <div class="price-range">
-                        <input type="range" min="0" max="2000" value="500" aria-label="Filtre prix"/>
+                        <!--<input type="range" min="0" max="2000" value="500" aria-label="Filtre prix" />-->
                         <div class="price-inputs">
                             <label>
                                 <span class="sr-only">Prix minimum</span>
-                                <input type="number" placeholder="Min price"/>
+                                <input type="number" placeholder="Min price" />
                             </label>
                             <span class="sep">—</span>
                             <label>
                                 <span class="sr-only">Prix maximum</span>
-                                <input type="number" placeholder="Max price"/>
+                                <input type="number" placeholder="Max price" />
                             </label>    
                         </div>
                         <ul class="list-plain pills">
-                            <li><button type="button" class="pill">Tout prix</button></li>
+                            <li><label><input type="radio" name="choix-prix" /> Tout prix</label></li>
+                            <li><label><input type="radio" name="choix-prix" /> Moins de 5000 FCFA</label></li>
+                            <li><label><input type="radio" name="choix-prix" /> 5000 FCFA à 10 000 FCFA</label></li>
+                            <li><label><input type="radio" name="choix-prix" /> 10 000 FCFA à 50 000 FCFA</label></li>
+                            <li><label><input type="radio" name="choix-prix" /> 50 000 FCFA à 100 000 FCFA</label></li>
+                            <li><label><input type="radio" name="choix-prix" /> 100 000 FCFA à 500 000 FCFA</label></li>
+                            <li><label><input type="radio" name="choix-prix" /> 500 000 FCFA à 1 000 000 FCFA</label>
+                            </li>
+
+                            <!--<li><button type="button-" class="pill">Tout prix</button></li>
                             <li><button type="button" class="pill">Moins de 5000 FCFA</button></li>
                             <li><button type="button" class="pill">5000 FCFA à 10 000 FCFA</button></li>
                             <li><button type="button" class="pill">10 000 FCFA à 50 000 FCFA</button></li>
                             <li><button type="button" class="pill">50 000 FCFA à 100 000 FCFA</button></li>
                             <li><button type="button" class="pill">100 000 FCFA à 500 000 FCFA</button></li>
-                            <li><button type="button" class="pill">500 000 FCFA à 1 000 000 FCFA</button></li>
+                            <li><button type="button" class="pill">500 000 FCFA à 1 000 000 FCFA</button></li>-->
                         </ul>
                     </div>
                 </section>
+                <hr class="barre">
 
                 <section class="filter">
-                    <h3 class="filter-title">Marques</h3>
+                    <h3 class="filter-title">MARQUES</h3>
                     <ul class="brand-grid">
                         <li><label><input type="checkbox" /> Apple</label></li>
                         <li><label><input type="checkbox" /> Google</label></li>
@@ -96,9 +115,10 @@
                         <li><label><input type="checkbox" /> Intel</label></li>
                     </ul>
                 </section>
+                <hr class="barre">
 
                 <section class="filter">
-                    <h3 class="filter-title">Tag populaire</h3>
+                    <h3 class="filter-title">TAG POPULAIRE</h3>
                     <ul class="tags">
                         <li><a class="tag" href="#">Macbook</a></li>
                         <li><a class="tag" href="#">Iphone</a></li>
@@ -108,133 +128,158 @@
                         <li><a class="tag" href="#">Smart TV</a></li>
                         <li><a class="tag" href="#">Samsung</a></li>
                         <li><a class="tag" href="#">Microwave</a></li>
-                        <li><a class="tag" href="#" >Electronique</a></li>
+                        <li><a class="tag" href="#">Electronique</a></li>
                     </ul>
                 </section>
+
             </aside>
+            <div class="page-container">
+                <div class="separate-product search-bar">
+                    <form action="/recherche" method="get" class="research-form">
+                        <label for="q" class="visually-hidden">Rechercher</label>
+                        <input id="q" name="q" type="search" placeholder=" Rechercher un appareil..." />
+                        <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+                        </form>
 
-            <section class="product" aria-label="Liste des produits">
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-hot">HOT</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://i.pinimg.com/736x/8c/49/c0/8c49c093e87967598c63c87bd7e39000.jpg" alt="Samsung A56"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(24)</span>
+                        <div>
+                            <span>Trié par:</span>
+                            <select name="" id="" class="option-value">
+                                <option value="">Plus populaire </option>
+                            </select>
                         </div>
-                        <h4 class="title"><a href="#">Samsung A56</a></h4>
-                        <div class="price">
-                            <span class="old">322 000 FCFA</span>
-                            <span class="current">294 000 FCFA</span>
-                            
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-hot">HOT</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://i.pinimg.com/736x/11/d2/ad/11d2ad0db6dd9c5f83e2a1da06975c16.jpg" alt="iPhone 12 pro"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(24)</span>
-                        </div>
-                        <h4 class="title"><a href="#">iPhone 12 Pro</a></h4>
-                        <div class="price">
-                            <span class="old">370 000 FCFA</span>
-                            <span class="current">312 000 FCFA</span>
-                            
-                        </div>
+                </div>
+                <div class="active-filters">
+                    <div class="filter-apply">
+                        <span class="fonce">Filtres actifs :</span>
+                    <span class="chip" >Electronique <i class="fa-solid fa-xmark"></i></span>
                     </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    <div class="result-active-filters">60 4567 <span class="fonce">Résultats</span></div>
+                </div>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-best">BEST DEALS</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://i.pinimg.com/736x/fc/0f/da/fc0fda43f76d77b1e2d1566e62e5b31c.jpg" alt="Casque sans fil"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(24)</span>
-                        </div>
-                        <h4 class="title"><a href="#">iPhone 12 Pro</a></h4>
-                        <div class="price">
-                            <span class="old">370 000 FCFA</span>
-                            <span class="current">312 000 FCFA</span>
-                            
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
-                
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-hot">HOT</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/10/300/300" alt="Samsung A56"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(24)</span>
-                        </div>
-                        <h4 class="title"><a href="#">Samsung A56</a></h4>
-                        <div class="price">
-                            <span class="old">322 000 FCFA</span>
-                            <span class="current">294 000 FCFA</span>
-                            
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-hot">HOT</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/20/300/300" alt="iPhone 12 Pro"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(68)</span>
-                        </div>
-                        <h4 class="title"><a href="#">iPhone 12 Pro</a></h4>
-                        <div class="price">
-                            <span class="old">370 000 FCFA</span>
-                            <span class="current">312 000 FCFA</span>
-                            
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                <section class="product" aria-label="Liste des produits">
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-hot">HOT</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/samsung-a-56.jpg" alt="Samsung A56" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(24)</span>
+                            </div>
+                            <span>Samsung A56</span>
+                            <div class="price">
+                                <span class="old">322 000 FCFA</span>
+                                <span class="current">294 000 FCFA</span>
 
-                <!--<article class="product-cart">
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-hot">HOT</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/iphone-12-pro.jpg" alt="iPhone 12 pro" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(24)</span>
+                            </div>
+                            <span>iPhone 12 Pro</span>
+                            <div class="price">
+                                <span class="old">370 000 FCFA</span>
+                                <span class="current">312 000 FCFA</span>
+
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-best">BEST DEALS</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/casque-sans-fil.jpg" alt="Casque sans fil" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(24)</span>
+                            </div>
+                            <span>iPhone 12 Pro</span>
+                            <div class="price">
+                                <span class="old">370 000 FCFA</span>
+                                <span class="current">312 000 FCFA</span>
+
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-hot">HOT</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/samsung-a-56.jpg" alt="Samsung A56" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(24)</span>
+                            </div>
+                            <span>Samsung A56</span>
+                            <div class="price">
+                                <span class="old">322 000 FCFA</span>
+                                <span class="current">294 000 FCFA</span>
+
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-hot">HOT</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/iphone-12-pro.jpg" alt="iPhone 12 Pro" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(68)</span>
+                            </div>
+                            <span>iPhone 12 Pro</span>
+                            <div class="price">
+                                <span class="old">370 000 FCFA</span>
+                                <span class="current">312 000 FCFA</span>
+
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <!--<article class="product-cart">
                     <div class="product_cart_badge badge-best">BEST DEALS</div>
                     <a href="#" class="product-cart_thumb">
                         <img src="https://picsum.photos/id/30/300/300" alt="Casque Sans Fil Premium"/>
@@ -256,457 +301,462 @@
                         <button aria-label="Ajouter au panier">🛒</button>
                     </div>
                 </article>-->
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-hot">HOT</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/20/300/300" alt="iPhone 12 Pro"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(68)</span>
-                        </div>
-                        <h4 class="title"><a href="#">iPhone 12 Pro</a></h4>
-                        <div class="price">
-                            <span class="old">370 000 FCFA</span>
-                            <span class="current">312 000 FCFA</span>
-                            
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-hot">HOT</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/iphone-12-pro.jpg" alt="iPhone 12 Pro" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(68)</span>
+                            </div>
+                            <span>iPhone 12 Pro</span>
+                            <div class="price">
+                                <span class="old">370 000 FCFA</span>
+                                <span class="current">312 000 FCFA</span>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-new">NEW</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/40/300/300" alt="Smartwatch X Pro"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4.5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(90)</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Smartwatch X Pro</a></h4>
-                        <div class="price">
-                            <span class="old">105 000 FCFA</span>
-                            <span class="current">95 500 FCFA</span>
-                            
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-hot">HOT</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/50/300/300" alt="Tablette Android Ultra 11 pouces"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(45)</span>
-                        </div>
-                        <h4 class="title"><a href="#">Tablette Ultra 11"</a></h4>
-                        <div class="price">
-                            <span class="old">200 000 FCFA</span>
-                            <span class="current">180 000 FCFA</span>
-                            
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-new">NEW</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/smartwatch-x-pro.jpg" alt="Smartwatch X Pro" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4.5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(90)</span>
+                            </div>
+                            <span>Smartwatch X Pro</span>
+                            <div class="price">
+                                <span class="old">105 000 FCFA</span>
+                                <span class="current">95 500 FCFA</span>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-sale">SALE -20%</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/60/300/300" alt="Enceinte Portable Bluetooth"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(155)</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Enceinte Portable Pro</a></h4>
-                        <div class="price">
-                            <span class="old">35 000 FCFA</span>
-                            <span class="current">28 000 FCFA</span>
-                            
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-new">NEW</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/70/300/300" alt="Chargeur Sans Fil Rapide"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(52)</span>
-                        </div>
-                        <h4 class="title"><a href="#">Chargeur Sans Fil</a></h4>
-                        <div class="price">
-                            <span class="current">12 500 FCFA</span>
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-hot">HOT</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/tablette-ultra-11.jpg" alt="Tablette Android Ultra 11 pouces" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(45)</span>
+                            </div>
+                            <span>Tablette Ultra 11"</span>
+                            <div class="price">
+                                <span class="old">200 000 FCFA</span>
+                                <span class="current">180 000 FCFA</span>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-best">BEST DEALS</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/80/300/300" alt="Ordinateur Portable Pro 13 pouces"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(310)</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Laptop Pro 13"</a></h4>
-                        <div class="price">
-                            <span class="old">720 000 FCFA</span>
-                            <span class="current">650 000 FCFA</span>
-                            
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-hot">HOT</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/90/300/300" alt="Écouteurs sans fil Intra-Auriculaires"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(188)</span>
-                        </div>
-                        <h4 class="title"><a href="#">Écouteurs Pro Buds</a></h4>
-                        <div class="price">
-                            <span class="old">25 000 FCFA</span>
-                            <span class="current">18 000 FCFA</span>
-                            
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-sale">SALE -20%</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/enceinte-portable-pro.jpg" alt="Enceinte Portable Bluetooth" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(155)</span>
+                            </div>
+                            <span>Enceinte Portable Pro</span>
+                            <div class="price">
+                                <span class="old">35 000 FCFA</span>
+                                <span class="current">28 000 FCFA</span>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-new">NEW</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/100/300/300" alt="Console de Jeu Portable"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(75)</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Console GameGO</a></h4>
-                        <div class="price">
-                            <span class="current">250 000 FCFA</span>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-sale">SALE -30%</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/110/300/300" alt="Caméra Sport 4K"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4.5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(112)</span>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-new">NEW</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/chargeur-sans-fil.jpg" alt="Chargeur Sans Fil Rapide" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(52)</span>
+                            </div>
+                            <span>Chargeur Sans Fil</span>
+                            <div class="price">
+                                <span class="current">12 500 FCFA</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Caméra Sport Ultra</a></h4>
-                        <div class="price">
-                            <span class="old">80 000 FCFA</span>
-                            <span class="current">56 000 FCFA</span>
-                            
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-best">BEST DEALS</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/120/300/300" alt="Disque Dur Externe 2To"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(240)</span>
-                        </div>
-                        <h4 class="title"><a href="#">Disque Dur 2To</a></h4>
-                        <div class="price">
-                            <span class="current">75 000 FCFA</span>
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-best">BEST DEALS</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/laptop-13-pro.jpg" alt="Ordinateur Portable Pro 13 pouces" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(310)</span>
+                            </div>
+                            <span>Laptop Pro 13"</span>
+                            <div class="price">
+                                <span class="old">720 000 FCFA</span>
+                                <span class="current">650 000 FCFA</span>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-best">BEST DEALS</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/30/300/300" alt="Casque Sans Fil Premium"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4.5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(120)</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Casque Sans Fil Premium</a></h4>
-                        <div class="price">
-                            <span class="old">60 000 FCFA</span>
-                            <span class="current">45 000 FCFA</span>
-                            
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-new">NEW</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/40/300/300" alt="Smartwatch X Pro"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4.5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(90)</span>
-                        </div>
-                        <h4 class="title"><a href="#">Smartwatch X Pro</a></h4>
-                        <div class="price">
-                            <span class="old">105 000 FCFA</span>
-                            <span class="current">95 500 FCFA</span>
-                            
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-hot">HOT</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/écouteurs-pro.jpg" alt="Écouteurs sans fil Intra-Auriculaires" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(188)</span>
+                            </div>
+                            <span>Ecouteurs Pro Buds</span>
+                            <div class="price">
+                                <span class="old">25 000 FCFA</span>
+                                <span class="current">18 000 FCFA</span>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-hot">HOT</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/50/300/300" alt="Tablette Android Ultra 11 pouces"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(45)</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Tablette Ultra 11"</a></h4>
-                        <div class="price">
-                            <span class="old">200 000 FCFA</span>
-                            <span class="current">180 000 FCFA</span>
-                            
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-sale">SALE -20%</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/60/300/300" alt="Enceinte Portable Bluetooth"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(155)</span>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-new">NEW</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/console-game-go.jpg" alt="Console de Jeu Portable" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(75)</span>
+                            </div>
+                            <span>Console GameGO</span>
+                            <div class="price">
+                                <span class="current">250 000 FCFA</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Enceinte Portable Pro</a></h4>
-                        <div class="price">
-                            <span class="old">35 000 FCFA</span>
-                            <span class="current">28 000 FCFA</span>
-                            
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-new">NEW</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/70/300/300" alt="Chargeur Sans Fil Rapide"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(52)</span>
-                        </div>
-                        <h4 class="title"><a href="#">Chargeur Sans Fil</a></h4>
-                        <div class="price">
-                            <span class="current">12 500 FCFA</span>
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-sale">SALE -30%</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/camera-sport-4k.jpg" alt="Caméra Sport 4K" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4.5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(112)</span>
+                            </div>
+                            <span>Caméra Sport Ultra</span>
+                            <div class="price">
+                                <span class="old">80 000 FCFA</span>
+                                <span class="current">56 000 FCFA</span>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-best">BEST DEALS</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/80/300/300" alt="Ordinateur Portable Pro 13 pouces"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(310)</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Laptop Pro 13"</a></h4>
-                        <div class="price">
-                            <span class="old">720 000 FCFA</span>
-                            <span class="current">650 000 FCFA</span>
-                            
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-hot">HOT</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/90/300/300" alt="Écouteurs sans fil Intra-Auriculaires"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(188)</span>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-best">BEST DEALS</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/disque-dur.jpg" alt="Disque Dur Externe 2To" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(240)</span>
+                            </div>
+                            <span>Disque dur 2 To</span>
+                            <div class="price">
+                                <span class="current">75 000 FCFA</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Écouteurs Pro Buds</a></h4>
-                        <div class="price">
-                            <span class="old">25 000 FCFA</span>
-                            <span class="current">18 000 FCFA</span>
-                            
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-new">NEW</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/100/300/300" alt="Console de Jeu Portable"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★★</span>
-                            <span class="count">(75)</span>
-                        </div>
-                        <h4 class="title"><a href="#">Console GameGO</a></h4>
-                        <div class="price">
-                            <span class="current">250 000 FCFA</span>
-                        </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-best">BEST DEALS</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/casque.png" alt="Casque Sans Fil Premium" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4.5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(120)</span>
+                            </div>
+                            <span>Casque Sans Fil Premium</span>
+                            <div class="price">
+                                <span class="old">60 000 FCFA</span>
+                                <span class="current">45 000 FCFA</span>
 
-                <article class="product-cart">
-                    <div class="product_cart_badge badge-sale">SALE -30%</div>
-                    <a href="#" class="product-cart_thumb">
-                        <img src="https://picsum.photos/id/110/300/300" alt="Caméra Sport 4K"/>
-                    </a>
-                    <div class="product-cart_body">
-                        <div class="rating" aria-label="Note : 4.5 sur 5">
-                            <span class="stars" aria-hidden="true">★★★★☆</span>
-                            <span class="count">(112)</span>
+                            </div>
                         </div>
-                        <h4 class="title"><a href="#">Caméra Sport Ultra</a></h4>
-                        <div class="price">
-                            <span class="old">80 000 FCFA</span>
-                            <span class="current">56 000 FCFA</span>
-                            
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                    </div>
-                    <div class="product-cart_actions">
-                        <button aria-label="Ajouter aux favoris">♡</button>
-                        <button aria-label="Comparer">⇄</button>
-                        <button aria-label="Ajouter au panier">🛒</button>
-                    </div>
-                </article>
+                    </article>
 
-            </section>
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-new">NEW</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/smartwatch-x-pro.jpg" alt="Smartwatch X Pro" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4.5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(90)</span>
+                            </div>
+                            <span>Smartwatch X Pro</span>
+                            <div class="price">
+                                <span class="old">105 000 FCFA</span>
+                                <span class="current">95 500 FCFA</span>
+
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-hot">HOT</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/tablette-ultra-11.jpg" alt="Tablette Android Ultra 11 pouces" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(45)</span>
+                            </div>
+                            <span>Tablette Ultra 11"</span>
+                            <div class="price">
+                                <span class="old">200 000 FCFA</span>
+                                <span class="current">180 000 FCFA</span>
+
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-sale">SALE -20%</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/enceinte-portable-pro.jpg" alt="Enceinte Portable Bluetooth" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(155)</span>
+                            </div>
+                            <span>Enceinte Portable Pro</span>
+                            <div class="price">
+                                <span class="old">35 000 FCFA</span>
+                                <span class="current">28 000 FCFA</span>
+
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-new">NEW</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/chargeur-sans-fil.jpg" alt="Chargeur Sans Fil Rapide" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(52)</span>
+                            </div>
+                            <span>Chargeur Sans Fil</span>
+                            <div class="price">
+                                <span class="current">12 500 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-best">BEST DEALS</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/laptop-13-pro.jpg" alt="Ordinateur Portable Pro 13 pouces" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(310)</span>
+                            </div>
+                            <span>Laptop Pro 13"</span>
+                            <div class="price">
+                                <span class="old">720 000 FCFA</span>
+                                <span class="current">650 000 FCFA</span>
+
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-hot">HOT</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/écouteurs-pro.jpg" alt="Écouteurs sans fil Intra-Auriculaires" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(188)</span>
+                            </div>
+                            <span>Écouteurs Pro Buds</span>
+                            <div class="price">
+                                <span class="old">25 000 FCFA</span>
+                                <span class="current">18 000 FCFA</span>
+
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-new">NEW</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/console-game-go.jpg" alt="Console de Jeu Portable" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★★</span>
+                                <span class="count">(75)</span>
+                            </div>
+                            <span>Console GameGO</span>
+                            <div class="price">
+                                <span class="current">250 000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                    <article class="product-cart">
+                        <div class="product_cart_badge badge-sale">SALE -30%</div>
+                        <a href="#" class="product-cart_thumb">
+                            <img src="assets/images/camera-sport-4k.jpg" alt="Caméra Sport 4K" />
+                        </a>
+                        <div class="product-cart_body">
+                            <div class="rating" aria-label="Note : 4.5 sur 5">
+                                <span class="stars" aria-hidden="true">★★★★☆</span>
+                                <span class="count">(112)</span>
+                            </div>
+                            <span>Caméra Sport Ultra</span>
+                            <div class="price">
+                                <span class="old">80 000 FCFA</span>
+                                <span class="current">56 000 FCFA</span>
+
+                            </div>
+                        </div>
+                        <div class="product-cart_actions">
+                            <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
+                            <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                            <button aria-label="Ajouter au panier"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                    </article>
+
+                </section>
+            </div>
         </main>
-        
-        <iframe class="footer" src="partials/footer.html" scrolling="no"></iframe>
+    </div>
 
-        
-    </body>
+
+
+    <iframe class="footer" src="partials/footer.html" scrolling="no"></iframe>
+
+
+</body>
+
 </html>
