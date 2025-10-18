@@ -6,9 +6,31 @@ body {
     background-color: white;
 }
 
+iframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 222px;
+    border: none;
+    z-index: 1000;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 450px; /* Adjust height as needed */
+    border: none;
+    z-index: 1000;
+}
+
 main {
+    margin-top: 25px;
     max-width: 1400px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 20px;
 }
 
@@ -40,8 +62,9 @@ main {
 }
 
 .first-product-details span {
-    color: #2484C2;
-/*     text-decoration: underline; */
+    font-size: 14px;
+    color: #2DA5F3;
+    text-align: left; 
     font-size: 14px;
     text-transform: uppercase;
 }
@@ -56,6 +79,9 @@ main {
     color: #475156;
     margin-bottom: 20px;
 }
+.product-link{
+    text-decoration: none;
+}
 
 .shop-now {
     background-color: #FA8232;
@@ -67,12 +93,16 @@ main {
     font-weight: bold;
 }
 
+.shop-now:hover{
+    opacity: 0.9;
+}
+
 .first-product-image {
     position: relative;
 }
 
 .first-product-image img {
-    max-height: 400px;
+    max-height: 450px;
 }
 
 /* .first-product::after {
@@ -164,6 +194,11 @@ main {
 .seconds-products-bottom-details .price {
     font-size: 18px;
     font-weight: bold;
+    
+    font-size: 16px;
+    color: #2DA5F3;
+    text-align: left; 
+    
     display: block;
     margin-bottom: 10px;
 }
@@ -197,8 +232,7 @@ main {
 }
 
 .charac-features-box i {
-    all: unset;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .charac-features-box div {
@@ -215,12 +249,15 @@ main {
      font-size: 10px;
 }
 
-/*
+
 .charac-features-box h5 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     margin: 0 0 5px 0;
-} */
+}
+.charac-features-box span {
+    font-size: 12px;
+}
 
 /* Best Deals Section */
 .head-best-deals {
@@ -397,6 +434,10 @@ main {
     gap: 5px;
 }
 
+.add-to-card:hover, .best-deals-actions button:hover{
+    opacity: 0.9;
+}
+
 .best-deals-items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -420,7 +461,7 @@ main {
 .items-category {
     display: flex;
     gap: 15px;
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
     justify-content: center;
 }
@@ -431,6 +472,13 @@ main {
     min-width: 200px;
     text-align: center;
     position: relative;
+    transition: all 0.3s ease;
+}
+
+.category:hover{
+    cursor: pointer;
+    transform: translateY(-2px); 
+    box-shadow: 0 10px 24px rgba(0,0,0,.08); 
 }
 
 .category-image {
