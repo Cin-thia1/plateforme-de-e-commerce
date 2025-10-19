@@ -346,7 +346,7 @@ iframe{
     gap: 20px;
 }
 
-.tabs a {
+.tabs p {
     padding: 15px 25px;
     text-decoration: none;
     color: #828282;
@@ -356,17 +356,19 @@ iframe{
     transition: all 0.3s;
 }
 
-.tabs a.active {
+.tabs p.active {
     color: #E8772E;
     border-bottom-color: #E8772E;
 }
 
 .description-content {
-    display: flex;
+    display: none;
     gap: 40px;
     padding: 25px;
 }
-
+.active-content{
+    display: flex;
+}
 .description-text, .features-list, .shipping-info {
     flex: 1;
 }
@@ -403,6 +405,9 @@ iframe{
 }
 
 .shipping-info p {
+    margin-bottom: 12px;
+}
+.spec-info p {
     margin-bottom: 12px;
 }
 
@@ -457,5 +462,66 @@ iframe{
     color: #3384d4;
 }
 
+/* --- Style des commentaires/revues --- */
+.review-column{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.review-comment {
+    display: flex;
+    justify-content: flex-start;
+    height: 150px;
+}
 
+.review-badge {
+    display: flex;
+  flex-direction: column;
+    gap: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 10px 14px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.profile-line{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.review-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e0e0e0;
+    border: 2px solid #e0e0e0;
+}
+
+.review-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-author {
+    font-weight: 600;
+    color: #3384d4;
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.review-stars {
+    color: #FFB800;
+    font-size: 8px;
+}
+
+.review-text {
+    flex: 2;
+    font-size: 14px;
+    color: #828282;
+    margin-bottom: 0px
+}
 
