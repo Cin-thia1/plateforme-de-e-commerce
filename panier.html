@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier d'Achat</title>
+    <link rel="stylesheet" href="../assets/css/header-footer.css">
+    <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/panier.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <!-- Superbar : message + réseaux + langue/devise -->
+        <div class="superbar">
+        <div class="container super-wrap">
+            <div class="super-left">Bienvenue chez SHONOW votre boutique de e-commerce en ligne</div>
+            <div class="super-right">
+                <div class="social">Nous suivre:
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="dropdown">
+                    <div class="pill">Eng ▾</div>
+                    <div class="dropdown-content" id="langue">
+                        <a href="#">French</a>
+                        <a href="#">English</a>
+                        <a href="#">Deush</a>
+                        <a href="#">Spanish</a>
+                        <a href="#">Japanese</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <div class="pill">USD ▾</div>
+                    <div class="dropdown-content" id ="devise">
+                        <a href="#">EUR</a>
+                        <a href="#">XAF</a>
+                        <a href="#">XOF</a>
+                        <a href="#">YUEN</a>
+                        <a href="#">LIVRE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Barre principale -->
+        <div class="container main-wrap">
+            <a class="brand" href="/">
+            <span class="brand__mark">●</span>
+            <span class="brand__name">SHOPNOW</span>
+            </a>
+
+            <div class="search" role="search">
+            <form action="/recherche" method="get">
+                <label for="q" class="visually-hidden">Search</label>
+                <input id="q" name="q" type="search" placeholder="Search for anything..." />
+                <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+            </form>
+            </div>
+
+            <div class="actions" aria-label="Actions utilisateur">
+            <a class="icon-btn" href="/panier" title="Panier"><i class="fas fa-shopping-cart"></i><span class="badge">2</span></a>
+            <a class="icon-btn" href="/favoris" title="Favoris"><i class="fas fa-heart"></i></a>
+            <a class="icon-btn" href="/compte" title="Mon compte"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+
+        <!-- bottom barre -->
+        <div class="top-bar">
+            <div class="left-section">
+                <div class="dropdown">
+                    <button class="dropdown-btn">All Category</button>
+                    <div class="dropdown-content">
+                        <a href="#">Smartphones</a>
+                        <a href="#">Laptops</a>
+                        <a href="#">Gaming</a>
+                        <a href="#">Accessories</a>
+                        <a href="#">Home Appliances</a>
+                    </div>
+                </div>
+
+                <a href="#"><i class="fas fa-truck"></i> Track Order</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Customer Support</a>
+                <a href="#"><i class="fa-solid fa-users"></i> About Us</a>
+
+            </div>
+
+            <div class="right-section">
+                <i class="fas fa-phone-alt"></i> +237 - 655 884 341
+            </div>
+        </div>
+
+    </header>
+
+    <div class="page-container">
+        
+        <div class="cart-wrapper">
+            
+            <section class="shopping-cart">
+                <h2>Votre Panier</h2>
+                
+                <div class="cart-table-container">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th class="col-remove"></th>
+                                <th class="col-product">PRODUITS</th>
+                                <th class="col-price">PRIX</th>
+                                <th class="col-qty">QUANTITÉ</th>
+                                <th class="col-subtotal">SOUS-TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr class="cart-item" data-price="70"> 
+                                <td class="col-remove">
+                                    <button class="remove-btn" title="Supprimer l'article">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </td>
+                                <td class="col-product">
+                                    <p class="product-name">Téléviseur LED Smart TV 4K UHD avec Chromecast intégré</p>
+                                </td>
+                                <td class="col-price">
+                                    <del class="old-price">99</del> 
+                                    <span class="current-price">70</span> 
+                                </td>
+                                <td class="col-qty">
+                                    <div class="quantity-control">
+                                        <button class="qty-minus">-</button>
+                                        <input type="number" class="qty-input" value="1" min="1"> 
+                                        <button class="qty-plus">+</button>
+                                    </div>
+                                </td>
+                                <td class="col-subtotal subtotal-item-1"></td> 
+                            </tr>
+                            
+                            <tr class="cart-item" data-price="250">
+                                <td class="col-remove">
+                                    <button class="remove-btn" title="Supprimer l'article">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </td>
+                                <td class="col-product">
+                                    <p class="product-name">Casque Gamer filaire Over-Ear avec USB</p>
+                                </td>
+                                <td class="col-price">250</td> 
+                                <td class="col-qty">
+                                    <div class="quantity-control">
+                                        <button class="qty-minus">-</button>
+                                        <input type="number" class="qty-input" value="3" min="1"> 
+                                        <button class="qty-plus">+</button>
+                                    </div>
+                                </td>
+                                <td class="col-subtotal subtotal-item-2"></td> 
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cart-actions">
+                    <button class="btn btn-shop">← RETOUR À LA BOUTIQUE</button>
+                    <button class="btn btn-update">METTRE À JOUR LE PANIER</button>
+                </div>
+            </section>
+            
+            <aside class="card-totals-section">
+                
+                <div class="card-totals">
+                    <h3>Totaux du Panier</h3>
+                    <div class="total-row">
+                        <span class="label">Sous-total</span>
+                        <span class="value total-sub"></span>
+                    </div>
+                    <div class="total-row">
+                        <span class="label">Livraison</span>
+                        <span class="value total-shipping">Gratuite</span>
+                    </div>
+                    <div class="total-row">
+                        <span class="label">Réduction</span>
+                        <span class="value total-discount"></span>
+                    </div>
+                    <div class="total-row total-tax">
+                        <span class="label">Taxes (TVA)</span>
+                        <span class="value total-tax-value"></span>
+                    </div>
+                    <div class="total-row total-main">
+                        <span class="label">Total</span>
+                        <span class="value total-final"></span>
+                    </div>
+                    
+                    <button class="btn btn-checkout">PROCÉDER AU PAIEMENT →</button>
+                </div>
+                
+                <div class="coupon-code">
+                    <h4>Code Promo</h4>
+                    <div class="coupon-form">
+                        <input type="text" placeholder="Entrez votre code promo">
+                        <button class="btn btn-coupon">APPLIQUER LE COUPON</button>
+                    </div>
+                </div>
+                
+            </aside>
+            
+        </div>
+    </div>
+     <footer class="site-footer" role="contentinfo">
+    <div class="container footer-top">
+      <div class="fgrid">
+        <!-- Brand + contact -->
+        <div class="fbrand">
+          <a class="brand" href="/">
+            <span class="brand__mark">●</span>
+            <span class="brand__name">SHOPNOW</span>
+          </a>
+          <div class="contact">
+            <div><strong>Customer Supports</strong></div>
+            <div>+237-655884341</div>
+            <div>Route de Melen, Yaounde<br></div>
+            <div><a href="mailto:info@skitbone.com">mnye@gmail.com</a></div>
+          </div>
+        </div>
+
+        <!-- Top Category -->
+        <nav class="fcol" aria-label="Top Category">
+          <h4>TOP CATEGORY</h4>
+          <a href="#">Computer & Laptops</a>
+          <a href="#">SmartPhone</a>
+          <a href="#">Headphone</a>
+          <a href="#">— <em>Accessories</em></a>
+          <a href="#">Clothes</a>
+          <a href="#">TV & Homes</a>
+          <a class="accent" href="#">Browse All Product →</a>
+        </nav>
+
+        <!-- Quick Links -->
+        <nav class="fcol" aria-label="Quick Links">
+          <h4>QUICK LINKS</h4>
+          <a href="#">Shop Product</a>
+          <a href="#">Shopping Cart</a>
+          <a href="#">Wishlist</a>
+          <a href="#">Track Order</a>
+          <a href="#">Customer Help</a>
+          <a href="#">About Us</a>
+          <a href="#">Contacts</a>
+
+        </nav>
+
+        <!-- Popular Tag -->
+        <div class="fcol" aria-label="Popular Tag">
+          <h4>POPULAR TAG</h4>
+          <div class="tags">
+            <span class="tag">Game</span><span class="tag">iPhone</span><span class="tag">TV</span>
+            <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span class="tag">SSD</span>
+            <span class="tag">Graphics Card</span><span class="tag">Power Bank</span><span class="tag">Smart TV</span>
+            <span class="tag">Speaker</span><span class="tag">Tablet</span><span class="tag">Microwave</span>
+            <span class="tag">Samsung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container foot-wrap">
+        <div>ENSPY M1GI ShopNow e-commerce © 2025.  All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+    <script src="assets/js/panier.js" defer></script> 
+</body>
+</html>
