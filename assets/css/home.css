@@ -97,6 +97,22 @@ main {
     opacity: 0.9;
 }
 
+.carousel-indicators{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.carousel-indicators button{
+    border: none;
+    background: none;
+    font-size: 6px;
+    cursor: pointer;
+}
+
+.activeFirstSlide{
+    color: #FA8232;
+}   
+
 .first-product-image {
     position: relative;
 }
@@ -379,10 +395,6 @@ main {
     margin: 5px 0;
 }
 
-.stars::before {
-    content: '★★★★★ (52,677)';
-}
-
 .article-desc {
     font-size: 12px;
     margin: 10px 0;
@@ -426,7 +438,7 @@ main {
 
 .add-to-card {
     background-color: #fd7e14 !important;
-    color: #fff;
+    color: #000;
     border-radius: 5px;
     padding: 8px 15px;
     display: flex;
@@ -458,12 +470,58 @@ main {
     margin: 0;
 }
 
+/* Le conteneur "masque" qui cache le débordement */
+.categories-marquee-viewport {
+  width: 100%;
+  overflow: hidden; /* Crucial : cache ce qui dépasse */
+  position: relative;
+  /* Optionnel : ajoute un léger fondu sur les bords */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+/* Le conteneur qui défile */
 .items-category {
-    display: flex;
-    gap: 15px;
-    overflow-x: hidden;
-    position: relative;
-    justify-content: center;
+  display: flex; /* Aligne les catégories horizontalement */
+  width: max-content; /* S'assure que le conteneur est assez large */
+
+  /* L'animation ! */
+  /* 'scroll-marquee' est le nom, '40s' est la durée. Ajustez la durée pour changer la vitesse. */
+  animation: scroll-marquee 40s linear infinite;
+}
+
+/* Pause de l'animation au survol de la souris */
+.categories-marquee-viewport:hover .items-category {
+  animation-play-state: paused;
+}
+
+/* L'animation qui déplace le conteneur */
+@keyframes scroll-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* On déplace de -50%. 
+       Car grâce au JS, le contenu sera [A,B,C] + [A,B,C].
+       On défile jusqu'à la fin du premier set [A,B,C].
+       L'animation recommence alors à 0, donnant l'illusion d'une boucle parfaite.
+    */
+    transform: translateX(-50%);
+  }
+}
+
+/* S'assure que vos catégories ne sont pas "écrasées" */
+.items-category .category {
+  flex-shrink: 0;
+  /* ... vos autres styles pour .category ... */
+  margin: 0 15px; /* Ajoute un peu d'espace */
+}
+
+/* Accessibilité : désactive l'animation si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+  .items-category {
+    animation: none;
+  }
 }
 
 .category {
@@ -477,7 +535,7 @@ main {
 
 .category:hover{
     cursor: pointer;
-    transform: translateY(-2px); 
+    padding: 12px;
     box-shadow: 0 10px 24px rgba(0,0,0,.08); 
 }
 
@@ -536,4 +594,378 @@ main {
 
 .category-next {
     right: -20px;
+}
+
+/* Réglages de base pour la démo */
+
+/* Style de la carte principale */
+.card {
+    width: 100%;
+    max-width: 380px; /* Largeur de la carte */
+    background-color: #ffffff;
+    border-radius: 12px; /* Coins arrondis */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Ombre portée */
+    overflow: hidden; /* Pour que l'image respecte les coins arrondis */
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Léger effet au survol */
+}
+
+/* Style de l'image */
+.card-image img {
+    width: 100%;
+    height: auto;
+    display: block; /* Enlève l'espace blanc sous l'image */
+}
+
+/* Contenu textuel de la carte */
+.card-content {
+    padding: 24px; /* Espace intérieur */
+}
+
+/* Métadonnées (auteur, date, commentaires) */
+.card-meta {
+    display: flex;
+    flex-wrap: wrap; /* Permet le retour à la ligne sur petits écrans */
+    gap: 16px; /* Espace entre les éléments méta */
+    font-size: 0.875rem; /* 14px */
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.card-meta > span {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Espace entre l'icône et le texte */
+}
+
+.card-meta .icon {
+    font-size: 1rem; /* Ajuste la taille de l'émoji */
+}
+
+/* Titre de l'article */
+.card-title {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700; /* Gras */
+    color: #333;
+    line-height: 1.3;
+    margin: 0 0 12px 0; /* Marge en bas */
+}
+
+/* Extrait de l'article */
+.card-excerpt {
+    font-size: 1rem; /* 16px */
+    color: #666;
+    line-height: 1.6;
+    margin: 0 0 20px 0; /* Marge en bas */
+}
+
+/* Bouton "Read More" */
+.card-read-more {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 2px solid #f0ad4e; /* Couleur orange/or */
+    border-radius: 8px; /* Coins arrondis du bouton */
+    color: #f0ad4e;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.card-read-more .arrow {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* Effet au survol du bouton */
+.card-read-more:hover {
+    background-color: #f0ad4e;
+    color: #ffffff;
+}
+
+.card-read-more:hover .arrow {
+    transform: translateX(4px); /* Fait bouger la flèche */
+}
+
+/* ===============================================
+  STYLES DE BASE
+=============================================== */
+
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* ===============================================
+  MISE EN PAGE PRINCIPALE (Sidebar + Grille)
+=============================================== */
+
+
+.category-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===============================================
+  STYLES DE LA SIDEBAR DE FILTRES
+=============================================== */
+.category-filters {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.filter-apply{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.result-active-filters{
+    display: flex;
+    gap:20px;
+}
+
+.result-active-filters span {
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #777;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.result-active-filters span:hover {
+    color: #222;
+    border-bottom: solid #fd7e14 2px;
+}
+
+.result-active-filters .active {
+    color: #222;
+    border-bottom: solid #fd7e14 2px;
+}
+
+/* ===============================================
+  GRILLE DE PRODUITS
+=============================================== */
+.product {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ===============================================
+  CARTE PRODUIT INDIVIDUELLE
+=============================================== */
+.product-cart {
+    background-color: #ffffff;
+    border: 1px solid #EBEBEB;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-cart:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px);
+}
+
+/* ===============================================
+  BADGES (HOT, BEST DEALS, etc.)
+=============================================== */
+.product_cart_badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    border-radius: 6px;
+    z-index: 2;
+    text-transform: uppercase;
+}
+
+.badge-hot { background-color: #e63946; }
+.badge-best { background-color: #0071dc; }
+.badge-sale { background-color: #2a9d8f; }
+.badge-percent { background-color: #fca311; color: #333; }
+
+/* ===============================================
+  IMAGE DU PRODUIT
+=============================================== */
+.product-cart_thumb {
+    display: block;
+    padding: 1rem;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.product-cart_thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-cart:hover .product-cart_thumb img {
+    transform: scale(1.05);
+}
+
+/* ===============================================
+  CORPS DE LA CARTE (Infos, Prix)
+=============================================== */
+.product-cart_body {
+    padding: 0 1rem 1.25rem 1rem;
+    text-align: left;
+}
+
+/* Notation (Étoiles) */
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.rating .stars {
+    color: #FFA500;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.rating .count {
+    color: #777;
+    font-size: 0.85rem;
+}
+
+/* Titre du produit */
+.product-cart_body > span {
+    display: block;
+    font-weight: 500;
+    color: #222;
+    line-height: 1.4;
+    height: 2.8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Prix */
+product-cart_body .price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* .price .current {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #0071dc;
+}
+
+.price .old {
+    font-size: 0.9rem;
+    color: #999;
+    text-decoration: line-through;
+} */
+
+/* ===============================================
+  BOUTONS D'ACTION
+=============================================== */
+.product-cart_actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.product-cart:hover .product-cart_actions {
+    opacity: 1;
+    visibility: visible;
+}
+
+.product-cart_actions button {
+    background-color: #ffffff;
+    border: 1px solid #EBEBEB;
+    color: #222;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+
+.product-cart_actions button:hover {
+    background-color: #0071dc;
+    color: #ffffff;
+    border-color: #0071dc;
+    transform: scale(1.1);
+}
+
+/* ===============================================
+  RESPONSIVE (Mobile)
+=============================================== */
+@media (max-width: 900px) {
+    .category-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+
+    .product {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    
+    .product-cart_body > span {
+        font-size: 0.9rem;
+    }
+    
+    .price .current {
+        font-size: 1rem;
+    }
 }
