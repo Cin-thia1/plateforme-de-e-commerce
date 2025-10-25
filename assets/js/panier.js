@@ -225,14 +225,23 @@ function afficheArticles(liste) {
 function supprimerArticle(index) {
   // Vérifie que l’index est valide
   if (index >= 0 && index < articlesList.length) {
-    articlesList.splice(index, 1); // Supprime l’article correspondant
-    localStorage.setItem("articles", JSON.stringify(articlesList)); // Met à jour le stockage
-    afficheArticles(articlesList); // Rafraîchit l’affichage
+    articlesList.splice(index, 1); // Supprime l’article du tableau
+    localStorage.setItem("articles", JSON.stringify(articlesList)); // Met à jour le stockage local
+    
+    afficheArticles(articlesList); // Rafraîchit l’affichage du tableau
+    
+    // ⚡ Met à jour immédiatement les totaux après suppression
+    setTimeout(() => {
+      const event = new Event('DOMContentLoaded');
+      document.dispatchEvent(event); // Relance la logique principale pour recalculer
+    }, 50);
+
     console.log(`Article supprimé (index ${index})`);
   } else {
     console.warn("Index invalide lors de la suppression :", index);
   }
 }
+
 
 // Affiche le tableau au chargement
 afficheArticles(articlesList);
