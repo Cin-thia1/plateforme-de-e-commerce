@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -95,120 +95,77 @@
     </div>
 
   </header>
-    <div class="page-container">
+  <div class="page-container">
         
-        <div class="cart-wrapper">
-            
-            <section class="shopping-cart">
-                <h2>Votre Panier</h2>
-                
-                <div class="cart-table-container">
-                    <table class="cart-table">
-                        <thead>
-                            <tr>
-                                <th class="col-remove"></th>
-                                <th class="col-product">PRODUITS</th>
-                                <th class="col-price">PRIX</th>
-                                <th class="col-qty">QUANTITÉ</th>
-                                <th class="col-subtotal">SOUS-TOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            <tr class="cart-item" data-price="70"> 
-                                <td class="col-remove">
-                                    <button class="remove-btn" title="Supprimer l'article">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </td>
-                                <td class="col-product">
-                                    <p class="product-name">Téléviseur LED Smart TV 4K UHD avec Chromecast intégré</p>
-                                </td>
-                                <td class="col-price">
-                                    <del class="old-price">99</del> 
-                                    <span class="current-price">70</span> 
-                                </td>
-                                <td class="col-qty">
-                                    <div class="quantity-control">
-                                        <button class="qty-minus">-</button>
-                                        <input type="number" class="qty-input" value="1" min="1"> 
-                                        <button class="qty-plus">+</button>
-                                    </div>
-                                </td>
-                                <td class="col-subtotal subtotal-item-1"></td> 
-                            </tr>
-                            
-                            <tr class="cart-item" data-price="250">
-                                <td class="col-remove">
-                                    <button class="remove-btn" title="Supprimer l'article">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </td>
-                                <td class="col-product">
-                                    <p class="product-name">Casque Gamer filaire Over-Ear avec USB</p>
-                                </td>
-                                <td class="col-price">250</td> 
-                                <td class="col-qty">
-                                    <div class="quantity-control">
-                                        <button class="qty-minus">-</button>
-                                        <input type="number" class="qty-input" value="3" min="1"> 
-                                        <button class="qty-plus">+</button>
-                                    </div>
-                                </td>
-                                <td class="col-subtotal subtotal-item-2"></td> 
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                </div>
+    <div class="cart-wrapper">
+        
+      <section class="shopping-cart">
+          <h2>Votre Panier</h2>
+          
+          <div class="cart-table-container">
+            <table class="cart-table" id="panier-table">
+              <thead>
+                <tr>
+                  <th class="col-remove"></th>
+                  <th class="col-product">PRODUITS</th>
+                  <th class="col-price">PRIX</th>
+                  <th class="col-qty">QUANTITÉ</th>
+                  <th class="col-subtotal">SOUS-TOTAL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Les lignes du panier seront insérées ici dynamiquement -->
+              </tbody>
+            </table>
+          </div>
 
-                <div class="cart-actions">
-                    <button class="btn btn-shop">← RETOUR À LA BOUTIQUE</button>
-                    <button class="btn btn-update">METTRE À JOUR LE PANIER</button>
-                </div>
-            </section>
-            
-            <aside class="card-totals-section">
-                
-                <div class="card-totals">
-                    <h3>Totaux du Panier</h3>
-                    <div class="total-row">
-                        <span class="label">Sous-total</span>
-                        <span class="value total-sub"></span>
-                    </div>
-                    <div class="total-row">
-                        <span class="label">Livraison</span>
-                        <span class="value total-shipping">Gratuite</span>
-                    </div>
-                    <div class="total-row">
-                        <span class="label">Réduction</span>
-                        <span class="value total-discount"></span>
-                    </div>
-                    <div class="total-row total-tax">
-                        <span class="label">Taxes (TVA)</span>
-                        <span class="value total-tax-value"></span>
-                    </div>
-                    <div class="total-row total-main">
-                        <span class="label">Total</span>
-                        <span class="value total-final"></span>
-                    </div>
-                    
-                    <button class="btn btn-checkout">PROCÉDER AU PAIEMENT →</button>
-                </div>
-                
-                <div class="coupon-code">
-                    <h4>Code Promo</h4>
-                    <div class="coupon-form">
-                        <input type="text" placeholder="Entrez votre code promo">
-                        <button class="btn btn-coupon">APPLIQUER LE COUPON</button>
-                    </div>
-                </div>
-                
-            </aside>
-            
+        <div class="cart-actions">
+          <button class="btn btn-shop">← RETOUR À LA BOUTIQUE</button>
+          <button class="btn btn-update">METTRE À JOUR LE PANIER</button>
         </div>
+      </section>
+      
+      <aside class="card-totals-section">
+          
+        <div class="card-totals">
+          <h3>Totaux du Panier</h3>
+          <div class="total-row">
+            <span class="label">Sous-total</span>
+            <span class="value total-sub"></span>
+          </div>
+          <div class="total-row">
+            <span class="label">Livraison</span>
+            <span class="value total-shipping">Gratuite</span>
+          </div>
+          <div class="total-row">
+            <span class="label">Réduction</span>
+            <span class="value total-discount"></span>
+          </div>
+          <div class="total-row total-tax">
+            <span class="label">Taxes (TVA)</span>
+            <span class="value total-tax-value"></span>
+          </div>
+          <div class="total-row total-main">
+            <span class="label">Total</span>
+            <span class="value total-final"></span>
+          </div>
+          
+          <button class="btn btn-checkout">PROCÉDER AU PAIEMENT →</button>
+        </div>
+        
+        <div class="coupon-code">
+          <h4>Code Promo</h4>
+          <div class="coupon-form">
+            <input type="text" placeholder="Entrez votre code promo">
+            <button class="btn btn-coupon">APPLIQUER LE COUPON</button>
+          </div>
+        </div>
+          
+      </aside>
+        
     </div>
-   <!-- footer-->
+  </div>
+  <!-- footer-->
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-top">
       <div class="fgrid">
@@ -276,3 +233,52 @@
     <script src="assets/js/panier.js" defer></script> 
 </body>
 </html>
+
+<!--
+
+   
+                <tr class="cart-item" data-price="70"> 
+                  <td class="col-remove">
+                    <button class="remove-btn" title="Supprimer l'article">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </td>
+                  <td class="col-product">
+                    <p class="product-name">Téléviseur LED Smart TV 4K UHD avec Chromecast intégré</p>
+                  </td>
+                  <td class="col-price">
+                    <del class="old-price">99</del> 
+                    <span class="current-price">70</span> 
+                  </td>
+                  <td class="col-qty">
+                    <div class="quantity-control">
+                      <button class="qty-minus">-</button>
+                      <input type="number" class="qty-input" value="1" min="1"> 
+                      <button class="qty-plus">+</button>
+                    </div>
+                  </td>
+                  <td class="col-subtotal subtotal-item-1"></td> 
+                </tr>
+              
+                <tr class="cart-item" data-price="250">
+                  <td class="col-remove">
+                      <button class="remove-btn" title="Supprimer l'article">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </td>
+                  <td class="col-product">
+                      <p class="product-name">Casque Gamer filaire Over-Ear avec USB</p>
+                  </td>
+                  <td class="col-price">250</td> 
+                  <td class="col-qty">
+                      <div class="quantity-control">
+                          <button class="qty-minus">-</button>
+                          <input type="number" class="qty-input" value="3" min="1"> 
+                          <button class="qty-plus">+</button>
+                      </div>
+                  </td>
+                  <td class="col-subtotal subtotal-item-2"></td> 
+                </tr>
+                  
+
+-->

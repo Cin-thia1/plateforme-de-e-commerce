@@ -22,7 +22,7 @@ function viderPanier() {
 }
 
 
-const btn = document.getElementById("ajoutBox");
+/*const btn = document.getElementById("ajoutBox");
 
 btn.addEventListener("click", () =>{
 
@@ -32,4 +32,4 @@ btn.addEventListener("click", () =>{
 
     saveToNavigate(nom, prix, 1)
 })
-
+*/

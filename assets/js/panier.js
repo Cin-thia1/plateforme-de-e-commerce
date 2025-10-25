@@ -44,8 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function updateItemPrices(itemRow) {
         const usdPrice = parseFloat(itemRow.dataset.price);
-        const fcfaPrice = convertToFCFA(usdPrice);
-        
+        //const fcfaPrice = convertToFCFA(usdPrice);
+        const fcfaPrice = usdPrice;
+
         const priceContainer = itemRow.querySelector('.col-price');
         
         // Mise à jour du prix barré (si existe)
@@ -69,8 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function calculateItemSubtotal(itemRow) {
         const usdPrice = parseFloat(itemRow.dataset.price);
-        const fcfaPrice = convertToFCFA(usdPrice);
-        
+        //const fcfaPrice = convertToFCFA(usdPrice);
+        const fcfaPrice = usdPrice;
+
         const quantityInput = itemRow.querySelector('.qty-input');
         const quantity = parseInt(quantityInput.value);
         
@@ -89,7 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Calculer le sous-total global (en FCFA)
         cartItems.forEach(itemRow => {
             const usdPrice = parseFloat(itemRow.dataset.price);
-            const fcfaPrice = convertToFCFA(usdPrice);
+            //const fcfaPrice = convertToFCFA(usdPrice);
+            const fcfaPrice = usdPrice;
             const quantity = parseInt(itemRow.querySelector('.qty-input').value);
             globalSubtotal += fcfaPrice * quantity;
         });
@@ -153,3 +156,84 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. INITIALISATION AU CHARGEMENT DE LA PAGE
     updateCartTotals();
 });
+
+// 4. Chargement des commandes mise au panier et sauvegarde dans le localStorage
+
+// Récupération de la liste depuis le localStorage (ou tableau vide)
+let articlesList = JSON.parse(localStorage.getItem("articles")) || [];
+
+// Sélection du tbody du tableau
+const tbody = document.querySelector("#panier-table tbody");
+
+// Fonction d’affichage du tableau
+function afficheArticles(liste) {
+  // On vide le tableau avant de le reconstruire
+  tbody.innerHTML = "";
+
+  if (!liste || liste.length === 0) {
+    const ligneVide = document.createElement("tr");
+    const cellule = document.createElement("td");
+    cellule.colSpan = 5;
+    cellule.style.textAlign = "center";
+    cellule.textContent = "Aucun article n'a été ajouté au panier 😕";
+    ligneVide.appendChild(cellule);
+    tbody.appendChild(ligneVide);
+  } else {
+    liste.forEach((p, index) => {
+      const tr = document.createElement("tr");
+      tr.classList.add("cart-item");
+      tr.dataset.price = p.prixArticle;
+
+      tr.innerHTML = `
+        <td class="col-remove">
+          <button class="remove-btn" title="Supprimer l'article" data-index="${index}">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </td>
+        <td class="col-product">
+          <p class="product-name">${p.nomArticle}</p>
+        </td>
+        <td class="col-price">${p.prixArticle}</td>
+        <td class="col-qty">
+          <div class="quantity-control">
+            <button class="qty-minus">-</button>
+            <input type="number" class="qty-input" value="1" min="1">
+            <button class="qty-plus">+</button>
+          </div>
+        </td>
+        <td class="col-subtotal"></td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+
+    // Après avoir affiché toutes les lignes, on ajoute les écouteurs sur les boutons "supprimer"
+    const boutonsSuppr = tbody.querySelectorAll(".remove-btn");
+
+    boutonsSuppr.forEach(btn => {
+      btn.addEventListener("click", function () {
+        const index = parseInt(this.dataset.index); // ici, la variable est bien définie
+        supprimerArticle(index);
+      });
+    });
+  }
+
+  console.log("Articles dans le panier :", liste);
+}
+
+// Fonction de suppression d’un article
+function supprimerArticle(index) {
+  // Vérifie que l’index est valide
+  if (index >= 0 && index < articlesList.length) {
+    articlesList.splice(index, 1); // Supprime l’article correspondant
+    localStorage.setItem("articles", JSON.stringify(articlesList)); // Met à jour le stockage
+    afficheArticles(articlesList); // Rafraîchit l’affichage
+    console.log(`Article supprimé (index ${index})`);
+  } else {
+    console.warn("Index invalide lors de la suppression :", index);
+  }
+}
+
+// Affiche le tableau au chargement
+afficheArticles(articlesList);
+
