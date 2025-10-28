@@ -1,0 +1,212 @@
+/* General styles (reusing from previous) */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+aside {
+    width: 250px;
+    background-color: #fff;
+    border: solid 1px #E4E7E9;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    align-self: flex-start;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+    margin: 0px 0px;   
+}
+
+aside li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    font-size: 16px;
+    color: #475156;
+    cursor: pointer;
+    padding : 8px 10px;
+    border-radius: 0px;
+}
+
+aside li:hover {
+    background-color: #f8f9fa;
+}
+
+aside li:nth-child(2) { /* Assuming "Order History" is the second item */
+    background-color: #FA8232;
+    color: #fff;
+}
+
+aside i {
+    font-size: 16px;
+    color: inherit;
+}
+
+.main {
+    flex: 1;
+    background-color: #fff;
+    border: solid 1px #E4E7E9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.main h1 {
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead th {
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+    color: #475156;
+    background-color: #F2F4F5;
+    border-bottom: 1px solid #E4E7E9;
+    text-transform: uppercase;
+}
+
+tbody td {
+    padding: 10px;
+    font-size: 16px;
+    color: #000;
+    border-bottom: 1px solid #E4E7E9;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody td:nth-child(1) { /* Order ID */
+    color: #2484C2;
+    font-weight: bold;
+}
+
+/* tbody td:nth-child(2) { 
+    font-weight: bold;
+} */
+
+tbody td:nth-child(2)[data-status="Completed"] { /* Assuming you add data-status for coloring */
+    color: #28a745;
+}
+
+tbody td:nth-child(2)[data-status="Cancelled"] {
+    color: #dc3545;
+}
+
+tbody td:nth-child(2)[data-status="In Progress"] {
+    color: #FA8232;
+}
+
+/* tbody td:last-child { 
+    color: #2484C2;
+    text-decoration: underline;
+    cursor: pointer;
+} */
+
+/*style de la pagination*/
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0 0;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  /*gap:12 px;*/
+
+  user-select: none;
+}
+
+.page-nav {
+  all: unset;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  border-radius: 50%;
+  border: 1px solid #FA8232;
+  color: #FA8232;
+  place-items: center;
+  transition: transform .15s ease, border-color .15s ease;
+}
+
+.page-nav:hover {
+  transform: translateY(-1px);
+  border-color: #FA8232;
+  color: #FA8232;
+}
+
+.page-nav:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--pg-accent)40%, tansparent);
+  outline-offset: 2px;
+}
+
+.page-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.page-lien {
+  all: unset;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  border-radius: 50%;
+  border: solid #eaecee 1px;
+  place-items: center;
+  transition: transform .15s ease, color .15s ease, border-color .15s ease;
+
+}
+
+.page-lien:hover {
+  transform: translateY(-1px);
+  border-color: #FA8232;
+  color: #FA8232;
+    cursor: pointer;
+}
+
+.page-lien.is-active {
+  background-color: #FA8232;
+  color: #fff;
+  border-color: #FA8232;
+
+}
+
+.page-lien:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--pg-accent) 40%, transparent);
+  outline-offset: 2px;
+}
+
+.page-nav[disabled],
+.page-nav[aria-disabled="true"] {
+  opacity: .5;
+  pointer-events: none;
+}
