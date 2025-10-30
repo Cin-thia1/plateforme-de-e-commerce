@@ -180,7 +180,7 @@ function afficheArticles(liste) {
     const cellule = document.createElement("td");
     cellule.colSpan = 5;
     cellule.style.textAlign = "center";
-    cellule.textContent = "Aucun article n'a été ajouté au panier 😕";
+    cellule.textContent = "Aucun article n'a été ajouté au panier !";
     ligneVide.appendChild(cellule);
     tbody.appendChild(ligneVide);
   } else {
