@@ -1,0 +1,396 @@
+/* --- VARIABLES GLOBALES ET RÉINITIALISATION --- */
+:root {
+    --orange-primary: #f77f00;
+    --orange-secondary: #ff9133;
+    --color-text-main: #333;
+    --color-text-secondary: #777;
+    --color-blue-bg: #e6f1f8;
+    --color-orange-bg: #fff0e7;
+    --color-green-bg: #e6fae8;
+}
+
+a {
+    text-decoration: none;
+    color: var(--orange-primary);
+    transition: color 0.2s;
+}
+
+/* General styles (reusing from previous) */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+aside {
+    width: 250px;
+    background-color: #fff;
+    border: solid 1px #E4E7E9;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    align-self: flex-start;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+    margin: 0px 0px;   
+}
+
+aside li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    font-size: 16px;
+    color: #475156;
+    cursor: pointer;
+    padding : 8px 10px;
+    border-radius: 0px;
+}
+
+aside li:hover {
+    background-color: #f8f9fa;
+}
+
+aside li:nth-child(2) { /* Assuming "Order History" is the second item */
+    background-color: #FA8232;
+    color: #fff;
+}
+
+aside i {
+    font-size: 16px;
+    color: inherit;
+}
+
+.main {
+    flex: 1;
+    background-color: #fff;
+    border: solid 1px #E4E7E9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.main h1 {
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* --- SECTION BIENVENUE --- */
+.welcome-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.welcome-header p {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* --- INFO GRID (Comptes, Adresses & Stats) --- */
+.info-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.info-card {
+    background-color: #ffffff;
+    border: 1px solid #eee;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+}
+
+.info-card h3 {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.profile-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.account-details .name, .address-details .name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.account-details .location, .address-details .location-full {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.detail-line {
+    font-size: 0.85rem;
+    margin: 5px 0;
+    color: var(--color-text-secondary);
+}
+
+.detail-line strong {
+    color: var(--color-text-main);
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.btn-secondary {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid var(--orange-primary);
+    color: var(--orange-primary);
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-top: auto; /* Pousse le bouton en bas */
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--orange-primary);
+    color: #ffffff;
+}
+
+/* --- STAT CARDS --- */
+/* Pour forcer les cartes de stats à s'empiler dans la troisième colonne */
+.stat-card:nth-child(3) { grid-row: 1; grid-column: 3; }
+.stat-card:nth-child(4) { grid-row: 2; grid-column: 3; }
+.stat-card:nth-child(5) { grid-row: 3; grid-column: 3; }
+
+.stat-card {
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+    font-weight: 500;
+}
+
+.total-orders {
+    background-color: var(--color-blue-bg);
+    color: #2b78a9;
+}
+.total-orders .stat-label { color: #2b78a9; }
+
+.pending-orders {
+    background-color: var(--color-orange-bg);
+    color: var(--orange-secondary);
+}
+.pending-orders .stat-label { color: var(--orange-secondary); }
+
+.completed-orders {
+    background-color: var(--color-green-bg);
+    color: #4CAF50;
+}
+.completed-orders .stat-label { color: #4CAF50; }
+
+/* --- PAYMENT OPTIONS --- */
+.payment-options {
+    position: relative;
+    padding-top: 15px;
+}
+
+.payment-options h3 {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.add-card-link {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    font-size: 0.9rem;
+    color: var(--orange-primary);
+}
+
+.cards-wrapper {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.credit-card {
+    position: relative; /* Pour positionner le menu */
+    width: 300px;
+    height: 190px;
+    border-radius: 10px;
+    padding: 20px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.blue-card {
+    background: linear-gradient(135deg, #1d4354, #2779a5);
+}
+
+.green-card {
+    background: linear-gradient(135deg, #4CAF50, #8bc34a);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+.card-balance {
+    font-size: 1.2rem;
+}
+
+/* Icône du menu contextuel (géré par JS) */
+.menu-icon-wrapper {
+    cursor: pointer;
+    padding: 5px;
+}
+.menu-icon {
+    font-size: 1.2rem;
+}
+
+.card-number-label {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.card-number-hidden {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card-bottom-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.card-logo {
+    font-size: 2.2rem;
+}
+
+.card-holder {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Menu Contextuel CSS (utilisé par JS) */
+.card-menu {
+    position: absolute;
+    top: 50px; /* Sous l'icône de menu */
+    right: 20px;
+    width: 150px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    overflow: hidden;
+}
+
+.card-menu.hidden {
+    display: none;
+}
+
+.menu-option {
+    display: block;
+    padding: 10px 15px;
+    color: var(--color-text-main);
+    font-size: 0.9rem;
+}
+
+.menu-option:hover {
+    background-color: #f5f5f5;
+}
+
+.menu-option.delete {
+    color: #dc3545; /* Couleur rouge pour "Delete" */
+}
+
+/* --- Responsivité simple (pour l'organisation) --- */
+@media (max-width: 1200px) {
+    .info-grid {
+        /* Passe à 2 colonnes sur les écrans plus petits */
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .stat-card:nth-child(3),
+    .stat-card:nth-child(4),
+    .stat-card:nth-child(5) {
+        grid-column: span 1; /* Les stats prennent une colonne entière */
+        grid-row: auto; /* Remet l'empilement à la normale */
+    }
+    .cards-wrapper {
+        flex-wrap: wrap; /* Les cartes de paiement peuvent passer à la ligne */
+    }
+}
+@media (max-width: 800px) {
+    .sidebar {
+        width: 100%;
+        padding-top: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+    .sidebar-nav ul {
+        display: flex;
+        overflow-x: auto; /* Permet le défilement horizontal */
+    }
+    .sidebar-nav li {
+        flex-shrink: 0; /* Empêche les éléments de rétrécir */
+    }
+    .page-layout {
+        flex-direction: column;
+    }
+    .info-grid {
+        grid-template-columns: 1fr; /* Une seule colonne */
+    }
+    .stat-card {
+        grid-column: 1 / -1; /* Les stats prennent toute la largeur */
+    }
+}

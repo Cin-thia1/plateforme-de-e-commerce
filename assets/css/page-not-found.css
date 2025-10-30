@@ -1,0 +1,112 @@
+/* Réglages de base */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 2rem;
+    color: #333;
+    
+    /* Centrage vertical et horizontal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box; /* Inclut padding dans la hauteur */
+}
+
+/* Conteneur principal */
+.error-container {
+    text-align: center;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Illustration */
+.error-container img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 32px;
+}
+
+/* Titre */
+.error-container h1 {
+    font-size: 2rem; /* 32px */
+    font-weight: 700;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+/* Paragraphe */
+.error-container p {
+    font-size: 1rem; /* 16px */
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+/* Groupe de boutons */
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px; /* Espace entre les boutons */
+}
+
+/* Style de base des boutons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Icônes dans les boutons */
+.btn i {
+    font-size: 0.9rem;
+    margin-right: 8px; /* Espace entre l'icône et le texte */
+}
+
+/* Bouton principal (orange) */
+.btn-primary {
+    background-color: #f77f00;
+    border-color: #f77f00;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #e07200;
+    border-color: #e07200;
+}
+
+/* Bouton secondaire (contour) */
+.btn-outline {
+    background-color: #ffffff;
+    color: #f77f00;
+    border-color: #fde5cd; /* Bordure orange pâle */
+}
+
+.btn-outline:hover {
+    background-color: #fef8f0; /* Fond orange très léger */
+    border-color: #f77f00;
+}
+
+/* Responsivité pour les petits écrans */
+@media (max-width: 480px) {
+    .button-group {
+        flex-direction: column; /* Les boutons passent en colonne */
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        box-sizing: border-box; /* S'assure que le padding ne dépasse pas */
+    }
+}
