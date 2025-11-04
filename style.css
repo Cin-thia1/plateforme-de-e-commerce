@@ -1,0 +1,13 @@
+/*
+Theme Name: ShopNow Wordpress Theme
+Theme URI: http://example.com/my-wordpress-theme
+Author: Master1 - Genie informatique
+Author URI: http://example.com
+Description: A custom WordPress theme based on an existing HTML, CSS, and JavaScript website.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: custom, responsive, html5
+*/
+
+@import url('assets/css/style.css');

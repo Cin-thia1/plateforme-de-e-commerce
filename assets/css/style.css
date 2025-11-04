@@ -1,0 +1,72 @@
+/* 
+Theme Name: My WordPress Theme
+Theme URI: http://example.com/my-wordpress-theme
+Author: Your Name
+Author URI: http://example.com
+Description: A custom WordPress theme based on an original design using HTML, CSS, and JavaScript.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: custom, responsive, theme
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    margin: 20px 0;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #0073aa;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background: #f8f8f8;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+h1, h2, h3 {
+    color: #222;
+}
+
+p {
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.button {
+    background-color: #0073aa;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #005177;
+}
