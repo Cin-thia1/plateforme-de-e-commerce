@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Template Name: home page
+ */
+ get_header(); ?>
 
   <main class="container">
     <!-- premiere ligne -->
@@ -18,9 +22,9 @@
             </div>
           </div>
           <div class="first-product-image">
-            <img src="assets/images/xbox.png" alt="" />
-            <img src="assets/images/manetteXbox.png" alt="" />
-            <img src="assets/images/xbox2.png" alt="" />
+            <img src="/assets/images/xbox.png" alt="" />
+            <img src="/assets/images/manetteXbox.png" alt="" />
+            <img src="/assets/images/xbox2.png" alt="" />
           </div>
         </div>
         <div class="seconds-products">
