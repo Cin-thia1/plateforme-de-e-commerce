@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const USD_TO_FCFA = 550; 
     
     // Valeurs initiales en USD (pour la conversion)
-    const DISCOUNT_USD = 24; 
+  //  const DISCOUNT_USD = 24; &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
     const TAX_RATE = 0.0825; // Taux de taxe (8.25%)
     
     // Conversion des valeurs fixes en FCFA
-    const DISCOUNT_FCFA = Math.round(DISCOUNT_USD * USD_TO_FCFA);
+    //const DISCOUNT_FCFA = Math.round(DISCOUNT_USD * USD_TO_FCFA);&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
     const SHIPPING_FEE_FCFA = 0; 
     
     /**
@@ -86,35 +86,40 @@ document.addEventListener('DOMContentLoaded', () => {
      * Calcule et met à jour tous les totaux du panier.
      */
     function updateCartTotals() {
-        let globalSubtotal = 0;
+    let globalSubtotal = 0;
 
-        // 1. Calculer le sous-total global (en FCFA)
-        cartItems.forEach(itemRow => {
-            const usdPrice = parseFloat(itemRow.dataset.price);
-            //const fcfaPrice = convertToFCFA(usdPrice);
-            const fcfaPrice = usdPrice;
-            const quantity = parseInt(itemRow.querySelector('.qty-input').value);
-            globalSubtotal += fcfaPrice * quantity;
-        });
+    // 1. Calcul du sous-total global
+    const currentItems = document.querySelectorAll('.cart-item');
+    currentItems.forEach(itemRow => {
+        const usdPrice = parseFloat(itemRow.dataset.price);
+        const fcfaPrice = usdPrice;
+        const quantity = parseInt(itemRow.querySelector('.qty-input').value);
+        globalSubtotal += fcfaPrice * quantity;
+    });
 
-        // 2. Appliquer la réduction et calculer le sous-total imposable
-        const subtotalAfterDiscount = globalSubtotal - DISCOUNT_FCFA;
-
-        // 3. Calculer les taxes (en FCFA)
-        const taxAmount = Math.round(subtotalAfterDiscount * TAX_RATE);
-
-        // 4. Calculer le total final
-        const finalTotal = subtotalAfterDiscount + SHIPPING_FEE_FCFA + taxAmount;
-
-        // 5. Mettre à jour l'affichage
-        totalSubElement.textContent = formatCurrency(globalSubtotal);
-        document.querySelector('.total-discount').textContent = formatCurrency(DISCOUNT_FCFA);
-        document.querySelector('.total-tax-value').textContent = formatCurrency(taxAmount);
-        totalFinalElement.textContent = formatCurrency(finalTotal); 
-
-        // S'assurer que les sous-totaux individuels sont également mis à jour
-        cartItems.forEach(calculateItemSubtotal);
+    // 🧮 Si le panier est vide → tout mettre à zéro
+    if (globalSubtotal <= 0 || currentItems.length === 0) {
+        totalSubElement.textContent = formatCurrency(0);
+        document.querySelector('.total-tax-value').textContent = formatCurrency(0);
+        totalFinalElement.textContent = formatCurrency(0);
+        return;
     }
+
+    // 2. Calcul des taxes
+    const taxAmount = Math.round(globalSubtotal * TAX_RATE);
+
+    // 3. Calcul du total final (sous-total + taxes + livraison)
+    const finalTotal = globalSubtotal + SHIPPING_FEE_FCFA + taxAmount;
+
+    // 4. Mise à jour de l'affichage
+    totalSubElement.textContent = formatCurrency(globalSubtotal);
+    document.querySelector('.total-tax-value').textContent = formatCurrency(taxAmount);
+    totalFinalElement.textContent = formatCurrency(finalTotal);
+
+    // 5. Mise à jour des sous-totaux individuels
+    currentItems.forEach(calculateItemSubtotal);
+}
+
 
     /**
      * Logique pour modifier la quantité
@@ -175,7 +180,7 @@ function afficheArticles(liste) {
     const cellule = document.createElement("td");
     cellule.colSpan = 5;
     cellule.style.textAlign = "center";
-    cellule.textContent = "Aucun article n'a été ajouté au panier 😕";
+    cellule.textContent = "Aucun article n'a été ajouté au panier !";
     ligneVide.appendChild(cellule);
     tbody.appendChild(ligneVide);
   } else {
@@ -225,14 +230,23 @@ function afficheArticles(liste) {
 function supprimerArticle(index) {
   // Vérifie que l’index est valide
   if (index >= 0 && index < articlesList.length) {
-    articlesList.splice(index, 1); // Supprime l’article correspondant
-    localStorage.setItem("articles", JSON.stringify(articlesList)); // Met à jour le stockage
-    afficheArticles(articlesList); // Rafraîchit l’affichage
+    articlesList.splice(index, 1); // Supprime l’article du tableau
+    localStorage.setItem("articles", JSON.stringify(articlesList)); // Met à jour le stockage local
+    
+    afficheArticles(articlesList); // Rafraîchit l’affichage du tableau
+    
+    // ⚡ Met à jour immédiatement les totaux après suppression
+    setTimeout(() => {
+      const event = new Event('DOMContentLoaded');
+      document.dispatchEvent(event); // Relance la logique principale pour recalculer
+    }, 50);
+
     console.log(`Article supprimé (index ${index})`);
   } else {
     console.warn("Index invalide lors de la suppression :", index);
   }
 }
+
 
 // Affiche le tableau au chargement
 afficheArticles(articlesList);

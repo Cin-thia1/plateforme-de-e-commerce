@@ -79,7 +79,8 @@
     grid-template-columns:auto 1fr auto;
     gap:18px;
     align-items:center;
-    height:var(--header-h)
+    height:var(--header-h);
+    padding:none
 }
 .brand{
     display:flex;

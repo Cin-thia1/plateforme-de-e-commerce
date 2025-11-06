@@ -4,13 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ma Liste de Souhaits</title>
-  <link rel="stylesheet" href="assets/css/page-favoris.css">
+  <title>Confirmer code de recuperation</title>
+
   <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="assets/css/header-footer.css">
+
+  <link rel="stylesheet" href="assets/css/forget-password.css">
 </head>
 
 <body>
+
   <!--header-->
   <header class="main-header">
     <!-- Superbar : message + réseaux + langue/devise -->
@@ -93,151 +96,40 @@
     </div>
 
   </header>
-  <main class="wishlist-container">
-    <h2>Produits Favoris</h2>
 
-    <table class="wishlist-table">
-      <thead>
-        <tr>
-          <th scope="col">Produits</th>
-          <th scope="col">Prix</th>
-          <th scope="col">Etat du stock</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="Products">
-            <div class="product-info">
-              <strong>Bose Sport Earbuds - Wireless Earphones</strong>
-              <span>Bluetooth in Ear Headphones for Workouts and Running, Triple Black</span>
-            </div>
-          </td>
-          <td data-label="Price">
-            <div class="price">
-              <span class="current-price">122989 FCFA</span>
-            </div>
-          </td>
-          <td data-label="Stock Status">
-            <span class="stock-status in-stock">En stock</span>
-          </td>
-          <td data-label="Actions">
-            <div class="actions">
-              <button class="btn-add-cart primary">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Ajouter au panier</span>
-              </button>
-              <button class="btn-remove" aria-label="Remove item">&times;</button>
-            </div>
-          </td>
-        </tr>
+  <main class="form-container">
 
-        <tr>
-          <td data-label="Products">
-            <div class="product-info">
-              <strong>Bose Sport Earbuds - Wireless Earphones</strong>
-              <span>Bluetooth in Ear Headphones for Workouts and Running, Triple Black</span>
-            </div>
-          </td>
-          <td data-label="Price">
-            <div class="price">
-              <span class="current-price">122989 FCFA</span>
-            </div>
-          </td>
-          <td data-label="Stock Status">
-            <span class="stock-status in-stock">En stock</span>
-          </td>
-          <td data-label="Actions">
-            <div class="actions">
-              <button class="btn-add-cart primary">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Ajouter au panier</span>
-              </button>
-              <button class="btn-remove" aria-label="Remove item">&times;</button>
-            </div>
-          </td>
-        </tr>
+    <form action="#">
+      <h2>Code de vérification</h2>
 
-        <tr>
-          <td data-label="Products">
-            <div class="product-info">
-              <strong>Bose Sport Earbuds - Wireless Earphones</strong>
-              <span>Bluetooth in Ear Headphones for Workouts and Running, Triple Black</span>
-            </div>
-          </td>
-          <td data-label="Price">
-            <div class="price">
-              <span class="current-price">122989 FCFA</span>
-            </div>
-          </td>
-          <td data-label="Stock Status">
-            <span class="stock-status in-stock">En stock</span>
-          </td>
-          <td data-label="Actions">
-            <div class="actions">
-              <button class="btn-add-cart primary">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Ajouter au panier</span>
-              </button>
-              <button class="btn-remove" aria-label="Remove item">&times;</button>
-            </div>
-          </td>
-        </tr>
+      <p class="description">
+        Entrer le code de vérification envoyé a votre adresse email .
+        
+      </p>
 
-        <tr>
-          <td data-label="Products">
-            <div class="product-info">
-              <strong>Bose Sport Earbuds - Wireless Earphones</strong>
-              <span>Bluetooth in Ear Headphones for Workouts and Running, Triple Black</span>
-            </div>
-          </td>
-          <td data-label="Price">
-            <div class="price">
-              <span class="current-price">122989 FCFA</span>
-            </div>
-          </td>
-          <td data-label="Stock Status">
-            <span class="stock-status in-stock">En stock</span>
-          </td>
-          <td data-label="Actions">
-            <div class="actions">
-              <button class="btn-add-cart primary">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Ajouter au panier</span>
-              </button>
-              <button class="btn-remove" aria-label="Remove item">&times;</button>
-            </div>
-          </td>
-        </tr>
+      <div class="form-group">
+        <label for="code">Code</label>
+        <input type="text" id="code" >
+      </div>
 
-        <tr>
-          <td data-label="Products">
-            <div class="product-info">
-              <strong>Bose Sport Earbuds - Wireless Earphones</strong>
-              <span>Bluetooth in Ear Headphones for Workouts and Running, Triple Black</span>
-            </div>
-          </td>
-          <td data-label="Price">
-            <div class="price">
-              <span class="current-price">122989 FCFA</span>
-            </div>
-          </td>
-          <td data-label="Stock Status">
-            <span class="stock-status out-of-stock">En stock</span>
-          </td>
-          <td data-label="Actions">
-            <div class="actions">
-              <button class="btn-add-cart primary">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Ajouter au panier</span>
-              </button>
-              <button class="btn-remove" aria-label="Remove item">&times;</button>
-            </div>
-          </td>
-        </tr>
+      <button type="submit" class="btn-submit">
+        <span  onclick="window.location.href='reset-password.html';" style="cursor: pointer;">VERIFIER</span>
+        <i class="fas fa-arrow-right"></i>
+      </button>
 
-      </tbody>
-    </table>
+      <hr class="separator">
+
+      <div class="links-group">
+        <p>
+          Vous avez deja un compte? <a href="login.html" class="link-sign">Connectez vous</a>
+        </p>
+      </div>
+
+      <p class="customer-service-note">
+        Vous pourrez contacter <a href="#" class="link-service">le support client</a> pour vous aider à restaurer votre compte.
+      </p>
+    </form>
+
   </main>
   <!-- footer-->
   <footer class="site-footer" role="contentinfo">
@@ -274,7 +166,7 @@
           <h4>LIENS RAPIDES</h4>
           <a href="liste-produit.html">Catalogue de produit</a>
           <a href="panier.html">Panier de course</a>
-          <a href="page-favoris.html">Liste de souhait</a>
+          <a href="page-favoris.html">Liste de souhait</a>>
           <a href="faq.html">Support client</a>
           <a href="about-us.html">A propos de nous</a>
 

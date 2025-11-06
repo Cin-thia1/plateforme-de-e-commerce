@@ -4,13 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ma Liste de Souhaits</title>
-  <link rel="stylesheet" href="assets/css/page-favoris.css">
+  <title>Commande Confirmée</title>
+
   <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="assets/css/header-footer.css">
+
+  <link rel="stylesheet" href="assets/css/order-validate.css">
 </head>
 
 <body>
+
   <!--header-->
   <header class="main-header">
     <!-- Superbar : message + réseaux + langue/devise -->
@@ -93,151 +96,31 @@
     </div>
 
   </header>
-  <main class="wishlist-container">
-    <h2>Produits Favoris</h2>
 
-    <table class="wishlist-table">
-      <thead>
-        <tr>
-          <th scope="col">Produits</th>
-          <th scope="col">Prix</th>
-          <th scope="col">Etat du stock</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="Products">
-            <div class="product-info">
-              <strong>Bose Sport Earbuds - Wireless Earphones</strong>
-              <span>Bluetooth in Ear Headphones for Workouts and Running, Triple Black</span>
-            </div>
-          </td>
-          <td data-label="Price">
-            <div class="price">
-              <span class="current-price">122989 FCFA</span>
-            </div>
-          </td>
-          <td data-label="Stock Status">
-            <span class="stock-status in-stock">En stock</span>
-          </td>
-          <td data-label="Actions">
-            <div class="actions">
-              <button class="btn-add-cart primary">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Ajouter au panier</span>
-              </button>
-              <button class="btn-remove" aria-label="Remove item">&times;</button>
-            </div>
-          </td>
-        </tr>
+  <main class="success-container">
 
-        <tr>
-          <td data-label="Products">
-            <div class="product-info">
-              <strong>Bose Sport Earbuds - Wireless Earphones</strong>
-              <span>Bluetooth in Ear Headphones for Workouts and Running, Triple Black</span>
-            </div>
-          </td>
-          <td data-label="Price">
-            <div class="price">
-              <span class="current-price">122989 FCFA</span>
-            </div>
-          </td>
-          <td data-label="Stock Status">
-            <span class="stock-status in-stock">En stock</span>
-          </td>
-          <td data-label="Actions">
-            <div class="actions">
-              <button class="btn-add-cart primary">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Ajouter au panier</span>
-              </button>
-              <button class="btn-remove" aria-label="Remove item">&times;</button>
-            </div>
-          </td>
-        </tr>
+    <div class="icon-wrapper">
+      <i class="fas fa-check-circle"></i>
+    </div>
 
-        <tr>
-          <td data-label="Products">
-            <div class="product-info">
-              <strong>Bose Sport Earbuds - Wireless Earphones</strong>
-              <span>Bluetooth in Ear Headphones for Workouts and Running, Triple Black</span>
-            </div>
-          </td>
-          <td data-label="Price">
-            <div class="price">
-              <span class="current-price">122989 FCFA</span>
-            </div>
-          </td>
-          <td data-label="Stock Status">
-            <span class="stock-status in-stock">En stock</span>
-          </td>
-          <td data-label="Actions">
-            <div class="actions">
-              <button class="btn-add-cart primary">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Ajouter au panier</span>
-              </button>
-              <button class="btn-remove" aria-label="Remove item">&times;</button>
-            </div>
-          </td>
-        </tr>
+    <h1>Your order is successfully placed</h1>
 
-        <tr>
-          <td data-label="Products">
-            <div class="product-info">
-              <strong>Bose Sport Earbuds - Wireless Earphones</strong>
-              <span>Bluetooth in Ear Headphones for Workouts and Running, Triple Black</span>
-            </div>
-          </td>
-          <td data-label="Price">
-            <div class="price">
-              <span class="current-price">122989 FCFA</span>
-            </div>
-          </td>
-          <td data-label="Stock Status">
-            <span class="stock-status in-stock">En stock</span>
-          </td>
-          <td data-label="Actions">
-            <div class="actions">
-              <button class="btn-add-cart primary">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Ajouter au panier</span>
-              </button>
-              <button class="btn-remove" aria-label="Remove item">&times;</button>
-            </div>
-          </td>
-        </tr>
+    <p>
+      Pellentesque sed lectus nec tortor tristique accumsan quis dictum risus. Donec volutpat mollis nulla non
+      facilisis.
+    </p>
 
-        <tr>
-          <td data-label="Products">
-            <div class="product-info">
-              <strong>Bose Sport Earbuds - Wireless Earphones</strong>
-              <span>Bluetooth in Ear Headphones for Workouts and Running, Triple Black</span>
-            </div>
-          </td>
-          <td data-label="Price">
-            <div class="price">
-              <span class="current-price">122989 FCFA</span>
-            </div>
-          </td>
-          <td data-label="Stock Status">
-            <span class="stock-status out-of-stock">En stock</span>
-          </td>
-          <td data-label="Actions">
-            <div class="actions">
-              <button class="btn-add-cart primary">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Ajouter au panier</span>
-              </button>
-              <button class="btn-remove" aria-label="Remove item">&times;</button>
-            </div>
-          </td>
-        </tr>
+    <div class="button-group">
+      <a href="#" class="btn btn-outline">
+        <i class="fas fa-gauge-high"></i>
+        <span>GO TO DASHBOARD</span>
+      </a>
+      <a href="#" class="btn btn-primary">
+        <span>VIEW ORDER</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
 
-      </tbody>
-    </table>
   </main>
   <!-- footer-->
   <footer class="site-footer" role="contentinfo">
