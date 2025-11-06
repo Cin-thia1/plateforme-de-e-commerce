@@ -302,51 +302,94 @@
     color: #666;
 }
 
-/* === Menu déroulant === */
+/* === Menu déroulant principal === */
 .dropdown-content {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    background: white;
-    min-width: 180px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    border-radius: 4px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    z-index: 100;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 100;
 }
 
 .dropdown:hover .dropdown-content {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-.dropdown-content a {
-    display: block;
-    padding: 10px 16px;
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    transition: background 0.2s ease;
+/* === Élément avec sous-menu (dropright) === */
+.dropdown-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.dropdown-content a:hover {
-    background: #f3f3f3;
+.dropright {
+  position: relative;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-/* === Liens centraux === */
+.dropright:hover {
+  background: #f3f3f3;
+}
+
+/* === Sous-menu latéral === */
+.dropright-content {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  z-index: 200;
+}
+
+.dropright:hover .dropright-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* === Liens de sous-menu === */
+.dropright-content a {
+  display: block;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.dropright-content a:hover {
+  background: #f5f5f5;
+}
+
+/* === Liens principaux à gauche === */
 .left-section a {
-    text-decoration: none;
-    color: #555;
-    
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
+
 
 .left-section a:hover {
     color: #111;
