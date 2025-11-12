@@ -39,7 +39,7 @@
   </div>
   <!-- Barre principale -->
   <div class="container main-wrap">
-    <a class="brand" href="<?php echo home_url(); ?>">
+    <a class="brand" href="<?php echo home_url('/home'); ?>">
       <span class="brand__mark">●</span>
       <span class="brand__name">SHOPNOW</span>
     </a>
@@ -52,7 +52,7 @@
     </div>
     <div class="actions" aria-label="Actions utilisateur">
       <a class="icon-btn" href="<?php echo home_url('/panier'); ?>" title="Panier"><i class="fas fa-shopping-cart"></i><span class="badge">2</span></a>
-      <a class="icon-btn" href="<?php echo home_url('/page-favoris'); ?>" title="Favoris"><i class="fas fa-heart"></i></a>
+      <a class="icon-btn" href="<?php echo home_url('/favoris'); ?>" title="Favoris"><i class="fas fa-heart"></i></a>
       <a class="icon-btn" href="<?php echo home_url('/login'); ?>" title="Mon compte"><i class="fas fa-user"></i></a>
     </div>
   </div>
@@ -70,7 +70,7 @@
           <a href="<?php echo home_url('/liste-produit'); ?>">Cosmétiques</a>
         </div>
       </div>
-      <a href="<?php echo home_url(); ?>"><i class="fas fa-house"></i> Home </a>
+      <a href="<?php echo home_url('/home'); ?>"><i class="fas fa-house"></i> Home </a>
       <a href="<?php echo home_url('/faq'); ?>"><i class="fas fa-question-circle"></i> Service client</a>
       <a href="<?php echo home_url('/about-us'); ?>"><i class="fa-solid fa-users"></i> A propos de nous</a>
     </div>

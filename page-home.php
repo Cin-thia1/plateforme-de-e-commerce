@@ -22,9 +22,9 @@
             </div>
           </div>
           <div class="first-product-image">
-            <img src="/assets/images/xbox.png" alt="" />
-            <img src="/assets/images/manetteXbox.png" alt="" />
-            <img src="/assets/images/xbox2.png" alt="" />
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/xbox.png" alt="" />
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/manetteXbox.png" alt="" />
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/xbox2.png" alt="" />
           </div>
         </div>
         <div class="seconds-products">
@@ -35,7 +35,7 @@
               <button class="shop-now"> Achetez <i class="fa-solid fa-arrow-right"></i></button>
             </div>
             <div class="seconds-products-top-images">
-              <img src="assets/images/pixel6pro.png" alt="" />
+              <img src="<?php echo get_template_directory_uri();?>/assets/images/pixel6pro.png" alt="" />
             </div>
           </div>
           <div class="bottom">
@@ -45,7 +45,7 @@
               <button class="shop-now"> Achetez <i class="fa-solid fa-arrow-right"></i></button>
             </div>
             <div class="seconds-products-bottom-images">
-              <img src="assets/images/audemars.png" alt="" />
+              <img src="<?php echo get_template_directory_uri();?>/assets/images/audemars.png" alt="" />
             </div>
           </div>
         </div>

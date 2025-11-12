@@ -31,7 +31,7 @@ get_header(); ?>
         </div>
       </div>
       <div class="Detail-illustration">
-        <img src="./assets/images/school.jpg" alt="">
+        <img src="<?php echo get_template_directory_uri();?>/assets/images/school.jpg" alt="">
       </div>
     </div>
     <!-- the team -->
@@ -41,7 +41,7 @@ get_header(); ?>
 
         <div class="member">
           <div class="round-image">
-            <img src="./assets/images/unknow.jpg" alt="">
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/unknow.jpg" alt="">
           </div>
           <div class="member-info">
             <span class="member-name">Ndeffeu Arthur</span>
@@ -50,7 +50,7 @@ get_header(); ?>
         </div>
         <div class="member">
           <div class="round-image">
-            <img src="./assets/images/unknow.jpg" alt="">
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/unknow.jpg" alt="">
           </div>
           <div class="member-info">
             <span class="member-name">Menome Loic</span>
@@ -59,7 +59,7 @@ get_header(); ?>
         </div>
         <div class="member">
           <div class="round-image">
-            <img src="./assets/images/unknow.jpg" alt="">
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/unknow.jpg" alt="">
           </div>
           <div class="member-info">
             <span class="member-name">Meli Yan</span>
@@ -68,7 +68,7 @@ get_header(); ?>
         </div>
         <div class="member">
           <div class="round-image">
-            <img src="./assets/images/unknow.jpg" alt="">
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/unknow.jpg" alt="">
           </div>
           <div class="member-info">
             <span class="member-name">Magnye Cabrelle</span>
@@ -77,7 +77,7 @@ get_header(); ?>
         </div>
         <div class="member">
           <div class="round-image">
-            <img src="./assets/images/unknow.jpg" alt="">
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/unknow.jpg" alt="">
           </div>
           <div class="member-info">
             <span class="member-name">Tsomo Cinthia</span>
@@ -86,7 +86,7 @@ get_header(); ?>
         </div>
         <div class="member">
           <div class="round-image">
-            <img src="./assets/images/unknow.jpg" alt="">
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/unknow.jpg" alt="">
           </div>
           <div class="member-info">
             <span class="member-name">Yackson Pascal</span>
@@ -95,7 +95,7 @@ get_header(); ?>
         </div>
         <div class="member">
           <div class="round-image">
-            <img src="./assets/images/unknow.jpg" alt="">
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/unknow.jpg" alt="">
           </div>
           <div class="member-info">
             <span class="member-name">Mafoma marlyse</span>
@@ -104,7 +104,7 @@ get_header(); ?>
         </div>
         <div class="member">
           <div class="round-image">
-            <img src="./assets/images/unknow.jpg" alt="">
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/unknow.jpg" alt="">
           </div>
           <div class="member-info">
             <span class="member-name">Mboua Mboua</span>
@@ -113,7 +113,7 @@ get_header(); ?>
         </div>
         <div class="member">
           <div class="round-image">
-            <img src="./assets/images/unknow.jpg" alt="">
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/unknow.jpg" alt="">
           </div>
           <div class="member-info">
             <span class="member-name">Noutchat Audrey</span>
@@ -122,7 +122,7 @@ get_header(); ?>
         </div>
         <div class="member">
           <div class="round-image">
-            <img src="./assets/images/unknow.jpg" alt="">
+            <img src="<?php echo get_template_directory_uri();?>/assets/images/unknow.jpg" alt="">
           </div>
           <div class="member-info">
             <span class="member-name">N'godak Salomon</span>
