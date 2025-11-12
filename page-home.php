@@ -118,78 +118,31 @@
           </div>
         </div>
         <!-- grille de produits -->
+         
         <div class="best-deals-items">
-          <div class="best-deals-item">
-            <a href="page-details-produit.html" class="product-link">
-              <div class="best-deals-item-image">
-                <span class="gray-badge">Épuisé</span>
-                <img src="assets/images/thumbnail-main-1.jpg" alt="" />
-              </div>
-              <p class="article-desc">ASUS ROG Zephyrus G16 - Intel Core Ultra 9 285H, RTX 5070TI, 32GB RAM, 1TB SSD</p>
-              <span class="price">1316250 FCFA</span>
+          <?php
+            // Ou une boucle custom :
+            $args = array('post_type' => 'product', 'posts_per_page' => 8);
+            $loop = new WP_Query($args);
+            if ($loop->have_posts()) {
+              while ($loop->have_posts()) : $loop->the_post(); global $product;
+              ?>
+                  <div class="best-deals-item">
+                    <a href="<?php echo get_permalink(); ?>" class="product-link">
+                      <div class="best-deals-item-image">
+                        <span class="gray-badge">Épuisé</span>
+                        <?php echo get_the_post_thumbnail(null, 'shop_catalog'); ?>
+                    </div>
+                  <p class="article-desc"><?php the_title(); ?></p>
+                  <span class="price"><?php echo $product->get_price_html(); ?></span>
             </a>
-
           </div>
-          <div class="best-deals-item">
-            <div class="best-deals-item-image">
-              <img src="assets/images/xperia.png" alt="" />
-            </div>
-            <p class="article-desc">Xperia 1 VI - Qualcomm Snapdragon 8 Gen 3, 12 Go, 256 Go, Triple capteur, 5000 mAh,
-              5G, USB Type C</p>
-            <span class="lastPrice">375000 FCFA</span><span class="price">162550 FCFA</span>
-          </div>
-
-          <div class="best-deals-item">
-            <div class="best-deals-item-image">
-              <img src="assets/images/imac.png" alt="" />
-            </div>
-            <p class="article-desc">iMac MC978LL/A 2011 - core i3-2100 3.1Ghz, 16Go, 250Go, AMD Radeon HD 6750M 250 Mo
-              GDDR5, 4 USB 2.0, Wi-Fi, OS X 10.7.2</p>
-            <span class="price">120000 FCFA</span>
-          </div>
-
-          <div class="best-deals-item">
-            <div class="best-deals-item-image">
-              <img src="assets/images/jbl.png" alt="" />
-            </div>
-            <p class="article-desc">JBL Flip 7 - 35W, Waterproof, 16 Hours, 4800 mAh, USB-C, 560 g</p>
-            <span class="price">70000 FCFA</span>
-          </div>
-
-          <div class="best-deals-item">
-            <div class="best-deals-item-image">
-              <img src="assets/images/DJimavic3.png" alt="" />
-            </div>
-            <p class="article-desc">DJI Mavic 3 - 895 g, 12 m/s, 5.2K 30 fps, 4k 120fps</p>
-            <span class="price">501500 FCFA</span>
-          </div>
-
-          <div class="best-deals-item">
-            <div class="best-deals-item-image">
-              <span class="red-badge">Hot</span>
-              <img src="assets/images/iphone16.png" alt="" />
-            </div>
-            <p class="article-desc">I phone 16 - 6.7', OLED Super Retina XDR, Appel A18 Bionic 6 Coeurs, 8 Go, 128 Go,
-              USB-C, 5G, 20W, Triple capteur, 4K 60 fps</p>
-            <span class="price">850000 FCFA</span>
-          </div>
-
-          <div class="best-deals-item">
-            <div class="best-deals-item-image">
-              <img src="assets/images/casque.png" alt="" />
-            </div>
-            <p class="article-desc">SONY WH1000XM4 sans fils - codecs LDAC, AAC, SBC, 30 Hours, USB-C, Alexa/Gooble
-              Assistant/Siri, 4 ~ 40Hz, 254 g</p>
-            <span class="price">90000 FCFA</span>
-          </div>
-
-          <div class="best-deals-item">
-            <div class="best-deals-item-image">
-              <img src="assets/images/drone.png" alt="" />
-            </div>
-            <p class="article-desc">DJI Mini 3 fly 2022 - 249 g 16 m/s Zoom X2 4k, X4 Full HD</p>
-            <span class="lastPrice">350000 FCFA</span><span class="price">162550 FCFA</span>
-          </div>
+            <?php
+            endwhile;
+          }
+        wp_reset_query();
+        ?>
+        </div>
         </div>
       </div>
     </div>
