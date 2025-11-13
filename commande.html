@@ -173,11 +173,11 @@
         <div class="grid cols-2">
           <div>
             <label for="fname">Prénom</label>
-            <input class="input" id="fname" name="fname" autocomplete="given-name" />
+            <input class="input" id="fname" name="fname" autocomplete="given-name" required />
           </div>
           <div>
             <label for="lname">Nom</label>
-            <input class="input" id="lname" name="lname" autocomplete="family-name" />
+            <input class="input" id="lname" name="lname" autocomplete="family-name" required />
           </div>
         </div>
         <div class="grid cols-2">
@@ -189,13 +189,13 @@
         </div>
         <div>
           <label for="address">Adresse</label>
-          <input class="input" id="address" name="address" autocomplete="street-address" />
+          <input class="input" id="address" name="address" autocomplete="street-address" required />
         </div>
 
         <div class="grid cols-4 cols-3" style="grid-template-columns:repeat(4,1fr); gap:14px">
           <div>
             <label for="country">Pays</label>
-            <select class="input" id="country" name="country" autocomplete="country-name">
+            <select class="input" id="country" name="country" autocomplete="country-name" required>
               <option value="">Sélectionner...</option>
               <option>Cameroun</option>
               <option>Gabon</option>
@@ -205,26 +205,26 @@
           </div>
           <div>
             <label for="region">Région/État</label>
-            <input class="input" id="region" name="region" />
+            <input class="input" id="region" name="region" required />
           </div>
           <div>
             <label for="city">Ville</label>
-            <input class="input" id="city" name="city" />
+            <input class="input" id="city" name="city" required />
           </div>
           <div>
             <label for="zip">Code postal</label>
-            <input class="input" id="zip" name="zip" inputmode="numeric" />
+            <input class="input" id="zip" name="zip" inputmode="numeric" required />
           </div>
         </div>
 
         <div class="grid cols-2">
           <div>
             <label for="email">E-mail</label>
-            <input class="input" id="email" name="email" type="email" autocomplete="email" />
+            <input class="input" id="email" name="email" type="email" autocomplete="email" required />
           </div>
           <div>
             <label for="phone">Téléphone</label>
-            <input class="input" id="phone" name="phone" type="tel" autocomplete="tel" />
+            <input class="input" id="phone" name="phone" type="tel" autocomplete="tel" required />
           </div>
         </div>
 
@@ -257,16 +257,6 @@
                   <img src="./assets/images/orange.jpg" alt="" aria-hidden="true">
                 </span>
                 Orange Money
-              </span>
-            </label>
-
-            <label class="pay-tile">
-              <input type="radio" name="payment" value="paypal">
-              <span class="label">
-                <span class="logo wide">
-                  <img src="assets/images/paypal.jpg" alt="" aria-hidden="true">
-                </span>
-                PayPal
               </span>
             </label>
 
