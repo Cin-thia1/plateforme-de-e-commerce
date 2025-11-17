@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Import propre a cette page-->
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+  <!-- import commun a toutes les pages-->
+  <link rel="stylesheet" href="{{ asset('css/fontawesome/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/header-footer.css') }}">
+
+  <title>Home</title>
+</head>
+
+<body>
+  <!--header-->
+  <header class="main-header">
+    <!-- Superbar : message + réseaux + langue/devise -->
+    <div class="superbar">
+      <div class="container super-wrap">
+        <div class="super-left">Bienvenu chez SHOPNOW votre boutique de e-commerce en ligne</div>
+        <div class="super-right">
+          <div class="social">Nous suivre:
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="dropdown">
+            <div class="pill">Fr ▾</div>
+            <div class="dropdown-content" id="langue">
+              <a href="#">Français</a>
+              <a href="#">English</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <div class="pill">FCFA ▾</div>
+            <div class="dropdown-content" id="devise">
+              <a href="#">FCFA</a>
+              <a href="#">EUR</a>
+              <a href="#">USD</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barre principale -->
+    <div class="container main-wrap">
+      <a class="brand" href="home.html">
+        <span class="brand__mark">●</span>
+        <span class="brand__name">SHOPNOW</span>
+      </a>
+
+      <div class="search" role="search">
+        <form action="/recherche" method="get">
+          <label for="q" class="visually-hidden">Rechercher</label>
+          <input id="q" name="q" type="search" placeholder="Que cherchez-vous?" />
+          <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+
+      <div class="actions" aria-label="Actions utilisateur">
+        <a class="icon-btn" href="panier.html" title="Panier"><i class="fas fa-shopping-cart"></i><span
+            class="badge">2</span></a>
+        <a class="icon-btn" href="page-favoris.html" title="Favoris"><i class="fas fa-heart"></i></a>
+        <a class="icon-btn" href="login.html" title="Mon compte"><i class="fas fa-user"></i></a>
+      </div>
+    </div>
+
+    <!-- bottom barre -->
+    <div class="top-bar">
+      <div class="left-section">
+        <div class="dropdown">
+          <button class="dropdown-btn">Toutes les Catégories</button>
+          <div class="dropdown-content">
+            <ul>
+              <li class="dropright">
+                <span>Électronique ></span>
+                <div class="dropright-content">
+                  <a href="#">Smartphones et montres connectées</a>
+                  <a href="#">Ordinateurs portables</a>
+                  <a href="#">Ordinateurs gaming</a>
+                  <a href="#">Tablettes</a>
+                  <a href="#">Casques et écouteurs</a>
+                  <a href="#">Télévisions et home cinéma</a>
+                  <a href="#">Appareils photo et caméras</a>
+                  <a href="#">Accessoires</a>
+                  <a href="#">Consoles de jeux et manettes</a>
+                  <a href="#">Composants informatiques</a>
+                </div>
+              </li>
+
+              <li class="dropright">
+                <span>Vêtements ></span>
+                <div class="dropright-content">
+                  <a href="#">T-shirts et polos</a>
+                  <a href="#">Chemises</a>
+                  <a href="#">Pantalons</a>
+                  <a href="#">Robes et jupes</a>
+                  <a href="#">Vestes et manteaux</a>
+                  <a href="#">Pulls et sweats</a>
+                  <a href="#">Chaussures</a>
+                </div>
+              </li>
+
+              <li class="dropright">
+                <span>Électroménager ></span>
+                <div class="dropright-content">
+                  <a href="#">Réfrigérateurs</a>
+                  <a href="#">Machines à laver</a>
+                  <a href="#">Fours et cuisinières</a>
+                  <a href="#">Micro-ondes</a>
+                  <a href="#">Aspirateurs</a>
+                  <a href="#">Cafetières</a>
+                </div>
+              </li>
+
+              <li class="dropright">
+                <span>Meubles ></span>
+                <div class="dropright-content">
+                  <a href="#">Canapés et fauteuils</a>
+                  <a href="#">Tables</a>
+                  <a href="#">Chaises</a>
+                  <a href="#">Lits</a>
+                  <a href="#">Décoration</a>
+                </div>
+              </li>
+
+              <li class="dropright">
+                <span>Bijoux ></span>
+                <div class="dropright-content">
+                  <a href="#">Bagues</a>
+                  <a href="#">Colliers</a>
+                  <a href="#">Bracelets</a>
+                  <a href="#">Montres</a>
+                </div>
+              </li>
+
+              <li class="dropright">
+                <span>Cosmétiques ></span>
+                <div class="dropright-content">
+                  <a href="#">Maquillage</a>
+                  <a href="#">Soins du visage</a>
+                  <a href="#">Soins du corps</a>
+                  <a href="#">Produits capillaires</a>
+                  <a href="#">Parfums</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a href="home.html"><i class="fas fa-house"></i> Home </a>
+        <a href="faq.html"><i class="fas fa-question-circle"></i> Service client</a>
+        <a href="about-us.html"><i class="fa-solid fa-users"></i> A propos de nous</a>
+
+      </div>
+
+      <div class="right-section">
+        <i class="fas fa-phone-alt"></i> +237 - 655 884 341
+      </div>
+    </div>
+
+  </header>
+
+
+  <main class="container">
+    <!-- premiere ligne -->
+    <div class="row">
+      <div class="widgets">
+        <div class="first-product">
+          <div class="first-product-details">
+            <span> Le meilleur endroit où jouer</span>
+            <h3>Consoles XBOX</h3>
+            <p> Économiser jusqu'a 30% sur certains jeux XBOX. Obtenez 3 mois gratuits de XBOX Games Pass sur PC pour
+              1000 XAF</p>
+            <button class="shop-now"> Achetez maintenant <i class="fa-solid fa-arrow-right"></i></button>
+            <div class="carousel-indicators">
+              <button><i class="fa-solid fa-circle"></i></button>
+              <button><i class="fa-solid fa-circle"></i></button>
+              <button><i class="fa-solid fa-circle"></i></button>
+            </div>
+          </div>
+          <div class="first-product-image">
+            <img src="assets/images/xbox.png" alt="" />
+            <img src="assets/images/manetteXbox.png" alt="" />
+            <img src="assets/images/xbox2.png" alt="" />
+          </div>
+        </div>
+        <div class="seconds-products">
+          <div class="top">
+            <div class="seconds-products-top-details">
+              <span>Promotion des vacances</span>
+              <h4>Nouveau Google Pixel 6 Pro</h4>
+              <button class="shop-now"> Achetez <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div class="seconds-products-top-images">
+              <img src="assets/images/pixel6pro.png" alt="" />
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="seconds-products-bottom-details">
+              <h4>Audemars Piguet</h4>
+              <span class="price">750 000 FCFA</span>
+              <button class="shop-now"> Achetez <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div class="seconds-products-bottom-images">
+              <img src="assets/images/audemars.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="features">
+        <div class="charac-features-box">
+          <i class="fa-solid fa-box-open"></i>
+          <div>
+            <h5>Livraison rapide</h5>
+            <span>Livraison en 24h</span>
+          </div>
+        </div>
+        <hr />
+        <div class="charac-features-box">
+          <i class="fa-solid fa-trophy"></i>
+          <div>
+            <h5>Retours sous 24h</h5>
+            <span>Guarantie de rembousement à 100%</span>
+          </div>
+        </div>
+        <hr />
+        <div class="charac-features-box">
+          <i class="fa-solid fa-credit-card"></i>
+          <div>
+            <h5>Paiement Sécurisé</h5>
+            <span>Votre argent est en sécurité</span>
+          </div>
+        </div>
+        <hr />
+        <div class="charac-features-box">
+          <i class="fa-solid fa-headset"></i>
+          <div>
+            <h5>Support 24/7</h5>
+            <span>Contact/message en direct</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Deuxieme ligne -->
+    <div class="row">
+      <div class="head-best-deals">
+        <span class="best-deals-title">Le Best de l'éléctronique</span>
+        <span><a href="">Consulter tous les produits ➡</a></span>
+      </div>
+      <div class="best-deals">
+        <div class="all-row-column">
+          <div class="all-row-column-image">
+            <span class="yellow-badge">32% OFF</span>
+            <img src="assets/images/ps5.png" alt="" />
+            <span class="stars">★★★★★</span>
+          </div>
+          <p class="article-desc">Sony PlayStation 5 - 512 SSD Console avec manette sans fil - UK Version</p>
+          <span class="lastPrice">500000 FCFA</span><span class="price"> 442500 FCFA</span>
+          <p>
+            Les jeux video developpés avec le Kit de developppement Playstation 5 montre des temps de chargement
+            inégalés, des visuels.
+          </p>
+          <div class="best-deals-actions">
+            <button class="love">
+              <i class="fa-solid fa-heart"></i>
+            </button>
+            <button class="add-to-card"
+              onclick="saveToNavigate('Sony PlayStation 5 - 512 SSD Console avec manette sans fil - UK Version', 442500, 1)">
+              <i class="fa-solid fa-cart-shopping"></i>
+              Ajouter au panier
+            </button>
+            <button class="view">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <!-- grille de produits -->
+        <div class="best-deals-items">
+          <div class="best-deals-item">
+            <a href="page-details-produit.html" class="product-link">
+              <div class="best-deals-item-image">
+                <span class="gray-badge">Épuisé</span>
+                <img src="assets/images/thumbnail-main-1.jpg" alt="ASUS ROG Zephyrus G16" />
+              </div>
+              <p class="article-desc">ASUS ROG Zephyrus G16 - Intel Core Ultra 9 285H, RTX 5070TI, 32GB RAM, 1TB SSD</p>
+              <span class="price">1.316.250 FCFA</span>
+            </a>
+          </div>
+
+          <div class="best-deals-item">
+            <a href="page-details-xperia.html" class="product-link">
+              <div class="best-deals-item-image">
+                <img src="assets/images/xperia.png" alt="Xperia 1 V" />
+              </div>
+              <p class="article-desc">Xperia 1 V - Snapdragon 8 Gen 3, 12 Go, 256 Go</p>
+              <span class="price">450.000 FCFA</span>
+            </a>
+          </div>
+
+          <div class="best-deals-item">
+            <a href="page-details-imac.html" class="product-link">
+              <div class="best-deals-item-image">
+                <img src="assets/images/imac.png" alt="iMac" />
+              </div>
+              <p class="article-desc">iMac MC978LL/A 2011 - core i3-2100, 16Go, 250Go</p>
+              <span class="price">1.200.000 FCFA</span>
+            </a>
+          </div>
+
+          <div class="best-deals-item">
+            <a href="page-details-jbl-flip.html" class="product-link">
+              <div class="best-deals-item-image">
+                <img src="assets/images/jbl.png" alt="JBL Flip" />
+              </div>
+              <p class="article-desc">JBL Flip — Enceinte Bluetooth portable étanche</p>
+              <span class="price">45.000 FCFA</span>
+            </a>
+          </div>
+
+          <div class="best-deals-item">
+            <a href="page-details-dji-mavic.html" class="product-link">
+              <div class="best-deals-item-image">
+                <img src="assets/images/DJimavic3.png" alt="DJI Mavic" />
+              </div>
+              <p class="article-desc">DJI Mavic — Drone 4K, stabilisation 3 axes</p>
+              <span class="price">990.000 FCFA</span>
+            </a>
+          </div>
+
+          <div class="best-deals-item">
+            <div class="best-deals-item-image">
+              <span class="red-badge">Hot</span>
+              <img src="assets/images/iphone16.png" alt="iPhone 16" />
+            </div>
+            <p class="article-desc">iPhone 16 - OLED Super Retina XDR, A18 Bionic</p>
+            <span class="price">850.000 FCFA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- troisieme ligne -->
+    <div class="row">
+      <div class="title-category">
+        <p>Nos catégories</p>
+      </div>
+      <button class="category-previous"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="categories-marquee-viewport">
+        <div class="items-category">
+          <div class="category">
+            <div class="category-image">
+              <img src="assets/images/electronique.jpg" alt="" />
+            </div>
+            <span>Électronique</span>
+          </div>
+          <div class="category">
+            <div class="category-image">
+              <img src="assets/images/vetement.jpeg" alt="" />
+            </div>
+            <span>Vêtements</span>
+          </div>
+          <div class="category">
+            <div class="category-image">
+              <img src="assets/images/electromenager.jpg" alt="" />
+            </div>
+            <span>Électroménager</span>
+          </div>
+          <div class="category">
+            <div class="category-image">
+              <img src="assets/images/meuble.jpg" alt="" />
+            </div>
+            <span>Meubles</span>
+          </div>
+          <div class="category">
+            <div class="category-image">
+              <img src="assets/images/bijoux.jpg" alt="" />
+            </div>
+            <span>Bijoux</span>
+          </div>
+          <div class="category">
+            <div class="category-image">
+              <img src="assets/images/cosmetique.jpg" alt="" />
+            </div>
+            <span>Cosmetique</span>
+          </div>
+        </div>
+      </div>
+      <button class="category-next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+    <!-- quatrieme ligne -->
+    <div class="row">
+      <div class="category-container">
+        <div class="category-filters">
+          <div class="filter-apply">
+            <span class="fonce">Toutes les categories : </span>
+          </div>
+          <div class="result-active-filters">
+            <span data-category="electronics" class="active">Électronique</span>
+            <span data-category="clothes">Vêtements</span>
+            <span data-category="appliances">Électroménager</span>
+            <span data-category="furniture">Meuble</span>
+            <span data-category="jewelry">Bijoux</span>
+            <span data-category="cosmetics">Cosmetique</span>
+          </div>
+        </div>
+        <section id="product-list" class="product" aria-label="Liste des produits">
+          <!-- Les produits seront ajoutés ici dynamiquement -->
+        </section>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- footer-->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-top">
+      <div class="fgrid">
+        <!-- Brand + contact -->
+        <div class="fbrand">
+          <a class="brand" href="home.html">
+            <span class="brand__mark">●</span>
+            <span class="brand__name">SHOPNOW</span>
+          </a>
+          <div class="contact">
+            <div><strong>Service client</strong></div>
+            <div>+237-655884341</div>
+            <div>Route de Melen, Yaounde<br></div>
+            <div><a href="mailto:m1gienspy@gmail.com">m1gienspy@gmail.com</a></div>
+          </div>
+        </div>
+
+        <!-- Top Category -->
+        <nav class="fcol" aria-label="Top Category">
+          <h4>TOP CATEGORIES</h4>
+          <a href="liste-produit.html">Électronique et Accessoires</a>
+          <a href="liste-produit.html">Vêtements</a>
+          <a href="liste-produit.html">Électromenager</a>
+          <a href="liste-produit.html"><em>Meubles</em></a>
+          <a href="liste-produit.html">Bijoux</a>
+          <a href="liste-produit.html">Cosmetiques</a>
+          <a class="accent" href="liste-produit.html">Consulter tous nos produits →</a>
+        </nav>
+
+        <!-- Quick Links -->
+        <nav class="fcol" aria-label="Quick Links">
+          <h4>LIENS RAPIDES</h4>
+          <a href="liste-produit.html">Catalogue de produit</a>
+          <a href="panier.html">Panier de course</a>
+          <a href="page-favoris.html">Liste de souhait</a>
+          <a href="faq.html">Support client</a>
+          <a href="about-us.html">A propos de nous</a>
+
+
+        </nav>
+
+        <!-- Popular Tag -->
+        <div class="fcol" aria-label="Popular Tag">
+          <h4>MOTS POPULAIRES</h4>
+          <div class="tags">
+            <span class="tag">Réfregirateurs</span><span class="tag">iPhone</span><span class="tag">TV</span>
+            <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span class="tag">SSD</span>
+            <span class="tag">Carte graphique</span><span class="tag">Power Bank</span><span class="tag">Smart TV</span>
+            <span class="tag">Enceinte</span><span class="tag">Tablette</span><span class="tag">Microwave</span>
+            <span class="tag">Samsung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container foot-wrap">
+        <div>ENSPY M1GI ShopNow e-commerce © 2025. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ asset('js/savePanier.js') }}"></script>
+  <script src="{{ asset('js/home.js') }}"></script>
+</body>
+
+</html>

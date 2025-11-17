@@ -1,0 +1,266 @@
+/* First Presentation Section */
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 450px; /* Adjust height as needed */
+    border: none;
+    z-index: 1000;
+}
+
+main {
+    margin-top: 25px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    margin-bottom: 50px;
+}
+
+.fist-detail {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fist-detail span, .contact-us-link {
+    color: #fff;
+    background-color: #2484C2;
+    padding: 7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.fist-detail h3 {
+    font-size: 36px;
+    margin: 10px 0;
+    color: #000;
+}
+
+.fist-detail p {
+    font-size: 16px;
+    color: #475156;
+    line-height: 1.6;
+}
+
+.fist-detail ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fist-detail ul li {
+    font-size: 16px;
+    color: #475156;
+    position: relative;
+    padding-left: 25px;
+}
+
+.fist-detail i {
+    position: absolute;
+    left: 0;
+    color: #28a745; /* Green color for checkmarks */
+    font-size: 18px;
+}
+
+.Detail-illustration {
+    flex: 1;
+}
+
+.Detail-illustration img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: solid 1px #E4E7E9;
+}
+
+/* Team Section */
+
+.row:has(.title-team){
+    flex-direction: column;
+}
+
+.title-team {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+.team {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.member {
+    background-color: #fff;
+    border: solid 1px #E4E7E9;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.round-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #E4E7E9;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.round-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.member-name {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.member-status {
+    font-size: 14px;
+    color: #475156;
+}
+
+/* Contact Section */
+.contact-row {
+    flex-direction: column;
+    background-color: #f8f9fa;
+    padding: 40px 20px;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.contact-title {
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.contact-title h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+}
+
+.contact-cards {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.contact-card {
+    background-color: #fff;
+    border: solid 1px #E4E7E9;
+    border-radius: 8px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 30px;
+}
+.contact-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 40px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone-icon {
+    background-color: #e7f5ff;
+    color: #2484C2;
+}
+
+.chat-icon {
+    background-color: #f6ddcb;
+    color: #e56d45;
+}
+
+.contact-card h4 {
+    font-size: 18px;
+    color: #000;
+    margin: 0;
+}
+
+.contact-card p {
+    font-size: 14px;
+    color: #475156;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.phone,
+.email {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    margin: 10px 0;
+}
+
+.call-btn {
+    background-color: #2484C2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.chat-btn {
+    background-color: #FA8232;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    align-self: flex-start;
+}

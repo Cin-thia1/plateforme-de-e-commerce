@@ -1,0 +1,40 @@
+
+    <div class="modal-backdrop">
+        
+        <div class="modal-content">
+            
+            <header class="modal-header">
+                <h3>BILLING ADDRESS</h3> </header>
+
+            <section class="modal-body">
+                
+                <div class="review-section">
+                    <label class="section-label">Rating</label>
+                    <div class="rating-dropdown">
+                        <span class="rating-text">5 Star Rating</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                        </div>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </div>
+                </div>
+                
+                <hr class="separator">
+
+                <div class="review-section">
+                    <label class="section-label">Feedback</label>
+                    <textarea placeholder="Write down your feedback about our product & services" rows="4"></textarea>
+                </div>
+
+            </section>
+            
+            <footer class="modal-footer">
+                <button class="btn-publish">PUBLISH REVIEW</button>
+            </footer>
+
+        </div>
+    </div>

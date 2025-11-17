@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asus ROG Zephyrus G16 2025 - details</title>
+    <!-- Import propre a cette page-->
+    <link rel="stylesheet" href="{{ asset('css/page-details-produit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/breadcrumbs.css') }}">
+    <!-- import commun a toutes les pages-->
+    <link rel="stylesheet" href="{{ asset('css/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header-footer.css') }}">
+
+</head>
+
+<body>
+
+    <!--header-->
+    <header class="main-header">
+        <!-- Superbar : message + réseaux + langue/devise -->
+        <div class="superbar">
+            <div class="container super-wrap">
+                <div class="super-left">Bienvenu chez SHOPNOW votre boutique de e-commerce en ligne</div>
+                <div class="super-right">
+                    <div class="social">Nous suivre:
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="dropdown">
+                        <div class="pill">Fr ▾</div>
+                        <div class="dropdown-content" id="langue">
+                            <a href="#">Français</a>
+                            <a href="#">English</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <div class="pill">FCFA ▾</div>
+                        <div class="dropdown-content" id="devise">
+                            <a href="#">FCFA</a>
+                            <a href="#">EUR</a>
+                            <a href="#">USD</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barre principale -->
+        <div class="container main-wrap">
+            <a class="brand" href="home.html">
+                <span class="brand__mark">●</span>
+                <span class="brand__name">SHOPNOW</span>
+            </a>
+
+            <div class="search" role="search">
+                <form action="/recherche" method="get">
+                    <label for="q" class="visually-hidden">Rechercher</label>
+                    <input id="q" name="q" type="search" placeholder="Que cherchez-vous?" />
+                    <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="actions" aria-label="Actions utilisateur">
+                <a class="icon-btn" href="panier.html" title="Panier"><i class="fas fa-shopping-cart"></i><span
+                        class="badge">2</span></a>
+                <a class="icon-btn" href="page-favoris.html" title="Favoris"><i class="fas fa-heart"></i></a>
+                <a class="icon-btn" href="login.html" title="Mon compte"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+
+        <!-- bottom barre -->
+        <div class="top-bar">
+            <div class="left-section">
+                <div class="dropdown">
+                    <button class="dropdown-btn">Toutes les Catégories</button>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li class="dropright">
+                                <span>Électronique ></span>
+                                <div class="dropright-content">
+                                <a href="#">Smartphones et montres connectées</a>
+                                <a href="#">Ordinateurs portables</a>
+                                <a href="#">Ordinateurs gaming</a>
+                                <a href="#">Tablettes</a>
+                                <a href="#">Casques et écouteurs</a>
+                                <a href="#">Télévisions et home cinéma</a>
+                                <a href="#">Appareils photo et caméras</a>
+                                <a href="#">Accessoires</a>
+                                <a href="#">Consoles de jeux et manettes</a>
+                                <a href="#">Composants informatiques</a>
+                                </div>
+                            </li>
+
+                            <li class="dropright">
+                                <span>Vêtements ></span>
+                                <div class="dropright-content">
+                                <a href="#">T-shirts et polos</a>
+                                <a href="#">Chemises</a>
+                                <a href="#">Pantalons</a>
+                                <a href="#">Robes et jupes</a>
+                                <a href="#">Vestes et manteaux</a>
+                                <a href="#">Pulls et sweats</a>
+                                <a href="#">Chaussures</a>
+                                </div>
+                            </li>
+
+                            <li class="dropright">
+                                <span>Électroménager ></span>
+                                <div class="dropright-content">
+                                <a href="#">Réfrigérateurs</a>
+                                <a href="#">Machines à laver</a>
+                                <a href="#">Fours et cuisinières</a>
+                                <a href="#">Micro-ondes</a>
+                                <a href="#">Aspirateurs</a>
+                                <a href="#">Cafetières</a>
+                                </div>
+                            </li>
+
+                            <li class="dropright">
+                                <span>Meubles ></span>
+                                <div class="dropright-content">
+                                <a href="#">Canapés et fauteuils</a>
+                                <a href="#">Tables</a>
+                                <a href="#">Chaises</a>
+                                <a href="#">Lits</a>
+                                <a href="#">Décoration</a>
+                                </div>
+                            </li>
+
+                            <li class="dropright">
+                                <span>Bijoux ></span>
+                                <div class="dropright-content">
+                                <a href="#">Bagues</a>
+                                <a href="#">Colliers</a>
+                                <a href="#">Bracelets</a>
+                                <a href="#">Montres</a>
+                                </div>
+                            </li>
+
+                            <li class="dropright">
+                                <span>Cosmétiques ></span>
+                                <div class="dropright-content">
+                                <a href="#">Maquillage</a>
+                                <a href="#">Soins du visage</a>
+                                <a href="#">Soins du corps</a>
+                                <a href="#">Produits capillaires</a>
+                                <a href="#">Parfums</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="home.html"><i class="fas fa-house"></i> Home </a>
+                <a href="faq.html"><i class="fas fa-question-circle"></i> Service client</a>
+                <a href="about-us.html"><i class="fa-solid fa-users"></i> A propos de nous</a>
+
+            </div>
+
+            <div class="right-section">
+                <i class="fas fa-phone-alt"></i> +237 - 655 884 341
+            </div>
+        </div>
+
+    </header>
+    <div class="main-container">
+        <div class="product-container">
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="home.html">Accueil</a></li>
+                    <li><span>&gt;</span></li>
+                    <li><a href="liste-produit.html">Électronique</a></li>
+                    <li><span>&gt;</span></li>
+                    <li><a href="#">Laptop</a></li>
+                    <li><span>&gt;</span></li>
+                    <li class="active">ASUS-ROG-G16</li>
+                </ul>
+            </nav>
+            <main class="product-main">
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="assets/images/g16/thumbnail-main.webp" alt="g16 image principale">
+                    </div>
+                    <div class="thumbnails">
+                        <i class='fa fa-chevron-left'></i>
+                        <img src="assets/images/g16/thumbnail-main.webp" alt="Thumbnail main" class="active">
+                        <img src="assets/images/g16/thumbnail-1.webp" alt="Thumbnail 1">
+                        <img src="assets/images/g16/thumbnail-2.webp" alt="Thumbnail 2">
+                        <img src="assets/images/g16/thumbnail-3.webp" alt="Thumbnail 3">
+                        <img src="assets/images/g16/thumbnail-4.webp" alt="Thumbnail 4">
+                        <img src="assets/images/g16/thumbnail-5.webp" alt="Thumbnail 5">
+                        <i class='fa fa-chevron-right'></i>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <div class="rating">
+                        <i class='fa fa-star'></i>
+                        <i class='fa fa-star'></i>
+                        <i class='fa fa-star'></i>
+                        <i class='fa fa-star'></i>
+                        <i class='fa fa-star-half-stroke'></i>
+                        <span>4.5 - Score d'évaluation</span>
+                        <span class="reviews">(671 Commentaires)</span>
+                    </div>
+                    <h1>2025 - Asus Rog Zephyrus G16 16" OLED 2.5k 240hz Gaming Laptop - Intel Core ultra 9 285H - 32GB
+                        LPDDR5X RAM - RTX 5070TI 12 GB - 1TB SSD - Platinum White</h1>
+                    <hr class="divider">
+                    <div class="meta-info">
+                        <div class="inner-meta-info">
+                            <span>SKU: A2K46671</span>
+                            <span>Marque: <b> ASUS</b></span>
+                        </div>
+                        <div class="inner-meta-info">
+                            <span>Disponibilité: <b class="in-stock">En stock</b></span>
+                            <span>Catégorie: <b>Ordinateur Gaming</b></span>
+                        </div>
+
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1.316.250 FCFA</span>
+                        <span class="original-price">1.755.000 FCFA</span>
+                        <span class="discount-badge">25% OFF</span>
+                    </div>
+                    <div class="options">
+                        <div class="option-group">
+                            <label>Couleur</label>
+                            <div class="colors">
+                                <span class="color-swatch" style="background-color: #474747;"></span>
+                                <span class="color-swatch active" style="background-color: #F5F5F7;"></span>
+                            </div>
+                        </div>
+                        <div class="option-group">
+                            <label>Stockage</label>
+
+                            <select class="custom-select">
+                                <option value=""> 1TB SSD</option>
+                                <option value=""> 2TB SSD</option>
+                                <option value=""> 4TB SSD</option>
+                            </select>
+
+                        </div>
+                        <div class="option-group">
+                            <label>Memoire</label>
+                            <select class="custom-select">
+                                <option value=""> 32GB</option>
+                                <option value=""> 16GB</option>
+                                <option value=""> 48GB</option>
+                                <option value=""> 64GB</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label>Carte graphique</label>
+                            <select class="custom-select">
+                                <option value=""> RTX 5070TI 12GB</option>
+                                <option value=""> RTX 5060 8GB</option>
+                                <option value=""> RTX 5070 8GB</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <div class="quantity-selector">
+                            <button>-</button>
+                            <span>01</span>
+                            <button>+</button>
+                        </div>
+                        <button class="btn-add-to-cart"
+                            onclick="saveToNavigate('2025 - Asus Rog Zephyrus G16 16pouces OLED 2.5k 240hz Gaming Laptop - Intel Core ultra 9 285H - 32GB LPDDR5X RAM - RTX 5070TI 12 GB - 1TB SSD - Platinum White', 1316250, 1)">Ajouter
+                            au panier</button>
+                        <button class="btn-buy-now">Acheter maintenant !</button>
+                    </div>
+
+                    <div class="product-actions-meta">
+                        <a href="#"><i class='fa-regular fa-heart'></i> Ajouter au favoris</a>
+                        <div class="share-product">
+                            <span>Partager le produit :</span>
+                            <div class="social-icons">
+                                <a href="#"><i class='fa-brands fa-facebook'></i></a>
+                                <a href="#"><i class='fa-brands fa-x-twitter'></i></a>
+                                <a href="#"><i class='fa-brands fa-pinterest'></i></a>
+                                <a href="#"><i class='fa-brands fa-youtube'></i></a>
+                                <a href="#"><i class='fa-brands fa-instagram'></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </main>
+
+            <section class="product-details-tabs">
+                <nav class="tabs">
+                    <p class="tab-description active">DESCRIPTION</p>
+                    <p class="tab-info">INFORMATIONS ADDITIONNELLES</p>
+                    <p class="tab-specs">CARACTERISTIQUES</p>
+                    <p class="tab-review">REVUES</p>
+                </nav>
+
+                <div class="tab-content">
+                    <!--description-->
+                    <div class="description-content active-content" id="description">
+                        <div class="description-text">
+                            <h3>Description</h3>
+                            <p style="text-align: justify;">Découvrez le ASUS ROG Zephyrus G16 (2025), un PC portable
+                                gaming
+                                haut de gamme alliant puissance, finesse et élégance. Équipé d’une RTX 5070 Ti 12 Go, de
+                                32
+                                Go de RAM DDR5, d’un SSD 1 To ultra-rapide et d’un écran QHD+ 16" 165 Hz, il est parfait
+                                pour le gaming AAA, la création de contenu ou le multitâche intensif. Son design en
+                                aluminium, son clavier rétroéclairé RGB et son système de refroidissement intelligent en
+                                font une machine aussi performante que portable.
+                            </p>
+
+                        </div>
+                        <div class="features-list">
+                            <h3>Inclus</h3>
+                            <ul>
+                                <li><i class='fa fa-trophy'></i> 2 ans de garantie gratuite</li>
+                                <li><i class='fa fa-box-open'></i> Livrraison gratuite </li>
+                                <li><i class='fa fa-money-bill'></i> 100% de Garantie remboursement</li>
+                                <li><i class='fa fa-headphones'></i> 24/7 Support Client</li>
+                                <li><i class='fa fa-credit-card'></i> Paiement Sécurisé</li>
+                            </ul>
+                        </div>
+                        <div class="shipping-info">
+                            <h3>Information de Livrraison</h3>
+                            <p><b>Magasin</b> 7-8 Jours, Livraison gratuite</p>
+                            <p><b>Dans la ville</b> 2-3 days, A partir de FCFA1.500</p>
+                            <p><b>Expedition inter-urbaine</b> 4-6 Jours, FCFA5.000</p>
+                            <p><b>Livraison Expresse</b>: 8-48 Heures, FCFA10.000</p>
+                        </div>
+                    </div>
+                    <!--informations additionnelles-->
+                    <div class="description-content" id="info">
+                        <div class="description-text">
+                            <h3>Description</h3>
+                            <p style="text-align: justify;">Découvrez l’ASUS ROG Zephyrus G16 (2025), l’un des
+                                ordinateurs portables gaming les plus puissants, innovants et élégants de sa génération.
+                                Pensé pour les passionnés de technologie, les joueurs exigeants et les créateurs de
+                                contenu professionnels, il combine une puissance de calcul exceptionnelle, une qualité
+                                d’affichage remarquable et une conception haut de gamme.Propulsé par le tout dernier
+                                processeur Intel Core Ultra 9 et la carte graphique NVIDIA GeForce RTX 5070 Ti dotée de
+                                12 Go de mémoire GDDR6.
+                            </p>
+
+                        </div>
+                        <div class="description-text">
+
+                            <p style="text-align: justify;">le Zephyrus G16 offre des performances fulgurantes, capables
+                                de gérer les jeux les plus récents en 2K, le montage vidéo 4K, la modélisation 3D et le
+                                rendu en temps réel. Ses 32 Go de RAM LPDDR5X garantissent une fluidité absolue, même
+                                lors du multitâche le plus intensif.
+
+                                Le stockage SSD de 1 To PCIe 4.0 NVMe assure un démarrage quasi instantané du système et
+                                des applications, ainsi que des transferts de données ultra-rapides. L’écran QHD+ de 16
+                                pouces, à fréquence de rafraîchissement de 240 Hz, offre une immersion visuelle
+                                exceptionnelle grâce à une précision colorimétrique de 100 % DCI-P3, idéale pour les
+                                graphistes et vidéastes.
+                            </p>
+
+                        </div>
+                        <div class="description-text">
+                            <p style="text-align: justify;">Côté design, le Zephyrus G16 se distingue par son châssis
+                                Platinum White, fin, léger et sophistiqué, qui reflète parfaitement l’identité ROG. Avec
+                                seulement 1,9 kg, il offre une portabilité remarquable sans compromis sur la puissance.
+                                Le clavier rétroéclairé RGB par touche, personnalisable via Aura Sync, permet de créer
+                                une ambiance unique pour chaque session.Côté connectivité, il intègre les dernières
+                                technologies : Wi-Fi 7, Bluetooth 5.4, Thunderbolt 4, HDMI 2.1, et lecteur microSD,
+                                garantissant compatibilité et vitesse dans toutes les situations. La webcam Full HD avec
+                                reconnaissance faciale Windows Hello ajoute une touche de sécurité et de praticité.
+
+                            </p>
+
+                        </div>
+                    </div>
+                    <!--caractéristiques-->
+                    <div class="description-content" id="specs">
+                        <div class="spec-info">
+                            <p> <b>Modèle </b> : ASUS ROG Zephyrus G16 (2025) – Platinum White <br>
+
+                                <b>Processeur </b> Intel Core Ultra 9 (14 cœurs, architecture Meteor Lake) <br>
+
+                                <b>Carte graphique </b> NVIDIA GeForce RTX 5070 Ti Laptop GPU – 12 Go GDDR6 <br>
+
+
+                                <b>Mémoire vive (RAM) </b> 32 Go LPDDR5X <br>
+
+                                <b>Stockage </b> 1 To SSD PCIe 4.0 NVMe <br>
+
+                                <b>Écran </b> 16 pouces QHD+ (2560x1600), IPS, 240 Hz, 3 ms, 100 % DCI-P3
+                            </p>
+                        </div>
+                        <div class="spec-info">
+                            <p><b>Clavier </b> Rétroéclairé RGB par touche (Aura Sync) <br>
+
+                                <b>Audio </b> Dolby Atmos, haut-parleurs Smart Amp avec woofers intégrés <br>
+
+                                <b>Webcam </b> FHD 1080p avec IR pour Windows Hello <br>
+
+                                <b>Connectivité </b> 2x USB-C (Thunderbolt 4), 2x USB-A, HDMI 2.1, lecteur microSD,
+                                Wi-Fi 7,
+                                Bluetooth 5.4 <br>
+
+                                <b>Batterie </b> 90 Wh, charge rapide USB-C (0 à 50 % en 30 min)
+                            </p>
+                        </div>
+                        <div class="spec-info">
+
+                            <p><b>Système d’exploitation </b> Windows 11 Home <br>
+
+                                <b>Poids </b> 1,9 kg <br>
+
+                                <b>Couleur </b> Platinum White <br>
+
+                                <b>Refroidissement </b> ROG Intelligent Cooling (métal liquide + 3 ventilateurs) <br>
+
+                                <b>Sécurité </b> Lecteur d’empreintes intégré au bouton d’alimentation
+                            </p>
+                        </div>
+                    </div>
+                    <!--commentaires et revus-->
+                    <div class="description-content" id="review">
+                        <div class="description-text review-column">
+
+                            <div class="review-comment">
+                                <div class="review-badge">
+                                    <div class="profile-line">
+                                        <img class="review-avatar" src="assets/images/avatar-placeholder.png"
+                                            alt="Photo profil" />
+                                        <div class="review-info">
+                                            <p class="review-author">Kevin T.</p>
+                                            <div class="review-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-text">Une véritable machine de guerre ! J’utilise ce PC pour le
+                                        montage vidéo et les jeux AAA, tout tourne sans aucun ralentissement. Le design
+                                        blanc est sublime.</div>
+                                </div>
+                            </div>
+                            <div class="review-comment">
+                                <div class="review-badge">
+                                    <div class="profile-line">
+                                        <img class="review-avatar" src="assets/images/avatar-placeholder.png"
+                                            alt="Photo profil" />
+                                        <div class="review-info">
+                                            <p class="review-author">Lucas G.</p>
+                                            <div class="review-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-text">Puissant et fluide, mais un peu cher. Pour le reste, il n’a
+                                        aucun défaut, tout
+                                        fonctionne parfaitement.</div>
+                                </div>
+                            </div>
+
+                            <div class="review-comment">
+                                <div class="review-badge">
+                                    <div class="profile-line">
+                                        <img class="review-avatar" src="assets/images/avatar-placeholder.png"
+                                            alt="Photo profil" />
+                                        <div class="review-info">
+                                            <p class="review-author">Sarah M.</p>
+                                            <div class="review-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-text">L’écran est d’une qualité incroyable. Les couleurs sont
+                                        justes, parfait pour la
+                                        retouche photo et le graphisme.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description-text review-column">
+                            <div class="review-comment">
+                                <div class="review-badge">
+                                    <div class="profile-line">
+                                        <img class="review-avatar" src="assets/images/avatar-placeholder.png"
+                                            alt="Photo profil" />
+                                        <div class="review-info">
+                                            <p class="review-author">Franck D.</p>
+                                            <div class="review-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-text">Très silencieux, même pendant les longues sessions de
+                                        travail. J’aurais juste aimé un
+                                        port Ethernet intégré.</div>
+                                </div>
+                            </div>
+                            <div class="review-comment">
+                                <div class="review-badge">
+                                    <div class="profile-line">
+                                        <img class="review-avatar" src="assets/images/avatar-placeholder.png"
+                                            alt="Photo profil" />
+                                        <div class="review-info">
+                                            <p class="review-author">Nolan P.</p>
+                                            <div class="review-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-text">La RTX 5070 Ti fait des merveilles, les jeux sont ultra
+                                        fluides. Le refroidissement
+                                        est impressionnant.</div>
+                                </div>
+                            </div>
+
+                            <div class="review-comment">
+                                <div class="review-badge">
+                                    <div class="profile-line">
+                                        <img class="review-avatar" src="assets/images/avatar-placeholder.png"
+                                            alt="Photo profil" />
+                                        <div class="review-info">
+                                            <p class="review-author">Elodie B.</p>
+                                            <div class="review-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-text">Design élégant, légèreté appréciable et puissance au
+                                        rendez-vous. Idéal aussi pour le
+                                        travail professionnel.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description-text review-column">
+                            <div class="review-comment">
+                                <div class="review-badge">
+                                    <div class="profile-line">
+                                        <img class="review-avatar" src="assets/images/avatar-placeholder.png"
+                                            alt="Photo profil" />
+                                        <div class="review-info">
+                                            <p class="review-author">Julien C.</p>
+                                            <div class="review-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-text">a batterie tient environ 6 heures en bureautique, ce qui
+                                        est excellent pour un PC
+                                        aussi puissant.</div>
+                                </div>
+                            </div>
+
+                            <div class="review-comment">
+                                <div class="review-badge">
+                                    <div class="profile-line">
+                                        <img class="review-avatar" src="assets/images/avatar-placeholder.png"
+                                            alt="Photo profil" />
+                                        <div class="review-info">
+                                            <p class="review-author">Ahmed K.</p>
+                                            <div class="review-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-text">ROG reste fidèle à sa réputation : le Zephyrus G16 est
+                                        une œuvre d’art technologique,
+                                        fluide et réactif</div>
+                                </div>
+                            </div>
+                            <div class="review-comment">
+                                <div class="review-badge">
+                                    <div class="profile-line">
+                                        <img class="review-avatar" src="assets/images/avatar-placeholder.png"
+                                            alt="Photo profil" />
+                                        <div class="review-info">
+                                            <p class="review-author">Patrick L.</p>
+                                            <div class="review-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-text">Je l’utilise pour mes projets de data science, il
+                                        exécute les calculs complexes sans
+                                        broncher. Excellent produit globalement.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </section>
+
+            <section class="related-products">
+                <div class="product-grid-header">
+                    <h2>PRODUITS LIES</h2>
+                    <h2>ACCESSOIRES DU PRODUIT</h2>
+                    <h2>PRODUIT ASUS</h2>
+                    <h2>VOUS POURRIEZ AUSSI AIMER</h2>
+                </div>
+                <div class="product-grid-container">
+                    <div class="product-column">
+                        <div class="product-card">
+                            <img src="assets/images/g16/crucial.webp" alt="Crucial P310 1TB SSD">
+                            <div class="product-card-info">
+                                <p>Crucial P310 SSD 1TB Pcle Gen4 NVMe M.2 2880, jusquá 7.100MB/s...</p>
+                                <span>65000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <img src="assets/images/g16/cooler.webp" alt="Mars Gaming MNBC2">
+                            <div class="product-card-info">
+                                <p>Mars Gaming MNBC2, Base de jeu de Refroidissement...</p>
+                                <span>9000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <img src="assets/images/g16/novoo.webp" alt="NOVOO 100w chargeur usb c">
+                            <div class="product-card-info">
+                                <p>NOVOO 100w Chargeur USB C Rapide 3 Ports Prise USB C Compatible...</p>
+                                <span>18000 FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-column">
+                        <div class="product-card">
+                            <img src="assets/images/g16/razer.webp" alt="Souris sans fil">
+                            <div class="product-card-info">
+                                <p>Razer Basilik V3 - Souris Gaming Filaire (10+1 Boutons programmables, ....</p>
+                                <span>27500 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <img src="assets/images/g16/housse.webp" alt="Housse laptop 16 pouces">
+                            <div class="product-card-info">
+                                <p>Xoopar - Housse Ordinateur Portable en cuir Récyclé...</p>
+                                <span>5000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <img src="assets/images/g16/casque.webp" alt="SteelSeries Casque sans fil">
+                            <div class="product-card-info">
+                                <p>SteelSeries Arctis Nova 5 Casque Gaming Sans Fil Multi-systeme,...</p>
+                                <span>66000 FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-column">
+                        <div class="product-card">
+                            <img src="assets/images/g16/tuf-a16.webp" alt="asus tuf a16">
+                            <div class="product-card-info">
+                                <p>ASUS TUF Gaming A16-TUF608JMR-RV09W 16 pouces FHD+ 165hz...</p>
+                                <span>880000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <img src="assets/images/g16/strix-g16.webp" alt="asus rog">
+                            <div class="product-card-info">
+                                <p>ASUS ROG STRIX G16-G614PM-RV092W 16 pouces FHD+ 165hz PC portabl...</p>
+                                <span>934700 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <img src="assets/images/g16/ally.webp" alt="asus rog ally">
+                            <div class="product-card-info">
+                                <p>ASUS ROG Xbox Ally X RC73XA-NH011W 7 pouces FHDb120Hz IPS...</p>
+                                <span>501999 FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-column">
+                        <div class="product-card">
+                            <img src="assets/images/g16/xps-16.webp" alt="Dell XPS 16 9640">
+                            <div class="product-card-info">
+                                <p>Dell XPS 16 9640 Ordinateur portable 16,3" écran FHD+...</p>
+                                <span>823000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <img src="assets/images/g16/matebook.webp" alt="huawie matebook">
+                            <div class="product-card-info">
+                                <p>HUAWEI Matebook X pro Core Ultra, Ultra-leger 980g, 14,2 pouces...</p>
+                                <span>1300000 FCFA</span>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <img src="assets/images/g16/aoc.webp" alt="AOC Gaming 24G4XED">
+                            <div class="product-card-info">
+                                <p>AOC Gaming 24G4XED - Moniteur 24 Pouces FHD 180Hz, 1ms, FreeSync...</p>
+                                <span>55000 FCFA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+
+    <!-- footer-->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container footer-top">
+            <div class="fgrid">
+                <!-- Brand + contact -->
+                <div class="fbrand">
+                    <a class="brand" href="home.html">
+                        <span class="brand__mark">●</span>
+                        <span class="brand__name">SHOPNOW</span>
+                    </a>
+                    <div class="contact">
+                        <div><strong>Service client</strong></div>
+                        <div>+237-655884341</div>
+                        <div>Route de Melen, Yaounde<br></div>
+                        <div><a href="mailto:m1gienspy@gmail.com">m1gienspy@gmail.com</a></div>
+                    </div>
+                </div>
+
+                <!-- Top Category -->
+                <nav class="fcol" aria-label="Top Category">
+                    <h4>TOP CATEGORIES</h4>
+                    <a href="liste-produit.html">Électronique et Accessoires</a>
+                    <a href="liste-produit.html">Vêtements</a>
+                    <a href="liste-produit.html">Électromenager</a>
+                    <a href="liste-produit.html"><em>Meubles</em></a>
+                    <a href="liste-produit.html">Bijoux</a>
+                    <a href="liste-produit.html">Cosmetiques</a>
+                    <a class="accent" href="liste-produit.html">Consulter tous nos produits →</a>
+                </nav>
+
+                <!-- Quick Links -->
+                <nav class="fcol" aria-label="Quick Links">
+                    <h4>LIENS RAPIDES</h4>
+                    <a href="liste-produit.html">Catalogue de produit</a>
+                    <a href="panier.html">Panier de course</a>
+                    <a href="page-favoris.html">Liste de souhait</a>
+                    <a href="faq.html">Support client</a>
+                    <a href="about-us.html">A propos de nous</a>
+
+
+                </nav>
+
+                <!-- Popular Tag -->
+                <div class="fcol" aria-label="Popular Tag">
+                    <h4>MOTS POPULAIRES</h4>
+                    <div class="tags">
+                        <span class="tag">Réfregirateurs</span><span class="tag">iPhone</span><span
+                            class="tag">TV</span>
+                        <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span
+                            class="tag">SSD</span>
+                        <span class="tag">Carte graphique</span><span class="tag">Power Bank</span><span
+                            class="tag">Smart TV</span>
+                        <span class="tag">Enceinte</span><span class="tag">Tablette</span><span
+                            class="tag">Microwave</span>
+                        <span class="tag">Samsung</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container foot-wrap">
+                <div>ENSPY M1GI ShopNow e-commerce © 2025. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="{{ asset('js/page-details-produit.js') }}"></script>
+</body>
+
+</html>

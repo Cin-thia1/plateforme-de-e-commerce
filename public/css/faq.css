@@ -1,0 +1,248 @@
+/* Couleurs & Variables */
+:root {
+    --color-border-faq: #3498db; /* Bleu pour les bordures et accents FAQ */
+    --color-open-bg: #f77f00;   /* Couleur Orange pour la question ouverte */
+    --color-support-bg: #fffbe6; /* Jaune très pâle/Crème pour le fond du support */
+    --color-text: #333;
+    --color-light-grey: #e0e0e0;
+}
+
+/* Styles de base et typographie */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 450px; /* Adjust height as needed */
+    border: none;
+    z-index: 1000;
+}
+
+main {
+    margin-top: 25px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+/* Le conteneur principal pour centrer le contenu sans cadre blanc visible */
+.main-wrapper {
+    max-width: 1200px; 
+    margin: 40px auto;
+}
+
+/* --- Mise en page principale (Flexbox) --- */
+
+.content-wrapper {
+    display: flex;
+    gap: 30px; /* Espacement entre les deux colonnes */
+    align-items: flex-start; /* Aligne le contenu en haut */
+}
+
+.faq-section {
+    flex: 2.5; /* Environ 70% */
+    padding-right: 20px;
+}
+
+.support-section {
+    flex: 1; /* Environ 30% */
+}
+
+/* --- Section FAQ (Gauche) --- */
+
+.faq-title {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--color-text);
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+    /* Reproduction de la bordure pointillée bleue */
+    border-bottom: 1px dashed var(--color-border-faq); 
+    padding-bottom: 8px; 
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-item {
+    border: 1px solid var(--color-light-grey);
+    border-top: none; /* Supprimer la bordure supérieure pour l'effet de liste */
+    overflow: hidden;
+}
+
+/* Bordure supérieure seulement pour le premier élément */
+.faq-list .faq-item:first-child {
+    border-top: 1px solid var(--color-light-grey);
+    border-radius: 4px 4px 0 0;
+}
+/* Bordure inférieure et coins pour le dernier élément */
+.faq-list .faq-item:last-child {
+    border-radius: 0 0 4px 4px;
+}
+
+
+.faq-item summary {
+    display: block;
+    padding: 15px 20px;
+    font-weight: 700;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    transition: background-color 0.1s;
+}
+
+/* Icône Plus/Moins */
+.faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    font-size: 1.5em;
+    line-height: 1;
+    color: var(--color-border-faq);
+    transition: transform 0.3s;
+}
+
+/* STYLE QUESTION OUVERTE (Couleur orange) */
+.faq-item[open] summary {
+    background-color: var(--color-open-bg);
+    color: white; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.faq-item[open] summary::after {
+    content: '-';
+    color: white; 
+}
+
+.faq-content {
+    padding: 15px 20px 20px;
+    background-color: #fff;
+    line-height: 1.5;
+}
+
+.faq-content ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+
+/* --- Section Support Client (Droite) --- */
+
+.support-box {
+    /* Style du cadre jaune pâle/crème avec bordure pointillée */
+    background-color: var(--color-support-bg);
+    border: 1px dashed #f9c250; /* Bordure pointillée jaune/orange */
+    padding: 25px;
+    border-radius: 4px;
+}
+
+.support-box h2 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--color-text);
+    border-bottom: none;
+    margin-bottom: 15px;
+}
+
+.intro-support {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.support-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cache les labels car les placeholders sont utilisés */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+input[type="email"],
+input[type="text"],
+textarea {
+    padding: 10px;
+    border: 1px solid var(--color-light-grey);
+    border-radius: 0; /* Pas de coins arrondis comme sur l'image */
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white; /* Fond blanc pour les champs */
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--color-border-faq);
+    outline: none;
+}
+
+textarea {
+    resize: none; /* Empêcher la redimension verticale */
+}
+
+.submit-button {
+    padding: 10px 15px;
+    background-color: #f77f00; /* Orange comme le bouton sur l'image */
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-radius: 4px;
+}
+
+.submit-button:hover {
+    background-color: #e56d45;
+}
+
+
+/* --- Média Queries pour la réactivité --- */
+
+@media (max-width: 992px) {
+    .content-wrapper {
+        flex-direction: column; 
+        gap: 40px;
+    }
+    
+    .faq-section,
+    .support-section {
+        flex: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-wrapper {
+        margin: 20px 10px;
+    }
+    .support-box {
+        padding: 15px;
+    }
+}

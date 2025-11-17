@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finaliser la commande</title>
+  <!-- Import propre a cette page-->
+  <link rel="stylesheet" href="{{ asset('css/commande.css') }}" />
+  <!-- import commun a toutes les pages-->
+  <link rel="stylesheet" href="{{ asset('css/fontawesome/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/header-footer.css') }}">
+</head>
+<!-- … ton <head> peut rester. Supprime le <script> que tu avais mis dans <head> -->
+
+<body>
+  <!--header-->
+  <header class="main-header">
+    <!-- Superbar : message + réseaux + langue/devise -->
+    <div class="superbar">
+      <div class="container super-wrap">
+        <div class="super-left">Bienvenu chez SHOPNOW votre boutique de e-commerce en ligne</div>
+        <div class="super-right">
+          <div class="social">Nous suivre:
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="dropdown">
+            <div class="pill">Fr ▾</div>
+            <div class="dropdown-content" id="langue">
+              <a href="#">Français</a>
+              <a href="#">English</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <div class="pill">FCFA ▾</div>
+            <div class="dropdown-content" id="devise">
+              <a href="#">FCFA</a>
+              <a href="#">EUR</a>
+              <a href="#">USD</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barre principale -->
+    <div class="container main-wrap">
+      <a class="brand" href="home.html">
+        <span class="brand__mark">●</span>
+        <span class="brand__name">SHOPNOW</span>
+      </a>
+
+      <div class="search" role="search">
+        <form action="/recherche" method="get">
+          <label for="q" class="visually-hidden">Rechercher</label>
+          <input id="q" name="q" type="search" placeholder="Que cherchez-vous?" />
+          <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+
+      <div class="actions" aria-label="Actions utilisateur">
+        <a class="icon-btn" href="panier.html" title="Panier"><i class="fas fa-shopping-cart"></i><span
+            class="badge">2</span></a>
+        <a class="icon-btn" href="page-favoris.html" title="Favoris"><i class="fas fa-heart"></i></a>
+        <a class="icon-btn" href="login.html" title="Mon compte"><i class="fas fa-user"></i></a>
+      </div>
+    </div>
+
+    <!-- bottom barre -->
+    <div class="top-bar">
+      <div class="left-section">
+        <div class="dropdown">
+          <button class="dropdown-btn">Toutes les Catégories</button>
+          <div class="dropdown-content">
+            <ul>
+              <li class="dropright">
+                <span>Électronique ></span>
+                <div class="dropright-content">
+                  <a href="#">Smartphones et montres connectées</a>
+                  <a href="#">Ordinateurs portables</a>
+                  <a href="#">Ordinateurs gaming</a>
+                  <a href="#">Tablettes</a>
+                  <a href="#">Casques et écouteurs</a>
+                  <a href="#">Télévisions et home cinéma</a>
+                  <a href="#">Appareils photo et caméras</a>
+                  <a href="#">Accessoires</a>
+                  <a href="#">Consoles de jeux et manettes</a>
+                  <a href="#">Composants informatiques</a>
+                </div>
+              </li>
+
+              <li class="dropright">
+                <span>Vêtements ></span>
+                <div class="dropright-content">
+                  <a href="#">T-shirts et polos</a>
+                  <a href="#">Chemises</a>
+                  <a href="#">Pantalons</a>
+                  <a href="#">Robes et jupes</a>
+                  <a href="#">Vestes et manteaux</a>
+                  <a href="#">Pulls et sweats</a>
+                  <a href="#">Chaussures</a>
+                </div>
+              </li>
+
+              <li class="dropright">
+                <span>Électroménager ></span>
+                <div class="dropright-content">
+                  <a href="#">Réfrigérateurs</a>
+                  <a href="#">Machines à laver</a>
+                  <a href="#">Fours et cuisinières</a>
+                  <a href="#">Micro-ondes</a>
+                  <a href="#">Aspirateurs</a>
+                  <a href="#">Cafetières</a>
+                </div>
+              </li>
+
+              <li class="dropright">
+                <span>Meubles ></span>
+                <div class="dropright-content">
+                  <a href="#">Canapés et fauteuils</a>
+                  <a href="#">Tables</a>
+                  <a href="#">Chaises</a>
+                  <a href="#">Lits</a>
+                  <a href="#">Décoration</a>
+                </div>
+              </li>
+
+              <li class="dropright">
+                <span>Bijoux ></span>
+                <div class="dropright-content">
+                  <a href="#">Bagues</a>
+                  <a href="#">Colliers</a>
+                  <a href="#">Bracelets</a>
+                  <a href="#">Montres</a>
+                </div>
+              </li>
+
+              <li class="dropright">
+                <span>Cosmétiques ></span>
+                <div class="dropright-content">
+                  <a href="#">Maquillage</a>
+                  <a href="#">Soins du visage</a>
+                  <a href="#">Soins du corps</a>
+                  <a href="#">Produits capillaires</a>
+                  <a href="#">Parfums</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a href="home.html"><i class="fas fa-house"></i> Home </a>
+        <a href="track-order.html"><i class="fas fa-truck"></i> Suivre une commande</a>
+        <a href="faq.html"><i class="fas fa-question-circle"></i> Service client</a>
+        <a href="about-us.html"><i class="fa-solid fa-users"></i> A propos de nous</a>
+
+      </div>
+
+      <div class="right-section">
+        <i class="fas fa-phone-alt"></i> +237 - 655 884 341
+      </div>
+    </div>
+
+  </header>
+  <main class="container">
+    <!-- Col gauche: formulaire -->
+    <section class="card">
+      <form id="checkout-form" class="section" aria-labelledby="heading-billing">
+        <h2 id="heading-billing">Informations de facturation</h2>
+        <div class="grid cols-2">
+          <div>
+            <label for="fname">Prénom</label>
+            <input class="input" id="fname" name="fname" autocomplete="given-name" required />
+          </div>
+          <div>
+            <label for="lname">Nom</label>
+            <input class="input" id="lname" name="lname" autocomplete="family-name" required />
+          </div>
+        </div>
+        <div class="grid cols-2">
+          <div>
+            <label for="company">Entreprise <span class="muted">(optionnel)</span></label>
+            <input class="input" id="company" name="company" autocomplete="organization" />
+          </div>
+          <div></div>
+        </div>
+        <div>
+          <label for="address">Adresse</label>
+          <input class="input" id="address" name="address" autocomplete="street-address" required />
+        </div>
+
+        <div class="grid cols-4 cols-3" style="grid-template-columns:repeat(4,1fr); gap:14px">
+          <div>
+            <label for="country">Pays</label>
+            <select class="input" id="country" name="country" autocomplete="country-name" required>
+              <option value="">Sélectionner...</option>
+              <option>Cameroun</option>
+              <option>Gabon</option>
+              <option>Congo</option>
+              <option>Tchad</option>
+            </select>
+          </div>
+          <div>
+            <label for="region">Région/État</label>
+            <input class="input" id="region" name="region" required />
+          </div>
+          <div>
+            <label for="city">Ville</label>
+            <input class="input" id="city" name="city" required />
+          </div>
+          <div>
+            <label for="zip">Code postal</label>
+            <input class="input" id="zip" name="zip" inputmode="numeric" required />
+          </div>
+        </div>
+
+        <div class="grid cols-2">
+          <div>
+            <label for="email">E-mail</label>
+            <input class="input" id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div>
+            <label for="phone">Téléphone</label>
+            <input class="input" id="phone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+        </div>
+
+        <div class="checkbox">
+          <input id="ship-diff" type="checkbox" />
+          <label for="ship-diff">Expédier à une adresse différente</label>
+        </div>
+      </form>
+
+      <!-- === PAIEMENT === -->
+      <div class="section" aria-labelledby="heading-payment">
+        <h2 id="heading-payment">Mode de paiement</h2>
+
+        <div class="pay-box card-light">
+          <div class="pay-options" role="radiogroup" aria-label="Choisir un mode de paiement">
+            <label class="pay-tile">
+              <input type="radio" name="payment" value="cod">
+              <span class="label">
+                <span class="logo">
+                  <img src="assets/img/payments/cash.svg" alt="" aria-hidden="true">
+                </span>
+                Cash à la livraison
+              </span>
+            </label>
+
+            <label class="pay-tile">
+              <input type="radio" name="payment" value="orange">
+              <span class="label">
+                <span class="logo wide">
+                  <img src="./assets/images/orange.jpg" alt="" aria-hidden="true">
+                </span>
+                Orange Money
+              </span>
+            </label>
+
+            <label class="pay-tile">
+              <input type="radio" name="payment" value="mtn">
+              <span class="label">
+                <span class="logo wide">
+                  <img src="./assets/images/mtn.jpg" alt="" aria-hidden="true">
+                </span>
+                MTN Mobile Money
+              </span>
+            </label>
+
+            <label class="pay-tile">
+              <input type="radio" name="payment" value="card" checked>
+              <span class="label">
+                <span class="logo">
+                  <img src="assets/img/payments/card.svg" alt="" aria-hidden="true">
+                </span>
+                Carte bancaire
+              </span>
+            </label>
+          </div>
+
+
+
+          <!-- Formulaires spécifiques -->
+          <div class="pay-forms">
+            <div class="pay-form hidden" data-method="cod" aria-hidden="true">
+              <p class="hint">Vous réglerez en espèces à la livraison.</p>
+              <div class="grid">
+                <div>
+                  <label for="cod-notes">Instruction livreur <span class="muted">(optionnel)</span></label>
+                  <input class="input" id="cod-notes" name="cod-notes" placeholder="Ex. rendre la monnaie sur 10 000" />
+                </div>
+              </div>
+            </div>
+
+            <div class="pay-form hidden" data-method="orange" aria-hidden="true">
+              <p class="hint">Un code USSD/SMS vous sera envoyé pour confirmer le paiement Orange Money.</p>
+              <div class="grid cols-2">
+                <div>
+                  <label for="om-phone">Numéro Orange Money</label>
+                  <input class="input" id="om-phone" name="om-phone" type="tel" placeholder="Ex. 07 12 34 56 78" />
+                </div>
+                <div>
+                  <label for="om-name">Nom du titulaire</label>
+                  <input class="input" id="om-name" name="om-name" placeholder="Nom sur le compte OM" />
+                </div>
+              </div>
+            </div>
+
+
+            <div class="pay-form hidden" data-method="paypal" aria-hidden="true">
+              <p class="hint">Connexion sécurisée à PayPal pour finaliser la transaction.</p>
+              <div class="grid">
+                <div>
+                  <label for="paypal-email">E-mail PayPal</label>
+                  <input class="input" id="paypal-email" name="paypal-email" type="email"
+                    placeholder="vous@exemple.com" />
+                </div>
+              </div>
+            </div>
+
+            <div class="pay-form hidden" data-method="mtn" aria-hidden="true">
+              <p class="hint">Vous recevrez une demande d’approbation MTN MoMo sur votre téléphone.</p>
+              <div class="grid cols-2">
+                <div>
+                  <label for="mtn-phone">Numéro MTN MoMo</label>
+                  <input class="input" id="mtn-phone" name="mtn-phone" type="tel" placeholder="Ex. 05 12 34 56 78" />
+                </div>
+                <div>
+                  <label for="mtn-name">Nom du titulaire</label>
+                  <input class="input" id="mtn-name" name="mtn-name" placeholder="Nom sur le compte MTN" />
+                </div>
+              </div>
+            </div>
+
+            <div class="pay-form" data-method="card">
+              <div class="grid">
+                <div>
+                  <label for="cc-name">Nom sur la carte</label>
+                  <input class="input" id="cc-name" name="cc-name" autocomplete="cc-name" />
+                </div>
+                <div>
+                  <label for="cc-number">Numéro de carte</label>
+                  <input class="input" id="cc-number" name="cc-number" inputmode="numeric" autocomplete="cc-number"
+                    placeholder="0000 0000 0000 0000" />
+                </div>
+                <div class="grid cols-2">
+                  <div>
+                    <label for="cc-exp">Date d'expiration</label>
+                    <input class="input" id="cc-exp" name="cc-exp" inputmode="numeric" autocomplete="cc-exp"
+                      placeholder="MM/AA" />
+                  </div>
+                  <div>
+                    <label for="cc-cvc">CVC</label>
+                    <input class="input" id="cc-cvc" name="cc-cvc" inputmode="numeric" autocomplete="cc-csc"
+                      placeholder="123" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- /.pay-forms -->
+        </div> <!-- /.pay-box -->
+      </div>
+
+      <div class="section" aria-labelledby="heading-notes">
+        <h2 id="heading-notes">Informations supplémentaires <span class="hint">(optionnel)</span></h2>
+        <label class="sr-only" for="notes">Notes de commande</label>
+        <textarea class="input note" id="notes" name="notes"
+          placeholder="Notes sur la commande, ex : instructions de livraison…"></textarea>
+      </div>
+    </section>
+
+    <!-- Col droite: récapitulatif commande -->
+    <aside class="order-summary card section" aria-labelledby="heading-summary">
+      <h2 id="heading-summary">Récapitulatif</h2>
+      <div class="order-list">
+        <div class="item">
+          <div class="thumb">📷</div>
+          <div style="flex:1">
+            <div class="item-title">Canon EOS 1500D DSLR Camera Body</div>
+            <div class="item-meta">1 × 57000 fcfa</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="thumb">🎧</div>
+          <div style="flex:1">
+            <div class="item-title">Casque filaire over-ear avec micro</div>
+            <div class="item-meta">3 × 25000 fcfa</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" style="padding:18px 0 0">
+        <div class="row"><span>Sous-total</span><span>32000 fcfa</span></div>
+        <div class="row"><span>Livraison</span><span>Offerte</span></div>
+        <div class="row"><span>Remise</span><span>-1000fcfa</span></div>
+        <div class="row"><span>Taxes</span><span></span></div>
+        <div class="row total" style="margin-top:14px"><span>Total</span><span></span></div>
+
+        <!-- Bouton commande -->
+        <button id="place-order" class="btn" type="button" aria-label="Placer la commande">
+          PASSER LA COMMANDE
+        </button>
+
+        <!-- Message de statut (simulation) -->
+        <div id="order-status" class="status hidden" role="status" aria-live="polite"></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- footer-->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-top">
+      <div class="fgrid">
+        <!-- Brand + contact -->
+        <div class="fbrand">
+          <a class="brand" href="home.html">
+            <span class="brand__mark">●</span>
+            <span class="brand__name">SHOPNOW</span>
+          </a>
+          <div class="contact">
+            <div><strong>Service client</strong></div>
+            <div>+237-655884341</div>
+            <div>Route de Melen, Yaounde<br></div>
+            <div><a href="mailto:m1gienspy@gmail.com">m1gienspy@gmail.com</a></div>
+          </div>
+        </div>
+
+        <!-- Top Category -->
+        <nav class="fcol" aria-label="Top Category">
+          <h4>TOP CATEGORIES</h4>
+          <a href="liste-produit.html">Électronique et Accessoires</a>
+          <a href="liste-produit.html">Vêtements</a>
+          <a href="liste-produit.html">Électromenager</a>
+          <a href="liste-produit.html"><em>Meubles</em></a>
+          <a href="liste-produit.html">Bijoux</a>
+          <a href="liste-produit.html">Cosmetiques</a>
+          <a class="accent" href="liste-produit.html">Consulter tous nos produits →</a>
+        </nav>
+
+        <!-- Quick Links -->
+        <nav class="fcol" aria-label="Quick Links">
+          <h4>LIENS RAPIDES</h4>
+          <a href="liste-produit.html">Catalogue de produit</a>
+          <a href="panier.html">Panier de course</a>
+          <a href="page-favoris.html">Liste de souhait</a>
+          <a href="faq.html">Support client</a>
+          <a href="about-us.html">A propos de nous</a>
+
+
+        </nav>
+
+        <!-- Popular Tag -->
+        <div class="fcol" aria-label="Popular Tag">
+          <h4>MOTS POPULAIRES</h4>
+          <div class="tags">
+            <span class="tag">Réfregirateurs</span><span class="tag">iPhone</span><span class="tag">TV</span>
+            <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span class="tag">SSD</span>
+            <span class="tag">Carte graphique</span><span class="tag">Power Bank</span><span class="tag">Smart TV</span>
+            <span class="tag">Enceinte</span><span class="tag">Tablette</span><span class="tag">Microwave</span>
+            <span class="tag">Samsung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container foot-wrap">
+        <div>ENSPY M1GI ShopNow e-commerce © 2025. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- === JS === -->
+  <script src="{{ asset('js/commande.js') }}" defer></script>
+</body>
+
+</html>
