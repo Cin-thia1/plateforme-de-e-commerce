@@ -4,16 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/product-form.css">
   <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="assets/css/header-footer.css">
 
-  <title>Tableau de bord</title>
+  <title>Settings</title>
 </head>
 
 <body>
 
-  <!--header-->
   <header class="main-header">
     <!-- Superbar : message + réseaux + langue/devise -->
     <div class="superbar">
@@ -99,7 +98,7 @@
   <div class="container">
     <aside>
       <ul>
-        <li onclick="window.location.href='dashboard.html';" style="cursor: pointer;" class="active"><i
+        <li onclick="window.location.href='dashboard.html';" style="cursor: pointer;"><i
             class="fa-solid fa-layer-group"></i>Tableau de bord</li>
         <li onclick="window.location.href='order-history.html';" style="cursor: pointer;"><i
             class="fas fa-history"></i>Historique des commandes</li>
@@ -107,126 +106,69 @@
             class="fas fa-shopping-cart"></i>Panier</li>
         <li onclick="window.location.href='page-favoris.html';" style="cursor: pointer;"><i
             class="fas fa-heart"></i>Favoris</li>
-        <li onclick="window.location.href='profile.html';" style="cursor: pointer;"><i
-           class="fa-solid fa-user"></i>Profile</li>
+        <li onclick="window.location.href='profile.html';" style="cursor: pointer;" class="active"><i
+            class="fa-solid fa-gear"></i>Setting</li>
         <li><i class="fa-solid fa-right-from-bracket"></i>Log-out</li>
       </ul>
     </aside>
-
-
-      <main class="main">
-
-        <section class="welcome-header">
-          <h2>Hello, Kevin</h2>
-          <p>
-            A partir du tableau de bord de votre compte, vous pouvez facilement verifier vos
-            <a href="#">Commandes récentes</a>, gerer vos
-            <a href="#">adresses de livraison et de paiement</a> et modifier votre
-            <a href="#">Mot de passe</a> et les <a href="#">Informations de votre compte</a>.
-          </p>
-        </section>
-
-        <section class="info-container">
-
-          <div class="info-card">
-            <h3>INFORMATIONS DU COMPTE</h3>
-            <div class="account-details">
-              <img src="assets/images/avatar-placeholder.png" alt="Profile Picture of Kevin Gilbert" class="profile-pic">
-              <p class="name">Kevin Gilbert</p>
-              <p class="location">Dhaka - 1207, Bangladesh</p>
-              <p class="detail-line"><strong>Email:</strong> kevin.gilbert@gmail.com</p>
-              <p class="detail-line"><strong>Phone:</strong> +1 202-555-0118</p>
+    <div class="main">
+      <section class="account-setting">
+        <h2>Add A Product</h2>
+        <form class="product-form">
+          <div class="images-group">
+            <div class="form-group">
+              <button type="button" class="button primary-button add-image-btn">ADD AN IMAGE</button>
             </div>
-            <button class="btn-secondary">MODIFIER LE COMPTE</button>
-          </div>
-
-          <div class="info-card">
-            <h3>ADRESSE DE LIVRAISON</h3>
-            <div class="address-details">
-              <p class="name">Kevin Gilbert</p>
-              <p class="location-full">Route de Melen, Word No. 04, Route No. 13/x, Maison no 1380/C,
-                Flat No. 5D, Yaounde - 1200, Cameroun</p>
-              <p class="detail-line"><strong>Numero de Telephone:</strong> +237 686543626</p>
-              <p class="detail-line"><strong>Email:</strong> kevin.gilbert@gmail.com</p>
-            </div>
-            <button class="btn-secondary">MODIFIER L'ADRESSE</button>
-          </div>
-          <div class="info-card stat-card-container">
-
-            <div class="stat-card total-orders">
-              <div class="stat-value">154</div>
-              <div class="stat-label">Total commandes</div>
-            </div>
-
-            <div class="stat-card pending-orders">
-              <div class="stat-value">05</div>
-              <div class="stat-label">Commandes en cours</div>
-            </div>
-
-            <div class="stat-card completed-orders">
-              <div class="stat-value">149</div>
-              <div class="stat-label">Commandes terminees</div>
+            <div class="uploaded-images">
+              <!-- Uploaded images will appear here -->
             </div>
           </div>
-
-
-        </section>
-
-        <section class="payment-options">
-          <h3>OPTION DE PAIEMENT</h3>
-          <a href="#" class="add-card-link">Ajouter une carte <i class="fas fa-arrow-right"></i></a>
-
-          <div class="cards-wrapper">
-
-            <div class="credit-card blue-card">
-              <div class="card-header">
-                <span class="card-balance">95400.00 FCFA</span>
-                <div class="menu-icon-wrapper" data-card="card-1">
-                  <i class="fas fa-ellipsis-v menu-icon"></i>
-                </div>
+          <div class="input-group">
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" name="productName" placeholder="MSI Pulse GL66">
               </div>
-              <div class="card-footer">
-                <p class="card-number-label">CARD NUMBER</p>
-                <p class="card-number-hidden">**** **** **** 3814</p>
-                <div class="card-bottom-line">
-                  <i class="fab fa-cc-visa card-logo"></i>
-                  <span class="card-holder">Kevin Gilbert</span>
-                </div>
-              </div>
-              <div class="card-menu hidden" id="card-menu-card-1">
-                <a href="#" class="menu-option">Modifier</a>
-                <a href="#" class="menu-option delete">Supprimer</a>
+              <div class="form-group full-width">
+                <label for="brand">Brand</label>
+                <input type="text" id="brand" name="brand" placeholder="MSI">
               </div>
             </div>
-
-            <div class="credit-card green-card">
-              <div class="card-header">
-                <span class="card-balance">87583.00 FCFA</span>
-                <div class="menu-icon-wrapper" data-card="card-2">
-                  <i class="fas fa-ellipsis-v menu-icon"></i>
-                </div>
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" placeholder="Electronic">
               </div>
-              <div class="card-footer">
-                <p class="card-number-label">CARD NUMBER</p>
-                <p class="card-number-hidden">**** **** **** 1761</p>
-                <div class="card-bottom-line">
-                  <i class="fab fa-cc-mastercard card-logo"></i>
-                  <span class="card-holder">Kevin Gilbert</span>
-                </div>
-              </div>
-              <div class="card-menu hidden" id="card-menu-card-2">
-                <a href="#" class="menu-option">Modifier</a>
-                <a href="#" class="menu-option delete">Supprimer</a>
+              <div class="form-group full-width">
+                <label for="subCategory">Sub-category</label>
+                <input type="text" id="subCategory" name="subCategory" placeholder="Laptop">
               </div>
             </div>
-
-          </div>
-        </section>
-
-      </main>
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="stock">Stock</label>
+                <input type="number" id="stock" name="stock" placeholder="1207">
+              </div>
+              <div class="form-group full-width">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" placeholder="1230000">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="smallDescription">Small description</label>
+              <input type="text" id="smallDescription" name="smallDescription" placeholder="lorem ipsum">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" name="description" placeholder="lorem ipsum"></textarea>
+            </div>
+            <button type="submit" class="button primary-button save-changes">ADD</button>
+          </div>  
+        </form>
+      </section>
+    </div>
   </div>
 
-  <!-- footer-->
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-top">
       <div class="fgrid">
@@ -274,7 +216,8 @@
           <div class="tags">
             <span class="tag">Réfregirateurs</span><span class="tag">iPhone</span><span class="tag">TV</span>
             <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span class="tag">SSD</span>
-            <span class="tag">Carte graphique</span><span class="tag">Power Bank</span><span class="tag">Smart TV</span>
+            <span class="tag">Carte graphique</span><span class="tag">Power Bank</span><span class="tag">Smart
+              TV</span>
             <span class="tag">Enceinte</span><span class="tag">Tablette</span><span class="tag">Microwave</span>
             <span class="tag">Samsung</span>
           </div>
@@ -289,8 +232,8 @@
     </div>
   </footer>
 
-
-  <script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/product-form.js"></script>
 </body>
 
 </html>
+
