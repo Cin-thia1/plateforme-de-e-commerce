@@ -4,16 +4,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>page de connexion</title>
   <link rel="stylesheet" href="assets/css/login-signup.css">
   <link rel="stylesheet" href="assets/css/header-footer.css">
   <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
 </head>
 
 <body>
-  <!--header-->
+<!-- Checkbox caché pour contrôler le menu -->
+  <input type="checkbox" id="menu-toggle">
+
+  <!-- Overlay (cliquable pour fermer) -->
+  <label for="menu-toggle" class="menu-overlay"></label>
+
+  <!-- Menu Mobile Sidebar -->
+  <nav class="mobile-menu">
+    <div class="mobile-menu-header">
+      <h2 style="font-size: 18px; margin: 0;">Menu</h2>
+      <label for="menu-toggle" class="mobile-menu-close" aria-label="Fermer le menu">
+        <i class="fas fa-times"></i>
+      </label>
+    </div>
+
+    <div class="mobile-menu-content">
+      <!-- Navigation principale -->
+      <div class="mobile-menu-section">
+        <h3>Navigation</h3>
+        <ul class="mobile-menu-links">
+          <li><a href="home.html"><i class="fas fa-house"></i> Home</a></li>
+          <li><a href="track-order.html"><i class="fas fa-truck"></i> Suivre une commande</a></li>
+          <li><a href="faq.html"><i class="fas fa-question-circle"></i> Service client</a></li>
+          <li><a href="about-us.html"><i class="fa-solid fa-users"></i> A propos de nous</a></li>
+        </ul>
+      </div>
+
+      <!-- Catégories -->
+      <div class="mobile-menu-section">
+        <h3>Catégories</h3>
+        <ul class="mobile-menu-links">
+          <li><a href="liste-produit.html"><i class="fas fa-laptop"></i> Électronique</a></li>
+          <li><a href="#"><i class="fas fa-tshirt"></i> Vêtements</a></li>
+          <li><a href="#"><i class="fas fa-blender"></i> Électroménager</a></li>
+          <li><a href="#"><i class="fas fa-couch"></i> Meubles</a></li>
+          <li><a href="#"><i class="fas fa-gem"></i> Bijoux</a></li>
+          <li><a href="#"><i class="fas fa-spray-can"></i> Cosmétiques</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="mobile-menu-section">
+        <h3>Contact</h3>
+        <ul class="mobile-menu-links">
+          <li>
+            <a href="tel:+237655884341">
+              <i class="fas fa-phone"></i> +237 - 655 884 341
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
   <header class="main-header">
-    <!-- Superbar : message + réseaux + langue/devise -->
+    <!-- Superbar -->
     <div class="superbar">
       <div class="container super-wrap">
         <div class="super-left">Bienvenu chez SHOPNOW votre boutique de e-commerce en ligne</div>
@@ -44,8 +98,13 @@
       </div>
     </div>
 
-    <!-- Barre principale -->
+    <!-- Main Header -->
     <div class="container main-wrap">
+      <!-- Label Hamburger (visible mobile/tablet) -->
+      <label for="menu-toggle" class="hamburger-label" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </label>
+
       <a class="brand" href="home.html">
         <span class="brand__mark">●</span>
         <span class="brand__name">SHOPNOW</span>
@@ -60,40 +119,46 @@
       </div>
 
       <div class="actions" aria-label="Actions utilisateur">
-        <a class="icon-btn" href="cart.html" title="Panier"><i class="fas fa-shopping-cart"></i><span
-            class="badge">2</span></a>
-        <a class="icon-btn" href="page-favoris.html" title="Favoris"><i class="fas fa-heart"></i></a>
-        <a class="icon-btn" href="login.html" title="Mon compte"><i class="fas fa-user"></i></a>
+        <a class="icon-btn" href="cart.html" title="Panier">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge">2</span>
+        </a>
+        <a class="icon-btn" href="page-favoris.html" title="Favoris">
+          <i class="fas fa-heart"></i>
+        </a>
+        <a class="icon-btn" href="login.html" title="Mon compte">
+          <i class="fas fa-user"></i>
+        </a>
       </div>
     </div>
 
-    <!-- bottom barre -->
+    <!-- Top Bar (Desktop) -->
     <div class="top-bar">
       <div class="left-section">
         <div class="dropdown">
           <button class="dropdown-btn">Toutes les Catégories</button>
           <div class="dropdown-content">
             <a href="liste-produit.html">Électronique</a>
-            <a href="liste-produit.html">Vêtements</a>
-            <a href="liste-produit.html">Électroménager</a>
-            <a href="liste-produit.html">Meubles</a>
-            <a href="liste-produit.html">Bijoux</a>
-            <a href="liste-produit.html">Cosmétiques</a>
+            <a href="#">Vêtements</a>
+            <a href="#">Électroménager</a>
+            <a href="#">Meubles</a>
+            <a href="#">Bijoux</a>
+            <a href="#">Cosmétiques</a>
           </div>
         </div>
-        <a href="home.html"><i class="fas fa-house"></i> Home </a>
+        <a href="home.html"><i class="fas fa-house"></i> Home</a>
         <a href="track-order.html"><i class="fas fa-truck"></i> Suivre une commande</a>
         <a href="faq.html"><i class="fas fa-question-circle"></i> Service client</a>
         <a href="about-us.html"><i class="fa-solid fa-users"></i> A propos de nous</a>
-
       </div>
 
       <div class="right-section">
         <i class="fas fa-phone-alt"></i> +237 - 655 884 341
       </div>
     </div>
-
   </header>
+
+
   <div class="auth-container">
     <div class="auth-box">
       <h1>Connexion</h1>
