@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const filtersRoot = document.querySelector('.sidebar');
     const chipsContainer = document.getElementById('active-filters');
-
     const slug = (s) => s
         .toLowerCase()
         .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -83,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Initialiser les chips avec les filtres déjà cochés
     filtersRoot.querySelectorAll('input[type="checkbox"]:checked').forEach((cb) => {
         const label = getInputLabel(cb);
         addChip(slug(label), label);
@@ -92,4 +92,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const group = rb.name || 'radio';
         addChip(slug(label), label, group);
     });
+
+/*Toggle filtre en mobile*/
+
+    const filterToggle = document.querySelector('.filter-toggle');
+
+    if (filterToggle) {
+        filterToggle.addEventListener('click', () => {
+            filtersRoot.classList.toggle('sidebar--open');
+        });
+
+        // fermer les filtres quand on repasse en grand écran
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 680) {
+                filtersRoot.classList.remove('sidebar--open');
+            }
+        });
+    }
 });
