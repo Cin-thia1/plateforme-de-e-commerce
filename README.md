@@ -42,22 +42,22 @@ projet-ecommerce-tp1/
 │
 ├── assets/
 │   ├── css/
-│   │   ├── style.css
-│   │   ├── header-footer.css
-│   │   ├── responsive.css
-│   │   └── formulaire.css
+│   │  
+│   │   
+│   │   
+│   │   
 │   │
 │   ├── images/
-│   │   ├── produits/
-│   │   ├── banner/
-│   │   └── icons/
-│   │
-│   └── fonts/
+│ 
+│     
+│    
+│   
+│   
 │
 ├── partials/                    # Composants réutilisables
 │
 ├── README.md
-└── CONTRIBUTEURS.md
+
 ```
 
 ---
