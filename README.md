@@ -2,28 +2,25 @@
 
 ## 📌 Vue d'ensemble du Projet
 
-**Objectif Principal :** Construire un site vitrine e-commerce complet en **HTML & CSS pur**, sans dépendances externes.
+**Objectif :** Construire un site vitrine e-commerce complet en **HTML & CSS pur**.
 
-**Type :** Projet académique - Travail collectif en équipe  
-
+**Type :** Projet académique - Travail collectif en équipe
 
 ---
 
 ## 👥 Équipe du Projet
 
-### Membres et Responsabilités
-
-| # | Nom Complet | Email | 
+| # | Nom Complet | Email |
 |---|-------------|-------|
-| 1 | **Tsomo Tsague Audrey Cinthia** | cinthiatsomo37@gmail.com | 
-| 2 | **Ndeffeu Tamla Valentin Arthur** | ndeffeuarthur74@gmail.com | 
-| 3 | **Evrad Yan Meli Nsonwa** | evradyanmeli@gmail.com | 
-| 4 | **Magnye simo Cabrelle** | simomaniche27@gmail.com | 
-| 5 | **MAFOMA NTSACKO MARLYSE** | marlysemafoma0@gmail.com | 
-| 6 | **Yackson Pascal Harlem Dave** | pascaldave57@gmail.com | 
-| 7 | **MENOME FOKOU Léandre Loïc** | menomeloic2013@gmail.com | 
-| 8 | **MBOUA MBOUA II joseph Aimé** | josephaimemboua@gmail.com | 
-| 9 | **Saka Ngnith aurel Wilson** | wilsonsaka110@gmail.com | 
+| 1 | **Tsomo Tsague Audrey Cinthia** | cinthiatsomo37@gmail.com |
+| 2 | **Ndeffeu Tamla Valentin Arthur** | ndeffeuarthur74@gmail.com |
+| 3 | **Evrad Yan Meli Nsonwa** | evradyanmeli@gmail.com |
+| 4 | **Magnye simo Cabrelle** | simomaniche27@gmail.com |
+| 5 | **MAFOMA NTSACKO MARLYSE** | marlysemafoma0@gmail.com |
+| 6 | **Yackson Pascal Harlem Dave** | pascaldave57@gmail.com |
+| 7 | **MENOME FOKOU Léandre Loïc** | menomeloic2013@gmail.com |
+| 8 | **MBOUA MBOUA II joseph Aimé** | josephaimemboua@gmail.com |
+| 9 | **Saka Ngnith aurel Wilson** | wilsonsaka110@gmail.com |
 
 ---
 
@@ -32,104 +29,104 @@
 ```
 projet-ecommerce-tp1/
 │
-├── index.html              # Page d'accueil (ACCUEIL)
-├── produits.html           # Catalogue produits (PRODUITS)
-├── contact.html            # Formulaire de contact (CONTACT)
-├── apropos.html            # À propos de l'entreprise (À PROPOS)
+├── home.html                    # Page d'accueil
+├── liste-produit.html           # Catalogue produits
+├── about-us.html                # À propos
+├── page-details-produit.html    # Détails produit
+├── contact.html                 # Formulaire contact
+├── login.html                   # Connexion
+├── signup.html                  # Inscription
+├── order-history.html           # Historique commandes
+├── faq.html                     # FAQ
+├── RecuperationMotPasse.html    # Récupération mot de passe
 │
 ├── assets/
 │   ├── css/
-│   │   ├── style.css       # Styles principaux (toutes les pages)
+│   │   ├── style.css
 │   │   ├── header-footer.css
-│   │   ├── produits.css    # Styles spécifiques produits
-│   │   ├── formulaire.css  # Styles formulaires
-│   │   └── responsive.css  # Media queries (mobile/tablet/desktop)
+│   │   ├── responsive.css
+│   │   └── formulaire.css
 │   │
 │   ├── images/
-│   │   ├── logo.png        # Logo du site
-│   │   ├── banner/         # Bandeaux publicitaires
-│   │   ├── produits/       # Photos produits
-│   │   ├── icons/          # Icônes (panier, loupe, etc.)
-│   │   └── equipe/         # Photos équipe
+│   │   ├── produits/
+│   │   ├── banner/
+│   │   └── icons/
 │   │
 │   └── fonts/
-│       ├── roboto.woff2    # Polices personnalisées
-│       └── poppins.woff2
 │
-├── README.md               # Ce fichier
-└── CONTRIBUTEURS.md        # Détail contributions
-
+├── partials/                    # Composants réutilisables
+│
+├── README.md
+└── CONTRIBUTEURS.md
 ```
 
 ---
 
-## 📄 Pages à Développer
+## 📄 Pages Développées
 
-### 1️⃣ Page Accueil (`index.html`)
+### 1️⃣ **home.html** - Accueil
 
-**Responsable :** Tsomo Tsague Audrey Cinthia + Ndeffeu Tamla Valentin Arthur
-
-**Sections obligatoires :**
 - Header avec logo + navigation
-- Banneau héro (titre accrocheur + CTA bouton)
-- Section "Catégories en vedette" (4-6 catégories)
-- Section "Produits populaires" (grille 4 colonnes)
-- Newsletter inscription
-- Footer avec liens
+- Banneau héro
+- Catégories en vedette
+- Produits populaires
+- Newsletter
+- Footer
 
-**Dimensions banneau :** 1920px × 600px
+### 2️⃣ **liste-produit.html** - Produits
 
----
+- Barre de filtrage
+- Grille produits responsive
+- Pagination
+- Détails produit (image, nom, prix, note, bouton panier)
 
-### 2️⃣ Page Produits (`produits.html`)
+### 3️⃣ **about-us.html** - À Propos
 
-**Responsable :** Ndeffeu Tamla Valentin Arthur + Evrad Yan Meli Nsonwa
+- Histoire entreprise
+- Mission/Vision
+- Équipe
+- Valeurs
 
-**Sections obligatoires :**
-- Barre de filtrage (catégorie, prix)
-- Grille produits responsive (4 col desktop, 2 col tablet, 1 col mobile)
-- Pagination (12 produits par page)
-- Chaque produit affiche :
-  - Image
-  - Nom
-  - Prix
-  - Note (⭐⭐⭐⭐⭐)
-  - Bouton "Ajouter au panier"
-  - Badge "En promotion" si applicable
+### 4️⃣ **page-details-produit.html** - Détail Produit
 
-**Produits à lister :** Minimum 24 (données fictives acceptées)
+- Image produit
+- Informations (prix, description, stock)
+- Avis clients
+- Produits similaires
 
----
+### 5️⃣ **contact.html** - Contact
 
-### 3️⃣ Page Contact (`contact.html`)
+- Formulaire (Nom, Email, Sujet, Message)
+- Informations contact
+- Réseaux sociaux
 
-**Responsable :** Magnye simo Cabrelle + Yackson Pascal Harlem Dave
+### 6️⃣ **login.html** - Connexion
 
-**Sections obligatoires :**
-- Titre + description
-- **Formulaire de contact :**
-  - Champs : Nom, Email, Sujet, Message
-  - Validation HTML5
-  - Bouton Envoyer (avec CSS hover)
-- Informations de contact (téléphone, adresse, horaires)
-- Carte intégrée (Google Maps ou image statique)
-- Réseaux sociaux (Facebook, Instagram, Twitter)
+- Formulaire connexion
+- Lien inscription
+- Lien récupération mot de passe
 
-**Validation :** Email format, champs obligatoires
+### 7️⃣ **signup.html** - Inscription
 
----
+- Formulaire inscription
+- Conditions d'utilisation
+- Lien connexion
 
-### 4️⃣ Page À Propos (`apropos.html`)
+### 8️⃣ **order-history.html** - Historique Commandes
 
-**Responsable :** MAFOMA NTSACKO MARLYSE + MENOME FOKOU Léandre Loïc
+- Liste commandes utilisateur
+- Détails commande
+- Statut livraison
 
-**Sections obligatoires :**
-- **Histoire de l'entreprise** (1-2 paragraphes)
-- **Mission/Vision** (sections dédiées)
-- **Notre équipe** (cartes 3+ personnes avec photo + nom + poste)
-- **Chiffres clés** (nombre clients, années d'expérience, etc.)
-- **Valeurs** (3-4 cartes : qualité, service, innovation, durabilité)
-- **Engagement écologique** (optionnel mais apprécié)
+### 9️⃣ **faq.html** - FAQ
+
+- Questions/Réponses
+- Sections par catégorie
+
+### 🔟 **RecuperationMotPasse.html** - Récupération
+
+- Formulaire récupération
+- Vérification email
 
 ---
 
