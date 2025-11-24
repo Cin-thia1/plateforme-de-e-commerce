@@ -59,17 +59,86 @@
   <!-- bottom barre -->
   <div class="top-bar">
     <div class="left-section">
-      <div class="dropdown">
-        <button class="dropdown-btn">Toutes les Catégories</button>
-        <div class="dropdown-content">
-          <a href="<?php echo home_url('/liste-produit'); ?>">Électronique</a>
-          <a href="<?php echo home_url('/liste-produit'); ?>">Vêtements</a>
-          <a href="<?php echo home_url('/liste-produit'); ?>">Électroménager</a>
-          <a href="<?php echo home_url('/liste-produit'); ?>">Meubles</a>
-          <a href="<?php echo home_url('/liste-produit'); ?>">Bijoux</a>
-          <a href="<?php echo home_url('/liste-produit'); ?>">Cosmétiques</a>
+    <div class="dropdown">
+  <button class="dropdown-btn">Toutes les Catégories</button>
+  <div class="dropdown-content">
+    <ul>
+      <li class="dropright">
+        <span>Électronique ></span>
+        <div class="dropright-content">
+          <a href="<?php echo home_url('/liste-produit'); ?>">Smartphones & montres</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Ordinateurs portables</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Ordinateurs gaming</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Tablettes</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Casques & écouteurs</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Télévisions & home cinéma</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Appareils photo & caméras</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Accessoires</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Consoles & manettes</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Composants PC</a>
         </div>
-      </div>
+      </li>
+
+      <li class="dropright">
+        <span>Vêtements ></span>
+        <div class="dropright-content">
+          <a href="<?php echo home_url('/liste-produit'); ?>">T-shirts & polos</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Chemises</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Pantalons</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Robes & jupes</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Vestes & manteaux</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Pulls & sweats</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Chaussures</a>
+        </div>
+      </li>
+
+      <li class="dropright">
+        <span>Électroménager ></span>
+        <div class="dropright-content">
+          <a href="<?php echo home_url('/liste-produit'); ?>">Réfrigérateurs</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Machines à laver</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Fours & cuisinières</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Micro-ondes</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Aspirateurs</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Cafetières</a>
+        </div>
+      </li>
+
+      <li class="dropright">
+        <span>Meubles ></span>
+        <div class="dropright-content">
+          <a href="<?php echo home_url('/liste-produit'); ?>">Canapés</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Tables</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Chaises</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Lits</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Décoration</a>
+        </div>
+      </li>
+
+      <li class="dropright">
+        <span>Bijoux ></span>
+        <div class="dropright-content">
+          <a href="<?php echo home_url('/liste-produit'); ?>">Bagues</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Colliers</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Bracelets</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Montres</a>
+        </div>
+      </li>
+
+      <li class="dropright">
+        <span>Cosmétiques ></span>
+        <div class="dropright-content">
+          <a href="<?php echo home_url('/liste-produit'); ?>">Maquillage</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Soins du visage</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Soins du corps</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Capillaires</a>
+          <a href="<?php echo home_url('/liste-produit'); ?>">Parfums</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
       <a href="<?php echo home_url('/home'); ?>"><i class="fas fa-house"></i> Home </a>
       <a href="<?php echo home_url('/faq'); ?>"><i class="fas fa-question-circle"></i> Service client</a>
       <a href="<?php echo home_url('/about-us'); ?>"><i class="fa-solid fa-users"></i> A propos de nous</a>

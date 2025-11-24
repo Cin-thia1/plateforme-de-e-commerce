@@ -338,6 +338,54 @@
     background: #f3f3f3;
 }
 
+.dropdown-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* --- Sous-catégories qui apparaissent au survol --- */
+.dropright {
+    position: relative;
+}
+
+.dropright-content {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: white;
+    min-width: 180px;
+    padding: 8px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    display: none;
+    z-index: 1000;
+}
+
+.dropright:hover .dropright-content {
+    display: block;
+}
+
+
+/* Styles pour les catégories principales */
+.dropright > span {
+    display: block;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background 0.2s ease;
+}
+
+.dropright > span:hover {
+    background: #f3f3f3;
+}
+
+.dropright:hover > span {
+    background: #f3f3f3;
+}
+
+
 /* === Liens centraux === */
 .left-section a {
     text-decoration: none;
