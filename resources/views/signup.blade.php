@@ -12,90 +12,12 @@
 
 <body>
   <!--header-->
-  <header class="main-header">
-    <!-- Superbar : message + réseaux + langue/devise -->
-    <div class="superbar">
-      <div class="container super-wrap">
-        <div class="super-left">Bienvenu chez SHOPNOW votre boutique de e-commerce en ligne</div>
-        <div class="super-right">
-          <div class="social">Nous suivre:
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          </div>
-          <div class="dropdown">
-            <div class="pill">Fr ▾</div>
-            <div class="dropdown-content" id="langue">
-              <a href="#">Français</a>
-              <a href="#">English</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <div class="pill">FCFA ▾</div>
-            <div class="dropdown-content" id="devise">
-              <a href="#">FCFA</a>
-              <a href="#">EUR</a>
-              <a href="#">USD</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  @include('shared.header')
 
-    <!-- Barre principale -->
-    <div class="container main-wrap">
-      <a class="brand" href="home.html">
-        <span class="brand__mark">●</span>
-        <span class="brand__name">SHOPNOW</span>
-      </a>
-
-      <div class="search" role="search">
-        <form action="/recherche" method="get">
-          <label for="q" class="visually-hidden">Rechercher</label>
-          <input id="q" name="q" type="search" placeholder="Que cherchez-vous?" />
-          <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
-        </form>
-      </div>
-
-      <div class="actions" aria-label="Actions utilisateur">
-        <a class="icon-btn" href="panier.html" title="Panier"><i class="fas fa-shopping-cart"></i><span
-            class="badge">2</span></a>
-        <a class="icon-btn" href="page-favoris.html" title="Favoris"><i class="fas fa-heart"></i></a>
-        <a class="icon-btn" href="login.html" title="Mon compte"><i class="fas fa-user"></i></a>
-      </div>
-    </div>
-
-    <!-- bottom barre -->
-    <div class="top-bar">
-      <div class="left-section">
-        <div class="dropdown">
-          <button class="dropdown-btn">Toutes les Catégories</button>
-          <div class="dropdown-content">
-            <a href="liste-produit.html">Électronique</a>
-            <a href="liste-produit.html">Vêtements</a>
-            <a href="liste-produit.html">Électroménager</a>
-            <a href="v">Meubles</a>
-            <a href="liste-produit.html">Bijoux</a>
-            <a href="liste-produit.html">Cosmétiques</a>
-          </div>
-        </div>
-        <a href="home.html"><i class="fas fa-house"></i> Home </a>
-        <a href="faq.html"><i class="fas fa-question-circle"></i> Service client</a>
-        <a href="about-us.html"><i class="fa-solid fa-users"></i> A propos de nous</a>
-
-      </div>
-
-      <div class="right-section">
-        <i class="fas fa-phone-alt"></i> +237 - 655 884 341
-      </div>
-    </div>
-
-  </header>
   <main class="form-container">
 
-    <form action="#">
+    <form method="POST" action="{{ route('register') }}">
+      @csrf
       <h2>S'inscrire</h2>
 
       <p>
@@ -104,30 +26,30 @@
       <div class="form-group">
         <label for="Nom-prenom">Nom et prénom</label>
         <div class="input-wrapper">
-          <input type="password" id="password" placeholder=" arthur simo">
-
+          <input type="text" id="name" name="name" :value="old('name')" required placeholder="arthur simo">
+          <x-input-error :messages="$errors->get('name')" class="mt-2" style="color: red" />
         </div>
       </div>
       <div class="form-group">
         <label for="password">Adresse email</label>
         <div class="input-wrapper">
-          <input type="password" id="password" placeholder="exemple@texte.domaine">
-
+          <input type="email" id="email" name="email" :value="old('email')" required placeholder="exemple@texte.domaine">
+          <x-input-error :messages="$errors->get('email')" class="mt-2" style="color: red" />
         </div>
       </div>
 
       <div class="form-group">
         <label for="confirm-password">Mot de passe</label>
         <div class="input-wrapper">
-          <input type="password" id="password">
-
+          <input type="password" id="password" type="password" name="password" required autocomplete="new-password">
+          <x-input-error :messages="$errors->get('password')" class="mt-2" style="color: red" />
         </div>
       </div>
       <div class="form-group">
         <label for="confirm-password">Confirmer le mot de passe</label>
         <div class="input-wrapper">
-          <input type="password" id="confirm-password">
-
+          <input type="password" id="confirm-password" type="password" name="password_confirmation" required autocomplete="new-password">
+          <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" style="color: red" />
         </div>
       </div>
       
@@ -140,74 +62,15 @@
 
       <div class="links-group">
         <p>
-          Vous avez deja un compte? <a href="login.html" class="link-sign">Connectez vous</a>
+          Vous avez deja un compte? <a href="/login" class="link-sign">Connectez vous</a>
         </p>
       </div>
     </form>
   </main>
 
   <!-- footer-->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-top">
-      <div class="fgrid">
-        <!-- Brand + contact -->
-        <div class="fbrand">
-          <a class="brand" href="home.html">
-            <span class="brand__mark">●</span>
-            <span class="brand__name">SHOPNOW</span>
-          </a>
-          <div class="contact">
-            <div><strong>Service client</strong></div>
-            <div>+237-655884341</div>
-            <div>Route de Melen, Yaounde<br></div>
-            <div><a href="mailto:m1gienspy@gmail.com">m1gienspy@gmail.com</a></div>
-          </div>
-        </div>
+  @include('shared.footer')
 
-        <!-- Top Category -->
-        <nav class="fcol" aria-label="Top Category">
-          <h4>TOP CATEGORIES</h4>
-          <a href="liste-produit.html">Électronique et Accessoires</a>
-          <a href="liste-produit.html">Vêtements</a>
-          <a href="liste-produit.html">Électromenager</a>
-          <a href="liste-produit.html"><em>Meubles</em></a>
-          <a href="liste-produit.html">Bijoux</a>
-          <a href="liste-produit.html">Cosmetiques</a>
-          <a class="accent" href="liste-produit.html">Consulter tous nos produits →</a>
-        </nav>
-
-        <!-- Quick Links -->
-        <nav class="fcol" aria-label="Quick Links">
-          <h4>LIENS RAPIDES</h4>
-          <a href="liste-produit.html">Catalogue de produit</a>
-          <a href="panier.html">Panier de course</a>
-          <a href="page-favoris.html">Liste de souhait</a>
-          <a href="faq.html">Support client</a>
-          <a href="about-us.html">A propos de nous</a>
-
-
-        </nav>
-
-        <!-- Popular Tag -->
-        <div class="fcol" aria-label="Popular Tag">
-          <h4>MOTS POPULAIRES</h4>
-          <div class="tags">
-            <span class="tag">Réfregirateurs</span><span class="tag">iPhone</span><span class="tag">TV</span>
-            <span class="tag">Asus Laptops</span><span class="tag">Macbook</span><span class="tag">SSD</span>
-            <span class="tag">Carte graphique</span><span class="tag">Power Bank</span><span class="tag">Smart TV</span>
-            <span class="tag">Enceinte</span><span class="tag">Tablette</span><span class="tag">Microwave</span>
-            <span class="tag">Samsung</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="container foot-wrap">
-        <div>ENSPY M1GI ShopNow e-commerce © 2025. All rights reserved.</div>
-      </div>
-    </div>
-  </footer>
 </body>
 
 

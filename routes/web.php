@@ -5,12 +5,36 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/about-us', function () {
+    return view('about-us');
+});
+
+Route::get('/liste-produit', function () {
+    return view('liste-produit');
+});
+
+Route::get('/faq', function () {
+    return view('faq');
+});
+
+Route::get('/panier', function () {
+    return view('panier');
+});
+
+Route::get('/page-favoris', function () {
+    return view('page-favoris');
+});
+
+Route::get('/page-favoris', function () {
+    return view('page-favoris');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
