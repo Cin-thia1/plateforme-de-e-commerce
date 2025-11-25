@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -35,6 +37,12 @@ Route::get('/page-favoris', function () {
 Route::get('/page-favoris', function () {
     return view('page-favoris');
 });
+
+Route::get('/product-form', function () {
+    return view('product-form');
+});
+Route::get('/',[ProductController::class, 'index'])->name('home');
+Route::resource('products', ProductController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

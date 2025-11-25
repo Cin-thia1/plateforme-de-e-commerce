@@ -1,0 +1,170 @@
+/* General styles (reusing from previous) */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+aside {
+    width: 250px;
+    background-color: #fff;
+    border: solid 1px #E4E7E9;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    align-self: flex-start;
+}
+aside ul {
+    list-style: none;
+    padding: 0;
+    margin: 0px 0px;
+}
+aside li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    font-size: 16px;
+    color: #475156;
+    cursor: pointer;
+    padding : 8px 10px;
+    border-radius: 0px;
+}
+aside li:hover {
+    background-color: #f8f9fa;
+}
+aside li.active {
+    background-color: #FA8232;
+    color: #fff;
+}
+aside i {
+    font-size: 16px;
+    color: inherit;
+}
+.main {
+    flex: 1;
+    border-radius: 8px;
+}
+/* Account Setting Section (adapted for Add Product) */
+.account-setting{
+    background-color: #fff;
+    border: solid 1px #E4E7E9;
+    padding: 15px;
+    border-radius: 10px;
+}
+.account-setting h2 {
+    font-size: 18px;
+    color: #475156;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.product-form {
+    display: flex;
+    gap: 15px;
+}
+.input-group{
+    width: 100%;
+}
+.add-image-btn {
+    background-color: #FA8232;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    min-width: 150px;
+    width: auto;
+    align-self: flex-start;
+}
+.uploaded-images {
+    display: flex;
+    padding-top: 10px;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.uploaded-images > div {
+    position: relative;
+    display: inline-block;
+}
+.uploaded-images img {
+    max-width: 200px;
+    height: auto;
+    border: 1px solid #E4E7E9;
+    border-radius: 5px;
+    filter: blur(0);
+    transition: filter 0.3s ease;
+}
+.uploaded-images > div:hover img {
+    filter: blur(2px);
+}
+.uploaded-images > div span {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.uploaded-images > div:hover span {
+    display: block;
+}
+.uploaded-images > div span i {
+    color: #000;
+    transition: color 0.3s ease;
+}
+.uploaded-images > div span i:hover {
+    color: red;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    font-size: 14px;
+    color: #475156;
+    margin-bottom: 5px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #E4E7E9;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+}
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+.full-width {
+    flex: 1;
+}
+.button.primary-button.save-changes {
+    background-color: #FA8232;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    align-self: center;
+    margin-top: 20px;
+}
