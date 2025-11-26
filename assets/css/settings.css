@@ -4,6 +4,13 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: white;
+    /* Correction anti-débordement global */
+    overflow-x: hidden; 
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
 }
 
 .container {
@@ -13,6 +20,8 @@ body {
     display: flex;
     gap: 20px;
 }
+
+/* ASIDE (Menu de navigation) */
 aside {
     width: 250px;
     background-color: #fff;
@@ -33,11 +42,10 @@ aside li {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px;
+    padding: 8px 10px;
     font-size: 16px;
     color: #475156;
     cursor: pointer;
-    padding : 8px 10px;
     border-radius: 0px;
 }
 
@@ -45,7 +53,7 @@ aside li:hover {
     background-color: #f8f9fa;
 }
 
-aside li.active { /* Assuming "Order History" is the second item */
+aside li.active {
     background-color: #FA8232;
     color: #fff;
 }
@@ -54,61 +62,45 @@ aside i {
     font-size: 16px;
     color: inherit;
 }
+
+/* MAIN (Contenu principal) */
 .main {
     flex: 1;
-    border-radius: 8px;
 }
 
-/* Account Setting Section */
-.account-setting{
+/* Sections du formulaire */
+.account-setting,
+.payment-details {
     background-color: #fff;
     border: solid 1px #E4E7E9;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-.account-setting h2 {
+.account-setting h2,
+.payment-details h2 {
     font-size: 18px;
     color: #475156;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
 
-.account-details-form {
+/* Formulaires */
+.form-row {
     display: flex;
-    flex-direction: column;
-}
-
-.profile-header {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.profile-picture {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #2484C2;
-}
-
-.profile-picture img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.profile-fields {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
+    margin-bottom: 15px;
+}
+
+.full-width {
     flex: 1;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
 .form-group label {
@@ -131,13 +123,14 @@ aside i {
     cursor: not-allowed;
 }
 
+/* Boutons */
 .button.primary-button {
     background-color: #FA8232;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    width: 45%;
+    width: 45%; 
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
@@ -145,7 +138,7 @@ aside i {
     margin-top: 15px;
 }
 
-/* Settings Two Columns */
+/* Settings Two Columns (Facturation et Mot de passe) */
 .settings-two-columns {
     display: flex;
     gap: 20px;
@@ -163,31 +156,109 @@ aside i {
 .billing-address h3,
 .change-password h3 {
     font-size: 16px;
-    color: #000;
+    color: #475156;
     text-transform: uppercase;
+    margin-top: 0;
     margin-bottom: 20px;
 }
 
-.address-form,
-.password-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+/* ================================================= */
+/* RÉACTIVITÉ (MEDIA QUERIES)               */
+/* ================================================= */
 
-.form-row {
-    display: flex;
-    gap: 15px;
-}
+@media (max-width: 768px) {
+    
+    /* 1. Empiler les colonnes principales et ajuster le padding */
+    .container {
+        flex-direction: column; 
+        padding: 10px; 
+        gap: 15px; 
+    }
 
-.half-width {
-    flex: 1;
-}
+    /* 2. Forcer l'aside et le main à prendre toute la largeur */
+    aside {
+        width: 100%; 
+        border: none; 
+        box-shadow: none;
+        display: block;
+    }
 
-/* Password eye icon (simulate with pseudo-element if needed, but since not in HTML, style input) */
-.change-password .form-group input[type="password"] {
-    padding-right: 30px; /* Space for eye icon */
-    position: relative;
-}
+    .main {
+        width: 100%; 
+        flex: none; 
+        padding: 0 5px; 
+    }
+    
+    /* 3. Transformation de la navigation latérale en barre d'onglets */
+    aside ul {
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: space-between;
+        border: 1px solid #E4E7E9;
+        border-radius: 8px;
+        overflow: hidden;
+    }
 
-/* Add eye icon using ::after or background, but for simplicity, assume it's added in HTML if needed */
+    aside li {
+        width: auto;
+        padding: 10px 12px;
+        flex-grow: 1; 
+        text-align: center;
+        border-right: 1px solid #E4E7E9;
+        margin-bottom: 0; 
+    }
+    
+    aside li:last-child {
+        border-right: none;
+    }
+    
+    /* 4. Correction de l'image de profil et de son conteneur */
+    /* Si vous avez une classe .profile-info englobant l'avatar et les infos */
+    .profile-info { 
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .profile-avatar {
+        max-width: 100%; 
+        height: auto;
+    }
+
+    /* 5. Empiler les sections à deux colonnes (Billing, Password) */
+    .settings-two-columns {
+        flex-direction: column; 
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .billing-address,
+    .change-password {
+        flex: none; 
+        width: 100%;
+        padding: 15px;
+    }
+
+    /* 6. Ajustement des champs de formulaire pour éviter le débordement */
+    .form-group {
+        width: 100%; 
+    }
+    
+    .form-group input,
+    .form-group select {
+        /* Ceci est CLÉ : s'assurer que padding et bordure ne gonflent pas la largeur */
+        box-sizing: border-box; 
+        width: 100%; 
+    }
+    
+    /* 7. Ajustement des rangées de formulaire à deux champs */
+    .form-row {
+        flex-direction: column; 
+        gap: 10px;
+    }
+
+    /* 8. Ajustement des boutons */
+    .button.primary-button {
+        width: 100%; 
+        max-width: none;
+    }
+}

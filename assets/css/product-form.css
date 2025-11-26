@@ -1,10 +1,17 @@
-/* General styles (reusing from previous) */
+/* General styles */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: white;
+    /* Bonne pratique pour le calcul des largeurs */
+    box-sizing: border-box;
 }
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
 .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -12,6 +19,8 @@ body {
     display: flex;
     gap: 20px;
 }
+
+/* ASIDE (Barre latérale/Menu) */
 aside {
     width: 250px;
     background-color: #fff;
@@ -19,6 +28,7 @@ aside {
     border-radius: 8px;
     padding: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    /* S'assure que l'aside ne s'étire pas en hauteur si le main est très long */
     align-self: flex-start;
 }
 aside ul {
@@ -30,11 +40,10 @@ aside li {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px;
+    padding: 8px 10px;
     font-size: 16px;
     color: #475156;
     cursor: pointer;
-    padding : 8px 10px;
     border-radius: 0px;
 }
 aside li:hover {
@@ -48,11 +57,12 @@ aside i {
     font-size: 16px;
     color: inherit;
 }
+
+/* MAIN (Contenu du Formulaire) */
 .main {
     flex: 1;
     border-radius: 8px;
 }
-/* Account Setting Section (adapted for Add Product) */
 .account-setting{
     background-color: #fff;
     border: solid 1px #E4E7E9;
@@ -65,6 +75,8 @@ aside i {
     text-transform: uppercase;
     margin-bottom: 20px;
 }
+
+/* Section Téléchargement d'Image */
 .product-form {
     display: flex;
     gap: 15px;
@@ -127,6 +139,8 @@ aside i {
 .uploaded-images > div span i:hover {
     color: red;
 }
+
+/* Champs de Formulaire */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -156,6 +170,8 @@ aside i {
 .full-width {
     flex: 1;
 }
+
+/* Bouton Sauvegarder */
 .button.primary-button.save-changes {
     background-color: #FA8232;
     color: #fff;
@@ -167,4 +183,78 @@ aside i {
     text-transform: uppercase;
     align-self: center;
     margin-top: 20px;
+}
+
+/* ================================================= */
+/* RÉACTIVITÉ (MEDIA QUERIES)               */
+/* ================================================= */
+
+@media (max-width: 768px) {
+    
+    /* 1. Empiler les colonnes et ajuster l'espacement du conteneur principal */
+    .container {
+        flex-direction: column; /* Empile l'aside et le main verticalement */
+        padding: 10px; /* Réduire le padding général */
+        gap: 15px; /* Réduire l'espace entre les éléments empilés */
+    }
+
+    /* 2. Forcer l'aside et le main à prendre toute la largeur */
+    aside {
+        width: 100%; /* L'aside prend la largeur complète */
+    }
+
+    .main {
+        width: 100%; /* Le main prend la largeur complète */
+        flex: none; /* Annule flex: 1 pour garantir width: 100% */
+        padding: 0 5px; /* Ajustement du padding interne si nécessaire */
+    }
+    
+    /* 3. Rendre la navigation latérale (aside) horizontale */
+    aside {
+        /* Pas de bordure en haut et en bas si vous utilisez une bordure sur le ul */
+        border: none; 
+        box-shadow: none;
+    }
+    
+    aside ul {
+        display: flex; /* Utiliser flex pour afficher les onglets horizontalement */
+        flex-wrap: wrap; /* Permettre aux onglets de passer à la ligne */
+        justify-content: space-between;
+        border: 1px solid #E4E7E9;
+        border-radius: 8px; /* Appliquer la bordure et le rayon ici */
+        overflow: hidden; /* Assure que les coins sont arrondis */
+    }
+
+    aside li {
+        width: auto;
+        padding: 10px 12px;
+        flex-grow: 1; /* Permet aux éléments de prendre l'espace disponible */
+        text-align: center;
+        border-right: 1px solid #E4E7E9;
+    }
+    
+    aside li:last-child {
+        border-right: none;
+    }
+
+    /* 4. Rendre les rangées de formulaire (s'il y en a) verticales */
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* 5. Ajustement de la section d'images */
+    .product-form {
+        flex-direction: column; /* Empile le bouton d'ajout d'image et la liste d'images */
+    }
+    
+    .uploaded-images {
+        flex-direction: row; /* Afficher les images uploadées horizontalement (miniatures) */
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .uploaded-images img {
+        max-width: 80px; /* Réduire la taille des images sur mobile */
+    }
 }

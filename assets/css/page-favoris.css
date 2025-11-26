@@ -17,7 +17,8 @@ body {
 }
 
 main {
-    margin-top: 25px;
+    /* Marge supérieure (la distance parfaite de 90px) */
+    margin-top: 90px; 
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
@@ -33,6 +34,9 @@ main {
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     padding: 24px;
+    /* Assurer le centrage sur desktop */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .wishlist-container h2 {
@@ -45,7 +49,7 @@ main {
 /* Style de la table */
 .wishlist-table {
     width: 100%;
-    border-collapse: collapse; /* Bords de table nets */
+    border-collapse: collapse; 
     font-size: 0.9rem;
 }
 
@@ -66,11 +70,11 @@ main {
 
 /* Lignes et cellules du corps de la table */
 .wishlist-table tbody tr {
-    border-bottom: 1px solid #eee; /* Ligne de séparation */
+    border-bottom: 1px solid #eee; 
 }
 
 .wishlist-table tbody tr:last-child {
-    border-bottom: none; /* Pas de ligne sur le dernier élément */
+    border-bottom: none; 
 }
 
 .wishlist-table td {
@@ -157,7 +161,7 @@ main {
 }
 
 .btn-add-cart.primary {
-    background-color: #f77f00; /* Orange fidèle à l'image */
+    background-color: #f77f00; 
 }
 
 .btn-add-cart.primary:hover {
@@ -173,11 +177,11 @@ main {
     margin-right: 8px;
 }
 
-/* Bouton "Supprimer" (X) */
+/* Bouton "Supprimer" (X) - Version Desktop/Originale */
 .btn-remove {
     background: transparent;
     border: 1px solid #d0d0d0;
-    border-radius: 50%; /* Bouton rond */
+    border-radius: 50%; 
     width: 28px;
     height: 28px;
     margin-left: 12px;
@@ -185,7 +189,7 @@ main {
     color: #999;
     font-size: 1.2rem;
     font-weight: 700;
-    line-height: 26px; /* Centre le 'x' verticalement */
+    line-height: 26px; 
     padding: 0;
     transition: all 0.2s ease;
 }
@@ -196,10 +200,30 @@ main {
     border-color: #999;
 }
 
-/* Ajoutez ceci pour une meilleure responsivité sur mobile */
+/* ================================================= */
+/* RÉACTIVITÉ (MEDIA QUERIES)               */
+/* ================================================= */
+
+/* Règles spécifiques pour les écrans plus petits que 768px (mobiles) */
 @media (max-width: 768px) {
+    
+    /* CORRECTION DU CENTRAGE ET DU HAUT: */
+    main {
+        margin-top: 90px; /* Conserver la marge pour le header */
+        padding: 0; /* Supprimer le padding par défaut de main */
+        width: 100%; /* FORCER LA LARGEUR MAXIMALE POUR CENTRER */
+    }
+
+    .wishlist-container {
+        padding: 15px; /* Padding uniforme pour l'espacement des bords (centrage visuel) */
+        max-width: 100%; 
+        border: none; 
+        box-shadow: none;
+    }
+
+    /* Le tableau est cassé pour devenir une liste verticale */
     .wishlist-table thead {
-        display: none; /* Cache l'en-tête sur mobile */
+        display: none; 
     }
 
     .wishlist-table tr {
@@ -210,41 +234,91 @@ main {
         overflow: hidden;
     }
 
+    /* Correction de la superposition des labels */
     .wishlist-table td {
         display: block;
-        text-align: right; /* Aligne le contenu à droite */
-        padding: 12px 16px;
+        text-align: right; 
+        padding: 12px 16px; 
+        /* AUGMENTATION DU PADDING GAUCHE (CORRECTION DU CHEVAUCHEMENT PRIX/LABEL) */
+        padding-left: 50% !important; 
         position: relative;
         border-bottom: 1px solid #f9f9f9;
+       /* AJOUT MAJEUR : Convertir la TD en Flexbox pour le centrage vertical */
+        display: flex; /* La cellule devient un conteneur flex */
+        justify-content: flex-end; /* Aligner le contenu à droite */
+        align-items: center; /* Centrer verticalement le contenu */
     }
     
     .wishlist-table td:last-child {
         border-bottom: none;
     }
 
-    /* Ajoute les labels de l'en-tête avant le contenu */
+    /* Ajout des labels */
     .wishlist-table td::before {
-        content: attr(data-label); /* Récupère le label depuis l'attribut data-label */
+        content: attr(data-label); 
         position: absolute;
-        left: 16px;
+        left: 16px; 
+        width: 45%; /* Donne une largeur fixe au label */
         font-weight: 600;
         color: #555;
         text-align: left;
+        top: 50%; 
+        transform: translateY(-50%); 
+        width: 45%;
     }
 
-    /* Ajustements pour les colonnes spécifiques */
-    .product-info {
-        text-align: left; /* Le nom du produit reste à gauche */
-        width: 100%;
-    }
+    /* --- Ajustements pour la colonne PRODUIT --- */
     .wishlist-table td[data-label="Products"]::before {
-        display: none; /* Pas besoin de label pour le produit */
+        display: none; 
     }
     .wishlist-table td[data-label="Products"] {
-        text-align: left;
+        text-align: left; 
+        padding: 15px; 
+        /* Réinitialiser le padding gauche pour cette colonne (pas de label) */
+        padding-left: 15px !important; 
+    }
+    .product-info {
+        text-align: left; 
+        width: 100%;
+    }
+
+    /* --- Ajustements pour la colonne ACTIONS --- */
+    /* Revenir à l'alignement côte à côte (petits boutons) */
+    .wishlist-table td[data-label="Actions"] {
+        display: block; 
+        padding-left: 15px !important; 
+        text-align: center;
     }
     
     .actions {
-        justify-content: flex-end; /* Aligne les boutons à droite */
+        display: flex;
+        align-items: center;
+        /* CECI ALIGNE LE CONTENU À DROITE DANS CETTE COLONNE */
+        justify-content: flex-end; 
+        width: 100%; /* S'assurer que le conteneur actions prend toute la place disponible */
+    }
+
+    /* Bouton Ajouter au panier */
+    .btn-add-cart {
+        width: auto; 
+        min-width: 150px;
+        padding: 12px 10px; 
+    }
+
+    /* Bouton Supprimer (Petite croix) */
+    .btn-remove {
+        background: transparent;
+        border: 1px solid #d0d0d0;
+        border-radius: 50%; 
+        width: 32px; 
+        height: 32px;
+        margin-left: 0; 
+        font-size: 1.2rem;
+        line-height: 30px; 
+        padding: 0;
+    }
+    
+    .btn-remove::after {
+        content: "";
     }
 }
