@@ -7,12 +7,22 @@ body {
     background-color: white;
 }
 
+iframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 222px;
+    border: none;
+    z-index: 1000;
+}
+
 .footer {
     position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 450px; /* Adjust height as needed */
+    height: 450px;
     border: none;
     z-index: 1000;
 }
@@ -79,7 +89,7 @@ main {
 .fist-detail i {
     position: absolute;
     left: 0;
-    color: #28a745; /* Green color for checkmarks */
+    color: #28a745;
     font-size: 18px;
 }
 
@@ -95,7 +105,6 @@ main {
 }
 
 /* Team Section */
-
 .row:has(.title-team){
     flex-direction: column;
 }
@@ -196,6 +205,7 @@ main {
     display: flex;
     gap: 30px;
 }
+
 .contact-info{
     display: flex;
     flex-direction: column;
@@ -210,6 +220,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .phone-icon {
@@ -263,4 +274,245 @@ main {
     cursor: pointer;
     font-weight: bold;
     align-self: flex-start;
+}
+
+/* ============================================ */
+/* MEDIA QUERIES - RESPONSIVE DESIGN */
+/* ============================================ */
+
+/* Tablettes et écrans moyens (≤ 1024px) */
+@media screen and (max-width: 1024px) {
+    main {
+        padding: 15px;
+    }
+
+    .row {
+        padding: 30px 20px;
+    }
+
+    .fist-detail h3 {
+        font-size: 30px;
+    }
+
+    .team {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .contact-cards {
+        gap: 30px;
+    }
+
+    .contact-card {
+        width: 300px;
+    }
+}
+
+/* Tablettes en portrait (≤ 768px) */
+@media screen and (max-width: 768px) {
+    main {
+        margin-top: 15px;
+        padding: 10px;
+    }
+
+    /* Section présentation */
+    .row {
+        flex-direction: column;
+        padding: 20px 15px;
+        margin-bottom: 30px;
+    }
+
+    .fist-detail {
+        order: 2;
+    }
+
+    .Detail-illustration {
+        order: 1;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .fist-detail h3 {
+        font-size: 26px;
+    }
+
+    .fist-detail p {
+        font-size: 15px;
+    }
+
+    /* Section équipe */
+    .title-team {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .team {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .member {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .round-image {
+        margin-bottom: 10px;
+    }
+
+    /* Section contact */
+    .contact-title {
+        gap: 30px;
+    }
+
+    .contact-title h2 {
+        font-size: 22px;
+        padding: 0 10px;
+    }
+
+    .contact-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .contact-card {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+/* Mobiles (≤ 480px) */
+@media screen and (max-width: 480px) {
+    main {
+        padding: 10px 5px;
+    }
+
+    iframe {
+        height: auto;
+    }
+
+    .row {
+        padding: 15px 10px;
+        margin-bottom: 20px;
+    }
+
+    /* Section présentation */
+    .fist-detail span, .contact-us-link {
+        font-size: 11px;
+        padding: 5px;
+        display: inline-block;
+    }
+
+    .fist-detail h3 {
+        font-size: 22px;
+    }
+
+    .fist-detail p {
+        font-size: 14px;
+    }
+
+    .fist-detail ul li {
+        font-size: 14px;
+        padding-left: 20px;
+    }
+
+    /* Section équipe */
+    .title-team {
+        font-size: 20px;
+    }
+
+    .team {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .member {
+        flex-direction: row;
+        text-align: left;
+        gap: 15px;
+    }
+
+    .round-image {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0;
+    }
+
+    .member-name {
+        font-size: 15px;
+    }
+
+    .member-status {
+        font-size: 13px;
+    }
+
+    /* Section contact */
+    .contact-row {
+        padding: 30px 15px;
+    }
+
+    .contact-title {
+        gap: 20px;
+    }
+
+    .contact-title h2 {
+        font-size: 18px;
+    }
+
+    .contact-card {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+        align-self: center;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
+
+    .contact-card h4 {
+        font-size: 16px;
+    }
+
+    .contact-card p {
+        font-size: 13px;
+    }
+
+    .phone,
+    .email {
+        font-size: 15px;
+    }
+
+    .call-btn,
+    .chat-btn {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+}
+
+/* Très petits mobiles (≤ 360px) */
+@media screen and (max-width: 360px) {
+    .fist-detail h3 {
+        font-size: 20px;
+    }
+
+    .title-team {
+        font-size: 18px;
+    }
+
+    .contact-title h2 {
+        font-size: 16px;
+    }
+
+    .contact-card {
+        padding: 12px;
+    }
 }

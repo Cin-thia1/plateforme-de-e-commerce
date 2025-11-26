@@ -1,4 +1,4 @@
-/* General styles (reusing from previous) */
+/* General styles */
 body {
     margin: 0;
     padding: 0;
@@ -38,7 +38,7 @@ aside li {
     font-size: 16px;
     color: #475156;
     cursor: pointer;
-    padding : 8px 10px;
+    padding: 8px 10px;
     border-radius: 0px;
 }
 
@@ -46,7 +46,7 @@ aside li:hover {
     background-color: #f8f9fa;
 }
 
-aside li:nth-child(2) { /* Assuming "Order History" is the second item */
+aside li:nth-child(2) { /* Order History */
     background-color: #FA8232;
     color: #fff;
 }
@@ -104,11 +104,7 @@ tbody td:nth-child(1) { /* Order ID */
     font-weight: bold;
 }
 
-/* tbody td:nth-child(2) { 
-    font-weight: bold;
-} */
-
-tbody td:nth-child(2)[data-status="Completed"] { /* Assuming you add data-status for coloring */
+tbody td:nth-child(2)[data-status="Completed"] {
     color: #28a745;
 }
 
@@ -120,93 +116,358 @@ tbody td:nth-child(2)[data-status="In Progress"] {
     color: #FA8232;
 }
 
-/* tbody td:last-child { 
-    color: #2484C2;
-    text-decoration: underline;
-    cursor: pointer;
-} */
-
-/*style de la pagination*/
+/* Style de la pagination */
 .pager {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 40px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0 0;
+    gap: 10px;
 }
 
 .pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  /*gap:12 px;*/
-
-  user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    user-select: none;
 }
 
 .page-nav {
-  all: unset;
-  width: 36px;
-  height: 36px;
-  display: grid;
-  border-radius: 50%;
-  border: 1px solid #FA8232;
-  color: #FA8232;
-  place-items: center;
-  transition: transform .15s ease, border-color .15s ease;
-}
-
-.page-nav:hover {
-  transform: translateY(-1px);
-  border-color: #FA8232;
-  color: #FA8232;
-}
-
-.page-nav:focus-visible {
-  outline: 3px solid color-mix(in oklab, var(--pg-accent)40%, tansparent);
-  outline-offset: 2px;
-}
-
-.page-list {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  list-style: none;
-}
-
-.page-lien {
-  all: unset;
-  width: 36px;
-  height: 36px;
-  display: grid;
-  border-radius: 50%;
-  border: solid #eaecee 1px;
-  place-items: center;
-  transition: transform .15s ease, color .15s ease, border-color .15s ease;
-
-}
-
-.page-lien:hover {
-  transform: translateY(-1px);
-  border-color: #FA8232;
-  color: #FA8232;
+    all: unset;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    border-radius: 50%;
+    border: 1px solid #FA8232;
+    color: #FA8232;
+    place-items: center;
+    transition: transform .15s ease, border-color .15s ease;
     cursor: pointer;
 }
 
-.page-lien.is-active {
-  background-color: #FA8232;
-  color: #fff;
-  border-color: #FA8232;
+.page-nav:hover {
+    transform: translateY(-1px);
+    border-color: #FA8232;
+    color: #FA8232;
+}
 
+.page-nav:focus-visible {
+    outline: 3px solid color-mix(in oklab, #FA8232 40%, transparent);
+    outline-offset: 2px;
+}
+
+.page-list {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.page-lien {
+    all: unset;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    border-radius: 50%;
+    border: solid #eaecee 1px;
+    place-items: center;
+    transition: transform .15s ease, color .15s ease, border-color .15s ease;
+    cursor: pointer;
+}
+
+.page-lien:hover {
+    transform: translateY(-1px);
+    border-color: #FA8232;
+    color: #FA8232;
+}
+
+.page-lien.is-active {
+    background-color: #FA8232;
+    color: #fff;
+    border-color: #FA8232;
 }
 
 .page-lien:focus-visible {
-  outline: 3px solid color-mix(in oklab, var(--pg-accent) 40%, transparent);
-  outline-offset: 2px;
+    outline: 3px solid color-mix(in oklab, #FA8232 40%, transparent);
+    outline-offset: 2px;
 }
 
 .page-nav[disabled],
 .page-nav[aria-disabled="true"] {
-  opacity: .5;
-  pointer-events: none;
+    opacity: .5;
+    pointer-events: none;
 }
+
+/* ========================================
+   MEDIA QUERIES - RESPONSIVE
+   ======================================== */
+
+/* --- TABLETTE (768px - 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    aside {
+        width: 220px;
+    }
+
+    aside li {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .main h1 {
+        font-size: 20px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    thead th {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    tbody td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* --- MOBILE (moins de 768px) --- */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
+        gap: 15px;
+    }
+
+    /* Sidebar en accordéon/menu horizontal */
+    aside {
+        width: 100%;
+        border-radius: 8px;
+        position: relative;
+    }
+
+    aside ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        padding: 10px;
+    }
+
+    aside li {
+        font-size: 13px;
+        padding: 10px 8px;
+        border-radius: 4px;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    aside li i {
+        font-size: 18px;
+    }
+
+    /* Main content */
+    .main {
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+    }
+
+    .main h1 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    /* Tableau responsive - style carte mobile */
+    table {
+        border: 0;
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody {
+        display: block;
+    }
+
+    tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #E4E7E9;
+        border-radius: 8px;
+        padding: 12px;
+        background-color: #fff;
+    }
+
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 14px;
+    }
+
+    tbody td:last-child {
+        border-bottom: none;
+    }
+
+    /* Ajouter des labels avant chaque donnée */
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #475156;
+        text-transform: uppercase;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+
+    /* Pagination responsive */
+    .pager {
+        flex-wrap: wrap;
+        margin: 20px 0 0;
+        gap: 5px;
+    }
+
+    .pagination {
+        margin: 5px;
+    }
+
+    .page-nav {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .page-list {
+        gap: 5px;
+    }
+
+    .page-lien {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+}
+
+/* --- TRÈS PETIT MOBILE (moins de 480px) --- */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+
+    /* Sidebar en une colonne sur très petit écran */
+    aside ul {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        padding: 8px;
+    }
+
+    aside li {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 10px;
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    aside li i {
+        font-size: 16px;
+    }
+
+    .main {
+        padding: 12px;
+    }
+
+    .main h1 {
+        font-size: 16px;
+    }
+
+    tbody tr {
+        padding: 10px;
+        margin-bottom: 12px;
+    }
+
+    tbody td {
+        font-size: 13px;
+        padding: 6px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    tbody td::before {
+        margin-bottom: 2px;
+    }
+
+    /* Pagination plus compacte */
+    .page-list {
+        gap: 3px;
+    }
+
+    .page-nav,
+    .page-lien {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    /* Masquer certains numéros de page sur très petit écran */
+    .page-list li:nth-child(n+5) {
+        display: none;
+    }
+}
+
+/* --- ALTERNATIVE: Tableau scrollable (optionnel) --- */
+/* Décommentez si vous préférez un tableau scrollable au lieu de cartes */
+/*
+@media screen and (max-width: 768px) {
+    .main {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 600px;
+        display: table;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tbody {
+        display: table-row-group;
+    }
+
+    tbody tr {
+        display: table-row;
+        margin-bottom: 0;
+        border: none;
+        padding: 0;
+    }
+
+    tbody td {
+        display: table-cell;
+        font-size: 13px;
+        padding: 10px 8px;
+    }
+
+    tbody td::before {
+        content: none;
+    }
+}
+*/

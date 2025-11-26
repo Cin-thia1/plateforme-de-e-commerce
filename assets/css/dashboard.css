@@ -15,7 +15,7 @@ a {
     transition: color 0.2s;
 }
 
-/* General styles (reusing from previous) */
+/* General styles */
 body {
     margin: 0;
     padding: 0;
@@ -28,7 +28,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 450px; /* Adjust height as needed */
+    height: 450px;
     border: none;
     z-index: 1000;
 }
@@ -72,7 +72,7 @@ aside li {
     font-size: 16px;
     color: #475156;
     cursor: pointer;
-    padding : 8px 10px;
+    padding: 8px 10px;
     border-radius: 0px;
 }
 
@@ -80,7 +80,7 @@ aside li:hover {
     background-color: #f8f9fa;
 }
 
-aside li.active { /* Assuming "Order History" is the second item */
+aside li.active {
     background-color: #FA8232;
     color: #fff;
 }
@@ -94,7 +94,7 @@ aside i {
     flex: 1;
     background-color: #fff;
     border-radius: 8px;
-    padding-top : 0;
+    padding-top: 0;
 }
 
 .main h1 {
@@ -124,6 +124,7 @@ aside i {
     display: flex;
     margin-bottom: 20px;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .info-card {
@@ -135,8 +136,7 @@ aside i {
     display: flex;
     flex-direction: column;
     width: 32%;
-justify-content: space-around;
-
+    justify-content: space-around;
 }
 
 .info-card h3 {
@@ -190,7 +190,7 @@ justify-content: space-around;
     border-radius: 4px;
     font-weight: 600;
     font-size: 0.85rem;
-    margin-top: auto; /* Pousse le bouton en bas */
+    margin-top: auto;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
 }
@@ -201,10 +201,11 @@ justify-content: space-around;
 }
 
 /* --- STAT CARDS --- */
-/* Pour forcer les cartes de stats à s'empiler dans la troisième colonne */
-.stat-card:nth-child(3) { grid-row: 1; grid-column: 3; }
-.stat-card:nth-child(4) { grid-row: 2; grid-column: 3; }
-.stat-card:nth-child(5) { grid-row: 3; grid-column: 3; }
+.stat-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
 .stat-card {
     border-radius: 8px;
@@ -212,7 +213,7 @@ justify-content: space-around;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 20px 10px;
 }
 
 .stat-value {
@@ -225,6 +226,7 @@ justify-content: space-around;
     font-size: 0.9rem;
     color: var(--color-text-main);
     font-weight: 500;
+    text-align: center;
 }
 
 .total-orders {
@@ -272,10 +274,11 @@ justify-content: space-around;
     display: flex;
     gap: 20px;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .credit-card {
-    position: relative; /* Pour positionner le menu */
+    position: relative;
     width: 300px;
     height: 190px;
     border-radius: 10px;
@@ -306,7 +309,6 @@ justify-content: space-around;
     font-size: 1.2rem;
 }
 
-/* Icône du menu contextuel (géré par JS) */
 .menu-icon-wrapper {
     cursor: pointer;
     padding: 5px;
@@ -342,10 +344,10 @@ justify-content: space-around;
     font-weight: 600;
 }
 
-/* Menu Contextuel CSS (utilisé par JS) */
+/* Menu Contextuel CSS */
 .card-menu {
     position: absolute;
-    top: 50px; /* Sous l'icône de menu */
+    top: 50px;
     right: 20px;
     width: 150px;
     background-color: #ffffff;
@@ -371,45 +373,258 @@ justify-content: space-around;
 }
 
 .menu-option.delete {
-    color: #dc3545; /* Couleur rouge pour "Delete" */
+    color: #dc3545;
 }
 
-/* --- Responsivité simple (pour l'organisation) --- */
-@media (max-width: 1200px) {
-    .info-grid {
-        /* Passe à 2 colonnes sur les écrans plus petits */
-        grid-template-columns: repeat(2, 1fr);
+/* ========================================
+   MEDIA QUERIES - RESPONSIVE
+   ======================================== */
+
+/* TABLETTE (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 15px;
+        gap: 15px;
     }
-    .stat-card:nth-child(3),
-    .stat-card:nth-child(4),
-    .stat-card:nth-child(5) {
-        grid-column: span 1; /* Les stats prennent une colonne entière */
-        grid-row: auto; /* Remet l'empilement à la normale */
+    
+    aside {
+        width: 200px;
     }
+    
+    aside li {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .info-container {
+        flex-wrap: wrap;
+    }
+    
+    .info-card {
+        width: 48%;
+        min-width: 280px;
+    }
+    
+    .info-card:last-child {
+        width: 100%;
+    }
+    
+    .welcome-header h2 {
+        font-size: 1.5rem;
+    }
+    
     .cards-wrapper {
-        flex-wrap: wrap; /* Les cartes de paiement peuvent passer à la ligne */
+        justify-content: center;
     }
 }
-@media (max-width: 800px) {
-    .sidebar {
-        width: 100%;
-        padding-top: 0;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    }
-    .sidebar-nav ul {
-        display: flex;
-        overflow-x: auto; /* Permet le défilement horizontal */
-    }
-    .sidebar-nav li {
-        flex-shrink: 0; /* Empêche les éléments de rétrécir */
-    }
-    .page-layout {
+
+/* MOBILE (moins de 768px) */
+@media screen and (max-width: 768px) {
+    .container {
         flex-direction: column;
+        padding: 10px;
+        gap: 15px;
     }
-    .info-grid {
-        grid-template-columns: 1fr; /* Une seule colonne */
+    
+    /* Sidebar transformé en grille */
+    aside {
+        width: 100%;
+        border-radius: 8px;
     }
+    
+    aside ul {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 10px;
+    }
+    
+    aside li {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        gap: 5px;
+        font-size: 12px;
+        padding: 12px 8px;
+        border-radius: 6px;
+    }
+    
+    aside li i {
+        font-size: 20px;
+    }
+    
+    /* Main content */
+    .main {
+        padding: 15px;
+    }
+    
+    .welcome-header h2 {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+    
+    .welcome-header p {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Info cards en colonne */
+    .info-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .info-card {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .info-card h3 {
+        font-size: 0.75rem;
+        margin-bottom: 15px;
+    }
+    
+    .profile-pic {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .account-details .name, .address-details .name {
+        font-size: 1rem;
+    }
+    
+    .detail-line {
+        font-size: 0.8rem;
+    }
+    
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+    }
+    
+    /* Stat cards */
+    .stat-card-container {
+        gap: 12px;
+    }
+    
     .stat-card {
-        grid-column: 1 / -1; /* Les stats prennent toute la largeur */
+        padding: 15px 10px;
+    }
+    
+    .stat-value {
+        font-size: 1.6rem;
+    }
+    
+    .stat-label {
+        font-size: 0.85rem;
+    }
+    
+    /* Payment section */
+    .payment-options h3 {
+        font-size: 0.75rem;
+        margin-bottom: 15px;
+    }
+    
+    .add-card-link {
+        position: static;
+        display: block;
+        margin-bottom: 15px;
+        font-size: 0.85rem;
+    }
+    
+    .cards-wrapper {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .credit-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+/* TRÈS PETIT MOBILE (moins de 480px) */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 8px;
+    }
+    
+    /* Sidebar en 2 colonnes */
+    aside ul {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        padding: 8px;
+    }
+    
+    aside li {
+        font-size: 11px;
+        padding: 10px 6px;
+    }
+    
+    aside li i {
+        font-size: 18px;
+    }
+    
+    .main {
+        padding: 12px;
+    }
+    
+    .welcome-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .welcome-header p {
+        font-size: 0.8rem;
+    }
+    
+    .info-card {
+        padding: 15px;
+    }
+    
+    .info-card h3 {
+        font-size: 0.7rem;
+    }
+    
+    .account-details .name, .address-details .name {
+        font-size: 0.95rem;
+    }
+    
+    .account-details .location, .address-details .location-full {
+        font-size: 0.8rem;
+    }
+    
+    .detail-line {
+        font-size: 0.75rem;
+    }
+    
+    .stat-value {
+        font-size: 1.4rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .credit-card {
+        height: 170px;
+        padding: 15px;
+    }
+    
+    .card-balance {
+        font-size: 1rem;
+    }
+    
+    .card-number-hidden {
+        font-size: 1rem;
+    }
+    
+    .card-holder {
+        font-size: 0.9rem;
+    }
+    
+    .card-logo {
+        font-size: 1.8rem;
     }
 }
