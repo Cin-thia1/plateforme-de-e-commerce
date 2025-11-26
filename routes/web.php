@@ -52,4 +52,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+// Dashboard client
+Route::get('/dashboard', function () {
+    return redirect('/home');
+})
+    ->middleware('auth')
+    ->name('dashboard');
+
+// Dashboard admin
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});

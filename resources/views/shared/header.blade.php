@@ -35,6 +35,11 @@
             class="badge">2</span></a>
         <a class="icon-btn" href="/page-favoris" title="Favoris"><i class="fas fa-heart"></i></a>
         <a class="icon-btn" href="/login" title="Mon compte"><i class="fas fa-user"></i></a>
+    @if(auth()->check() && auth()->user()->type === 'admin')
+        <a class="icon-btn" href="{{ route('admin.dashboard') }}" title="Dashboard Admin">
+            <i class="fas fa-cogs"></i>
+        </a>
+    @endif
       </div>
     </div>
 
