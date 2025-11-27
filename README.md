@@ -44,7 +44,7 @@ plateforme-e-commerce
 │   ├── css/
 │   │  
 │   │   
-│   ├── images/  
+│   ├── fontawesome/  
 │   │   
 │   │
 │   ├── images/
