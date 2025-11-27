@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Récupération de mot de passe</title>
+  <style>
+    :root{--bg:#f3f6fb;--card:#ffffff;--accent:#2563eb;--muted:#6b7280;--danger:#ef4444}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,#eef4ff 0%,var(--bg) 100%); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px}
+    .container{width:100%; max-width:420px;}
+    .card{background:var(--card); border-radius:12px; box-shadow:0 6px 30px rgba(16,24,40,0.06); padding:28px}
+    h1{font-size:20px; margin:0 0 8px}
+    p.lead{margin:0 0 18px; color:var(--muted); font-size:14px}
+
+    .form-group{margin-bottom:14px}
+    label{display:block; font-size:13px; color:#111827; margin-bottom:6px}
+    input[type="email"], input[type="text"], input[type="password"]{width:100%; padding:12px 14px; border-radius:8px; border:1px solid #e6e9ef; font-size:14px; outline:none}
+    input[type="email"]:focus, input[type="text"]:focus, input[type="password"]:focus{box-shadow:0 0 0 4px rgba(37,99,235,0.08); border-color:var(--accent)}
+
+    .row{display:flex; gap:10px}
+    .btn{display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:8px; border:0; cursor:pointer}
+    .btn-primary{background:var(--accent); color:#fff}
+    .btn-ghost{background:transparent; color:var(--accent); border:1px solid rgba(37,99,235,0.12)}
+    .hint{font-size:13px; color:var(--muted)}
+    .small{font-size:12px}
+    .success{color:green; font-size:13px}
+    .error{color:var(--danger); font-size:13px}
+    .note{margin-top:12px; font-size:13px; color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:420px){.card{padding:20px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" role="region" aria-label="Formulaire de récupération de mot de passe">
+      <h1>Récupération du mot de passe</h1>
+      <p class="lead">Entrez votre e‑mail pour recevoir un code de vérification. Ensuite, saisissez le code et choisissez un nouveau mot de passe.</p>
+
+      <!-- Étape 1 : demander le code -->
+      <div id="step-send">
+        <div class="form-group">
+          <label for="email">Adresse e‑mail</label>
+          <input id="email" type="email" placeholder="votre@exemple.com" autocomplete="email">
+        </div>
+        <div class="row">
+          <button id="sendCode" class="btn btn-primary">Envoyer le code</button>
+          <button id="cancelSend" class="btn btn-ghost">Annuler</button>
+        </div>
+        <div id="sendMsg" class="note" aria-live="polite"></div>
+      </div>
+
+      <!-- Étape 2 : vérifier le code et réinitialiser -->
+      <div id="step-verify" style="display:none; margin-top:12px">
+        <div class="form-group">
+          <label for="code">Code de vérification</label>
+          <input id="code" type="text" inputmode="numeric" maxlength="6" placeholder="6 chiffres">
+        </div>
+        <div class="form-group">
+          <label for="password">Nouveau mot de passe</label>
+          <input id="password" type="password" placeholder="Au moins 8 caractères">
+        </div>
+        <div class="form-group">
+          <label for="password2">Confirmer le mot de passe</label>
+          <input id="password2" type="password" placeholder="Répétez le mot de passe">
+        </div>
+        <div class="row">
+          <button id="resetPwd" class="btn btn-primary">Réinitialiser le mot de passe</button>
+          <button id="resendCode" class="btn btn-ghost">Renvoyer le code</button>
+        </div>
+        <div id="verifyMsg" class="note" aria-live="polite"></div>
+      </div>
+
+      <p class="note" style="margin-top:16px">Remarque : cette démo gère le code côté client. Pour une implémentation réelle, il faut envoyer le code depuis votre serveur par e‑mail et vérifier côté serveur.</p>
+    </div>
+  </div>
+
+  <script>
+    // Petit script pour démonstration (à remplacer côté serveur en production)
+    const sendBtn = document.getElementById('sendCode');
+    const cancelSend = document.getElementById('cancelSend');
+    const emailInput = document.getElementById('email');
+    const sendMsg = document.getElementById('sendMsg');
+    const stepSend = document.getElementById('step-send');
+    const stepVerify = document.getElementById('step-verify');
+    const codeInput = document.getElementById('code');
+    const resetBtn = document.getElementById('resetPwd');
+    const resendBtn = document.getElementById('resendCode');
+    const password = document.getElementById('password');
+    const password2 = document.getElementById('password2');
+    const verifyMsg = document.getElementById('verifyMsg');
+
+    let currentCode = null;
+
+    function generateCode(){
+      return String(Math.floor(100000 + Math.random()*900000));
+    }
+
+    function validateEmail(e){
+      return /\S+@\S+\.\S+/.test(e);
+    }
+
+    sendBtn.addEventListener('click', ()=>{
+      const email = emailInput.value.trim();
+      if(!validateEmail(email)){
+        sendMsg.textContent = 'Veuillez entrer une adresse e‑mail valide.';
+        sendMsg.className = 'error';
+        return;
+      }
+      // Génère le code (dans la vraie vie, le serveur envoie le mail)
+      currentCode = generateCode();
+      console.log('Code (dev-only):', currentCode);
+      sendMsg.textContent = 'Code envoyé à ' + email + ' (dans cette démo le code est affiché dans la console).';
+      sendMsg.className = 'success';
+
+      // basculer vers la vue de vérification
+      stepSend.style.display = 'none';
+      stepVerify.style.display = 'block';
+      verifyMsg.textContent = '';
+    });
+
+    cancelSend.addEventListener('click', ()=>{
+      emailInput.value = '';
+      sendMsg.textContent = '';
+    });
+
+    resendBtn.addEventListener('click', ()=>{
+      if(!validateEmail(emailInput.value.trim())){
+        verifyMsg.textContent = 'Adresse e‑mail manquante ou invalide. Revenez au début.';
+        verifyMsg.className = 'error';
+        return;
+      }
+      currentCode = generateCode();
+      console.log('Code (dev-only) resend:', currentCode);
+      verifyMsg.textContent = 'Nouveau code renvoyé (voir console en démo).';
+      verifyMsg.className = 'success';
+    });
+
+    resetBtn.addEventListener('click', ()=>{
+      const entered = codeInput.value.trim();
+      if(entered === '' || entered.length < 6){
+        verifyMsg.textContent = 'Saisissez le code à 6 chiffres.';
+        verifyMsg.className = 'error';
+        return;
+      }
+      if(entered !== currentCode){
+        verifyMsg.textContent = 'Code invalide.';
+        verifyMsg.className = 'error';
+        return;
+      }
+      if(password.value.length < 8){
+        verifyMsg.textContent = 'Le mot de passe doit contenir au moins 8 caractères.';
+        verifyMsg.className = 'error';
+        return;
+      }
+      if(password.value !== password2.value){
+        verifyMsg.textContent = 'Les deux mots de passe ne correspondent pas.';
+        verifyMsg.className = 'error';
+        return;
+      }
+
+      // Ici on enverrait la requête au serveur pour mettre à jour le mot de passe
+      verifyMsg.textContent = 'Mot de passe réinitialisé avec succès (demo).';
+      verifyMsg.className = 'success';
+
+      // reset form
+      setTimeout(()=>{
+        emailInput.value = '';
+        codeInput.value = '';
+        password.value = '';
+        password2.value = '';
+        currentCode = null;
+        stepVerify.style.display = 'none';
+        stepSend.style.display = 'block';
+        sendMsg.textContent = '';
+      },1200);
+    });
+  </script>
+</body>
+</html>
