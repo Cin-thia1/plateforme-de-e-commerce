@@ -19,6 +19,7 @@
 
 body {
     background-color: #f7f7f7;
+    overflow-x: hidden; /* Évite les débordements horizontaux sur mobile */
 }
 
 /* --- Section principale du produit (Galerie + Infos) --- */
@@ -41,6 +42,7 @@ body {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     margin-bottom: 15px;
+    height: auto;
 }
 
 .thumbnails {
@@ -525,6 +527,8 @@ body {
    MEDIA QUERIES - RESPONSIVE
    ======================================== */
 
+   
+
 /* TABLETTE (768px - 1024px) */
 @media screen and (max-width: 1024px) {
     .product-container {
@@ -559,7 +563,8 @@ body {
     
     .actions {
         flex-direction: row;
-        justify-content: ;
+        justify-content: center;
+        align-items: center;
         gap: 10px;
     }
     
@@ -603,6 +608,10 @@ body {
 @media screen and (max-width: 768px) {
     .product-container {
         padding: 15px;
+        max-width: 100% !important; /* Force la largeur pleine */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        border-radius: 0; /* Optionnel: enlève les coins arrondis pour pleine largeur */
     }
     
     .product-main {
@@ -638,10 +647,6 @@ body {
         font-size: 13px;
     }
     
-    .rating i {
-        font-size: 16px;
-    }
-    
     .product-info h1 {
         font-size: 20px;
     }
@@ -651,7 +656,7 @@ body {
         gap: 10px;
     }
     
-    .inner-meta-info {
+    .inner-meta-info{
         gap: 10px;
     }
     
@@ -678,7 +683,6 @@ body {
     }
     
     .actions {
-        flex-direction: column;
         gap: 10px;
     }
     
@@ -944,5 +948,55 @@ body {
     
     .review-text {
         font-size: 12px;
+    }
+}
+
+/* Très petits mobiles (≤ 360px) */
+@media screen and (max-width: 360px) {
+    .product-container {
+        padding: 10px;
+    }
+    
+    .product-main {
+        gap: 10px;
+    }
+    
+    .thumbnails img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .product-info h1 {
+        font-size: 16px;
+    }
+    
+    .current-price {
+        font-size: 20px;
+    }
+    
+    .original-price {
+        font-size: 14px;
+    }
+    
+    .tabs p {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+    
+    .description-content {
+        padding: 8px;
+    }
+    
+    .product-card img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .product-card-info p {
+        font-size: 11px;
+    }
+    
+    .review-text {
+        font-size: 11px;
     }
 }

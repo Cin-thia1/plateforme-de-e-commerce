@@ -4,6 +4,7 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: white;
+    overflow-x: hidden; /* Évite les débordements horizontaux sur mobile */
 }
 
 .container {
@@ -246,6 +247,8 @@ tbody td:nth-child(2)[data-status="In Progress"] {
         flex-direction: column;
         padding: 10px;
         gap: 15px;
+        max-width: 100% !important; /* Force la largeur pleine */
+        margin: 0 auto !important;
     }
 
     /* Sidebar en accordéon/menu horizontal */

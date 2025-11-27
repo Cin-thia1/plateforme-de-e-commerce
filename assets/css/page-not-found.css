@@ -3,46 +3,49 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: #ffffff;
     margin: 0;
-    padding: 2rem;
     color: #333;
-    
-    /* Centrage vertical et horizontal */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    box-sizing: border-box; /* Inclut padding dans la hauteur */
 }
 
 /* Conteneur principal */
 .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    max-width: 600px;
-    margin: auto;
+    max-width: 720px; /* desktop comfortable width */
+    margin: 80px auto;
+    padding: 48px 24px;
+    box-sizing: border-box;
 }
 
 /* Illustration */
 .error-container img {
-    max-width: 100%;
+    max-width: 420px;
+    width: 100%;
     height: auto;
     margin-bottom: 32px;
 }
 
 /* Titre */
 .error-container h1 {
-    font-size: 2rem; /* 32px */
+    font-size: 2rem; /* desktop */
     font-weight: 700;
     color: #333;
     margin-top: 0;
     margin-bottom: 12px;
+    line-height: 1.15;
 }
 
 /* Paragraphe */
 .error-container p {
-    font-size: 1rem; /* 16px */
+    font-size: 1rem; /* desktop */
     color: #777;
     line-height: 1.6;
     margin-bottom: 32px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Groupe de boutons */
@@ -59,13 +62,15 @@ body {
     align-items: center;
     justify-content: center;
     padding: 12px 24px;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 700;
     text-decoration: none;
     border: 2px solid transparent;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
+    min-width: 140px;
+    box-sizing: border-box;
 }
 
 /* Icônes dans les boutons */
@@ -98,15 +103,104 @@ body {
     border-color: #f77f00;
 }
 
-/* Responsivité pour les petits écrans */
-@media (max-width: 480px) {
+/* -------------------------------------------
+   Responsive: tablette, mobile & petit mobile
+   ------------------------------------------- */
+
+/* TABLETTE (768px - 1024px) */
+@media (max-width: 1024px) {
+    .error-container {
+        max-width: 640px;
+        margin: 64px auto;
+        padding: 40px 20px;
+    }
+
+    .error-container h1 {
+        font-size: 1.85rem;
+    }
+
+    .error-container p {
+        font-size: 0.98rem;
+    }
+
+    .error-container img {
+        max-width: 360px;
+        margin-bottom: 28px;
+    }
+}
+
+/* MOBILE (moins de 768px) */
+@media (max-width: 768px) {
+    .error-container {
+        max-width: 460px;
+        margin: 48px auto;
+        padding: 32px 18px;
+    }
+
+    .error-container h1 {
+        font-size: 1.6rem;
+    }
+
+    .error-container p {
+        font-size: 0.95rem;
+    }
+
+    .error-container img {
+        max-width: 300px;
+        margin-bottom: 22px;
+    }
+
     .button-group {
-        flex-direction: column; /* Les boutons passent en colonne */
+        flex-direction: row;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 50%;
+        min-width: 0;
+        padding: 12px 18px;
+        border-radius: 6px;
+    }
+}
+
+/* TRÈS PETIT MOBILE (moins de 480px) */
+@media (max-width: 480px) {
+    .error-container {
+        max-width: 100%;
+        margin: 28px auto;
+        padding: 20px 12px;
+    }
+
+    .error-container img {
+        max-width: 240px;
+        margin-bottom: 18px;
+    }
+
+    .error-container h1 {
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+    }
+
+    .error-container p {
+        font-size: 0.9rem;
+        margin-bottom: 18px;
+    }
+
+    .button-group {
         width: 100%;
     }
 
     .btn {
-        width: 100%;
-        box-sizing: border-box; /* S'assure que le padding ne dépasse pas */
+        width: 40%;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        border-radius: 6px;
     }
+}
+
+/* Keep buttons accessible on keyboard focus */
+.btn:focus {
+    outline: 3px solid rgba(247,127,0,0.25);
+    outline-offset: 2px;
 }

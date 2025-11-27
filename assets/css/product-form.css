@@ -1,17 +1,36 @@
-/* General styles */
-body {
+/* --- Réinitialisation et configuration de base --- */
+* {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-    /* Bonne pratique pour le calcul des largeurs */
     box-sizing: border-box;
 }
 
-*, *::before, *::after {
-    box-sizing: inherit;
+/* Réglages de base */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    overflow-x: hidden; /* Évite les débordements horizontaux sur mobile */
 }
 
+.footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 450px; /* Adjust height as needed */
+    border: none;
+    z-index: 1000;
+}
+
+main {
+    margin-top: 25px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+/* Conteneur principal */
 .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -256,5 +275,120 @@ aside i {
     
     .uploaded-images img {
         max-width: 80px; /* Réduire la taille des images sur mobile */
+    }
+}
+
+/* ============================================ */
+/* MEDIA QUERIES - RESPONSIVE DESIGN ADDITIONNELLES POUR MOBILE PLEINE LARGEUR */
+/* ============================================ */
+
+/* Tablettes en portrait (≤ 768px) */
+@media screen and (max-width: 768px) {
+    main {
+        margin-top: 15px;
+        padding: 10px;
+        max-width: 100% !important; /* Force la largeur pleine */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .container {
+        max-width: 100% !important;
+        padding: 10px;
+    }
+
+    .account-setting {
+        padding: 10px;
+    }
+
+    .product-form {
+        gap: 10px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 8px;
+    }
+
+    .add-image-btn {
+        padding: 8px 15px;
+    }
+
+    .save-changes {
+        padding: 8px 15px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Mobiles (≤ 480px) */
+@media screen and (max-width: 480px) {
+    main {
+        padding: 10px 5px;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .container {
+        padding: 5px;
+    }
+
+    aside li {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .account-setting h2 {
+        font-size: 16px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .uploaded-images img {
+        max-width: 70px;
+    }
+
+    .add-image-btn {
+        min-width: 100%;
+        padding: 10px;
+    }
+
+    .save-changes {
+        width: 100%;
+    }
+}
+
+/* Très petits mobiles (≤ 360px) */
+@media screen and (max-width: 360px) {
+    main {
+        padding: 10px 0;
+    }
+
+    .container {
+        padding: 0;
+    }
+
+    aside li {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    .account-setting {
+        padding: 8px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .uploaded-images img {
+        max-width: 60px;
     }
 }

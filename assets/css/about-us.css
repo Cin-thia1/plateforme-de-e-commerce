@@ -1,10 +1,17 @@
 /* First Presentation Section */
 /* General styles */
+* {
+    box-sizing: border-box; /* Ajout global pour inclure paddings et borders dans la largeur */
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: white;
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Évite les débordements horizontaux sur mobile */
 }
 
 iframe {
@@ -305,6 +312,14 @@ main {
     .contact-card {
         width: 300px;
     }
+    body {
+        max-width: 100%;
+        width: 100%;
+    }
+    html{
+        max-width: 100%;
+        width: 100%;
+    }
 }
 
 /* Tablettes en portrait (≤ 768px) */
@@ -312,6 +327,9 @@ main {
     main {
         margin-top: 15px;
         padding: 10px;
+        max-width: 100% !important; /* Ajout: force la largeur pleine */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     /* Section présentation */
@@ -380,12 +398,25 @@ main {
         width: 100%;
         max-width: 400px;
     }
+
+    /* Ajouts pour pleine largeur */
+    .contact-row {
+        padding: 40px 10px; /* Réduction des paddings latéraux si besoin */
+    }
+
+    img, video, iframe {
+        max-width: 100%; /* Assure que les médias ne débordent pas */
+        height: auto;
+    }
 }
 
 /* Mobiles (≤ 480px) */
 @media screen and (max-width: 480px) {
     main {
         padding: 10px 5px;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     iframe {
@@ -496,6 +527,16 @@ main {
         padding: 12px 15px;
         font-size: 13px;
     }
+
+    /* Ajouts pour pleine largeur */
+    .contact-row {
+        padding: 30px 5px; /* Réduction des paddings latéraux */
+    }
+
+    img, video, iframe {
+        max-width: 100%;
+        height: auto;
+    }
 }
 
 /* Très petits mobiles (≤ 360px) */
@@ -514,5 +555,14 @@ main {
 
     .contact-card {
         padding: 12px;
+    }
+
+    /* Ajouts pour pleine largeur */
+    main {
+        padding: 10px 0;
+    }
+
+    .row {
+        padding: 15px 5px;
     }
 }
