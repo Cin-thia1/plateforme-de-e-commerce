@@ -27,7 +27,7 @@
 ## 📁 Structure du Projet
 
 ```
-projet-ecommerce-tp1/
+plateforme-e-commerce
 │
 ├── home.html                    # Page d'accueil
 ├── liste-produit.html           # Catalogue produits
@@ -44,16 +44,13 @@ projet-ecommerce-tp1/
 │   ├── css/
 │   │  
 │   │   
-│   │   
+│   ├── images/  
 │   │   
 │   │
 │   ├── images/
 │ 
 │     
 │    
-│   
-│   
-│
 ├── partials/                    # Composants réutilisables
 │
 ├── README.md
