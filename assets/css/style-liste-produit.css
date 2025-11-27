@@ -327,25 +327,48 @@ ul {
   color: var(--muted);
 }
 
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+.pills input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #eaecee;
+  border-radius: 50%;
+  background-color: #fff;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  margin-right: 8px;
 }
 
-.brand-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+.pills input[type="radio"]:checked {
+  border: 4px solid #FA8232;
 }
 
-.brand-grid label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: .95rem;
+
+.brand-grid input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  background: #fff;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
 }
+
+.brand-grid input[type="checkbox"]:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight:1000;
+  font-size: 20px;
+  color: #FA8232; 
+}
+
+
 
 .barre {
   border: none;
@@ -631,6 +654,7 @@ ul {
   align-items: center;
   gap: 10px;
   list-style-type: none;
+  padding: 0;
 }
 
 .page-lien {
@@ -782,6 +806,7 @@ ul {
     gap: 12px;
     padding: 0 15px;
   }
+  
 }
 
 @media (max-width: 900px) {
@@ -796,6 +821,9 @@ ul {
 
   .fgrid {
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  }
+  .research-form {
+    width: 45%;
   }
 }
 
@@ -819,16 +847,20 @@ ul {
   .fgrid {
     grid-template-columns: 1fr 1fr;
   }
+  .research-form {
+    width: 45%;
+  }
 }
 
 @media (max-width: 680px) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 2fr;
     gap: 12px;
     padding: 15px 0;
   }
 
   .sidebar {
+    margin: 25px;
     display: none;
     position: absolute;
     top: 42px;
@@ -859,6 +891,7 @@ ul {
   .research-form {
     width: 100%;
   }
+  
 
   .active-filters {
     flex-direction: column;
@@ -874,12 +907,19 @@ ul {
   .sidebar.sidebar--open {
     display: block;
   }
+  .product {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+ }
+
+
 }
 
 @media (max-width: 560px) {
-  .product {
+  /*.product {
     grid-template-columns: 1fr;
-  }
+  }*/
 }
 
 @media (max-width: 520px) {
