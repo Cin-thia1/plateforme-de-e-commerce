@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="assets/css/order-history.css">
   <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="assets/css/header-footer.css">
@@ -13,7 +13,7 @@
 
 <body>
 
-   <!--header-->
+  <!--header-->
   <header class="main-header">
     <!-- Superbar : message + réseaux + langue/devise -->
     <div class="superbar">
@@ -157,7 +157,6 @@
           </div>
         </div>
         <a href="home.html"><i class="fas fa-house"></i> Home </a>
-        <a href="track-order.html"><i class="fas fa-truck"></i> Suivre une commande</a>
         <a href="faq.html"><i class="fas fa-question-circle"></i> Service client</a>
         <a href="about-us.html"><i class="fa-solid fa-users"></i> A propos de nous</a>
 
@@ -179,7 +178,6 @@
         <div class="mobile-nav-section">
           <ul class="mobile-nav-links">
             <li><a href="home.html"><i class="fas fa-house"></i> Home</a></li>
-            <li><a href="track-order.html"><i class="fas fa-truck"></i> Suivre une commande</a></li>
             <li><a href="faq.html"><i class="fas fa-question-circle"></i> Service client</a></li>
             <li><a href="about-us.html"><i class="fa-solid fa-users"></i> A propos de nous</a></li>
           </ul>
@@ -316,7 +314,7 @@
         <li onclick="window.location.href='page-favoris.html';" style="cursor: pointer;"><i
             class="fas fa-heart"></i>Favoris</li>
         <li onclick="window.location.href='profile.html';" style="cursor: pointer;"><i
-           class="fa-solid fa-user"></i>Profile</li>
+            class="fa-solid fa-user"></i>Profile</li>
         <li><i class="fa-solid fa-right-from-bracket"></i>Log-out</li>
       </ul>
     </aside>
@@ -324,7 +322,14 @@
       <h1>Order History</h1>
       <table class="orders-table">
         <thead>
-          <tr><th>Commande</th><th>Date</th><th>Articles</th><th>Total</th><th>Moyen</th><th>Statut</th></tr>
+          <tr>
+            <th>Commande</th>
+            <th>Date</th>
+            <th>Articles</th>
+            <th>Total</th>
+            <th>Moyen</th>
+            <th>Statut</th>
+          </tr>
         </thead>
         <tbody id="orders-table-body">
           <!-- JS remplira ici -->
@@ -398,7 +403,7 @@
       </div>
     </div>
   </footer>
-<script src="assets/js/header-footer.js"></script>
+  <script src="assets/js/header-footer.js"></script>
 </body>
 
 </html>

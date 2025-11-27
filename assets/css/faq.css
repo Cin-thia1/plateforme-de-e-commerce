@@ -14,6 +14,7 @@ body {
     color: var(--color-text);
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* Évite les débordements horizontaux sur mobile */
 }
 
 /* Le conteneur principal pour centrer le contenu sans cadre blanc visible */
@@ -59,7 +60,7 @@ body {
 
 .faq-item {
     border: 1px solid var(--color-light-grey);
-    border-top: none; /* Supprimer la bordure supérieure pour l'effet de liste */
+    border-top: none; /* Supprimer la bordure supérieure pour l'effet de liste*/
     overflow: hidden;
 }
 
@@ -225,6 +226,110 @@ textarea {
     .main-wrapper {
         margin: 20px 10px;
     }
+    .support-box {
+        padding: 15px;
+    }
+}
+
+/* ============================================ */
+/* MEDIA QUERIES - RESPONSIVE DESIGN ADDITIONNELLES POUR MOBILE PLEINE LARGEUR */
+/* ============================================ */
+
+/* Tablettes en portrait (≤ 768px) */
+@media screen and (max-width: 768px) {
+    .main-wrapper {
+        max-width: 100% !important;
+        margin: 20px 0 !important;
+        padding: 0 10px;
+    }
+
+    .content-wrapper {
+        gap: 20px;
+    }
+
+    .faq-section {
+        padding-right: 0;
+    }
+
+    .faq-item summary {
+        padding: 12px 15px;
+    }
+
+    .faq-content {
+        padding: 12px 15px 15px;
+    }
+
+    .support-box {
+        padding: 20px;
+    }
+
+    input[type="email"],
+    input[type="text"],
+    textarea {
+        font-size: 13px;
+    }
+}
+
+/* Mobiles (≤ 480px) */
+@media screen and (max-width: 480px) {
+    .main-wrapper {
+        margin: 15px 0 !important;
+        padding: 0 5px;
+    }
+
+    .faq-title {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    .faq-item summary {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+
+    .faq-item summary::after {
+        right: 12px;
+        font-size: 1.3em;
+    }
+
+    .faq-content {
+        padding: 10px 12px 15px;
+        font-size: 0.9em;
+    }
+
+    .support-box h2 {
+        font-size: 1.1em;
+    }
+
+    .intro-support {
+        font-size: 0.85em;
+    }
+
+    .submit-button {
+        font-size: 13px;
+    }
+}
+
+/* Très petits mobiles (≤ 360px) */
+@media screen and (max-width: 360px) {
+    .main-wrapper {
+        padding: 0;
+    }
+
+    .faq-title {
+        font-size: 1.4em;
+    }
+
+    .faq-item summary {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    .faq-content {
+        padding: 8px 10px 12px;
+        font-size: 0.85em;
+    }
+
     .support-box {
         padding: 15px;
     }

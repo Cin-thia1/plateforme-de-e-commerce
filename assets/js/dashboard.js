@@ -31,60 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
      
-    // ===== MENU MOBILE LATÉRAL =====
-    const hamburgerBtn = document.querySelector('.hamburger-btn');
-    const mobileSidebar = document.querySelector('.mobile-sidebar');
-    const sidebarOverlay = document.querySelector('.sidebar-overlay');
-    const closeSidebarBtn = document.querySelector('.close-sidebar');
-    
-    // Fonction pour ouvrir le menu
-    function openSidebar() {
-        mobileSidebar.classList.add('active');
-        sidebarOverlay.classList.add('active');
-        hamburgerBtn.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Empêche le scroll
-    }
-    
-    // Fonction pour fermer le menu
-    function closeSidebar() {
-        mobileSidebar.classList.remove('active');
-        sidebarOverlay.classList.remove('active');
-        hamburgerBtn.classList.remove('active');
-        document.body.style.overflow = ''; // Réactive le scroll
-    }
-    
-    // Event listeners
-    if (hamburgerBtn) {
-        hamburgerBtn.addEventListener('click', function() {
-            if (mobileSidebar.classList.contains('active')) {
-                closeSidebar();
-            } else {
-                openSidebar();
-            }
-        });
-    }
-    
-    if (closeSidebarBtn) {
-        closeSidebarBtn.addEventListener('click', closeSidebar);
-    }
-    
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener('click', closeSidebar);
-    }
-    
-    // Fermer le menu lors du clic sur un lien
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', closeSidebar);
-    });
-    
-    // Fermer le menu avec la touche Échap
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileSidebar.classList.contains('active')) {
-            closeSidebar();
-        }
-    });
-    
+   
+  
     
     // ===== MENU CONTEXTUEL DES CARTES DE CRÉDIT =====
     const menuIcons = document.querySelectorAll('.menu-icon-wrapper');

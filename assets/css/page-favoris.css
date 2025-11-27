@@ -1,9 +1,17 @@
+/* --- Réinitialisation et configuration de base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* Réglages de base */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: white;
+    overflow-x: hidden; /* Évite les débordements horizontaux sur mobile */
 }
 
 .footer {
@@ -212,13 +220,17 @@ main {
         margin-top: 90px; /* Conserver la marge pour le header */
         padding: 0; /* Supprimer le padding par défaut de main */
         width: 100%; /* FORCER LA LARGEUR MAXIMALE POUR CENTRER */
+        max-width: 100% !important; /* Force la largeur pleine */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     .wishlist-container {
         padding: 15px; /* Padding uniforme pour l'espacement des bords (centrage visuel) */
-        max-width: 100%; 
+        max-width: 100% !important; 
         border: none; 
         box-shadow: none;
+        border-radius: 0; /* Optionnel: enlève les coins arrondis pour pleine largeur */
     }
 
     /* Le tableau est cassé pour devenir une liste verticale */
@@ -320,5 +332,92 @@ main {
     
     .btn-remove::after {
         content: "";
+    }
+}
+
+/* Mobiles (≤ 480px) */
+@media screen and (max-width: 480px) {
+    main {
+        padding: 10px 5px;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .wishlist-container {
+        padding: 10px;
+    }
+
+    .wishlist-container h2 {
+        font-size: 1.3rem;
+    }
+
+    .wishlist-table td {
+        padding: 10px 12px;
+        padding-left: 50% !important;
+    }
+
+    .wishlist-table td::before {
+        font-size: 0.85rem;
+    }
+
+    .product-info strong {
+        font-size: 0.9rem;
+    }
+
+    .product-info span {
+        font-size: 0.8rem;
+    }
+
+    .price .current-price {
+        font-size: 0.95rem;
+    }
+
+    .price del {
+        font-size: 0.85rem;
+    }
+
+    .stock-status {
+        font-size: 0.75rem;
+    }
+
+    .btn-add-cart {
+        min-width: 130px;
+        padding: 10px 8px;
+        font-size: 0.75rem;
+    }
+
+    .btn-remove {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
+}
+
+/* Très petits mobiles (≤ 360px) */
+@media screen and (max-width: 360px) {
+    main {
+        padding: 10px 0;
+    }
+
+    .wishlist-container {
+        padding: 8px;
+    }
+
+    .wishlist-table td {
+        padding: 8px 10px;
+        padding-left: 50% !important;
+    }
+
+    .btn-add-cart {
+        min-width: 120px;
+        padding: 8px 6px;
+        font-size: 0.7rem;
+    }
+
+    .btn-remove {
+        width: 24px;
+        height: 24px;
+        font-size: 0.9rem;
     }
 }
