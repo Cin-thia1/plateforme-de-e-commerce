@@ -790,12 +790,18 @@ ul {
 .filter-toggle i {
   font-size: 0.9rem;
 }
+.filter-toggle{
+  display:none;
+}
 
 /* Responsive*/
 
 @media (max-width: 1200px) {
   .product {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .research-form {
+    width: 45%;
   }
 }
 
@@ -805,6 +811,9 @@ ul {
     justify-content: space-between;
     gap: 12px;
     padding: 0 15px;
+  }
+  .research-form {
+    width: 45%;
   }
   
 }
@@ -947,5 +956,8 @@ ul {
     width: 32px;
     height: 32px;
     font-size: .85rem;
+  }
+  .research-form {
+    width: 45%;
   }
 }
