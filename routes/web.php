@@ -18,9 +18,9 @@ Route::get('/about-us', function () {
     return view('about-us');
 });
 
-Route::get('/liste-produit', function () {
+/*Route::get('/liste-produit', function () {
     return view('liste-produit');
-});
+});*/
 
 Route::get('/faq', function () {
     return view('faq');
@@ -34,15 +34,14 @@ Route::get('/page-favoris', function () {
     return view('page-favoris');
 });
 
-Route::get('/page-favoris', function () {
-    return view('page-favoris');
-});
 
 Route::get('/product-form', function () {
     return view('product-form');
 });
-Route::get('/',[ProductController::class, 'index'])->name('home');
-Route::resource('products', ProductController::class);
+// ajouter un produit
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/liste-produit', [ProductController::class, 'index'])->name('products.index');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
