@@ -38,9 +38,18 @@ Route::get('/page-favoris', function () {
 Route::get('/product-form', function () {
     return view('product-form');
 });
+
 // ajouter un produit
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/liste-produit', [ProductController::class, 'index'])->name('products.index');
+
+//modifier un produit
+Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
+
+//supprimer un produit
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+
 
 
 Route::middleware('auth')->group(function () {

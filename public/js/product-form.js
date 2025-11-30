@@ -1,10 +1,7 @@
-/*// public/js/product-form.js – VERSION 100% FONCTIONNELLE (testée)
-
 document.addEventListener('DOMContentLoaded', function () {
-
-    // ==================== 1. GESTION DES IMAGES (ton ancien style) ====================
-    const addImageBtn = document.querySelector('.add-image-btn');
-    const uploadedImages = document.querySelector('.uploaded-images');
+    const addImageBtn     = document.querySelector('.add-image-btn');
+    const uploadedImages  = document.querySelector('.uploaded-images');
+    const form            = document.querySelector('.product-form');
 
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -13,150 +10,22 @@ document.addEventListener('DOMContentLoaded', function () {
     fileInput.style.display = 'none';
     document.body.appendChild(fileInput);
 
-    let imageUrls = [];
+    let selectedFiles = [];   // nouvelles images
+    let deletedPaths  = [];   // chemins des images existantes supprimées
 
+    // === 1. Ajout de nouvelles images ===
     addImageBtn.addEventListener('click', () => fileInput.click());
 
     fileInput.addEventListener('change', () => {
         Array.from(fileInput.files).forEach(file => {
-            const imgURL = URL.createObjectURL(file);
-            imageUrls.push(imgURL);
-
-            const div = document.createElement('div');
-            div.className = 'form-group uploaded-image';
-
-            const img = document.createElement('img');
-            img.src = imgURL;
-            img.alt = 'Aperçu';
-
-            const del = document.createElement('span');
-            del.innerHTML = '<i class="fa-solid fa-trash"></i>';
-            del.onclick = () => {
-                div.remove();
-                URL.revokeObjectURL(imgURL);
-                imageUrls = imageUrls.filter(u => u !== imgURL);
-            };
-
-            div.appendChild(img);
-            div.appendChild(del);
-            uploadedImages.appendChild(div);
-        });
-
-        fileInput.value = '';
-    });
-
-
-    // ==================== 2. SOUS-CATÉGORIES (maintenant ça marche) ====================
-    const subCategories = {
-        'Électronique': ['Smartphones et montres connectées', 'Ordinateurs portables', 'Ordinateurs gaming', 'Tablettes', 'Casques et écouteurs', 'Télévisions et home cinéma', 'Appareils photo et caméras', 'Accessoires', 'Consoles de jeux et manette', 'Composants informatiques'],
-        'Vêtements': ['T-shirts et polos', 'Chemises', 'Pantalons', 'Robes et jupes', 'Vestes et manteaux', 'Pulls et sweats', 'Sous-vêtements et lingerie', 'Tenues de sport', 'Chaussures', 'Accessoires vestimentaires'],
-        'Électroménager': ['Réfrigérateurs et congélateurs', 'Machines à laver et sèche-linge', 'Fours et cuisinières', 'Micro-ondes', 'Mixeurs et robots de cuisine', 'Bouilloires et cafetières', 'Aspirateurs', 'Ventilateurs et climatiseurs', 'Fers à repasser', 'Petits appareils de soin'],
-        'Meubles': ['Canapés et fauteuils', 'Tables', 'Chaises et tabourets', 'Lits et cadres de lit', 'Armoires et penderies', 'Commodes et rangements', 'Bureaux et étagères', 'Meubles TV', 'Mobilier d’extérieur', 'Décoration intérieure'],
-        'Bijoux': ['Bagues', 'Colliers', 'Bracelets', 'Boucles d’oreilles', 'Montres', 'Bijoux pour hommes', 'Bijoux de mariage et fiançailles'],
-        'Cosmétiques': ['Maquillage', 'Soins du visage', 'Soins du corps', 'Parfums et eaux de toilette', 'Produits capillaires', 'Produits pour hommes', 'Coffrets cadeaux beauté']
-    };
-
-    const categorySelect = document.getElementById('category');
-    const subCategorySelect = document.getElementById('subCategory');
-
-    categorySelect.addEventListener('change', function () {
-        const selected = this.value;
-        subCategorySelect.innerHTML = '<option value="">Choisir une sous-catégorie</option>';
-
-        if (subCategories[selected]) {
-            subCategories[selected].forEach(sub => {
-                const opt = document.createElement('option');
-                opt.value = sub;
-                opt.textContent = sub;
-                subCategorySelect.appendChild(opt);
-            });
-        }
-    });
-
-
-        // ==================== 3. SOUMISSION DU FORMULAIRE ====================
-    const form = document.querySelector('.product-form');
-
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const formData = new FormData();
-
-        // Champs texte
-        formData.append('productName', document.getElementById('productName').value);
-        formData.append('brand', document.getElementById('brand').value);
-        formData.append('category', document.getElementById('category').value);
-        formData.append('subCategory', document.getElementById('subCategory').value);
-        formData.append('stock', document.getElementById('stock').value);
-        formData.append('price', document.getElementById('price').value);
-        formData.append('smallDescription', document.getElementById('smallDescription').value);
-        formData.append('description', document.getElementById('description').value);
-
-        // ENVOI CORRECT DES IMAGES MULTIPLES
-        for (let i = 0; i < fileInput.files.length; i++) {
-            formData.append('images[]', fileInput.files[i]);
-        }
-
-        fetch('/products', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => { throw new Error(text) });
-            }
-            return response.json();
-        })
-        .then(data => {
-            alert('Produit ajouté avec succès !');
-            form.reset();
-            document.querySelector('.uploaded-images').innerHTML = '';
-            fileInput.value = ''; // Important : vide l'input file
-        })
-        .catch(err => {
-            console.error(err);
-            alert('Erreur lors de l’ajout du produit');
-        });
-    });
-});*/
-// public/js/product-form.js – VERSION 100% FONCTIONNELLE (corrigée 2025)
-
-document.addEventListener('DOMContentLoaded', function () {
-
-    // ==================== 1. GESTION DES IMAGES ====================
-    const addImageBtn = document.querySelector('.add-image-btn');
-    const uploadedImages = document.querySelector('.uploaded-images');
-
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*';
-    fileInput.multiple = true;
-    fileInput.style.display = 'none';
-    document.body.appendChild(fileInput);
-
-    let selectedFiles = [];  // ← Tableau qui garde les vrais fichiers
-    let imageUrls = [];      // ← Pour l'affichage uniquement
-
-    addImageBtn.addEventListener('click', () => fileInput.click());
-
-    fileInput.addEventListener('change', () => {
-        Array.from(fileInput.files).forEach(file => {
-            // On garde le fichier réel
             selectedFiles.push(file);
 
-            // On crée l'aperçu
-            const imgURL = URL.createObjectURL(file);
-            imageUrls.push(imgURL);
-
             const div = document.createElement('div');
-            div.className = 'form-group uploaded-image';
+            div.className = 'form-group uploaded-image new-image';
 
             const img = document.createElement('img');
-            img.src = imgURL;
-            img.alt = 'Aperçu';
+            img.src = URL.createObjectURL(file);
+            img.alt = 'Nouvelle image';
 
             const del = document.createElement('span');
             del.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -165,12 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
             del.style.marginLeft = '10px';
 
             del.onclick = () => {
-                const index = selectedFiles.indexOf(file);
-                if (index > -1) selectedFiles.splice(index, 1);
-                if (imageUrls.includes(imgURL)) {
-                    URL.revokeObjectURL(imgURL);
-                    imageUrls = imageUrls.filter(u => u !== imgURL);
-                }
+                selectedFiles = selectedFiles.filter(f => f !== file);
+                URL.revokeObjectURL(img.src);
                 div.remove();
             };
 
@@ -178,12 +43,83 @@ document.addEventListener('DOMContentLoaded', function () {
             div.appendChild(del);
             uploadedImages.appendChild(div);
         });
-
-        // On vide l'input pour permettre de re-sélectionner les mêmes fichiers
         fileInput.value = '';
     });
 
-    // ==================== 2. SOUS-CATÉGORIES ====================
+    // === 2. Suppression d'une image EXISTANTE ===
+    document.querySelectorAll('.delete-old').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const container = this.closest('.existing-image');
+            const path = container.dataset.path;
+            if (path) deletedPaths.push(path);
+            container.remove();
+        });
+    });
+
+    // === 3. Soumission du formulaire ===
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Si c'est un nouvel ajout et aucune image → erreur
+        if (!form.dataset.productId && selectedFiles.length === 0) {
+            alert('Veuillez ajouter au moins une image');
+            return;
+        }
+
+        const formData = new FormData();
+        const action   = form.dataset.action;
+        const method   = form.dataset.method;
+
+        // Champs texte
+        formData.append('productName',       document.getElementById('productName').value);
+        formData.append('brand',             document.getElementById('brand').value);
+        formData.append('category',          document.getElementById('category').value);
+        formData.append('subCategory',       document.getElementById('subCategory').value);
+        formData.append('stock',             document.getElementById('stock').value);
+        formData.append('price',             document.getElementById('price').value);
+        formData.append('smallDescription', document.getElementById('smallDescription').value);
+        formData.append('description',       document.getElementById('description').value);
+
+        // Nouvelles images
+        selectedFiles.forEach(file => formData.append('images[]', file));
+
+        // Images supprimées (uniquement en modification)
+        deletedPaths.forEach(path => formData.append('deleted_images[]', path));
+
+        // Spoof PUT si nécessaire
+        if (method === 'PUT') {
+            formData.append('_method', 'PUT');
+        }
+
+        fetch(action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            }
+        })
+        .then(r => {
+            if (!r.ok) throw new Error('Erreur serveur');
+            return r.json();
+        })
+        .then(data => {
+            alert(data.message || 'Produit enregistré avec succès !');
+            if (!form.dataset.productId) {
+                form.reset();
+                uploadedImages.innerHTML = '';
+                selectedFiles = [];
+            } else {
+                location.reload(); // recharge pour voir les nouvelles images
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Erreur : ' + err.message);
+        });
+    });
+
+    
+        // ==================== GESTION DES SOUS-CATÉGORIES ====================
     const subCategories = {
         'Électronique': ['Smartphones et montres connectées', 'Ordinateurs portables', 'Ordinateurs gaming', 'Tablettes', 'Casques et écouteurs', 'Télévisions et home cinéma', 'Appareils photo et caméras', 'Accessoires', 'Consoles de jeux et manette', 'Composants informatiques'],
         'Vêtements': ['T-shirts et polos', 'Chemises', 'Pantalons', 'Robes et jupes', 'Vestes et manteaux', 'Pulls et sweats', 'Sous-vêtements et lingerie', 'Tenues de sport', 'Chaussures', 'Accessoires vestimentaires'],
@@ -193,76 +129,86 @@ document.addEventListener('DOMContentLoaded', function () {
         'Cosmétiques': ['Maquillage', 'Soins du visage', 'Soins du corps', 'Parfums et eaux de toilette', 'Produits capillaires', 'Produits pour hommes', 'Coffrets cadeaux beauté']
     };
 
-    const categorySelect = document.getElementById('category');
+    const categorySelect    = document.getElementById('category');
     const subCategorySelect = document.getElementById('subCategory');
 
-    categorySelect.addEventListener('change', function () {
-        const selected = this.value;
+    // Fonction pour remplir les sous-catégories
+    function fillSubCategories(selectedCategory) {
+        // Vide d'abord
         subCategorySelect.innerHTML = '<option value="">Choisir une sous-catégorie</option>';
 
-        if (subCategories[selected]) {
-            subCategories[selected].forEach(sub => {
-                const opt = document.createElement('option');
-                opt.value = sub;
-                opt.textContent = sub;
-                subCategorySelect.appendChild(opt);
-            });
-        }
+        if (!selectedCategory || !subCategories[selectedCategory]) return;
+
+        subCategories[selectedCategory].forEach(sub => {
+            const opt = document.createElement('option');
+            opt.value = sub;
+            opt.textContent = sub;
+            subCategorySelect.appendChild(opt);
+        });
+    }
+
+    // Quand on change de catégorie
+    categorySelect.addEventListener('change', function () {
+        fillSubCategories(this.value);
     });
 
-    // ==================== 3. SOUMISSION DU FORMULAIRE ====================
-    const form = document.querySelector('.product-form');
+    // === CHARGEMENT INITIAL EN MODE MODIFICATION ===
+    // On récupère les valeurs depuis les data-attributs du formulaire
+    const savedCategory    = form.dataset.savedCategory;
+    const savedSubCategory = form.dataset.savedSubcategory;
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
+    if (savedCategory && subCategories[savedCategory]) {
+        // 1. On remet la bonne catégorie
+        categorySelect.value = savedCategory;
 
-        if (selectedFiles.length === 0) {
-            alert('Veuillez ajouter au moins une image');
+        // 2. On remplit les sous-catégories correspondantes
+        fillSubCategories(savedCategory);
+
+        // 3. On pré-sélectionne la sous-catégorie sauvegardée
+        if (savedSubCategory) {
+            subCategorySelect.value = savedSubCategory;
+        }
+    }
+    //suppression d'un produit
+    document.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const productId = this.dataset.id;
+
+        // Confirmation stylisée (tu peux remplacer par un modal plus beau plus tard)
+        if (!confirm('Êtes-vous sûr de vouloir supprimer ce produit ?\nCette action est irréversible !')) {
             return;
         }
 
-        const formData = new FormData();
-
-        // Champs texte
-        formData.append('productName', document.getElementById('productName').value);
-        formData.append('brand', document.getElementById('brand').value);
-        formData.append('category', document.getElementById('category').value);
-        formData.append('subCategory', document.getElementById('subCategory').value);
-        formData.append('stock', document.getElementById('stock').value);
-        formData.append('price', document.getElementById('price').value);
-        formData.append('smallDescription', document.getElementById('smallDescription').value);
-        formData.append('description', document.getElementById('description').value);
-
-        // ENVOI DES VRAIS FICHIERS (grâce à selectedFiles)
-        selectedFiles.forEach(file => {
-            formData.append('images[]', file);
-        });
-
-        fetch('/products', {
-            method: 'POST',
-            body: formData,
+        fetch(`/products/${productId}`, {
+            method: 'DELETE',
             headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json',
             }
         })
         .then(response => {
             if (!response.ok) {
-                return response.text().then(text => { throw new Error(text) });
+                return response.json().then(err => { throw err; });
             }
             return response.json();
         })
         .then(data => {
-            alert('Produit ajouté avec succès !');
-            form.reset();
-            uploadedImages.innerHTML = '';
-            selectedFiles = [];
-            imageUrls.forEach(url => URL.revokeObjectURL(url));
-            imageUrls = [];
-            subCategorySelect.innerHTML = '<option value="">Choisir une sous-catégorie</option>';
+            alert(data.message || 'Produit supprimé avec succès !');
+
+            // Supprime la carte du DOM sans recharger la page
+            this.closest('.product-cart').remove();
+
+            // Optionnel : mettre à jour le compteur de résultats
+            const resultCount = document.querySelector('.result-active-filters');
+            if (resultCount) {
+                let count = parseInt(resultCount.textContent.match(/\d+/)[0]);
+                resultCount.innerHTML = `${count - 1} <span class="fonce">Résultats</span>`;
+            }
         })
         .catch(err => {
-            console.error('Erreur:', err);
-            alert('Erreur lors de l’ajout du produit : ' + err.message);
+            console.error(err);
+            alert(err.message || 'Erreur lors de la suppression');
         });
     });
+});
 });

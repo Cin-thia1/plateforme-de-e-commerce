@@ -51,4 +51,68 @@ class ProductController extends Controller
         $products = Product::latest()->get();
         return view('liste-produit', compact('products'));
     }
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('product-form', compact('product'));
+    }
+    public function update(Request $request, $id)
+{
+    $product = Product::findOrFail($id);
+
+    $product->update([
+        'name'              => $request->productName,
+        'brand'             => $request->brand,
+        'category'          => $request->category,
+        'sub_category'      => $request->subCategory,
+        'stock'             => $request->stock,
+        'price'             => $request->price,
+        'small_description' => $request->smallDescription,
+        'description'       => $request->description,
+    ]);
+
+    $currentImages = $product->images ?? []; // tableau de chemins
+
+    // 1. Supprimer les images que l'utilisateur a retirées
+    if ($request->has('deleted_images')) {
+        foreach ($request->deleted_images as $pathToDelete) {
+            Storage::delete('public/' . $pathToDelete);
+            $currentImages = array_diff($currentImages, [$pathToDelete]);
+        }
+    }
+
+    // 2. Ajouter les nouvelles images
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $file) {
+            $path = $file->store('products', 'public');
+            $currentImages[] = $path;
+        }
+    }
+
+    // 3. Sauvegarder le tableau final
+    $product->images = array_values($currentImages); 
+    $product->save();
+
+    return response()->json(['message' => 'Produit modifié avec succès !']);
+    }
+
+    //supprimer un produit
+    public function destroy($id)
+{
+    $product = Product::findOrFail($id);
+
+    // Supprimer les images du disque
+    if ($product->images && is_array($product->images)) {
+        foreach ($product->images as $imagePath) {
+            Storage::delete('public/' . $imagePath);
+        }
+    }
+
+    // Supprimer le produit de la base
+    $product->delete();
+
+    return response()->json([
+        'message' => 'Produit supprimé avec succès !'
+    ]);
+}
 }

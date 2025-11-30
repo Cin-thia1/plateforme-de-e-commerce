@@ -323,74 +323,104 @@
     </aside>
     <div class="main">
       <section class="account-setting">
-        <h2>Add A Product</h2>
-        <form class="product-form" method="POST" enctype="multipart/form-data">
-      @csrf
-
-    <div class="images-group">
-        <div class="form-group">
-            <button type="button" class="button primary-button add-image-btn">ADD AN IMAGE</button>
+        <!--<h2>Add A Product</h2>-->
+        <h2>{{ isset($product) ? 'Modify A Product' : 'Add A Product' }}</h2>
+        <form class="product-form"
+          data-product-id="{{ $product->id ?? '' }}"
+          data-action="{{ isset($product) ? route('product.update', $product->id) : route('products.store') }}"
+          data-method="{{ isset($product) ? 'PUT' : 'POST' }}"
+          data-saved-category="{{ old('category', $product->category ?? '') }}"
+          data-saved-subcategory="{{ old('subCategory', $product->sub_category ?? '') }}">
+        @csrf
+        @if(isset($product))
+          @method('PUT')
+        @endif
+        <div class="images-group">
+          <div class="form-group">
+            <button type="button" class="button primary-button add-image-btn">
+              {{ isset($product) ? 'ADD NEW IMAGES' : 'ADD AN IMAGE' }}
+            </button>
+          </div>
+          <div class="uploaded-images">
+            @if(isset($product) && is_array($product->images) && count($product->images) > 0)
+              @foreach($product->images as $img)
+                <div class="form-group uploaded-image existing-image" data-image-path="{{ $img }}">
+                  <img src="{{ asset($img) }}" alt="Image actuelle">
+                  <span class="delete-old" title="Supprimer cette image">
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+                </div>
+              @endforeach
+            @endif
+          </div>
         </div>
-        <div class="uploaded-images">
-            <!-- Uploaded images will appear here -->
-        </div>
-    </div>
 
     <div class="input-group">
         <div class="form-row">
             <div class="form-group full-width">
                 <label for="productName">Product Name</label>
-                <input type="text" id="productName" name="productName" placeholder="MSI Pulse GL66" value="{{ old('productName') }}">
+                <input type="text" id="productName" name="productName" placeholder="MSI Pulse GL66" value="{{ old('productName', $product->name ?? '') }}" required>
             </div>
             <div class="form-group full-width">
                 <label for="brand">Brand</label>
-                <input type="text" id="brand" name="brand" placeholder="MSI" value="{{ old('brand') }}">
+                <input type="text" id="brand" name="brand" placeholder="MSI" value="{{ old('brand', $product->brand ?? '') }}" required>
             </div>
         </div>
 
         <div class="form-row">
-            <div class="form-group full-width">
-                <label for="category">Category</label>
-                <select id="category" name="category">
-                    <option value="">Choisir une catégorie</option>
-                    <option value="Électronique">Électronique</option>
-                    <option value="Vêtements">Vêtements</option>
-                    <option value="Électroménager">Électroménager</option>
-                    <option value="Meubles">Meubles</option>
-                    <option value="Bijoux">Bijoux</option>
-                    <option value="Cosmétiques">Cosmétiques</option>
-                </select>
-            </div>
-            <div class="form-group full-width">
-                <label for="subCategory">Sub-category</label>
-                <select id="subCategory" name="subCategory">
-                    <option value="">Choisir une sous-catégorie</option>
-                </select>
-            </div>
-        </div>
+    <div class="form-group full-width">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+            <option value="">Choisir une catégorie</option>
+            @php
+                $categories = ['Électronique','Vêtements','Électroménager','Meubles','Bijoux','Cosmétiques'];
+                $selectedCategory = old('category', $product->category ?? '');
+            @endphp
+            @foreach($categories as $cat)
+                <option value="{{ $cat }}" {{ $selectedCategory === $cat ? 'selected' : '' }}>
+                    {{ $cat }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="form-group full-width">
+        <label for="subCategory">Sub-category</label>
+        <select id="subCategory" name="subCategory" required>
+            <option value="">Choisir une sous-catégorie</option>
+        </select>
+    </div>
+</div>
 
         <div class="form-row">
             <div class="form-group full-width">
                 <label for="stock">Stock</label>
-                <input type="number" id="stock" name="stock" placeholder="1207" value="{{ old('stock') }}">
+                <input type="number" id="stock" name="stock" min="0" required
+                                   value="{{ old('stock', $product->stock ?? '') }}"
+                                   placeholder="1207">
             </div>
             <div class="form-group full-width">
                 <label for="price">Price</label>
-                <input type="number" id="price" name="price" placeholder="1230000" value="{{ old('price') }}">
+                <input type="number" id="price" name="price" min="0" step="100" required
+                                   value="{{ old('price', $product->price ?? '') }}"
+                                   placeholder="80000">
             </div>
         </div>
 
         <div class="form-group">
             <label for="smallDescription">Small description</label>
-            <input type="text" id="smallDescription" name="smallDescription" placeholder="lorem ipsum" value="{{ old('smallDescription') }}">
+            <input type="text" id="smallDescription" name="smallDescription" required
+                               value="{{ old('smallDescription', $product->small_description ?? '') }}"
+                               placeholder="Lorem ipsum dolor sit amet.">
         </div>
 
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea id="description" name="description" placeholder="lorem ipsum">{{ old('description') }}</textarea>
+            <textarea id="description" name="description" rows="6" required
+                                  placeholder="Description détaillée du produit...">{{ old('description', $product->description ?? '') }}</textarea>
         </div>
 
-        <button type="submit" class="button primary-button save-changes">ADD</button>
+        <button type="submit" class="button primary-button save-changes">{{ isset($product) ? 'MODIFY' : 'ADD' }}</button>
     </div>
 </form>
 

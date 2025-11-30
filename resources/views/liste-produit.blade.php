@@ -145,14 +145,14 @@
         <section class="product" id="product" aria-label="Liste des produits">
           @foreach($products as $product)
     <article class="product-cart">
-        <div class="product_cart_badge badge-hot">HOT</div> <!-- Tu peux dynamiser le badge si besoin -->
+        <div class="product_cart_badge badge-hot">HOT</div> 
         <a href="#" class="product-cart_thumb">
             <img src="{{ $product->images[0] ?? 'assets/images/default.jpg' }}" alt="{{ $product->name }}" />
         </a>
         <div class="product-cart_body">
-            <div class="rating" aria-label="Note : 4 sur 5"> <!-- Dynamise si tu ajoutes un champ rating -->
+            <div class="rating" aria-label="Note : 4 sur 5"> 
                 <span class="stars" aria-hidden="true">★★★★☆</span>
-                <span class="count">(24)</span> <!-- Dynamise si besoin -->
+                <span class="count">(24)</span> 
             </div>
             <span>{{ $product->name }}</span>
             <div class="price">
@@ -164,6 +164,10 @@
             <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
             <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
             <button aria-label="Ajouter au panier" onclick="saveToNavigate('{{ $product->name }}', {{ $product->price }}, 1)"><i class="fa-solid fa-cart-shopping"></i></button>
+            <!--<a href="{{ route('product.edit', $product->id) }}" class="btn-edit">Modifier</a>-->
+            <!--<button type="button" class="btn-delete" data-id="{{ $product->id }}" title="Supp">-->
+              <i class="fa-solid fa-trash"></i>
+            </button>
         </div>
     </article>
 @endforeach
