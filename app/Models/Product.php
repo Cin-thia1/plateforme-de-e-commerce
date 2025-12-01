@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Product extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'name',
         'brand',
@@ -20,12 +20,20 @@ class Product extends Model
         'description',
         'image_path'
     ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
+
     public function subCategory()
     {
         return $this->belongsTo(SubCategory::class);
+    }
+
+    // AJOUTER CETTE RELATION
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

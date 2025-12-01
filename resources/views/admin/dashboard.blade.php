@@ -36,19 +36,23 @@
     <!-- Stats Section -->
     <div class="admin-stats">
       <div class="stat-box blue">
-        <div class="stat-number">{{ $totalOrders ?? 0 }}</div>
+        <div class="stat-number">{{ $totalOrders }}</div>
         <div class="stat-label">Commandes totales</div>
       </div>
-      <div class="stat-box">
-        <div class="stat-number">{{ $pendingOrders ?? 0 }}</div>
+      <div class="stat-box orange">
+        <div class="stat-number">{{ $pendingOrders }}</div>
         <div class="stat-label">En attente</div>
       </div>
       <div class="stat-box green">
-        <div class="stat-number">{{ $totalUsers ?? 0 }}</div>
+        <div class="stat-number">{{ $deliveredOrders }}</div>
+        <div class="stat-label">Livrées</div>
+      </div>
+      <div class="stat-box purple">
+        <div class="stat-number">{{ $totalUsers }}</div>
         <div class="stat-label">Utilisateurs</div>
       </div>
       <div class="stat-box red">
-        <div class="stat-number">{{ number_format($revenue ?? 0, 0, ',', ' ') }}</div>
+        <div class="stat-number">{{ number_format($revenue, 0, ',', ' ') }}</div>
         <div class="stat-label">Revenu FCFA</div>
       </div>
     </div>
@@ -82,20 +86,24 @@
       <div class="admin-card">
         <h3>Statistiques rapides</h3>
         <div class="info-item">
-          <span class="info-label">Commandes ce mois</span>
-          <span class="info-value">{{ $totalOrders ?? 0 }}</span>
+          <span class="info-label">Commandes totales</span>
+          <span class="info-value">{{ $totalOrders }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Commandes en attente</span>
+          <span class="info-value">{{ $pendingOrders }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Commandes livrées</span>
+          <span class="info-value">{{ $deliveredOrders }}</span>
         </div>
         <div class="info-item">
           <span class="info-label">Clients actifs</span>
-          <span class="info-value">{{ $totalUsers ?? 0 }}</span>
-        </div>
-        <div class="info-item">
-          <span class="info-label">En attente de traitement</span>
-          <span class="info-value">{{ $pendingOrders ?? 0 }}</span>
+          <span class="info-value">{{ $totalUsers }}</span>
         </div>
         <div class="info-item">
           <span class="info-label">Revenus totaux</span>
-          <span class="info-value">{{ number_format($revenue ?? 0, 0, ',', ' ') }} FCFA</span>
+          <span class="info-value">{{ number_format($revenue, 0, ',', ' ') }} FCFA</span>
         </div>
       </div>
     </div>
@@ -114,34 +122,27 @@
           </tr>
         </thead>
         <tbody>
+          @forelse($recentOrders as $orderItem)
           <tr>
-            <td>#12345</td>
-            <td>Kevin Gilbert</td>
-            <td>45,500 FCFA</td>
-            <td><span class="badge badge-pending">En attente</span></td>
-            <td>24/11/2025</td>
+            <td>#{{ $orderItem->order_id }}</td>
+            <td>{{ $orderItem->order->user->name ?? 'N/A' }}</td>
+            <td>{{ number_format(($orderItem->product->price ?? 0) * $orderItem->quantite, 0, ',', ' ') }} FCFA</td>
+            <td>
+              @if($orderItem->type === 'en attente')
+                <span class="badge badge-pending">En attente</span>
+              @elseif($orderItem->type === 'livree')
+                <span class="badge badge-completed">Livrée</span>
+              @else
+                <span class="badge badge-processing">En cours</span>
+              @endif
+            </td>
+            <td>{{ $orderItem->created_at->format('d/m/Y') }}</td>
           </tr>
+          @empty
           <tr>
-            <td>#12344</td>
-            <td>Marie Dupont</td>
-            <td>78,200 FCFA</td>
-            <td><span class="badge badge-completed">Complétée</span></td>
-            <td>23/11/2025</td>
+            <td colspan="5" style="text-align: center; padding: 20px; color: #999;">Aucune commande disponible</td>
           </tr>
-          <tr>
-            <td>#12343</td>
-            <td>Jean Martin</td>
-            <td>32,100 FCFA</td>
-            <td><span class="badge badge-completed">Complétée</span></td>
-            <td>22/11/2025</td>
-          </tr>
-          <tr>
-            <td>#12342</td>
-            <td>Anne Leclerc</td>
-            <td>156,750 FCFA</td>
-            <td><span class="badge badge-processing">En cours</span></td>
-            <td>21/11/2025</td>
-          </tr>
+          @endforelse
         </tbody>
       </table>
     </div>
