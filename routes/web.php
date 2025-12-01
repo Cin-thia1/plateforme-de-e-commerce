@@ -18,9 +18,9 @@ Route::get('/about-us', function () {
     return view('about-us');
 });
 
-Route::get('/liste-produit', function () {
+/*Route::get('/liste-produit', function () {
     return view('liste-produit');
-});
+});*/
 
 Route::get('/faq', function () {
     return view('faq');
@@ -34,15 +34,23 @@ Route::get('/page-favoris', function () {
     return view('page-favoris');
 });
 
-Route::get('/page-favoris', function () {
-    return view('page-favoris');
-});
 
 Route::get('/product-form', function () {
     return view('product-form');
 });
-Route::get('/',[ProductController::class, 'index'])->name('home');
-Route::resource('products', ProductController::class);
+
+// ajouter un produit
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/liste-produit', [ProductController::class, 'index'])->name('products.index');
+
+//modifier un produit
+Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
+
+//supprimer un produit
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

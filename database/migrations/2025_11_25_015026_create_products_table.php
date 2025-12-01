@@ -4,31 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('brand')->nullable();
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('sub_category_id')->constrained()->onDelete('cascade');
-            $table->integer('stock')->default(0);
+            $table->string('brand');
+            $table->string('category');
+            $table->string('sub_category');
+            $table->integer('stock');
             $table->decimal('price', 10, 2);
-            $table->string('small_description')->nullable();
-            $table->text('description')->nullable();
-            $table->string('image_path')->nullable();
+            $table->string('small_description');
+            $table->text('description');
+            $table->json('images')->nullable(); 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('products');

@@ -3,112 +3,116 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
-use App\Models\Category;
-use App\Models\SubCategory;
-use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-  
-    public function index()
-    {
-        $products = Product::with(['category', 'subcategory'])
-            ->latest()
-            ->paginate(12);
-
-        return view('liste-produit', compact('products'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $categories = Category::with('subcategories')->get();
-        return view('product-form', compact('categories'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name'           => 'required|string|max:255',
-            'brand'          => 'nullable|string|max:255',
-            'category_id'    => 'required|exists:categories,id',
-            'subcategory_id' => 'required|exists:subcategories,id',
-            'stock'          => 'required|integer|min:0',
-            'price'          => 'required|decimal|min:0',
-            'small_description' => 'nullable|string|max:255',
-            'description'       => 'nullable|string',
-            'image'             => 'nullable|image|max:2048',
-        ]);
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products', 'public');
-            $data['image_path'] = $path;
-        }
-
-        Product::create($data);
-
-        return redirect()->route('products.index')
-            ->with('success', 'Produit ajouté avec succès.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        $categories = Category::with('subcategories')->get();
-        return view('product-form-edit', compact('product', 'categories'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Product $product)
-    {
-        $data = $request->validate([
-            'name'           => 'required|string|max:255',
-            'brand'          => 'nullable|string|max:255',
-            'category_id'    => 'required|exists:categories,id',
-            'subcategory_id' => 'required|exists:subcategories,id',
-            'stock'          => 'required|integer|min:0',
-            'price'          => 'required|integer|min:0',
-            'small_description' => 'nullable|string|max:255',
-            'description'       => 'nullable|string',
-            'image'             => 'nullable|image|max:2048',
+        $request->validate([
+            'productName'        => 'required|string|max:255',
+            'brand'              => 'required|string|max:255',
+            'category'           => 'required|string|max:255',
+            'subCategory'        => 'required|string|max:255',
+            'stock'              => 'required|integer|min:0',
+            'price'              => 'required|numeric|min:0',
+            'smallDescription'   => 'required|string|max:255',
+            'description'        => 'required|string',
+            'images'             => 'required|array|min:1',
+            'images.*'           => 'image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products', 'public');
-            $data['image_path'] = $path;
+        $images = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('products', 'public');
+                $images[] = Storage::url($path);
+            }
         }
 
-        $product->update($data);
+        Product::create([
+            'name'              => $request->productName,
+            'brand'             => $request->brand,
+            'category'          => $request->category,
+            'sub_category'      => $request->subCategory,
+            'stock'             => $request->stock,
+            'price'             => $request->price,
+            'small_description' => $request->smallDescription,
+            'description'       => $request->description,
+            'images'            => $images,
+        ]);
 
-        return redirect()->route('products.index')
-            ->with('success', 'Produit modifié avec succès.');
+        return response()->json(['message' => 'Produit ajouté avec succès !'], 201);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product)
+    public function index()
     {
-        $product->delete();
-
-        return redirect()->route('products.index')
-            ->with('success', 'Produit supprimé avec succès.');
+        $products = Product::latest()->get();
+        return view('liste-produit', compact('products'));
     }
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('product-form', compact('product'));
+    }
+    public function update(Request $request, $id)
+{
+    $product = Product::findOrFail($id);
+
+    $product->update([
+        'name'              => $request->productName,
+        'brand'             => $request->brand,
+        'category'          => $request->category,
+        'sub_category'      => $request->subCategory,
+        'stock'             => $request->stock,
+        'price'             => $request->price,
+        'small_description' => $request->smallDescription,
+        'description'       => $request->description,
+    ]);
+
+    $currentImages = $product->images ?? []; // tableau de chemins
+
+    // 1. Supprimer les images que l'utilisateur a retirées
+    if ($request->has('deleted_images')) {
+        foreach ($request->deleted_images as $pathToDelete) {
+            Storage::delete('public/' . $pathToDelete);
+            $currentImages = array_diff($currentImages, [$pathToDelete]);
+        }
+    }
+
+    // 2. Ajouter les nouvelles images
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $file) {
+            $path = $file->store('products', 'public');
+            $currentImages[] = $path;
+        }
+    }
+
+    // 3. Sauvegarder le tableau final
+    $product->images = array_values($currentImages); 
+    $product->save();
+
+    return response()->json(['message' => 'Produit modifié avec succès !']);
+    }
+
+    //supprimer un produit
+    public function destroy($id)
+{
+    $product = Product::findOrFail($id);
+
+    // Supprimer les images du disque
+    if ($product->images && is_array($product->images)) {
+        foreach ($product->images as $imagePath) {
+            Storage::delete('public/' . $imagePath);
+        }
+    }
+
+    // Supprimer le produit de la base
+    $product->delete();
+
+    return response()->json([
+        'message' => 'Produit supprimé avec succès !'
+    ]);
+}
 }
