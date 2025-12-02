@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Mon Panier d'Achat</title>
   <!-- import propre a cette page-->
   <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
@@ -12,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset('css/header-footer.css') }}">
 </head>
 
-<body>
+<body onload="loadCartProducts()">
   <!--header-->
   @include('shared.header')
 
@@ -23,7 +24,12 @@
       <section class="shopping-cart">
         <h2>Votre Panier</h2>
 
-        <div class="cart-table-container">
+        <div id="cart-container">
+          <p><!-- Les articles du panier seront insérés ici dynamiquement --></p>
+        </div>
+
+
+        <!--<div class="cart-table-container">
           <table class="cart-table" id="panier-table">
             <thead>
               <tr>
@@ -35,10 +41,10 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Les lignes du panier seront insérées ici dynamiquement -->
+              
             </tbody>
           </table>
-        </div>
+        </div>-->
 
         <div class="cart-actions">
           <button class="btn btn-shop">← RETOUR À LA BOUTIQUE</button>
@@ -71,7 +77,7 @@
             <span class="value total-final"></span>
           </div>
 
-          <button class="btn btn-checkout">PROCÉDER AU PAIEMENT →</button>
+          <button onclick="window.location.href='/commande'" class="btn btn-checkout">PROCÉDER AU PAIEMENT →</button>
         </div>
 
         <div class="coupon-code">
@@ -88,9 +94,9 @@
   </div>
 
   <!-- footer-->
-  @include('shared.header')
+  @include('shared.footer')
 
-  <script src="{{ asset('js/panier.js') }}" defer></script>
+  <script src="{{ asset('js/savePanier.js') }}" defer></script>
   
 </body>
 </html>

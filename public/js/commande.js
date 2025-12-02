@@ -1,4 +1,127 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", () => {
+    loadOrderSummary();
+    setupPaymentSwitch();
+    handleOrderSubmit();
+});
+
+// ========== LOCALSTORAGE ==========
+
+function getCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+// ========== AFFICHER RECAP ==========
+
+function loadOrderSummary() {
+    let cart = getCart();
+    let container = document.querySelector(".order-list");
+    let subtotal = 0;
+
+    container.innerHTML = "";
+
+    cart.forEach(item => {
+        subtotal += item.price * item.qty;
+
+        container.innerHTML += `
+            <div class="item">
+                <div class="thumb"><img src="${item.image}" width="50"></div>
+                <div style="flex: 1">
+                    <div class="item-title">${item.name}</div>
+                    <div class="item-meta">${item.qty} × ${item.price} FCFA</div>
+                </div>
+            </div>
+        `;
+    });
+
+    document.querySelector(".row:nth-child(1) span:last-child").textContent = subtotal + " FCFA";
+    document.querySelector(".total span:last-child").textContent = subtotal + " FCFA";
+
+    // Retourner le total pour l'envoi
+    return subtotal;
+}
+
+// ========== SWITCH FORM PAIEMENT ==========
+
+function setupPaymentSwitch() {
+    const radios = document.querySelectorAll("input[name=payment]");
+    const payForms = document.querySelectorAll(".pay-form");
+
+    radios.forEach(radio => {
+        radio.addEventListener("change", () => {
+            payForms.forEach(form => {
+                form.classList.add("hidden");
+            });
+
+            const selected = document.querySelector(`.pay-form[data-method="${radio.value}"]`);
+            if (selected) {
+                selected.classList.remove("hidden");
+            }
+        });
+    });
+}
+
+// ========== ENVOI DE LA COMMANDE ==========
+
+function handleOrderSubmit() {
+    document.querySelector("#place-order").addEventListener("click", async () => {
+
+        let cart = getCart();
+        if (cart.length === 0) {
+            alert("Votre panier est vide.");
+            return;
+        }
+
+        let form = document.querySelector("#checkout-form");
+
+        let customer = {
+            name: form.fname.value +" " + form.lname.value,
+            company: form.company.value,
+            address: form.address.value,
+            country: form.country.value,
+            region: form.region.value,
+            city: form.city.value,
+            zip: form.zip.value,
+            email: form.email.value,
+            phone: form.phone.value,
+            notes: document.querySelector("#notes").value || "",
+        };
+
+        let payment = document.querySelector("input[name=payment]:checked").value;
+
+        let total = loadOrderSummary(); // recalcul
+
+        // Préparation data pour Laravel
+        let payload = {
+            customer: customer,
+            payment_method: payment,
+            items: cart,
+            total: total
+        };
+
+        // Appel AJAX vers Laravel
+        let response = await fetch("/checkout", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+            },
+            body: JSON.stringify(payload)
+        });
+
+        let result = await response.json();
+
+        if (result.status === "success") {
+            localStorage.removeItem("cart");
+            window.location.href = `/commande/success/${result.order_id}`;
+        }
+    });
+}
+
+
+
+
+
+/*document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('checkout-form');
   const paymentRadios = Array.from(document.querySelectorAll('input[name="payment"]'));
   const payForms = Array.from(document.querySelectorAll('.pay-form'));
@@ -191,3 +314,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+*/

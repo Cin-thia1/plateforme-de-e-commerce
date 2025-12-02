@@ -163,7 +163,7 @@
         <div class="product-cart_actions">
             <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
             <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
-            <button aria-label="Ajouter au panier" onclick="saveToNavigate('{{ $product->name }}', {{ $product->price }}, 1)"><i class="fa-solid fa-cart-shopping"></i></button>
+            <button aria-label="Ajouter au panier" onclick="addToCart({{ $product->id }})"><i class="fa-solid fa-cart-shopping"></i></button>
             <!--<a href="{{ route('product.edit', $product->id) }}" class="btn-edit">Modifier</a>-->
             <!--<button type="button" class="btn-delete" data-id="{{ $product->id }}" title="Supp">-->
               <i class="fa-solid fa-trash"></i>

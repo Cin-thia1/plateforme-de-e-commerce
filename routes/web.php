@@ -30,6 +30,10 @@ Route::get('/panier', function () {
     return view('panier');
 });
 
+Route::get('/commande', function () {
+    return view('commande');
+});
+
 Route::get('/page-favoris', function () {
     return view('page-favoris');
 });
@@ -71,3 +75,7 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
+
+use App\Http\Controllers\CartController;
+
+Route::post('/cart/products', [CartController::class, 'getProducts'])->name('cart.products');
