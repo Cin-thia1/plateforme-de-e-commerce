@@ -12,7 +12,15 @@ class Order extends Model
     protected $fillable = [
         'date',
         'livree',
-        'client_id'
+        'client_id',
+        'address',
+        'country',
+        'region',
+        'city',
+        'zip',
+        'payment_method',
+        'notes',
+        'total',
     ];
 
     protected $casts = [

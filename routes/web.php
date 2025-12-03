@@ -79,3 +79,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 use App\Http\Controllers\CartController;
 
 Route::post('/cart/products', [CartController::class, 'getProducts'])->name('cart.products');
+
+use App\Http\Controllers\CheckoutController;
+Route::post('/checkout/products', [CheckoutController::class, 'getProducts']);
+
+use App\Http\Controllers\OrderController;
+Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
+
+

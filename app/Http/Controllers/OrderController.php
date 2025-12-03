@@ -2,68 +2,103 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\User;
+use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
-    public function store(Request $request)
+    public function placeOrder(Request $request)
     {
-        $data = $request->validate([
-            'customer' => 'required|array',
-            'payment_method' => 'required|string',
-            'items' => 'required|array',
-            'total' => 'required|numeric'
-        ]);
 
-        $customer = $data['customer'];
+        try {
+            // 1️ Validation
+            $validator = Validator::make($request->all(), [
+                'billing.name' => 'required|string',
+                'billing.email' => 'required|email',
+                'billing.password' => 'nullable|string|min:4',
 
-        // Vérifier si l'utilisateur existe déjà
-        $user = \App\Models\User::firstOrCreate(
-            ['email' => $customer['email']],
-            [
-                'name' => $customer['name'],
-                'phone' => $customer['phone'],
-                //'password' => bcrypt('12345678'), // si tu veux lui générer un compte
-            ]
-        );
+                'billing.address' => 'required|string',
+                'billing.country' => 'required|string',
+                'billing.region' => 'required|string',
+                'billing.city' => 'required|string',
+                'billing.zip' => 'nullable|string',
+                'billing.notes' => 'nullable|string',
 
-        // S'il existe déjà, on MAJ le nom / numéro (facultatif mais propre)
-        $user->update([
-            'name' => $customer['name'],
-            'phone' => $customer['phone']
-        ]);
+                'payment_method' => 'required|array|string',
+                'payment_method.method' => 'required|string',
 
-        // Créer la commande
+                'items' => 'required|array|min:1',
+                'items.*.id' => 'required|integer',
+                'items.*.qty' => 'required|integer|min:1',
+                //'total' => 'required|numeric|min:0',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+        
+        $billing = $request->billing;
+
+        // 2️ Vérifier/Créer l’utilisateur
+        $user = User::where('email', $billing['email'])->first();
+
+        if (!$user) {
+            $user = User::create([
+                'name' => $billing['name'],
+                'email' => $billing['email'],
+                'password' => isset($billing['password'])
+                    ? Hash::make($billing['password'])
+                    : Hash::make('client1234'),
+            ]);
+        }
+
+        // 3️ Création de la commande
+
+
+
+        $total = 0;
+
+        foreach ($request->items as $item) {
+            $product = Product::find($item['id']);
+            $total += $product->price * $item['qty'];
+        }
         $order = Order::create([
-            'user_id' => $user->id,
-            'address' => $customer['address'],
-            'country' => $customer['country'],
-            'region' => $customer['region'],
-            'city' => $customer['city'],
-            'zip' => $customer['zip'],
-            'payment_method' => $data['payment_method'],
-            'notes' => $customer['notes'] ?? null,
-            'total' => $data['total'],
+            'date'           => now(),
+            //'livree'         => false,
+            'client_id'      => $user->id,
+            'address'        => $billing['address'],
+            'country'        => $billing['country'],
+            'region'         => $billing['region'],
+            'city'           => $billing['city'],
+            'zip'            => $billing['zip'] ?? null,
+            'payment_method' => json_encode($request->payment_method['method'] ?? 'unknown'),
+            'notes'          => $billing['notes'] ?? null,
+            'total'          => $total,
         ]);
 
-        // Insérer les items
-        foreach ($data['items'] as $item) {
+        // 4️⃣ Enregistrer les items
+        foreach ($request->items as $item) {
             OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item['id'],
-                'quantity' => $item['qty'],
+                'order_id'  => $order->id,
+                'product_id'=> $item['id'],
+                'quantite'  => $item['qty']
             ]);
         }
 
         return response()->json([
-            'status' => 'success',
-            'order_id' => $order->id,
+            'success' => true,
+            'message' => 'Commande enregistrée avec succès.',
+            'order_id' => $order->id
         ]);
     }
-
 }
-
-?>

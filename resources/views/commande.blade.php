@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <title>Finaliser la commande</title>
   <!-- Import propre a cette page-->
   <link rel="stylesheet" href="{{ asset('css/commande.css') }}" />
@@ -96,7 +98,7 @@
               <input type="radio" name="payment" value="cod">
               <span class="label">
                 <span class="logo">
-                  <img src="assets/img/payments/cash.svg" alt="" aria-hidden="true">
+                  <img src="{{ asset('assets/img/payments/cash.svg') }}" alt="" aria-hidden="true">
                 </span>
                 Cash à la livraison
               </span>
@@ -106,7 +108,7 @@
               <input type="radio" name="payment" value="orange">
               <span class="label">
                 <span class="logo wide">
-                  <img src="./assets/images/orange.jpg" alt="" aria-hidden="true">
+                  <img src="{{ asset('assets/images/orange.jpg') }}" alt="" aria-hidden="true">
                 </span>
                 Orange Money
               </span>
@@ -116,7 +118,7 @@
               <input type="radio" name="payment" value="mtn">
               <span class="label">
                 <span class="logo wide">
-                  <img src="./assets/images/mtn.jpg" alt="" aria-hidden="true">
+                  <img src="{{ asset('assets/images/mtn.jpg') }}" alt="" aria-hidden="true">
                 </span>
                 MTN Mobile Money
               </span>
@@ -126,7 +128,7 @@
               <input type="radio" name="payment" value="card" checked>
               <span class="label">
                 <span class="logo">
-                  <img src="assets/img/payments/card.svg" alt="" aria-hidden="true">
+                  <img src="{{ asset('assets/img/payments/card.svg') }}" alt="" aria-hidden="true">
                 </span>
                 Carte bancaire
               </span>
@@ -228,7 +230,7 @@
     <aside class="order-summary card section" aria-labelledby="heading-summary">
       <h2 id="heading-summary">Récapitulatif</h2>
       <div class="order-list">
-        <div class="item">
+        <!--<div class="item">
           <div class="thumb">📷</div>
           <div style="flex:1">
             <div class="item-title">Canon EOS 1500D DSLR Camera Body</div>
@@ -241,15 +243,15 @@
             <div class="item-title">Casque filaire over-ear avec micro</div>
             <div class="item-meta">3 × 25000 fcfa</div>
           </div>
-        </div>
+        </div>-->
       </div>
 
       <div class="section" style="padding:18px 0 0">
-        <div class="row"><span>Sous-total</span><span>32000 fcfa</span></div>
+        <div class="row"><span>Sous-total</span><span id="subtotal">32000 fcfa</span></div>
         <div class="row"><span>Livraison</span><span>Offerte</span></div>
         <div class="row"><span>Remise</span><span>-1000fcfa</span></div>
         <div class="row"><span>Taxes</span><span></span></div>
-        <div class="row total" style="margin-top:14px"><span>Total</span><span></span></div>
+        <div class="row total" style="margin-top:14px"><span>Total</span><span id="total"></span></div>
 
         <!-- Bouton commande -->
         <button id="place-order" class="btn" type="button" aria-label="Placer la commande">

@@ -1,123 +1,157 @@
-document.addEventListener("DOMContentLoaded", () => {
-    loadOrderSummary();
-    setupPaymentSwitch();
-    handleOrderSubmit();
-});
+document.addEventListener("DOMContentLoaded", async () => {
 
-// ========== LOCALSTORAGE ==========
-
-function getCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-// ========== AFFICHER RECAP ==========
-
-function loadOrderSummary() {
-    let cart = getCart();
-    let container = document.querySelector(".order-list");
-    let subtotal = 0;
-
-    container.innerHTML = "";
-
-    cart.forEach(item => {
-        subtotal += item.price * item.qty;
-
-        container.innerHTML += `
-            <div class="item">
-                <div class="thumb"><img src="${item.image}" width="50"></div>
-                <div style="flex: 1">
-                    <div class="item-title">${item.name}</div>
-                    <div class="item-meta">${item.qty} × ${item.price} FCFA</div>
-                </div>
-            </div>
-        `;
-    });
-
-    document.querySelector(".row:nth-child(1) span:last-child").textContent = subtotal + " FCFA";
-    document.querySelector(".total span:last-child").textContent = subtotal + " FCFA";
-
-    // Retourner le total pour l'envoi
-    return subtotal;
-}
-
-// ========== SWITCH FORM PAIEMENT ==========
-
-function setupPaymentSwitch() {
-    const radios = document.querySelectorAll("input[name=payment]");
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const statusBox = document.getElementById("order-status");
+    const placeBtn = document.getElementById("place-order");
     const payForms = document.querySelectorAll(".pay-form");
 
-    radios.forEach(radio => {
-        radio.addEventListener("change", () => {
-            payForms.forEach(form => {
-                form.classList.add("hidden");
-            });
+    // ============================================================
+    // 1. Récupérer les produits depuis Laravel
+    // ============================================================
+    async function loadProducts() {
+        if (cart.length === 0) return [];
 
-            const selected = document.querySelector(`.pay-form[data-method="${radio.value}"]`);
-            if (selected) {
-                selected.classList.remove("hidden");
-            }
-        });
-    });
-}
+        const token = document.querySelector('meta[name="csrf-token"]').content;
 
-// ========== ENVOI DE LA COMMANDE ==========
-
-function handleOrderSubmit() {
-    document.querySelector("#place-order").addEventListener("click", async () => {
-
-        let cart = getCart();
-        if (cart.length === 0) {
-            alert("Votre panier est vide.");
-            return;
-        }
-
-        let form = document.querySelector("#checkout-form");
-
-        let customer = {
-            name: form.fname.value +" " + form.lname.value,
-            company: form.company.value,
-            address: form.address.value,
-            country: form.country.value,
-            region: form.region.value,
-            city: form.city.value,
-            zip: form.zip.value,
-            email: form.email.value,
-            phone: form.phone.value,
-            notes: document.querySelector("#notes").value || "",
-        };
-
-        let payment = document.querySelector("input[name=payment]:checked").value;
-
-        let total = loadOrderSummary(); // recalcul
-
-        // Préparation data pour Laravel
-        let payload = {
-            customer: customer,
-            payment_method: payment,
-            items: cart,
-            total: total
-        };
-
-        // Appel AJAX vers Laravel
-        let response = await fetch("/checkout", {
+        const response = await fetch("/checkout/products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                "X-CSRF-TOKEN": token
+            },
+            body: JSON.stringify({ items: cart })
+        });
+
+        const data = await response.json();
+        return data.products || [];
+    }
+
+    // ============================================================
+    // 2. Afficher le récap
+    // ============================================================
+    function renderSummary(products) {
+        const list = document.querySelector(".order-list");
+        list.innerHTML = "";
+
+        let subtotal = 0;
+
+        products.forEach(p => {
+            subtotal += p.price * p.qty;
+            list.innerHTML += `
+                <div class="item">
+                    <img src="${p.image}" class="w-16 h-16 rounded">
+                    <div>
+                        <div>${p.name} - ${p.small_description}</div>
+                        <div>${p.qty} × ${p.price} fcfa</div>
+                    </div>
+                </div>
+                <hr>
+            `;
+        });
+
+        document.getElementById("subtotal").textContent = subtotal + " fcfa";
+        document.getElementById("total").textContent = subtotal + " fcfa";
+    }
+
+    const products = await loadProducts();
+    renderSummary(products);
+
+    // ============================================================
+    // 3. Gestion affichage des modes de paiement
+    // ============================================================
+    function togglePayForms(method) {
+        payForms.forEach(pf => {
+            const active = pf.dataset.method === method;
+            pf.classList.toggle("hidden", !active);
+            pf.setAttribute("aria-hidden", !active);
+
+            [...pf.querySelectorAll("input")].forEach(input => {
+                active ? input.setAttribute("required", "required")
+                       : input.removeAttribute("required");
+            });
+        });
+    }
+
+    document.querySelectorAll('input[name="payment"]').forEach(r => {
+        r.addEventListener("change", () => togglePayForms(r.value));
+    });
+
+    togglePayForms(document.querySelector("input[name='payment']:checked").value);
+
+    // ============================================================
+    // 4. Collecte des infos
+    // ============================================================
+    function collectBilling() {
+        return {
+            name: document.getElementById("fname").value.trim()
+                + " " + document.getElementById("lname").value.trim(),
+            address: document.getElementById("address").value.trim(),
+            country: document.getElementById("country").value.trim(),
+            region: document.getElementById("region").value.trim(),
+            city: document.getElementById("city").value.trim(),
+            zip: document.getElementById("zip").value.trim(),
+            phone: document.getElementById("phone").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            notes: document.getElementById("notes")?.value.trim() || ""
+        };
+    }
+
+    function collectPayment() {
+        const method = document.querySelector("input[name='payment']:checked").value;
+        const form = document.querySelector(`.pay-form[data-method="${method}"]`);
+
+        const details = {};
+        if (form) {
+            form.querySelectorAll("input").forEach(i => {
+                details[i.name] = i.value;
+            });
+        }
+
+        return { method, details };
+    }
+
+    function validateForm() {
+        return document.getElementById("checkout-form").reportValidity();
+    }
+
+    // ============================================================
+    // 5. Envoyer la commande
+    // ============================================================
+    placeBtn.addEventListener("click", async () => {
+        if (!validateForm()) return;
+
+        const payload = {
+            billing: collectBilling(),
+            payment_method: collectPayment(),
+            items: cart
+        };
+
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+
+        const response = await fetch("/order/place", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": token
             },
             body: JSON.stringify(payload)
         });
 
-        let result = await response.json();
+        const data = await response.json();
 
-        if (result.status === "success") {
+        if (data.success) {
             localStorage.removeItem("cart");
-            window.location.href = `/commande/success/${result.order_id}`;
+            statusBox.classList.remove("hidden");
+            statusBox.textContent = "Commande validée ! Redirection…";
+            alert("Commande passée avec succès !");
+            setTimeout(() => window.location.href = "/orders/history", 900);
+        } else {
+            statusBox.classList.remove("hidden");
+            statusBox.textContent = "Erreur lors de la commande.";
+            alert("Erreur lors de la passation de la commande : " + (data.message || "Erreur inconnue"));
         }
     });
-}
-
-
+});
 
 
 
