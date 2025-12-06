@@ -34,11 +34,15 @@
         <a class="icon-btn" href="/panier" title="Panier"><i class="fas fa-shopping-cart"></i><span
             class="badge">2</span></a>
         <a class="icon-btn" href="/page-favoris" title="Favoris"><i class="fas fa-heart"></i></a>
-        <a class="icon-btn" href="/login" title="Mon compte"><i class="fas fa-user"></i></a>
-    @if(auth()->check() && auth()->user()->type === 'admin')
+    @if(auth()->check())
+        <a class="icon-btn" href="/settings" title="Settings"><i class="fas fa-user"></i></a>
+        @if(auth()->user()->role === 'admin')
         <a class="icon-btn" href="{{ route('admin.dashboard') }}" title="Dashboard Admin">
             <i class="fas fa-cogs"></i>
         </a>
+        @endif
+    @else
+        <a class="icon-btn" href="/login" title="Mon compte"><i class="fas fa-user"></i></a>
     @endif
       </div>
     </div>

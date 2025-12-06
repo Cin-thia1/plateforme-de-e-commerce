@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <link rel="stylesheet" href="{{ asset('css/settings.css') }}">
   <link rel="stylesheet" href="{{ asset('css/fontawesome/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/header-footer.css') }}">
@@ -19,17 +20,17 @@
   <div class="container">
     <aside>
       <ul>
-        <li onclick="window.location.href='dashboard.html';" style="cursor: pointer;"><i
+        <li onclick="window.location.href='dashboard';" style="cursor: pointer;"><i
             class="fa-solid fa-layer-group"></i>Tableau de bord</li>
-        <li onclick="window.location.href='order-history.html';" style="cursor: pointer;"><i
+        <li onclick="window.location.href='order-history';" style="cursor: pointer;"><i
             class="fas fa-history"></i>Historique des commandes</li>
-        <li onclick="window.location.href='panier.html';" style="cursor: pointer;"><i
+        <li onclick="window.location.href='panier';" style="cursor: pointer;"><i
             class="fas fa-shopping-cart"></i>Panier</li>
-        <li onclick="window.location.href='page-favoris.html';" style="cursor: pointer;"><i
+        <li onclick="window.location.href='page-favoris';" style="cursor: pointer;"><i
             class="fas fa-heart"></i>Favoris</li>
-        <li onclick="window.location.href='profile.html';" style="cursor: pointer;" class="active"><i
+        <li onclick="window.location.href='profile';" style="cursor: pointer;" class="active"><i
             class="fa-solid fa-gear"></i>Setting</li>
-        <li><i class="fa-solid fa-right-from-bracket"></i>Log-out</li>
+        <li onclick="deconnexion()" style="cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i>Log-out</li>
       </ul>
     </aside>
     <div class="main">
@@ -133,6 +134,7 @@
 
   <!-- footer-->
   @include('shared.footer')
+  <script src="{{ asset('js/settings.js') }}"></script>
 
 </body>
 

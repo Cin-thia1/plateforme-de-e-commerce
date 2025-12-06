@@ -139,7 +139,7 @@
                             </div>
                             <div class="product-cart_actions">
                                 <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
-                                <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
+                                <button aria-label="Comparer" onclick="window.location.href='products/edit/{{ $product->id }}'"><i class="fa-solid fa-eye"></i></button>
                                 <button aria-label="Ajouter au panier" onclick="addToCart({{ $product->id }})"><i class="fa-solid fa-cart-shopping"></i></button>
                                 <!--<button type="button"
                                   class="btn-delete-product border-0 bg-transparent p-0"

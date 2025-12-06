@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             statusBox.classList.remove("hidden");
             statusBox.textContent = "Commande validée ! Redirection…";
             alert("Commande passée avec succès !");
-            setTimeout(() => window.location.href = "/orders/history", 900);
+            setTimeout(() => window.location.href = "/order-history", 900);
         } else {
             statusBox.classList.remove("hidden");
             statusBox.textContent = "Erreur lors de la commande.";

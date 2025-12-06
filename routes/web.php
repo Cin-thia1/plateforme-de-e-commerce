@@ -71,6 +71,10 @@ Route::get('/dashboard', function () {
     ->middleware('auth')
     ->name('dashboard');
 
+Route::get('/settings', function () {
+    return view('setting');
+})->middleware('auth')->name('settings');
+
 // Dashboard admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -86,4 +90,6 @@ Route::post('/checkout/products', [CheckoutController::class, 'getProducts']);
 use App\Http\Controllers\OrderController;
 Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
 
-
+Route::get('/order-history', function () {
+    return view('order-history');
+});
