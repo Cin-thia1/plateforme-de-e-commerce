@@ -176,10 +176,65 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsCount.textContent = visibleCount;
     }
 
+
     // Appliquer les filtres initiaux
     applyFilters();
 
     // Écouter les changements sur min/max inputs
     document.getElementById('min-price').addEventListener('input', applyFilters);
     document.getElementById('max-price').addEventListener('input', applyFilters);
+
+    // === NOUVELLE FONCTION : SUPPRESSION DE PRODUIT (ADMIN) ===
+    document.querySelectorAll('.btn-delete-product').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const productId = this.dataset.id;
+            const card = this.closest('.product-cart');
+
+            if (!confirm('Supprimer ce produit ?\nCette action est irréversible !')) {
+                return;
+            }
+
+            // Animation de disparition
+            card.classList.add('being-deleted');
+            card.style.transition = 'opacity 0.4s ease';
+            card.style.opacity = '0';
+
+            fetch(`/products/${productId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw err; });
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Suppression définitive du DOM après animation
+                setTimeout(() => {
+                    card.remove();
+
+                    // Mise à jour du compteur
+                    const currentCount = parseInt(resultsCount.textContent);
+                    resultsCount.textContent = Math.max(0, currentCount - 1);
+
+                    // Message de succès (tu peux remplacer par un toast plus tard)
+                    alert(data.message || 'Produit supprimé avec succès !');
+                }, 400);
+            })
+            .catch(err => {
+                console.error('Erreur suppression:', err);
+                card.style.opacity = '1';
+                card.classList.remove('being-deleted');
+                alert(err.message || 'Erreur lors de la suppression du produit');
+            });
+        });
+    });
 });

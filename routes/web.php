@@ -52,7 +52,7 @@ Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('pro
 Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
 
 //supprimer un produit
-Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 
 

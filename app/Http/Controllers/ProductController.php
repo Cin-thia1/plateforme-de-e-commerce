@@ -102,20 +102,23 @@ class ProductController extends Controller
 }
 
 
-    public function destroy($id)
-    {
-        $product = Product::findOrFail($id);
+public function destroy($id)
+{
+    $product = Product::findOrFail($id);
 
-        // Supprime les images du disque
-        if ($product->images && is_array($product->images)) {
-            foreach ($product->images as $imagePath) {
-                // $imagePath = "products/xxx.jpg"
-                Storage::delete('public/' . $imagePath);
-            }
+    // Suppression des images physiques
+    if ($product->images && is_array($product->images)) {
+        foreach ($product->images as $imagePath) {
+            // $imagePath = "products/xxx.jpg"
+            Storage::disk('public')->delete($imagePath);
         }
-
-        $product->delete();
-
-        return response()->json(['message' => 'Produit supprimé avec succès !']);
     }
+
+    $product->delete();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Produit supprimé avec succès !'
+    ]);
+}
 }

@@ -1,8 +1,8 @@
-<!-- liste-produit.blade.php (Version complète et fonctionnelle avec Laravel, responsive, et filtrage JS) -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Liste des Produits</title>
     <link rel="stylesheet" href="{{ asset('css/style-liste-produit.css') }}">
@@ -27,7 +27,7 @@
                 </nav>
             </div>
         </section>
-
+       
         <main class="container layout">
             <aside class="sidebar" aria-label="Filtres de produits">
                 <section class="filter">
@@ -141,9 +141,14 @@
                                 <button aria-label="Ajouter aux favoris"><i class="fa-solid fa-heart"></i></button>
                                 <button aria-label="Comparer"><i class="fa-solid fa-eye"></i></button>
                                 <button aria-label="Ajouter au panier" onclick="addToCart({{ $product->id }})"><i class="fa-solid fa-cart-shopping"></i></button>
-                                <button type="button" class="btn-delete" data-id="{{ $product->id }}" title="Supp">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
+                                <!--<button type="button"
+                                  class="btn-delete-product border-0 bg-transparent p-0"
+                                  data-id="{{ $product->id }}"
+                                  aria-label="Supprimer le produit"
+                                  title="Supprimer le produit">
+                                  <i class="fa-solid fa-trash text-danger fa-lg"></i>
+                                </button>-->
+                              
                                <!-- <a href="{{ route('product.edit', $product->id) }}" class="btn-edit">Modifier</a>-->
                             </div>
                         </article>
@@ -172,6 +177,7 @@
                 </div>
             </div>
         </main>
+        
     </div>
 
     <!-- Footer partagé -->
