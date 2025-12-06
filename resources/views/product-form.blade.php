@@ -344,6 +344,7 @@
           <div class="uploaded-images">
             @if(isset($product) && is_array($product->images) && count($product->images) > 0)
               @foreach($product->images as $img)
+                <!--<div class="form-group uploaded-image existing-image" data-image-path="{{ $img }}">-->
                 <div class="form-group uploaded-image existing-image" data-image-path="{{ $img }}">
                   <img src="{{ asset($img) }}" alt="Image actuelle">
                   <span class="delete-old" title="Supprimer cette image">
@@ -417,7 +418,7 @@
         <div class="form-group">
             <label for="description">Description</label>
             <textarea id="description" name="description" rows="6" required
-                                  placeholder="Description détaillée du produit...">{{ old('description', $product->description ?? '') }}</textarea>
+                                  placeholder="Lorem ipsum dolor sit amet">{{ old('description', $product->description ?? '') }}</textarea>
         </div>
 
         <button type="submit" class="button primary-button save-changes">{{ isset($product) ? 'MODIFY' : 'ADD' }}</button>

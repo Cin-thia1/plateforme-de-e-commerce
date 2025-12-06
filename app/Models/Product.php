@@ -20,6 +20,12 @@ class Product extends Model
         'description',
         'images'
     ];
+
+    // CETTE LIGNE EST CRUCIALE
+    protected $casts = [
+        'images' => 'array',  // Laravel convertit automatiquement JSON ↔ array
+        'price'  => 'decimal:2'
+    ];
     public function category()
     {
         return $this->belongsTo(Category::class);

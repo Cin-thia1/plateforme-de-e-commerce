@@ -1,6 +1,10 @@
+// filtre-sous-categorie.js (Version complète avec gestion des filtres, chips, toggle mobile, et filtrage produits)
 document.addEventListener('DOMContentLoaded', () => {
     const filtersRoot = document.querySelector('.sidebar');
     const chipsContainer = document.getElementById('active-filters');
+    const filterToggle = document.querySelector('.filter-toggle');
+    const productsContainer = document.getElementById('product');
+    const resultsCount = document.getElementById('results-count');
 
     const slug = (s) => s
         .toLowerCase()
@@ -28,11 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (group) chip.dataset.group = group;
 
         chip.innerHTML = `
-      ${label}
-      <button class="chip__close" type="button" aria-label="Retirer ${label}">
-        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-      </button>
-    `;
+            ${label}
+            <button class="chip__close" type="button" aria-label="Retirer ${label}">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        `;
         chipsContainer.appendChild(chip);
     }
 
@@ -61,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         chip.remove();
+        applyFilters(); // Réappliquer les filtres après suppression
     });
 
     filtersRoot.addEventListener('change', (e) => {
@@ -81,8 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (existing && existing.dataset.filterId === id) existing.remove();
             }
         }
+        applyFilters(); // Appliquer les filtres à chaque changement
     });
 
+    // Initialiser les chips avec les filtres déjà cochés
     filtersRoot.querySelectorAll('input[type="checkbox"]:checked').forEach((cb) => {
         const label = getInputLabel(cb);
         addChip(slug(label), label);
@@ -92,4 +99,87 @@ document.addEventListener('DOMContentLoaded', () => {
         const group = rb.name || 'radio';
         addChip(slug(label), label, group);
     });
+
+    // Toggle filtre en mobile
+    if (filterToggle) {
+        filterToggle.addEventListener('click', () => {
+            filtersRoot.classList.toggle('sidebar--open');
+        });
+
+        // Fermer les filtres quand on repasse en grand écran
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 680) {
+                filtersRoot.classList.remove('sidebar--open');
+            }
+        });
+    }
+
+    // Fermer sidebar si clic dehors en mobile
+    document.addEventListener('click', (e) => {
+        const isMobile = window.innerWidth <= 680;
+        const isSidebarOpen = filtersRoot.classList.contains('sidebar--open');
+        const clickedOutsideSidebar = !filtersRoot.contains(e.target);
+        const clickedToggle = filterToggle && filterToggle.contains(e.target);
+        if (isMobile && isSidebarOpen && clickedOutsideSidebar && !clickedToggle) {
+            filtersRoot.classList.remove('sidebar--open');
+        }
+    });
+
+    // Fonction pour appliquer les filtres (filtrer les produits)
+    function applyFilters() {
+        const selectedSubcats = Array.from(filtersRoot.querySelectorAll('#filters-categories input[type="checkbox"]:checked'))
+            .map(input => input.value.trim().toLowerCase());
+
+        const selectedBrands = Array.from(filtersRoot.querySelectorAll('.brand-grid input[type="checkbox"]:checked'))
+            .map(input => input.value.trim().toLowerCase());
+
+        const selectedPriceRadio = filtersRoot.querySelector('input[name="choix-prix"]:checked');
+        let minPrice = 0;
+        let maxPrice = Infinity;
+        if (selectedPriceRadio && selectedPriceRadio.value !== 'Tout prix') {
+            const range = selectedPriceRadio.value.replace(/ FCFA/g, '').split(' à ');
+            if (range[0].includes('Moins de')) {
+                minPrice = 0;
+                maxPrice = parseInt(range[0].replace('Moins de ', ''));
+            } else {
+                minPrice = parseInt(range[0]);
+                maxPrice = range[1] ? parseInt(range[1]) : Infinity;
+            }
+        }
+
+        // Inputs min/max personnalisés (priorité sur radios si vides)
+        const minInput = document.getElementById('min-price');
+        const maxInput = document.getElementById('max-price');
+        if (minInput.value) minPrice = parseInt(minInput.value);
+        if (maxInput.value) maxPrice = parseInt(maxInput.value);
+
+        const products = document.querySelectorAll('.product-cart');
+        let visibleCount = 0;
+
+        products.forEach(product => {
+            const subcategory = product.dataset.subcategory?.trim().toLowerCase() || '';
+            const brand = product.dataset.brand?.trim().toLowerCase() || '';
+            const price = parseFloat(product.dataset.price) || 0;
+
+            const matchesSubcat = selectedSubcats.length === 0 || selectedSubcats.includes(subcategory);
+            const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(brand);
+            const matchesPrice = price >= minPrice && price <= maxPrice;
+
+            if (matchesSubcat && matchesBrand && matchesPrice) {
+                product.classList.remove('hidden');
+                visibleCount++;
+            } else {
+                product.classList.add('hidden');
+            }
+        });
+
+        resultsCount.textContent = visibleCount;
+    }
+
+    // Appliquer les filtres initiaux
+    applyFilters();
+
+    // Écouter les changements sur min/max inputs
+    document.getElementById('min-price').addEventListener('input', applyFilters);
+    document.getElementById('max-price').addEventListener('input', applyFilters);
 });

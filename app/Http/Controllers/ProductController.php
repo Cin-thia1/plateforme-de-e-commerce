@@ -11,23 +11,26 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'productName'        => 'required|string|max:255',
-            'brand'              => 'required|string|max:255',
-            'category'           => 'required|string|max:255',
-            'subCategory'        => 'required|string|max:255',
-            'stock'              => 'required|integer|min:0',
-            'price'              => 'required|numeric|min:0',
-            'smallDescription'   => 'required|string|max:255',
-            'description'        => 'required|string',
-            'images'             => 'required|array|min:1',
-            'images.*'           => 'image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'productName'       => 'required|string|max:255',
+            'brand'             => 'required|string|max:255',
+            'category'          => 'required|string|max:255',
+            'subCategory'       => 'required|string|max:255',
+            'stock'             => 'required|integer|min:0',
+            'price'             => 'required|numeric|min:0',
+            'smallDescription' => 'required|string|max:255',
+            'description'       => 'required|string',
+            'images'            => 'required|array|min:1',
+            'images.*'          => 'image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
 
         $images = [];
+
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
+                // Stocke dans storage/app/public/products
                 $path = $image->store('products', 'public');
-                $images[] = Storage::url($path);
+                // On garde SEULEMENT le chemin relatif → crucial pour le JSON
+                $images[] = $path; // ← "products/xxx.jpg" (pas Storage::url())
             }
         }
 
@@ -35,12 +38,12 @@ class ProductController extends Controller
             'name'              => $request->productName,
             'brand'             => $request->brand,
             'category'          => $request->category,
-            'sub_category'      => $request->subCategory,
+            'sub_category'       => $request->subCategory,
             'stock'             => $request->stock,
             'price'             => $request->price,
             'small_description' => $request->smallDescription,
             'description'       => $request->description,
-            'images'            => $images,
+            'images'            => $images, // ← Tableau simple de chemins
         ]);
 
         return response()->json(['message' => 'Produit ajouté avec succès !'], 201);
@@ -51,11 +54,13 @@ class ProductController extends Controller
         $products = Product::latest()->get();
         return view('liste-produit', compact('products'));
     }
+
     public function edit($id)
     {
         $product = Product::findOrFail($id);
         return view('product-form', compact('product'));
     }
+
     public function update(Request $request, $id)
 {
     $product = Product::findOrFail($id);
@@ -93,26 +98,24 @@ class ProductController extends Controller
     $product->images = array_values($currentImages); 
     $product->save();
 
-    return response()->json(['message' => 'Produit modifié avec succès !']);
-    }
-
-    //supprimer un produit
-    public function destroy($id)
-{
-    $product = Product::findOrFail($id);
-
-    // Supprimer les images du disque
-    if ($product->images && is_array($product->images)) {
-        foreach ($product->images as $imagePath) {
-            Storage::delete('public/' . $imagePath);
-        }
-    }
-
-    // Supprimer le produit de la base
-    $product->delete();
-
-    return response()->json([
-        'message' => 'Produit supprimé avec succès !'
-    ]);
+    return response()->json(['message' => 'Produit modifié avec succès !']);
 }
+
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+
+        // Supprime les images du disque
+        if ($product->images && is_array($product->images)) {
+            foreach ($product->images as $imagePath) {
+                // $imagePath = "products/xxx.jpg"
+                Storage::delete('public/' . $imagePath);
+            }
+        }
+
+        $product->delete();
+
+        return response()->json(['message' => 'Produit supprimé avec succès !']);
+    }
 }
