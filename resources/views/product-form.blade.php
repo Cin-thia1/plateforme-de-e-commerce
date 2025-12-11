@@ -56,13 +56,14 @@
               @if(isset($product) && is_array($product->images) && count($product->images) > 0)
               @foreach($product->images as $img)
               <div class="form-group uploaded-image existing-image" data-image-path="{{ $img }}">
-                <img src="{{ asset($img) }}" alt="Image actuelle">
+                <img src="{{ Storage::url($img) }}" alt="Image actuelle">
                 <span class="delete-old" title="Supprimer cette image">
                   <i class="fa-solid fa-trash"></i>
                 </span>
               </div>
               @endforeach
               @endif
+              
             </div>
           </div>
 
@@ -113,7 +114,7 @@
               </div>
               <div class="form-group full-width">
                 <label for="price">Price</label>
-                <input type="number" id="price" name="price" min="0" step="100" required
+                <input type="number" id="price" name="price" min="0" step="0.01" required
                   value="{{ old('price', $product->price ?? '') }}" placeholder="80000">
               </div>
             </div>
@@ -122,7 +123,7 @@
               <label for="smallDescription">Small description</label>
               <input type="text" id="smallDescription" name="smallDescription" required
                 value="{{ old('smallDescription', $product->small_description ?? '') }}"
-                placeholder="Lorem ipsum dolor sit amet.">
+                placeholder="Petite description du produit...">
             </div>
 
             <div class="form-group">

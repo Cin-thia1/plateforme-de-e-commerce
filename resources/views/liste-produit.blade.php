@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Liste des Produits</title>
     <link rel="stylesheet" href="{{ asset('css/style-liste-produit.css') }}">
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/header-footer.css') }}">
     <script src="{{ asset('js/pagination.js') }}"></script>
     <script src="{{ asset('js/filtre-sous-categorie.js') }}"></script>
+    
 </head>
 <body>
     <!-- Header partagé -->
@@ -32,17 +33,18 @@
             <aside class="sidebar" aria-label="Filtres de produits">
                 <section class="filter">
                     <h3 class="filter-title">CATEGORIES</h3>
+                    <form method="GET" action="{{ route('products.index') }}" id="filters-form">
                     <ul class="list-plain" id="filters-categories">
-                        <li><label class="cat-option"><input type="checkbox" value="Smartphones & Smartwatchs" /><span>Smartphones & Smartwatchs</span></label></li>
-                        <li><label class="cat-option"><input type="checkbox" value="Ordinateurs portables" /><span>Ordinateurs portables</span></label></li>
-                        <li><label class="cat-option"><input type="checkbox" value="Ordinateurs gaming" /><span>Ordinateurs gaming</span></label></li>
-                        <li><label class="cat-option"><input type="checkbox" value="Tablettes" /><span>Tablettes</span></label></li>
-                        <li><label class="cat-option"><input type="checkbox" value="Casques & Ecouteurs" /><span>Casques & Ecouteurs</span></label></li>
-                        <li><label class="cat-option"><input type="checkbox" value="Télévisions & Home cinéma" /><span>Télévisions & Home cinéma</span></label></li>
-                        <li><label class="cat-option"><input type="checkbox" value="Caméra & Photo" /><span>Caméra & Photo</span></label></li>
+                        <li><label class="cat-option"><input type="checkbox" name="categories[]" value="Électronique" {{ in_array('Électronique', request('categories', [])) ? 'checked' : '' }} /><span>Électronique</span></label></li>
+                        <li><label class="cat-option"><input type="checkbox" name="categories[]" value="Vêtements" {{ in_array('Vêtements', request('categories', [])) ? 'checked' : '' }} /><span>Vêtements</span></label></li>
+                        <li><label class="cat-option"><input type="checkbox" name="categories[]" value="Électroménager" {{ in_array('Électroménager', request('categories', [])) ? 'checked' : '' }} /><span>Électroménager</span></label></li>
+                        <li><label class="cat-option"><input type="checkbox" name="categories[]" value="Meubles" {{ in_array('Meubles', request('categories', [])) ? 'checked' : '' }} /><span>Meubles</span></label></li>
+                        <li><label class="cat-option"><input type="checkbox" name="categories[]" value="Bijoux" {{ in_array('Bijoux', request('categories', [])) ? 'checked' : '' }} /><span>Bijoux</span></label></li>
+                        <li><label class="cat-option"><input type="checkbox" name="categories[]" value="Cosmétiques" {{ in_array('Cosmétiques', request('categories', [])) ? 'checked' : '' }} /><span>Cosmétiques</span></label></li>
+                        <!--<li><label class="cat-option"><input type="checkbox" value="Caméra & Photo" /><span>Caméra & Photo</span></label></li>
                         <li><label class="cat-option"><input type="checkbox" value="Accessoires" /><span>Accesoires</span></label></li>
                         <li><label class="cat-option"><input type="checkbox" value="Consoles de jeux & Manettes" /><span>Consoles de jeux & Manettes</span></label></li>
-                        <li><label class="cat-option"><input type="checkbox" value="Composants informatiques" /><span>Composants informatiques</span></label></li>
+                        <li><label class="cat-option"><input type="checkbox" value="Composants informatiques" /><span>Composants informatiques</span></label></li>-->
                     </ul>
                 </section>
                 <hr class="barre">
@@ -53,22 +55,22 @@
                         <div class="price-inputs">
                             <label>
                                 <span class="sr-only">Prix minimum</span>
-                                <input type="number" id="min-price" placeholder="Min price" />
+                                <input type="number" name= "min" id="min-price" placeholder="Min price" value="{{ request('min') }}"/>
                             </label>
                             <span class="sep">—</span>
                             <label>
                                 <span class="sr-only">Prix maximum</span>
-                                <input type="number" id="max-price" placeholder="Max price" />
+                                <input type="number" name="max" id="max-price" placeholder="Max price" value="{{ request('max') }}"/>
                             </label>
                         </div>
                         <ul class="list-plain pills">
-                            <li><label><input type="radio" name="choix-prix" checked value="Tout prix" /> Tout prix</label></li>
-                            <li><label><input type="radio" name="choix-prix" value="Moins de 5000 FCFA" /> Moins de 5000 FCFA</label></li>
-                            <li><label><input type="radio" name="choix-prix" value="5000 FCFA à 10 000 FCFA" /> 5000 FCFA à 10 000 FCFA</label></li>
-                            <li><label><input type="radio" name="choix-prix" value="10 000 FCFA à 50 000 FCFA" /> 10 000 FCFA à 50 000 FCFA</label></li>
-                            <li><label><input type="radio" name="choix-prix" value="50 000 FCFA à 100 000 FCFA" /> 50 000 FCFA à 100 000 FCFA</label></li>
-                            <li><label><input type="radio" name="choix-prix" value="100 000 FCFA à 500 000 FCFA" /> 100 000 FCFA à 500 000 FCFA</label></li>
-                            <li><label><input type="radio" name="choix-prix" value="500 000 FCFA à 1 000 000 FCFA" /> 500 000 FCFA à 1 000 000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" checked value="Tout prix" /> Tout prix</label></li>
+                            <li><label><input type="radio" name="price_range" value="Moins de 5000 FCFA" /> Moins de 5000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="5000 FCFA à 10 000 FCFA" /> 5000 FCFA à 10 000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="10 000 FCFA à 50 000 FCFA" /> 10 000 FCFA à 50 000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="50 000 FCFA à 100 000 FCFA" /> 50 000 FCFA à 100 000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="100 000 FCFA à 500 000 FCFA" /> 100 000 FCFA à 500 000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="500 000 FCFA à 1 000 000 FCFA" /> 500 000 FCFA à 1 000 000 FCFA</label></li>
                         </ul>
                     </div>
                 </section>
@@ -77,18 +79,19 @@
                 <section class="filter">
                     <h3 class="filter-title">MARQUES</h3>
                     <ul class="brand-grid">
-                        <li><label><input type="checkbox" value="Apple" /> Apple</label></li>
-                        <li><label><input type="checkbox" value="Google" /> Google</label></li>
-                        <li><label><input type="checkbox" value="Samsung" /> Samsung</label></li>
-                        <li><label><input type="checkbox" value="HP" /> HP</label></li>
-                        <li><label><input type="checkbox" value="Sony" /> Sony</label></li>
-                        <li><label><input type="checkbox" value="Xiaomi" /> Xiaomi</label></li>
-                        <li><label><input type="checkbox" value="LG" /> LG</label></li>
-                        <li><label><input type="checkbox" value="TECNO" /> TECNO</label></li>
-                        <li><label><input type="checkbox" value="DELL" /> DELL</label></li>
-                        <li><label><input type="checkbox" value="Intel" /> Intel</label></li>
+                        <li><label><input type="checkbox" name="brands[]" value="Apple" {{ in_array('Apple', request('brands', [])) ? 'checked' : '' }}/> Apple</label></li>
+                        <li><label><input type="checkbox" name="brands[]" value="Google" {{ in_array('Google', request('brands', [])) ? 'checked' : '' }}/> Google</label></li>
+                        <li><label><input type="checkbox" name="brands[]" value="Samsung" {{ in_array('Samsung', request('brands', [])) ? 'checked' : '' }}/> Samsung</label></li>
+                        <li><label><input type="checkbox" name="brands[]" value="HP" {{ in_array('HP', request('brands', [])) ? 'checked' : '' }}/> HP</label></li>
+                        <li><label><input type="checkbox" name="brands[]" value="Sony" {{ in_array('Sony', request('brands', [])) ? 'checked' : '' }}/> Sony</label></li>
+                        <li><label><input type="checkbox" name="brands[]" value="Xiaomi" {{ in_array('Xiaomi', request('brands', [])) ? 'checked' : '' }}/> Xiaomi</label></li>
+                        <li><label><input type="checkbox" name="brands[]" value="LG" {{ in_array('LG', request('brands', [])) ? 'checked' : '' }}/> LG</label></li>
+                        <li><label><input type="checkbox" name="brands[]" value="TECNO" {{ in_array('TECNO', request('brands', [])) ? 'checked' : '' }}/> TECNO</label></li>
+                        <li><label><input type="checkbox" name="brands[]" value="DELL" {{ in_array('DELL', request('brands', [])) ? 'checked' : '' }}/> DELL</label></li>
+                        <li><label><input type="checkbox" name="brands[]" value="Intel" {{ in_array('Intel', request('brands', [])) ? 'checked' : '' }}/> Intel</label></li>
                     </ul>
                 </section>
+            </form>
                 <hr class="barre">
             </aside>
 
@@ -149,7 +152,7 @@
                                   <i class="fa-solid fa-trash text-danger fa-lg"></i>
                                 </button>-->
                               
-                               <!-- <a href="{{ route('product.edit', $product->id) }}" class="btn-edit">Modifier</a>-->
+                                <a href="{{ route('product.edit', $product->id) }}" class="btn-edit">Modifier</a>
                             </div>
                         </article>
                     @endforeach
@@ -184,5 +187,13 @@
     @include('shared.footer')
 
     <script src="{{ asset('js/savePanier.js') }}"></script>
+    <script>
+        document.querySelectorAll('#filters-form input').forEach(input => {
+            input.addEventListener('change', () => {
+                document.getElementById('filters-form').submit();
+            });
+        });
+    </script>
+        
 </body>
 </html>

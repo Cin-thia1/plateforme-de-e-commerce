@@ -168,18 +168,186 @@ aside i {
     align-self: center;
     margin-top: 20px;
 }
-/*style bouton supprimer image temporarire
-.btn-delete {
-    background: none;
-    border: none;
-    color: #e74c3c;
-    font-size: 1.1rem;
-    cursor: pointer;
-    padding: 8px;
-    transition: all 0.2s;
+
+/*responsive*/
+/* ==========================================
+   RESPONSIVE DESIGN - Product Form
+   ========================================== */
+
+   @media (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+        padding: 15px;
+    }
 }
 
-.btn-delete:hover {
-    color: #c0392b;
-    transform: scale(1.1);
-}*/
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+    }
+
+    aside {
+        width: 100%;
+        border-radius: 8px 8px 0 0;
+    }
+
+    aside ul {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px 0;
+        scrollbar-width: thin;
+    }
+
+    aside li {
+        min-width: 150px;
+        justify-content: center;
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    .product-form {
+        flex-direction: column;
+    }
+
+    .images-group {
+        order: -1; /* remonte la section images en haut sur mobile */
+    }
+
+    .uploaded-images {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .uploaded-images > div {
+        width: 150px;
+    }
+
+    .uploaded-images img {
+        max-width: 100%;
+        height: 120px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 768px) {
+    .account-setting h2 {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .full-width {
+        width: 100%;
+    }
+
+    .add-image-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    .button.primary-button.save-changes {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    .input-group {
+        gap: 15px;
+    }
+
+    /* Petit ajustement pour les images uploadées */
+    .uploaded-images {
+        justify-content: center;
+    }
+
+    .uploaded-images > div {
+        width: 130px;
+    }
+
+
+    .uploaded-images img {
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    aside li {
+        min-width: 130px;
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    aside i {
+        font-size: 14px;
+    }
+
+    .account-setting {
+        padding: 15px 10px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .uploaded-images > div {
+        width: 110px;
+    }
+
+    .uploaded-images img {
+        height: 90px;
+    }
+
+    /* Bouton supprimer image plus visible sur très petit écran */
+    .uploaded-images > div span {
+        display: block;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .uploaded-images > div span i {
+        color: white;
+    }
+
+    .uploaded-images > div:hover span {
+        display: block;
+    }
+}
+
+/* Amélioration du scroll horizontal sur la sidebar en mobile */
+aside ul::-webkit-scrollbar {
+    height: 6px;
+}
+
+aside ul::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+aside ul::-webkit-scrollbar-thumb {
+    background: #FA8232;
+    border-radius: 10px;
+}
+
+aside ul::-webkit-scrollbar-thumb:hover {
+    background: #e07a2d;
+}

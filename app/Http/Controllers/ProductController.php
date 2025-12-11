@@ -8,6 +8,7 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -49,11 +50,41 @@ class ProductController extends Controller
         return response()->json(['message' => 'Produit ajouté avec succès !'], 201);
     }
 
-    public function index()
+    /*public function index()
     {
         $products = Product::latest()->get();
         return view('liste-produit', compact('products'));
+    }*/
+    public function index(Request $request)
+{
+    $query = Product::query();
+
+    // -------- FILTRE CATEGORIE --------
+    if ($request->filled('categories')) {
+        $query->whereIn('category', $request->categories);
     }
+
+    // -------- FILTRE MARQUE --------
+    if ($request->filled('brands')) {
+        $query->whereIn('brand', $request->brands);
+    }
+
+    // -------- FILTRE PRIX --------
+    
+    if ($request->filled('min')) {
+        $query->where('price', '>=', $request->min);
+    }
+
+    if ($request->filled('max')) {
+        $query->where('price', '<=', $request->max);
+    }
+
+    $products = $query->latest()->get();
+
+    return view('liste-produit', compact('products'));
+}
+
+    
 
     public function edit($id)
     {
@@ -121,4 +152,8 @@ public function destroy($id)
         'message' => 'Produit supprimé avec succès !'
     ]);
 }
+
+//filtre pour les produits
+//
+
 }

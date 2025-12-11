@@ -54,6 +54,9 @@ Route::put('/products/{id}', [ProductController::class, 'update'])->name('produc
 //supprimer un produit
 Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
+//filtre sur les produits
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
 
 
 Route::middleware('auth')->group(function () {
