@@ -39,7 +39,7 @@ Route::get('/page-favoris', function () {
 });
 
 
-Route::get('/product-form', function () {
+Route::get('/product/form', function () {
     return view('product-form');
 });
 

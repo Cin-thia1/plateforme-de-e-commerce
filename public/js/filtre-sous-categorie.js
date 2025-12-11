@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Fonction pour appliquer les filtres (filtrer les produits)
-    function applyFilters() {
+    /*function applyFilters() {
         const selectedSubcats = Array.from(filtersRoot.querySelectorAll('#filters-categories input[type="checkbox"]:checked'))
             .map(input => input.value.trim().toLowerCase());
 
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         resultsCount.textContent = visibleCount;
-    }
+    }*/
 
 
     // Appliquer les filtres initiaux
@@ -238,5 +238,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    
+    //laravel filtre prix
+    radio.addEventListener('change', function() {
+        const mapping = {
+            'all': {min: '', max: ''},
+            'lt5000': {min: '', max: 4999},
+            '5000-10000': {min: 5000, max: 10000},
+            '10000-50000': {min: 10000, max: 50000},
+            '50000-100000': {min: 50000, max: 100000},
+            '100000-500000': {min: 100000, max: 500000},
+            '500000-1000000': {min: 500000, max: 1000000}
+        };
+
+        const val = this.value;
+        const {min, max} = mapping[val] || {min: '', max: ''};
+        document.getElementById('filter-min').value = min;
+        document.getElementById('filter-max').value = max;
+
+        // auto submit (optionnel)
+        document.getElementById('filters-form').submit();
+    });
+
 });

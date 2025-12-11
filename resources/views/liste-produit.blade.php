@@ -64,13 +64,16 @@
                             </label>
                         </div>
                         <ul class="list-plain pills">
+                            <input type="hidden" name="min" id="filter-min" value="{{ request('min', '') }}">
+                            <input type="hidden" name="max" id="filter-max" value="{{ request('max', '') }}">
+
                             <li><label><input type="radio" name="price_range" checked value="Tout prix" /> Tout prix</label></li>
-                            <li><label><input type="radio" name="price_range" value="Moins de 5000 FCFA" /> Moins de 5000 FCFA</label></li>
-                            <li><label><input type="radio" name="price_range" value="5000 FCFA à 10 000 FCFA" /> 5000 FCFA à 10 000 FCFA</label></li>
-                            <li><label><input type="radio" name="price_range" value="10 000 FCFA à 50 000 FCFA" /> 10 000 FCFA à 50 000 FCFA</label></li>
-                            <li><label><input type="radio" name="price_range" value="50 000 FCFA à 100 000 FCFA" /> 50 000 FCFA à 100 000 FCFA</label></li>
-                            <li><label><input type="radio" name="price_range" value="100 000 FCFA à 500 000 FCFA" /> 100 000 FCFA à 500 000 FCFA</label></li>
-                            <li><label><input type="radio" name="price_range" value="500 000 FCFA à 1 000 000 FCFA" /> 500 000 FCFA à 1 000 000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="0-5000" {{ request('price_range') === '0-5000' ? 'checked' : '' }}/> Moins de 5000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="5000-10000" {{ request('price_range') === '5000-10000' ? 'checked' : '' }}/> 5000 FCFA à 10 000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="10000-50000" {{ request('price_range') === '10000-50000' ? 'checked' : '' }}/> 10 000 FCFA à 50 000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="50000-100000" {{ request('price_range') === '50000-100000' ? 'checked' : '' }}/> 50 000 FCFA à 100 000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="100000-500000" {{ request('price_range') === '100000-500000' ? 'checked' : '' }}/> 100 000 FCFA à 500 000 FCFA</label></li>
+                            <li><label><input type="radio" name="price_range" value="500000-1000000" {{ request('price_range') === '500000-1000000' ? 'checked' : '' }}/> 500 000 FCFA à 1 000 000 FCFA</label></li>
                         </ul>
                     </div>
                 </section>
@@ -119,7 +122,7 @@
                     <div class="filter-apply" id="active-filters">
                         <span class="fonce">Filtres actifs :</span>
                     </div>
-                    <div class="result-active-filters"><span id="results-count">0</span> <span class="fonce">Résultats</span></div>
+                    <div class="result-active-filters"><span id="results-count">{{$products->count()}}</span> <span class="fonce">Résultats</span></div>
                 </div>
 
                 <section class="product" id="product" aria-label="Liste des produits">
@@ -194,6 +197,45 @@
             });
         });
     </script>
+    <script>
+        function applyFilters() {
+            let form = document.getElementById('filters-form');
+            let params = new URLSearchParams(new FormData(form)).toString();
+        
+            fetch("{{ route('products.index') }}?" + params, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remplacer la liste des produits
+                document.getElementById('product-list').innerHTML = data.html;
+        
+                // Mettre à jour le nombre de résultats
+                document.getElementById('results-count').innerText = data.count;
+        
+                // Mettre à jour l'affichage des filtres actifs
+                updateActiveFilters();
+            });
+        }
+        
+        function updateActiveFilters() {
+            let activeDiv = document.getElementById('active-filters');
+            activeDiv.innerHTML = '<span class="fonce">Filtres actifs :</span>';
+        
+            document.querySelectorAll('#filters-form input').forEach(input => {
+                if ((input.type === "checkbox" || input.type === "radio") && input.checked) {
+                    activeDiv.innerHTML += `<span class="tag">${input.value}</span>`;
+                }
+                if (input.name === 'min' && input.value) {
+                    activeDiv.innerHTML += `<span class="tag">Min: ${input.value}</span>`;
+                }
+                if (input.name === 'max' && input.value) {
+                    activeDiv.innerHTML += `<span class="tag">Max: ${input.value}</span>`;
+                }
+            });
+        }
+        </script>
+        
         
 </body>
 </html>

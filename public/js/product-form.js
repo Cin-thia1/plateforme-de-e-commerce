@@ -50,7 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.delete-old').forEach(btn => {
         btn.addEventListener('click', function () {
             const container = this.closest('.existing-image');
-            const path = container.dataset.path;
+            //const path = container.dataset.path;
+            const path=container.dataset.imagePath;
             if (path) deletedPaths.push(path);
             container.remove();
         });
@@ -183,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'DELETE',
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                'Accept': 'application/json',
+                
             }
         })
         .then(response => {

@@ -28,10 +28,8 @@ class ProductController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                // Stocke dans storage/app/public/products
                 $path = $image->store('products', 'public');
-                // On garde SEULEMENT le chemin relatif → crucial pour le JSON
-                $images[] = $path; // ← "products/xxx.jpg" (pas Storage::url())
+                $images[] = $path; 
             }
         }
 
@@ -44,54 +42,57 @@ class ProductController extends Controller
             'price'             => $request->price,
             'small_description' => $request->smallDescription,
             'description'       => $request->description,
-            'images'            => $images, // ← Tableau simple de chemins
+            'images'            => $images, 
         ]);
 
         return response()->json(['message' => 'Produit ajouté avec succès !'], 201);
     }
-
-    /*public function index()
-    {
-        $products = Product::latest()->get();
-        return view('liste-produit', compact('products'));
-    }*/
-    public function index(Request $request)
-{
-    $query = Product::query();
-
-    // -------- FILTRE CATEGORIE --------
-    if ($request->filled('categories')) {
-        $query->whereIn('category', $request->categories);
-    }
-
-    // -------- FILTRE MARQUE --------
-    if ($request->filled('brands')) {
-        $query->whereIn('brand', $request->brands);
-    }
-
-    // -------- FILTRE PRIX --------
-    
-    if ($request->filled('min')) {
-        $query->where('price', '>=', $request->min);
-    }
-
-    if ($request->filled('max')) {
-        $query->where('price', '<=', $request->max);
-    }
-
-    $products = $query->latest()->get();
-
-    return view('liste-produit', compact('products'));
-}
-
-    
-
     public function edit($id)
     {
         $product = Product::findOrFail($id);
         return view('product-form', compact('product'));
     }
 
+public function index(Request $request)
+{
+    $query = Product::query();
+
+    // Filtre catégorie
+    if ($request->filled('categories')) {
+        $query->whereIn('category', $request->categories);
+    }
+
+    // Filtre marque
+    if ($request->filled('brands')) {
+        $query->whereIn('brand', $request->brands);
+    }
+
+    // Filtre min/max
+    if ($request->filled('min')) {
+        $query->where('price', '>=', $request->min);
+    }
+    if ($request->filled('max')) {
+        $query->where('price', '<=', $request->max);
+    }
+
+    // Filtre pour radio
+    if ($request->filled('price_range') && $request->price_range !== 'Tout prix') {
+        $range = str_replace(' ', '', $request->price_range);
+
+        if (strpos($range, '-') !== false) {
+            list($minPrice, $maxPrice) = explode('-', $range);
+
+            $query->whereBetween('price', [(int)$minPrice, (int)$maxPrice]);
+        }
+        
+    }
+
+    $products = $query->latest()->get();
+
+
+    return view('liste-produit', compact('products'));
+}
+ 
     public function update(Request $request, $id)
 {
     $product = Product::findOrFail($id);
@@ -107,7 +108,7 @@ class ProductController extends Controller
         'description'       => $request->description,
     ]);
 
-    $currentImages = $product->images ?? []; // tableau de chemins
+    $currentImages = $product->images ?? []; 
 
     // 1. Supprimer les images que l'utilisateur a retirées
     if ($request->has('deleted_images')) {
@@ -151,9 +152,11 @@ public function destroy($id)
         'success' => true,
         'message' => 'Produit supprimé avec succès !'
     ]);
+
+    return view('liste-produit', compact('products'));
 }
 
-//filtre pour les produits
-//
+
+
 
 }

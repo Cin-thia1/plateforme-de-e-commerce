@@ -37,11 +37,14 @@
       <section class="account-setting">
         <!--<h2>Add A Product</h2>-->
         <h2>{{ isset($product) ? 'Modify A Product' : 'Add A Product' }}</h2>
-        <form class="product-form" data-product-id="{{ $product->id ?? '' }}"
-          data-action="{{ isset($product) ? route('product.update', $product->id) : route('products.store') }}"
-          data-method="{{ isset($product) ? 'PUT' : 'POST' }}"
-          data-saved-category="{{ old('category', $product->category ?? '') }}"
-          data-saved-subcategory="{{ old('subCategory', $product->sub_category ?? '') }}">
+        <form class="product-form"
+      enctype="multipart/form-data"
+      data-product-id="{{ $product->id ?? '' }}"
+      data-action="{{ isset($product) ? route('product.update', $product->id) : route('products.store') }}"
+      data-method="{{ isset($product) ? 'PUT' : 'POST' }}"
+      data-saved-category="{{ old('category', $product->category ?? '') }}"
+      data-saved-subcategory="{{ old('subCategory', $product->sub_category ?? '') }}">
+
           @csrf
           @if(isset($product))
           @method('PUT')
