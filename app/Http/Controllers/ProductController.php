@@ -156,6 +156,36 @@ public function destroy($id)
     return view('liste-produit', compact('products'));
 }
 
+public function search(Request $request)
+{
+    $q = trim($request->q);
+
+    if (!$q) {
+        return redirect()->route('products.index');
+    }
+
+    // Recherche insensible à la casse dans tous les champs
+    $products = Product::where('name', 'LIKE', "%$q%")
+        ->orWhere('brand', 'LIKE', "%$q%")
+        ->orWhere('category', 'LIKE', "%$q%")
+        ->orWhere('sub_category', 'LIKE', "%$q%")
+        ->orWhere('small_description', 'LIKE', "%$q%")
+        ->orWhere('description', 'LIKE', "%$q%")
+        ->orWhere('price', 'LIKE', "%$q%")
+        ->get();
+
+    // Surlignage du texte trouvé
+    $highlighted = $products->map(function ($p) use ($q) {
+        $safe = preg_quote($q, '/');
+        $p->highlight_name = preg_replace("/($safe)/i", "<mark>$1</mark>", $p->name);
+        return $p;
+    });
+
+    return view('liste-produit', [
+        'products' => $highlighted,
+        'query' => $q
+    ]);
+}
 
 
 

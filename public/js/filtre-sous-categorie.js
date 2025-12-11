@@ -1,4 +1,4 @@
-// filtre-sous-categorie.js (Version complète avec gestion des filtres, chips, toggle mobile, et filtrage produits)
+// filtre-sous-categorie.js (Version corrigée)
 document.addEventListener('DOMContentLoaded', () => {
     const filtersRoot = document.querySelector('.sidebar');
     const chipsContainer = document.getElementById('active-filters');
@@ -57,15 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (slug(label) === id) {
                 if (input.type === 'checkbox') {
                     input.checked = false;
-                    input.dispatchEvent(new Event('change', { bubbles: true }));
                 } else if (input.type === 'radio') {
                     input.checked = false;
                 }
                 break;
             }
         }
+
         chip.remove();
-        applyFilters(); // Réappliquer les filtres après suppression
+        document.getElementById('filters-form').submit(); // ⬅ IMPORTANT : recharger la page quand on retire un chip
     });
 
     filtersRoot.addEventListener('change', (e) => {
@@ -81,12 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             const group = input.name || 'radio';
             if (input.checked) addChip(id, label, group);
-            else {
-                const existing = chipsContainer.querySelector(`.chip[data-group="${group}"]`);
-                if (existing && existing.dataset.filterId === id) existing.remove();
-            }
         }
-        applyFilters(); // Appliquer les filtres à chaque changement
+
+        document.getElementById('filters-form').submit(); // ⬅ Submit au lieu de applyFilters()
     });
 
     // Initialiser les chips avec les filtres déjà cochés
@@ -106,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
             filtersRoot.classList.toggle('sidebar--open');
         });
 
-        // Fermer les filtres quand on repasse en grand écran
         window.addEventListener('resize', () => {
             if (window.innerWidth > 680) {
                 filtersRoot.classList.remove('sidebar--open');
@@ -114,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fermer sidebar si clic dehors en mobile
     document.addEventListener('click', (e) => {
         const isMobile = window.innerWidth <= 680;
         const isSidebarOpen = filtersRoot.classList.contains('sidebar--open');
@@ -125,66 +120,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Fonction pour appliquer les filtres (filtrer les produits)
-    /*function applyFilters() {
-        const selectedSubcats = Array.from(filtersRoot.querySelectorAll('#filters-categories input[type="checkbox"]:checked'))
-            .map(input => input.value.trim().toLowerCase());
+    // === CORRECTION PRINCIPALE : auto-submit min/max ===
+    document.getElementById('min-price').addEventListener('change', () => {
+        document.getElementById('filters-form').submit();
+    });
 
-        const selectedBrands = Array.from(filtersRoot.querySelectorAll('.brand-grid input[type="checkbox"]:checked'))
-            .map(input => input.value.trim().toLowerCase());
+    document.getElementById('max-price').addEventListener('change', () => {
+        document.getElementById('filters-form').submit();
+    });
 
-        const selectedPriceRadio = filtersRoot.querySelector('input[name="choix-prix"]:checked');
-        let minPrice = 0;
-        let maxPrice = Infinity;
-        if (selectedPriceRadio && selectedPriceRadio.value !== 'Tout prix') {
-            const range = selectedPriceRadio.value.replace(/ FCFA/g, '').split(' à ');
-            if (range[0].includes('Moins de')) {
-                minPrice = 0;
-                maxPrice = parseInt(range[0].replace('Moins de ', ''));
-            } else {
-                minPrice = parseInt(range[0]);
-                maxPrice = range[1] ? parseInt(range[1]) : Infinity;
-            }
-        }
-
-        // Inputs min/max personnalisés (priorité sur radios si vides)
-        const minInput = document.getElementById('min-price');
-        const maxInput = document.getElementById('max-price');
-        if (minInput.value) minPrice = parseInt(minInput.value);
-        if (maxInput.value) maxPrice = parseInt(maxInput.value);
-
-        const products = document.querySelectorAll('.product-cart');
-        let visibleCount = 0;
-
-        products.forEach(product => {
-            const subcategory = product.dataset.subcategory?.trim().toLowerCase() || '';
-            const brand = product.dataset.brand?.trim().toLowerCase() || '';
-            const price = parseFloat(product.dataset.price) || 0;
-
-            const matchesSubcat = selectedSubcats.length === 0 || selectedSubcats.includes(subcategory);
-            const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(brand);
-            const matchesPrice = price >= minPrice && price <= maxPrice;
-
-            if (matchesSubcat && matchesBrand && matchesPrice) {
-                product.classList.remove('hidden');
-                visibleCount++;
-            } else {
-                product.classList.add('hidden');
-            }
-        });
-
-        resultsCount.textContent = visibleCount;
-    }*/
-
-
-    // Appliquer les filtres initiaux
-    applyFilters();
-
-    // Écouter les changements sur min/max inputs
-    document.getElementById('min-price').addEventListener('input', applyFilters);
-    document.getElementById('max-price').addEventListener('input', applyFilters);
-
-    // === NOUVELLE FONCTION : SUPPRESSION DE PRODUIT (ADMIN) ===
+    // === SUPPRESSION ADMIN PRODUIT ===
     document.querySelectorAll('.btn-delete-product').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -197,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Animation de disparition
             card.classList.add('being-deleted');
             card.style.transition = 'opacity 0.4s ease';
             card.style.opacity = '0';
@@ -217,15 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.json();
             })
             .then(data => {
-                // Suppression définitive du DOM après animation
                 setTimeout(() => {
                     card.remove();
-
-                    // Mise à jour du compteur
                     const currentCount = parseInt(resultsCount.textContent);
                     resultsCount.textContent = Math.max(0, currentCount - 1);
-
-                    // Message de succès (tu peux remplacer par un toast plus tard)
                     alert(data.message || 'Produit supprimé avec succès !');
                 }, 400);
             })
@@ -237,26 +176,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-    
-    //laravel filtre prix
-    radio.addEventListener('change', function() {
-        const mapping = {
-            'all': {min: '', max: ''},
-            'lt5000': {min: '', max: 4999},
-            '5000-10000': {min: 5000, max: 10000},
-            '10000-50000': {min: 10000, max: 50000},
-            '50000-100000': {min: 50000, max: 100000},
-            '100000-500000': {min: 100000, max: 500000},
-            '500000-1000000': {min: 500000, max: 1000000}
-        };
 
-        const val = this.value;
-        const {min, max} = mapping[val] || {min: '', max: ''};
-        document.getElementById('filter-min').value = min;
-        document.getElementById('filter-max').value = max;
+    // === CORRECTION : event pour tous les radios prix ===
+    document.querySelectorAll('input[name="price_range"]').forEach(radio => {
+        radio.addEventListener('change', function () {
 
-        // auto submit (optionnel)
-        document.getElementById('filters-form').submit();
+            const mapping = {
+                'Tout prix': {min: '', max: ''},
+                '0-5000': {min: '', max: 5000},
+                '5000-10000': {min: 5000, max: 10000},
+                '10000-50000': {min: 10000, max: 50000},
+                '50000-100000': {min: 50000, max: 100000},
+                '100000-500000': {min: 100000, max: 500000},
+                '500000-1000000': {min: 500000, max: 1000000}
+            };
+
+            const val = this.value;
+            const {min, max} = mapping[val] || {min: '', max: ''};
+
+            document.getElementById('filter-min').value = min;
+            document.getElementById('filter-max').value = max;
+
+            document.getElementById('filters-form').submit(); // ⬅ reload page
+        });
     });
-
 });

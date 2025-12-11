@@ -57,6 +57,10 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('pr
 //filtre sur les produits
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
+//rechervher un produit
+Route::get('/recherche', [ProductController::class, 'search'])->name('products.search');
+
+
 
 
 Route::middleware('auth')->group(function () {

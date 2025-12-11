@@ -100,10 +100,23 @@
 
             <div class="page-container">
                 <div class="separate-product search-bar">
-                    <form action="/recherche" method="get" class="research-form">
-                        <label for="q" class="visually-hidden">Rechercher</label>
-                        <input id="q" name="q" type="search" placeholder=" Rechercher un appareil..." />
+                    <form action="{{ route('products.search') }}" method="get" class="research-form">
+                        <!--<label for="q" class="visually-hidden">Rechercher</label>-->
+                        <label for="q" 
+                            class="visually-hidden"
+                             onclick="document.getElementById('q').value=''; window.location='{{ route('products.index') }}'">
+                            Rechercher
+                        </label>
+                        <input id="q" name="q" type="search" placeholder=" Rechercher un appareil..." value="{{ request('q') }}" class="search"/>
+                        <!--@if(request('q'))
+    <button type="button" class="clear-search" onclick="window.location='{{ route('products.index') }}'">
+        &times;
+    </button>
+@endif-->
+
                         <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+                        
+
                     </form>
                     <div>
                         <span>Trié par:</span>
@@ -138,7 +151,9 @@
                                     <span class="stars" aria-hidden="true">★★★★☆</span>
                                     <span class="count">(24)</span>
                                 </div>
-                                <span>{{ $product->name }}</span>
+                                <!--<span>{{ $product->name }}</span>-->
+                                <span>{!! $product->highlight_name ?? $product->name !!}</span>
+
                                 <div class="price">
                                     <span class="current">{{ number_format($product->price) }} FCFA</span>
                                 </div>
@@ -155,7 +170,7 @@
                                   <i class="fa-solid fa-trash text-danger fa-lg"></i>
                                 </button>-->
                               
-                                <a href="{{ route('product.edit', $product->id) }}" class="btn-edit">Modifier</a>
+                                <!--<a href="{{ route('product.edit', $product->id) }}" class="btn-edit">Modifier</a>-->
                             </div>
                         </article>
                     @endforeach
