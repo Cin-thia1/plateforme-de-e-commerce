@@ -135,31 +135,54 @@ get_header(); ?>
     <!-- troisieme ligne -->
     <!-- Contact Section -->
     <div class="row contact-row">
-      <div class="contact-title">
-        <span class="contact-us-link">NOUS CONTACTER</span>
-        <h2>Vous ne trouvez pas de réponses, Contacter nous !</h2>
-      </div>
-      <div class="contact-cards">
-        <div class="contact-card">
-          <div class="icon phone-icon"><i class="fa-solid fa-phone"></i></div>
-          <div class="contact-info">
-            <h4>Appeler maintenant</h4>
-            <p>Nous sommes disponible en ligne de 08:00 a 17:00 (GMT+1). Discutez avec nous sans plus tarder.</p>
-            <p class="phone">+237 - 655 884 341</p>
-            <button class="call-btn">APPELER MAINTENANT<i class="fa-solid fa-arrow-right"></i></button>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="icon chat-icon"><i class="fa-solid fa-comment"></i></div>
-          <div class="contact-info">
-            <h4>Communiquer avec nous</h4>
-            <p>Nous sommes disponible en ligne de 08:00 a 17:00 (GMT+1). Nous écrire dès à présent.</p>
-            <p class="email">m1gienspy@gmail.com</p>
-            <button class="chat-btn">NOUS CONTACTER <i class="fa-solid fa-arrow-right"></i></button>
-          </div>
-        </div>
+  <div class="contact-title">
+    <span class="contact-us-link">NOUS CONTACTER</span>
+    <h2>Vous ne trouvez pas de réponses, Contacter nous !</h2>
+  </div>
+  <div class="contact-cards">
+
+    <!-- CARD TÉLÉPHONE -->
+    <div class="contact-card">
+      <div class="icon phone-icon"><i class="fa-solid fa-phone"></i></div>
+      <div class="contact-info">
+        <h4>Appeler maintenant</h4>
+        <p>Nous sommes disponible en ligne de 08:00 a 17:00 (GMT+1). Discutez avec nous sans plus tarder.</p>
+        <p class="phone">+237 - 655 884 341</p>
+        
+        <!-- Bouton qui appelle directement au clic (mobile + desktop) -->
+        <button class="call-btn" onclick="window.location.href='tel:+237655884341'">
+          APPELER MAINTENANT <i class="fa-solid fa-arrow-right"></i>
+        </button>
       </div>
     </div>
+
+    <!-- CARD EMAIL / WHATSAPP -->
+    <div class="contact-card">
+      <div class="icon chat-icon"><i class="fa-solid fa-comment"></i></div>
+      <div class="contact-info">
+        <h4>Communiquer avec nous</h4>
+        <p>Nous sommes disponible en ligne de 08:00 a 17:00 (GMT+1). Nous écrire dès à présent.</p>
+        <p class="email">m1gienspy@gmail.com</p>
+        
+        <!-- Tu choisis : Email classique OU WhatsApp (plus efficace pour le Cameroun) -->
+        
+        <!-- Option 1 : Ouvrir WhatsApp directement (recommandé) -->
+        <button class="chat-btn" onclick="window.open('https://wa.me/237655884341?text=Bonjour%20%F0%9F%91%8B%20Je%20viens%20du%20site%20et%20j%27aurais%20besoin%20d%27aide', '_blank')">
+          NOUS CONTACTER <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <!-- Option 2 : Si tu préfères ouvrir le mail (décommente cette ligne et commente la précédente) -->
+        <!-- 
+        <button class="chat-btn" onclick="window.location.href='mailto:m1gienspy@gmail.com?subject=Question%20depuis%20le%20site&body=Bonjour%2C%0A%0AJe%20vous%20contacte%20depuis%20le%20site...'">
+          NOUS CONTACTER <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        -->
+
+      </div>
+    </div>
+
+  </div>
+</div>
   </main>
 
 <?php get_footer(); ?>

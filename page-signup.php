@@ -1,90 +1,117 @@
 <?php
 /**
- * Template Name: Page signup
+ * Template Name: Page Inscription
+ * 
+ * → Si déjà connecté → redirection vers /profile
+ * → Inscription réussie → redirection vers /login
  */
 
- // Déjà connecté ? direction mon-compte
-if (is_user_logged_in()) {
-  wp_redirect(site_url('/my-account'));
-  exit;
+
+
+// 1. Si l'utilisateur est déjà connecté → on le redirige vers son profil
+if ( is_user_logged_in() ) {
+    wp_redirect( site_url('/profile') );
+    exit;
 }
 
-get_header();
+// 2. Traitement du formulaire d'inscription
+$error_message   = '';
+$success_message = '';
 
+if ( 'POST' === $_SERVER['REQUEST_METHOD'] && isset( $_POST['signup_submit'] ) ) {
 
+    $fullname = sanitize_text_field( $_POST['fullname'] ?? '' );
+    $email    = sanitize_email( $_POST['email'] ?? '' );
+    $password = $_POST['password'] ?? '';
+    $confirm  = $_POST['confirm_password'] ?? '';
 
-$error = '';
-$success = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $fullname = sanitize_text_field($_POST['fullname']);
-    $email    = sanitize_email($_POST['email']);
-    $password = sanitize_text_field($_POST['password']);
-    $confirm  = sanitize_text_field($_POST['confirm_password']);
-
-    if (empty($fullname) || empty($email) || empty($password)) {
-        $error = "Tous les champs sont obligatoires.";
-    } elseif (!is_email($email)) {
-        $error = "L'adresse email est invalide.";
-    } elseif (email_exists($email)) {
-        $error = "Un compte utilise déjà cet email.";
-    } elseif ($password !== $confirm) {
-        $error = "Les mots de passe ne correspondent pas.";
+    // Validation
+    if ( empty( $fullname ) || empty( $email ) || empty( $password ) || empty( $confirm ) ) {
+        $error_message = 'Tous les champs sont obligatoires.';
+    } elseif ( ! is_email( $email ) ) {
+        $error_message = 'L’adresse email n’est pas valide.';
+    } elseif ( email_exists( $email ) ) {
+        $error_message = 'Cet email est déjà utilisé par un autre compte.';
+    } elseif ( strlen( $password ) < 6 ) {
+        $error_message = 'Le mot de passe doit contenir au moins 6 caractères.';
+    } elseif ( $password !== $confirm ) {
+        $error_message = 'Les deux mots de passe ne correspondent pas.';
     } else {
 
-        // création utilisateur
-        $user_id = wp_create_user($email, $password, $email);
+        // Création de l'utilisateur
+        $user_id = wp_create_user( $email, $password, $email );
 
-        if (is_wp_error($user_id)) {
-            $error = "Impossible de créer le compte.";
+        if ( is_wp_error( $user_id ) ) {
+            $error_message = 'Erreur lors de la création du compte. Veuillez réessayer.';
         } else {
 
-            // Ajout du nom complet dans usermeta
-            wp_update_user([
-                'ID' => $user_id,
+            // Mise à jour du nom complet
+            wp_update_user( array(
+                'ID'           => $user_id,
                 'display_name' => $fullname,
-                'nickname' => $fullname
-            ]);
+                'first_name'   => explode( ' ', $fullname )[0] ?? '',
+                'last_name'    => explode( ' ', $fullname, 2 )[1] ?? '',
+                'nickname'     => $fullname,
+            ) );
 
-            $success = "Votre compte a été créé. Vous pouvez maintenant vous connecter.";
+            // Attribution du rôle "customer" (client WooCommerce)
+            $user = new WP_User( $user_id );
+            $user->set_role( 'customer' );
+
+            // Optionnel : envoi de l'email de bienvenue WooCommerce
+            WC()->mailer()->customer_new_account( $user_id );
+
+            // Redirection immédiate vers la page de connexion
+            wp_redirect( site_url('/login') );
+            exit;
         }
     }
 }
+get_header();
 ?>
 
 <main class="form-container">
-    <form method="POST" action="">
-        <h2>S'inscrire</h2>
+    <form method="POST" action="" class="signup-form">
+        <h2>Créer un compte</h2>
 
-        <?php if ($error): ?>
-            <p style="color:red;"><?= $error ?></p>
+        <?php if ( ! empty( $error_message ) ) : ?>
+            <div class="error-message" style="background:#ffebee; color:#c62828; padding:12px 15px; border-radius:6px; margin:15px 0; font-size:14px;">
+                <?php echo esc_html( $error_message ); ?>
+            </div>
         <?php endif; ?>
 
-        <?php if ($success): ?>
-            <p style="color:green;"><?= $success ?></p>
-        <?php endif; ?>
-
-        <p>Entrez vos informations pour créer un compte.</p>
+        <p style="color:#666; margin-bottom:25px; font-size:15px;">
+            Rejoignez-nous et profitez d’une expérience d’achat rapide et personnalisée.
+        </p>
 
         <div class="form-group">
-            <label for="fullname">Nom et prénom</label>
+            <label for="fullname">Nom complet</label>
             <div class="input-wrapper">
-                <input type="text" name="fullname" id="fullname" placeholder="Arthur Simo" required>
+                <input type="text" 
+                       name="fullname" 
+                       id="fullname" 
+                       placeholder="Jean Dupont" 
+                       value="<?php echo isset($_POST['fullname']) ? esc_attr($_POST['fullname']) : ''; ?>" 
+                       required>
             </div>
         </div>
 
         <div class="form-group">
             <label for="email">Adresse email</label>
             <div class="input-wrapper">
-                <input type="email" name="email" id="email" placeholder="exemple@texte.domaine" required>
+                <input type="email" 
+                       name="email" 
+                       id="email" 
+                       placeholder="jean.dupont@email.com" 
+                       value="<?php echo isset($_POST['email']) ? esc_attr($_POST['email']) : ''; ?>" 
+                       required>
             </div>
         </div>
 
         <div class="form-group">
             <label for="password">Mot de passe</label>
             <div class="input-wrapper">
-                <input type="password" name="password" id="password" required>
+                <input type="password" name="password" id="password" required minlength="6">
             </div>
         </div>
 
@@ -95,16 +122,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
 
-        <button type="submit" class="btn-submit">
-            <span>INSCRIPTION</span>
+        <button type="submit" name="signup_submit" class="btn-submit">
+            <span>CRÉER MON COMPTE</span>
             <i class="fas fa-arrow-right"></i>
         </button>
 
-        <hr class="separator">
+        <hr class="separator" style="margin:35px 0; border:none; border-top:1px solid #eee;">
 
-        <p>
-            Vous avez déjà un compte ?
-            <a href="<?php echo site_url('/login'); ?>" class="link-sign">Connectez-vous</a>
+        <p style="text-align:center; color:#555; font-size:15px;">
+            Déjà inscrit ? 
+            <a href="<?php echo site_url('/login'); ?>" class="link-sign" style="font-weight:600;">
+                Se connecter
+            </a>
         </p>
     </form>
 </main>

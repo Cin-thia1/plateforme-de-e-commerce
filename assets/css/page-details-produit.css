@@ -61,10 +61,13 @@ iframe{
 }
 
 .main-image img {
-    max-width: 100%;
+    min-width: 600px;
+    max-height: 420px;
+    min-height: 420px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     margin-bottom: 15px;
+    object-fit: contain;
 }
 
 .thumbnails {
@@ -103,6 +106,9 @@ iframe{
 
 /* --- Informations sur le produit --- */
 .product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     flex: 1;
 }
 
@@ -243,12 +249,25 @@ iframe{
     gap: 15px;
     margin-bottom: 20px;
 }
+.cart{
+    display: flex;
+    gap: 15px;
+    flex-grow: 1;
+    padding: 0;
+    margin: 0;
 
+}
 .quantity-selector {
     display: flex;
     align-items: center;
     border: 2px solid #e0e0e0;
     border-radius: 3px;
+}
+.qty{
+    width: 30px;
+    border: none;
+    text-align: center;
+    font-size: 16px;
 }
 .quantity-selector:hover {
     border-color: #E8772E;
