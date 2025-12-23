@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CourierController;
 
 
 Route::get('/', function () {
@@ -85,6 +86,8 @@ Route::get('/settings', function () {
 // Dashboard admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    // CRUD pour les livreurs
+    Route::resource('couriers', CourierController::class);
 });
 
 use App\Http\Controllers\CartController;

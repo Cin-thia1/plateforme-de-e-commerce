@@ -13,6 +13,7 @@ class Order extends Model
         'date',
         'livree',
         'client_id',
+        'delivery_status',
         'address',
         'country',
         'region',
@@ -26,6 +27,7 @@ class Order extends Model
     protected $casts = [
         'date' => 'date',
         'livree' => 'boolean',
+        'delivery_status' => 'string',
     ];
 
     /**
