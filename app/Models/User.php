@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+// CORRECTION : Le bon namespace est Laravel, pas Illuminate
+use Laravel\Sanctum\HasApiTokens; 
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    // CORRECTION : On active HasApiTokens ici pour permettre la génération de tokens
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +21,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'firstname',
         'email',
         'password',
         'type',
@@ -45,5 +48,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Relation avec le profil Livreur
+     */
+    public function livreur()
+    {
+        return $this->hasOne(Livreur::class, 'user_id');
+    }
+
+    /**
+     * Helper pour savoir si l'utilisateur est un livreur
+     */
+    public function isLivreur(): bool
+    {
+        return $this->type === 'livreur';
     }
 }

@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->enum('delivery_status', ['pending', 'assigned', 'en_route', 'delivered', 'cancelled'])->default('pending')->after('client_id');
+            // On ajoute la colonne après 'client_id' ou une autre colonne existante
+            //$table->string('delivery_status')->default('en attente')->after('client_id');
+            
+            // Si vous préférez un ENUM pour plus de sécurité :
+            $table->enum('delivery_status', ['en attente', 'en cours', 'livré', 'annulé'])->default('en attente')->after('client_id');
         });
     }
 
@@ -22,7 +26,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn(['delivery_status']);
+            //
         });
     }
 };

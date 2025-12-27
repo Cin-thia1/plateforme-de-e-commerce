@@ -1,0 +1,189 @@
+Résumé des endpoints définis dans `routes/api.php`
+
+NOTE GLOBALE:
+- Les routes marquées (auth:sanctum) requièrent un header `Authorization: Bearer <token>` obtenu via `POST /api/login`.
+- Les routes dans le groupe `check.admin` nécessitent un rôle administrateur (middleware `check.admin`).
+
+1) POST /api/login
+- Controller: Api\AuthController@login
+- Description: Authentifie un utilisateur et retourne un token Sanctum (personal access token).
+- Payload (JSON): { "email": "user@example.com", "password": "motdepasse" }
+- Exemple curl:
+  curl -X POST http://127.0.0.1:8000/api/login \
+    -H "Accept: application/json" -H "Content-Type: application/json" \
+    -d '{"email":"user@example.com","password":"motdepasse"}'
+- Réponse: { "token": "<plain-text-token>", "user": { ... } }
+
+--- Routes protégées (toutes nécessitent auth:sanctum) ---
+
+2) POST /api/logout
+- Controller: Api\AuthController@logout
+- Description: Révoque le token courant (déconnexion).
+- Auth: Bearer token obligatoire.
+- Exemple curl:
+  curl -X POST http://127.0.0.1:8000/api/logout -H "Authorization: Bearer <token>" -H "Accept: application/json"
+
+3) GET /api/user
+- Inline closure
+- Description: Renvoie les informations de l'utilisateur authentifié (request->user()).
+- Auth: Bearer token.
+
+--- Endpoints administrateur (middleware check.admin) ---
+
+4) GET /api/livreurs
+- Controller: Api\LivreurController@index
+- Description: Lister tous les livreurs (avec infos user).
+- Auth: admin
+- Exemple curl: curl -H "Authorization: Bearer <token>" http://127.0.0.1:8000/api/livreurs
+
+5) POST /api/livreurs
+- Controller: Api\LivreurController@store
+- Description: Créer un nouveau livreur (crée aussi l'utilisateur associé).
+- Payload: voir validation dans LivreurController::store (name, firstname, email, password, tel, dateNaissance, typeVehicule, zoneActivite, typeContrat, matricule, photo)
+- Auth: admin
+
+6) DELETE /api/livreurs/{id}
+- Controller: Api\LivreurController@destroy
+- Description: Supprime un livreur (supprime aussi le user associé).
+- Auth: admin
+
+7) GET /api/livreurs/{id}
+- Controller: Api\LivreurController@show
+- Description: Détails d'un livreur.
+- Auth: admin
+
+8) POST /api/livreurs/{id}/update
+- Controller: Api\LivreurController@update
+- Description: Mettre à jour un livreur (utilise POST pour update dans ce projet).
+- Auth: auth:sanctum (pas nécessairement admin si route hors groupe)
+
+9) POST /api/livreurs/{idlivreur}/position
+- Controller: Api\PositionController@store
+- Description: Enregistrer la position GPS pour un livreur/livraison (admin may trigger?).
+- Payload: { lat: number, lng: number, accuracy?: number }
+- Auth: admin
+
+
+
+--- Produits (admin) ---
+11) POST /api/products
+- Controller: Api\ProductAPIController@store
+- Description: Créer un produit (multipart avec images)
+- Auth: admin
+
+12) POST /api/products/{id}
+- Controller: Api\ProductAPIController@update
+- Description: Mettre à jour un produit (utilise POST; accepte fichiers multipart)
+- Auth: admin
+
+13) DELETE /api/products/{id}
+- Controller: Api\ProductAPIController@destroy
+- Description: Supprimer un produit
+- Auth: admin
+
+--- Assignation commandes / gestion commandes (admin) ---
+14) POST /api/commandes/assigner
+- Controller: Api\OrderAPIController@assignLivreur
+- Description: Assigner un livreur à une commande; crée/maj la livraison associée.
+- Payload: { idLivreur: <livreur_user_id>, idCommande: <order_id> }
+- Auth: admin
+
+15) POST /api/commandes/modifier-assignation
+- Controller: Api\OrderAPIController@updateAssignation
+- Description: Modifier l'assignation d'un livreur pour une livraison.
+- Payload: { idLivraison, idLivreur, idCommande }
+- Auth: admin
+
+--- Livraisons (resource) ---
+Note: `Route::apiResource('livraisons', LivraisonController::class)` expose les routes standards suivantes (toutes protégées par auth:sanctum):
+
+16) GET /api/livraisons
+- Controller: Api\LivraisonController@index
+- Description: Liste des livraisons (pour admin ou livreur connecté selon implémentation).
+- Auth: Bearer token
+
+
+
+18) GET /api/livraisons/{id}
+- Controller: Api\LivraisonController@show
+- Description: Récupérer les détails d'une livraison.
+
+19) PUT/PATCH /api/livraisons/{id}
+- Controller: Api\LivraisonController@update
+- Description: Mettre à jour une livraison.
+
+20) DELETE /api/livraisons/{id}
+- Controller: Api\LivraisonController@destroy
+- Description: Supprimer une livraison (si implémentée).
+
+21) PATCH /api/livraisons/{id}/status
+- Controller: Api\LivraisonController@updateStatus
+- Description: Mettre à jour le statut d'une livraison (ex: en cours, terminé, echec).
+- Payload: { status: 'en cours'|'terminé'|'echec', raison_echec?: string, commentaire_echec?: string }
+- Exemple curl:
+  curl -X PATCH http://127.0.0.1:8000/api/livraisons/123/status \
+    -H "Authorization: Bearer <token>" -H "Content-Type: application/json" \
+    -d '{"status":"terminé"}'
+
+--- Preuves & Positions ---
+22) POST /api/livraisons/{id}/preuves
+- Controller: Api\PreuveController@store
+- Description: Uploader une preuve (photo/signature/QR) pour une livraison; marque la livraison terminée.
+- Payload (multipart): type (PHOTO|SIGNATURE|QR), file (si PHOTO/SIGNATURE), qr_value (si QR)
+- Auth: Bearer token
+
+23) POST /api/livraisons/{id}/positions
+- Controller: Api\PositionController@store
+- Description: Sauvegarder position GPS pour une livraison
+- Payload: { lat: number, lng: number, accuracy?: number }
+- Auth: Bearer token
+
+24) GET /api/livraisons/{id}/positions
+- Controller: Api\PositionController@index
+- Description: Lister les positions enregistrées pour la livraison
+- Auth: Bearer token
+
+--- Notifications ---
+25) GET /api/notifications
+- Controller: Api\NotificationController@index
+- Description: Récupère les notifications de l'utilisateur connecté
+- Auth: Bearer token
+
+26) PATCH /api/notifications/{id}/read
+- Controller: Api\NotificationController@markAsRead
+- Description: Marquer une notification comme lue
+- Auth: Bearer token
+
+27) (Admin) POST /api/commandes/annuler
+- Controller: Api\OrderAPIController@cancel
+- Description: Annuler une commande (change statut et livree)
+- Payload: { idCommande }
+- Auth: Bearer token (admin)
+
+28) GET /api/commandes
+- Controller: Api\OrderAPIController@index
+- Description: Récupère toutes les commandes (avec client, items et livraison)
+- Auth: Bearer token
+
+29) GET /api/commande/{idCommande}
+- Controller: Api\OrderAPIController@show
+- Description: Récupère une commande spécifique par son ID
+- Auth: Bearer token
+
+--- Produits (public read) ---
+30) GET /api/products
+- Controller: Api\ProductAPIController@index
+- Description: Liste publique des produits (filtres disponibles)
+- Params (query): q, categories[], brands[], min, max
+
+31) GET /api/products/{id}
+- Controller: Api\ProductAPIController@show
+- Description: Récupère un produit par ID
+
+--- Notes finales ---
+- Pour utiliser les routes protégées depuis Postman : appelez d'abord `POST /api/login` pour obtenir le token, puis ajoutez l'en-tête:
+  Authorization: Bearer <token>
+- Certaines routes utilisent POST pour updates (convention du projet). Vérifiez le contrôleur pour le payload exact.
+- Si vous voulez, je peux aussi générer une collection Postman (.json) contenant tous ces endpoints pré-remplis.
+
+Fichier généré automatiquement à partir de `routes/api.php`.

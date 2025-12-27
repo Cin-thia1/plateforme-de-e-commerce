@@ -19,6 +19,7 @@ class OrderController extends Controller
             // 1️ Validation
             $validator = Validator::make($request->all(), [
                 'billing.name' => 'required|string',
+                'billing.firstname' => 'required|string',
                 'billing.email' => 'required|email',
                 'billing.password' => 'nullable|string|min:4',
 

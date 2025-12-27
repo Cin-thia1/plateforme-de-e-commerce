@@ -24,10 +24,17 @@
         Entrer vos informations pour creer un compte.
       </p>
       <div class="form-group">
-        <label for="Nom-prenom">Nom et prénom</label>
+        <label for="Nom">Nom</label>
         <div class="input-wrapper">
-          <input type="text" id="name" name="name" :value="old('name')" required placeholder="arthur simo">
+          <input type="text" id="name" name="name" :value="old('name')" required placeholder="Simo">
           <x-input-error :messages="$errors->get('name')" class="mt-2" style="color: red" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="firstname">Prénom</label>
+        <div class="input-wrapper">
+          <input type="text" id="firstname" name="firstname" :value="old('firstname')" required placeholder="Arthur">
+          <x-input-error :messages="$errors->get('firstname')" class="mt-2" style="color: red" />
         </div>
       </div>
       <div class="form-group">
