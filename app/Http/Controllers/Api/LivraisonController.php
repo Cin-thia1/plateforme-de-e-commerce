@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Livraison;
+use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LivraisonController extends Controller
 {
@@ -21,27 +23,29 @@ class LivraisonController extends Controller
         return response()->json($query->get());
     }
 
-    // MUST: Assignation livraison -> livreur
-    public function store(Request $request)
+
+    public function show($id)
     {
-        $validated = $request->validate([
-            'order_id' => 'required|exists:orders,id',
-            'livreur_id' => 'required|exists:livreurs,user_id',
-        ]);
+        return response()->json(Livraison::with(['order', 'livreur.user'])->findOrFail($id));
+    }
 
-        return DB::transaction(function () use ($validated) {
-            $livraison = Livraison::create($validated);
+    // afficher les livraisons d'un livreur
+    public function livraisonsParLivreur($idlivreur)
+    {
+        $livraisons = Livraison::with(['order', 'livreur.user', 'order.user'])
+            ->where('livreur_id', $idlivreur)
+            ->get();
 
-            // NOTIFIER LE LIVREUR
-            Notification::create([
-                'id_destinataire' => $validated['livreur_id'],
-                'user_type' => 'livreur',
-                'commentaire' => "Une nouvelle livraison vous a été assignée (Commande #{$livraison->order_id}).",
-                'lu' => 'non'
-            ]);
+        return response()->json($livraisons);
+    }
 
-            return response()->json($livraison, 201);
-        });
+    //supprimer une livraison
+    public function destroy($id)
+    {
+        $livraison = Livraison::findOrFail($id);
+        $livraison->delete();
+
+        return response()->json(['message' => 'Livraison supprimée avec succès']);
     }
 
     // MUST: Mise à jour du statut
@@ -50,15 +54,24 @@ class LivraisonController extends Controller
         $livraison = Livraison::findOrFail($id);
         
         $validated = $request->validate([
-            'status' => 'required|in:en cours,terminé,echec',
+            'status' => 'required|in:en_route,en_cours,livrée,echec',
             'raison_echec' => 'required_if:status,echec',
             'commentaire_echec' => 'nullable|string'
         ]);
 
         $livraison->update($validated);
 
-        if($validated['status'] === 'terminé') {
-            $livraison->update(['date_livraison' => now()]);
+        if($validated['status'] === 'livrée') {
+            $livraison->update(['livrée' => now()]);
+        }
+        if($validated['status'] === 'en_cours') {
+            $livraison->update(['en_cours' => now()]);
+        }
+        if($validated['status'] === 'en_route') {
+            $livraison->update(['en_route' => now()]);
+        }
+        if($validated['status'] === 'echec') {
+            $livraison->update(['echec_livraison' => now()]);
         }
 
         return response()->json(['message' => 'Statut mis à jour', 'data' => $livraison]);

@@ -33,8 +33,8 @@ class PreuveController extends Controller
 
             // 2. Mettre à jour la livraison (Automatique après preuve)
             $livraison->update([
-                'status' => 'terminé',
-                'date_livraison' => now()
+                'status' => 'livrée',
+                'livrée' => now()
             ]);
 
             // 3. NOTIFIER TOUS LES ADMINS

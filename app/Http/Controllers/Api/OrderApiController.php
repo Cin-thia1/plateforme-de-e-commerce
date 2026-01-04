@@ -57,8 +57,7 @@ class OrderAPIController extends Controller
                     ['order_id' => $request->idCommande],
                     [
                         'livreur_id' => $request->idLivreur,
-                        'status' => 'en cours',
-                        'date_livraison' => null
+                        'status' => 'assigned'
                     ]
                 );
 

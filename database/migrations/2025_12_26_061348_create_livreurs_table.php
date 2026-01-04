@@ -17,8 +17,6 @@ return new class extends Migration
             
             // Attributs spécifiques
             $table->string('photo')->nullable();
-            $table->string('name');
-            $table->string('firstname');
             $table->string('tel');
             $table->date('dateNaissance');
             $table->string('typeVehicule');

@@ -15,11 +15,13 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->foreignId('livreur_id')->references('user_id')->on('livreurs')->onDelete('restrict');
-            
-            $table->enum('status', ['en cours', 'terminé', 'echec'])->default('en cours');
+            $table->enum('status', ['assigned', 'en_route', 'en_cours', 'livrée', 'echec'])->default('assigned');
+            $table->timestamp('en_route')->nullable();
+            $table->timestamp('en_cours')->nullable();
+            $table->timestamp('livrée')->nullable();
+            $table->timestamp('echec_livraison')->nullable();
             $table->string('raison_echec')->nullable();
             $table->text('commentaire_echec')->nullable();
-            $table->timestamp('date_livraison')->nullable();
             $table->timestamps();
         });
     }

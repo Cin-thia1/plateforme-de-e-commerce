@@ -14,9 +14,12 @@ class Livraison extends Model
         'order_id',
         'livreur_id',
         'status',
+        'en_route',
+        'en_cours',
+        'livrée',
+        'echec_livraison',
         'raison_echec',
         'commentaire_echec',
-        'date_livraison'
     ];
 
     // Relations

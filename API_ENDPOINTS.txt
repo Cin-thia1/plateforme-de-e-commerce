@@ -40,6 +40,17 @@ NOTE GLOBALE:
 - Controller: Api\LivreurController@store
 - Description: Créer un nouveau livreur (crée aussi l'utilisateur associé).
 - Payload: voir validation dans LivreurController::store (name, firstname, email, password, tel, dateNaissance, typeVehicule, zoneActivite, typeContrat, matricule, photo)
+            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'tel' => 'required|string',
+            'dateNaissance' => 'required|date',
+            'typeVehicule' => 'required|string',
+            'zoneActivite' => 'required|string',
+            'typeContrat' => 'required|in:temps plein,temps partiel,freelance',
+            'matricule' => 'required|unique:livreurs,matricule',
+            'photo' => 'nullable|image|max:2048'
 - Auth: admin
 
 6) DELETE /api/livreurs/{id}
@@ -102,15 +113,16 @@ Note: `Route::apiResource('livraisons', LivraisonController::class)` expose les 
 - Description: Liste des livraisons (pour admin ou livreur connecté selon implémentation).
 - Auth: Bearer token
 
-
+17) GET /api/livreurs/{idLivreur}/livraisons
+- Controller: Api\LivraisonController@indexByLivreur
+- Description: Lister toutes les livraisons d'un livreur spécifique.
+- Auth: Bearer token
 
 18) GET /api/livraisons/{id}
 - Controller: Api\LivraisonController@show
 - Description: Récupérer les détails d'une livraison.
 
-19) PUT/PATCH /api/livraisons/{id}
-- Controller: Api\LivraisonController@update
-- Description: Mettre à jour une livraison.
+
 
 20) DELETE /api/livraisons/{id}
 - Controller: Api\LivraisonController@destroy
@@ -119,11 +131,11 @@ Note: `Route::apiResource('livraisons', LivraisonController::class)` expose les 
 21) PATCH /api/livraisons/{id}/status
 - Controller: Api\LivraisonController@updateStatus
 - Description: Mettre à jour le statut d'une livraison (ex: en cours, terminé, echec).
-- Payload: { status: 'en cours'|'terminé'|'echec', raison_echec?: string, commentaire_echec?: string }
+- Payload: { status: 'en_route'|'en_cours'|'livrée'|'echec', raison_echec?: string, commentaire_echec?: string }
 - Exemple curl:
   curl -X PATCH http://127.0.0.1:8000/api/livraisons/123/status \
     -H "Authorization: Bearer <token>" -H "Content-Type: application/json" \
-    -d '{"status":"terminé"}'
+    -d '{"status":"livrée"}'
 
 --- Preuves & Positions ---
 22) POST /api/livraisons/{id}/preuves

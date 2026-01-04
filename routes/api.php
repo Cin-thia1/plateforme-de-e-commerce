@@ -55,7 +55,10 @@ Route::middleware('auth:sanctum')->group(function () {
         
         // Modifier l'assignation d'un livreur à une commande
         Route::post('/commandes/modifier-assignation', [OrderAPIController::class, 'updateAssignation']);
-        });
+
+        // recuperer les livraisons d'un livreur
+        Route::get('/livreurs/{idlivreur}/livraisons', [LivraisonController::class, 'livraisonsParLivreur']);
+    });
 
     //mise a jour d'un livreur
     Route::post('/livreurs/{id}/update', [LivreurController::class, 'update']);

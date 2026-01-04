@@ -61,8 +61,6 @@ class LivreurController extends Controller
                 // 4. Créer le Livreur via la relation
                 // Note: user_id est automatiquement géré par la relation
                 $livreur = $user->livreur()->create([
-                    'name' => $request->name,
-                    'firstname' => $request->firstname,
                     'tel' => $request->tel,
                     'dateNaissance' => $request->dateNaissance,
                     'typeVehicule' => $request->typeVehicule,
@@ -109,12 +107,15 @@ class LivreurController extends Controller
         $request->validate([
             'name' => 'sometimes|string',
             'email' => 'sometimes|email|unique:users,email,' . $user->id,
+            'tel' => 'sometimes|string',
+            'typeVehicule' => 'sometimes|string',
+            'zoneActivite' => 'sometimes|string',
             'matricule' => 'sometimes|unique:livreurs,matricule,' . $livreur->user_id . ',user_id',
             'typeContrat' => 'sometimes|in:temps plein,temps partiel,freelance',
         ]);
 
         $user->update($request->only(['name', 'email']));
-        $livreur->update($request->except(['name', 'email', 'password']));
+        $livreur->update($request->only(['tel', 'typeVehicule', 'zoneActivite', 'matricule', 'typeContrat']));
 
         return response()->json([
             'message' => 'Livreur mis à jour',
@@ -130,6 +131,7 @@ class LivreurController extends Controller
         $livreur = Livreur::findOrFail($id);
         // La suppression du User entraînera celle du Livreur grâce au onDelete('cascade')
         $livreur->user->delete();
+        $livreur->delete();
 
         return response()->json(['message' => 'Livreur supprimé avec succès']);
     }
