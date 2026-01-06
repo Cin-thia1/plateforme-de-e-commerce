@@ -21,6 +21,12 @@ class Livraison extends Model
         'raison_echec',
         'commentaire_echec',
     ];
+protected $casts = [
+    'en_route' => 'datetime',
+    'en_cours' => 'datetime',
+    'livrée' => 'datetime',
+    'echec_livraison' => 'datetime',
+];
 
     // Relations
     public function livreur()
@@ -44,4 +50,9 @@ class Livraison extends Model
     {
         return $this->belongsTo(Order::class);
     }
+    public function preuves()
+{
+    return $this->hasMany(\App\Models\LivraisonPreuve::class, 'livraison_id');
+}
+
 }

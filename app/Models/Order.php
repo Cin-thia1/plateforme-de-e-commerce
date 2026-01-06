@@ -50,4 +50,9 @@ class Order extends Model
 {
     return $this->hasOne(Livraison::class);
 }
+public function client()
+{
+    return $this->belongsTo(User::class, 'client_id');
+}
+
 }

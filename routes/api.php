@@ -71,9 +71,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('livraisons/{id}/status', [LivraisonController::class, 'updateStatus']);
     
     // Preuves & Positions
+    Route::get('livraisons/{id}/preuves', [PreuveController::class, 'index']);
     Route::post('livraisons/{id}/preuves', [PreuveController::class, 'store']);
     Route::post('livraisons/{id}/positions', [PositionController::class, 'store']);
     Route::get('livraisons/{id}/positions', [PositionController::class, 'index']);
+
+    // Tableau de bord livreur
+    Route::get('livreur/dashboard', [LivraisonController::class, 'dashboard']);
+
     
     // Notifications
     Route::get('notifications', [NotificationController::class, 'index']);

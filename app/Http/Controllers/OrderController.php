@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
+    
     public function placeOrder(Request $request)
     {
 
@@ -102,4 +103,5 @@ class OrderController extends Controller
             'order_id' => $order->id
         ]);
     }
+    
 }

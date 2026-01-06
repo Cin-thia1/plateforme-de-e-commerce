@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Livraison;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class LivraisonController extends Controller
@@ -13,7 +14,7 @@ class LivraisonController extends Controller
     // MUST: CRUD Livraisons - Liste pour l'admin ou le livreur connecté
     public function index(Request $request)
     {
-        $query = Livraison::with(['order', 'livreur.user']);
+        $query = Livraison::with(['order.client', 'livreur.user']);
         
         // Si c'est un livreur, il ne voit que ses livraisons
         if ($request->user()->type === 'livreur') {
@@ -76,4 +77,46 @@ class LivraisonController extends Controller
 
         return response()->json(['message' => 'Statut mis à jour', 'data' => $livraison]);
     }
+
+    public function dashboard(Request $request)
+{
+    $livreurId = $request->user()->id;
+
+    $todayStart = now()->startOfDay();
+    $todayEnd   = now()->endOfDay();
+
+    $livraisons = Livraison::with('order.client')
+        ->where('livreur_id', $livreurId)
+        ->whereBetween('created_at', [$todayStart, $todayEnd])
+        ->get();
+
+    return response()->json([
+        'counts' => [
+            'assigned' => $livraisons->where('status', 'assigned')->count(),
+            'en_route' => $livraisons->where('status', 'en_route')->count(),
+            'en_cours' => $livraisons->where('status', 'en_cours')->count(),
+            'livrée'   => $livraisons->where('status', 'livrée')->count(),
+            'echec'    => $livraisons->where('status', 'echec')->count(),
+        ],
+        'ongoing' => $livraisons
+            ->whereIn('status', ['en_route', 'en_cours'])
+            ->values()
+->map(function ($l) {
+    return [
+        'id' => $l->id,
+        'status' => $l->status,
+        'order_ref' => $l->order->id,
+        'client' => $l->order->client->name ?? 'Client',
+        'address' => $l->order->address,
+        'amount' => $l->order->total,
+        'time' => ($l->en_route || $l->en_cours)
+            ? \Carbon\Carbon::parse($l->en_route ?? $l->en_cours)->format('H:i')
+            : '',
+    ];
+})
+,
+    ]);
+}
+
+
 }
