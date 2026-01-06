@@ -81,8 +81,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     
     // Notifications
-    Route::get('notifications', [NotificationController::class, 'index']);
-    Route::patch('notifications/{id}/read', [NotificationController::class, 'markAsRead']);
+    /*Route::get('notifications', [NotificationController::class, 'index']);
+    Route::patch('notifications/{id}/read', [NotificationController::class, 'markAsRead']);*/
+    Route::get('/notifications', [NotificationController::class, 'index']);
+    Route::get('/notifications/unread-count', [NotificationController::class, 'unreadCount']);
+    Route::patch('/notifications/{id}/read', [NotificationController::class, 'markRead']);
+    Route::patch('/notifications/read-all', [NotificationController::class, 'markAllAsRead']);
+
     
     // Récupérer toutes les commandes (avec détails complets)
     Route::get('/commandes', [OrderAPIController::class, 'index']);

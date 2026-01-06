@@ -74,6 +74,13 @@ class LivraisonController extends Controller
         if($validated['status'] === 'echec') {
             $livraison->update(['echec_livraison' => now()]);
         }
+       Notification::create([
+    'id_destinataire' => $livraison->livreur_id,  // livreur concerné
+    'user_type' => 'livreur',
+    'lu' => 'non',
+    'commentaire' => "CMD-{$livraison->order_id} est passée à {$livraison->status}",
+]);
+
 
         return response()->json(['message' => 'Statut mis à jour', 'data' => $livraison]);
     }
@@ -117,6 +124,8 @@ class LivraisonController extends Controller
 ,
     ]);
 }
+
+
 
 
 }
