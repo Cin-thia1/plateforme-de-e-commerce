@@ -38,21 +38,29 @@ class Order extends Model
         return $this->belongsTo(User::class, 'client_id');
     }
 
-    /**
-     * Relation avec OrderItem
+    /*
+     * Relation historique existante
      */
     public function orderItems()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->hasMany(OrderItem::class, 'order_id');
+    }
+
+    /**
+     * Nouvelle relation utilisée dans with('order.items.product') pour le côté flutter
+     */
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class, 'order_id');
     }
 
     public function livraison()
-{
-    return $this->hasOne(Livraison::class);
-}
-public function client()
-{
-    return $this->belongsTo(User::class, 'client_id');
-}
+    {
+        return $this->hasOne(Livraison::class);
+    }
 
+    public function client()
+    {
+        return $this->belongsTo(User::class, 'client_id');
+    }
 }

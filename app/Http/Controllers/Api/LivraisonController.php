@@ -16,7 +16,7 @@ class LivraisonController extends Controller
     // MUST: CRUD Livraisons - Liste pour l'admin ou le livreur connecté
     public function index(Request $request)
     {
-        $query = Livraison::with(['order.client', 'livreur.user']);
+        $query = Livraison::with(['order.client','order.items.product', 'livreur.user']);
         
         // Si c'est un livreur, il ne voit que ses livraisons
         if ($request->user()->type === 'livreur') {
@@ -29,13 +29,13 @@ class LivraisonController extends Controller
 
     public function show($id)
     {
-        return response()->json(Livraison::with(['order', 'livreur.user'])->findOrFail($id));
+        return response()->json(Livraison::with(['order','order.items.product', 'livreur.user'])->findOrFail($id));
     }
 
     // afficher les livraisons d'un livreur
     public function livraisonsParLivreur($idlivreur)
     {
-        $livraisons = Livraison::with(['order', 'livreur.user', 'order.user'])
+        $livraisons = Livraison::with(['order', 'livreur.user', 'order.user', 'order.items.product'])
             ->where('livreur_id', $idlivreur)
             ->get();
 
@@ -54,7 +54,7 @@ class LivraisonController extends Controller
     // MUST: Mise à jour du statut
     public function updateStatus(Request $request, $id)
     {
-        $livraison = Livraison::with('order')->findOrFail($id);
+        $livraison = Livraison::with('order', 'order.items.product')->findOrFail($id);
 
         $validated = $request->validate([
             'status' => 'required|in:en_route,en_cours,livrée,echec',
@@ -101,7 +101,7 @@ class LivraisonController extends Controller
     //assignation => status = assigned + notif + ws
     public function assignLivreur(Request $request, $id)
     {
-        $livraison = Livraison::with('order')->findOrFail($id);
+        $livraison = Livraison::with('order','order.items.product')->findOrFail($id);
 
         $validated = $request->validate([
             'livreur_id' => 'required|exists:users,id', // adapte selon ta structure
@@ -169,7 +169,7 @@ broadcast(new \App\Events\NotificationCreated($notification));
     $livreurId = $request->user()->id;
 
     // 1) Toutes les livraisons NON terminées (peu importe la date)
-    $active = Livraison::with('order.client')
+    $active = Livraison::with(['order.client', 'order.items.product'])
         ->where('livreur_id', $livreurId)
         ->whereIn('status', ['assigned', 'en_route', 'en_cours'])
         ->get();
@@ -181,41 +181,55 @@ broadcast(new \App\Events\NotificationCreated($notification));
     $doneToday = Livraison::with('order.client')
         ->where('livreur_id', $livreurId)
         ->whereIn('status', ['livrée', 'echec'])
-        ->whereBetween('updated_at', [$todayStart, $todayEnd]) // mieux que created_at
+        ->whereBetween('updated_at', [$todayStart, $todayEnd])
         ->get();
 
     return response()->json([
         'counts' => [
-            // Comptage global des actives (même anciennes)
             'assigned' => $active->where('status', 'assigned')->count(),
             'en_route' => $active->where('status', 'en_route')->count(),
             'en_cours' => $active->where('status', 'en_cours')->count(),
-
-            // Comptage “du jour” pour celles terminées (optionnel)
             'livrée'   => $doneToday->where('status', 'livrée')->count(),
             'echec'    => $doneToday->where('status', 'echec')->count(),
         ],
 
-        // La liste ongoing doit inclure assigned + en_route + en_cours
         'ongoing' => $active
             ->values()
             ->map(function ($l) {
-                return [
-                    'id' => $l->id,
-                    'status' => $l->status,
-                    'order_ref' => $l->order?->id ?? null,
-                    'client' => $l->order?->client?->name ?? 'Client',
-                    'address' => $l->order?->address ?? '',
-                    'amount' => $l->order?->total ?? 0,
+                // 🔹 Construire le résumé des produits
+                $items = $l->order?->items ?? collect();
 
-                    // heure (si assigned, on prend created_at)
-                    'time' => $l->status === 'en_route' && $l->en_route
+                $itemsSummary = '';
+                if ($items->isNotEmpty()) {
+                    $itemsSummary = $items->take(3)->map(function ($item) {
+                        $name = $item->product->name ?? 'Produit';
+                        $qty  = $item->quantite ?? 1;
+                        return "{$qty}x {$name}";
+                    })->join(', ');
+
+                    if ($items->count() > 3) {
+                        $itemsSummary .= '…';
+                    }
+                }
+
+                return [
+                    'id'           => $l->id,
+                    'status'       => $l->status,
+                    'order_ref'    => $l->order?->id ?? null,
+                    'client'       => $l->order?->client?->name ?? 'Client',
+                    'address'      => $l->order?->address ?? '',
+                    'amount'       => $l->order?->total ?? 0,
+                    'time'         => $l->status === 'en_route' && $l->en_route
                         ? \Carbon\Carbon::parse($l->en_route)->format('H:i')
                         : ($l->status === 'en_cours' && $l->en_cours
                             ? \Carbon\Carbon::parse($l->en_cours)->format('H:i')
                             : \Carbon\Carbon::parse($l->created_at)->format('H:i')),
+
+                    
+                    'items_summary' => $itemsSummary,
                 ];
             }),
     ]);
 }
+
 }
