@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Position;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class PositionController extends Controller
         $request->validate([
             'lat' => 'required|numeric',
             'lng' => 'required|numeric',
-            'accuracy' => 'nullable|numeric'
+            'accuracy' => 'nullable|numeric',
         ]);
 
         $position = Position::create([
@@ -20,7 +21,7 @@ class PositionController extends Controller
             'lat' => $request->lat,
             'lng' => $request->lng,
             'accuracy' => $request->accuracy,
-            'captured_at' => now()
+            'captured_at' => now(),
         ]);
 
         return response()->json($position, 201);
@@ -28,10 +29,10 @@ class PositionController extends Controller
 
     public function index(Request $request, $livraisonId)
     {
-        $positions = Position::where('livraison_id', $livraisonId)
-            ->orderBy('captured_at', 'desc')
-            ->get();
-
-        return response()->json($positions);
+        return response()->json(
+            Position::where('livraison_id', $livraisonId)
+                ->orderBy('captured_at', 'desc')
+                ->get()
+        );
     }
 }

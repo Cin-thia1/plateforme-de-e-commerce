@@ -27,7 +27,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('check.admin')->group(function () {
         //Route::apiResource('livreurs', LivreurController::class);
         //mettre a jour la position d'un livreur
-        Route::post('/livreurs/{idlivreur}/position', [PositionController::class, 'store']);
+        Route::post('/livraisons/{livraisonId}/position', [PositionController::class, 'store']);
+        Route::get('/livraisons/{livraisonId}/positions', [PositionController::class, 'index']);
         //recuperer la liste des livreurs
         Route::get('/livreurs', [LivreurController::class, 'index']);
 
@@ -81,8 +82,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     
     // Notifications
-    /*Route::get('notifications', [NotificationController::class, 'index']);
-    Route::patch('notifications/{id}/read', [NotificationController::class, 'markAsRead']);*/
     Route::get('/notifications', [NotificationController::class, 'index']);
     Route::get('/notifications/unread-count', [NotificationController::class, 'unreadCount']);
     Route::patch('/notifications/{id}/read', [NotificationController::class, 'markRead']);

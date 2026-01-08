@@ -82,7 +82,7 @@ class LivraisonController extends Controller
 
         $livraison->save();
 
-        // ✅ NOTIF + WS
+        // NOTIF + WS
         $notification = Notification::create([
             'id_destinataire' => $livraison->livreur_id,
             'user_type'       => 'livreur',
@@ -98,7 +98,7 @@ class LivraisonController extends Controller
         ]);
     }
 
-    // ✅ EXEMPLE: assignation => status = assigned + notif + ws
+    //assignation => status = assigned + notif + ws
     public function assignLivreur(Request $request, $id)
     {
         $livraison = Livraison::with('order')->findOrFail($id);
@@ -186,17 +186,17 @@ broadcast(new \App\Events\NotificationCreated($notification));
 
     return response()->json([
         'counts' => [
-            // ✅ Comptage global des actives (même anciennes)
+            // Comptage global des actives (même anciennes)
             'assigned' => $active->where('status', 'assigned')->count(),
             'en_route' => $active->where('status', 'en_route')->count(),
             'en_cours' => $active->where('status', 'en_cours')->count(),
 
-            // ✅ Comptage “du jour” pour celles terminées (optionnel)
+            // Comptage “du jour” pour celles terminées (optionnel)
             'livrée'   => $doneToday->where('status', 'livrée')->count(),
             'echec'    => $doneToday->where('status', 'echec')->count(),
         ],
 
-        // ✅ La liste ongoing doit inclure assigned + en_route + en_cours
+        // La liste ongoing doit inclure assigned + en_route + en_cours
         'ongoing' => $active
             ->values()
             ->map(function ($l) {
