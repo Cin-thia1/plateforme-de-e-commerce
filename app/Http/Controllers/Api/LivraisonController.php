@@ -8,6 +8,8 @@ use App\Models\Notification;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Events\NotificationCreated;
+use Illuminate\Support\Facades\Broadcast;
 
 class LivraisonController extends Controller
 {
@@ -52,6 +54,78 @@ class LivraisonController extends Controller
     // MUST: Mise à jour du statut
     public function updateStatus(Request $request, $id)
     {
+        $livraison = Livraison::with('order')->findOrFail($id);
+
+        $validated = $request->validate([
+            'status' => 'required|in:en_route,en_cours,livrée,echec',
+            'raison_echec' => 'required_if:status,echec',
+            'commentaire_echec' => 'nullable|string',
+        ]);
+
+        $livraison->fill($validated);
+
+        // timestamps status (garde tes colonnes existantes)
+        switch ($validated['status']) {
+            case 'livrée':
+                $livraison->livrée = now();
+                break;
+            case 'en_cours':
+                $livraison->en_cours = now();
+                break;
+            case 'en_route':
+                $livraison->en_route = now();
+                break;
+            case 'echec':
+                $livraison->echec_livraison = now();
+                break;
+        }
+
+        $livraison->save();
+
+        // ✅ NOTIF + WS
+        $notification = Notification::create([
+            'id_destinataire' => $livraison->livreur_id,
+            'user_type'       => 'livreur',
+            'lu'              => 'non',
+            'commentaire'     => "CMD-{$livraison->order_id} est passée à {$livraison->status}",
+        ]);
+
+        broadcast(new NotificationCreated($notification));
+
+        return response()->json([
+            'message' => 'Statut mis à jour',
+            'data' => $livraison
+        ]);
+    }
+
+    // ✅ EXEMPLE: assignation => status = assigned + notif + ws
+    public function assignLivreur(Request $request, $id)
+    {
+        $livraison = Livraison::with('order')->findOrFail($id);
+
+        $validated = $request->validate([
+            'livreur_id' => 'required|exists:users,id', // adapte selon ta structure
+        ]);
+
+        $livraison->livreur_id = $validated['livreur_id'];
+        $livraison->status = 'assigned';
+        $livraison->save();
+
+        $notification = Notification::create([
+            'id_destinataire' => $livraison->livreur_id,
+            'user_type'       => 'livreur',
+            'lu'              => 'non',
+            'commentaire'     => "Nouvelle livraison assignée : CMD-{$livraison->order_id}",
+        ]);
+
+        broadcast(new NotificationCreated($notification));
+
+        return response()->json([
+            'message' => 'Livraison assignée',
+            'data' => $livraison
+        ]);}
+    /*public function updateStatus(Request $request, $id)
+    {
         $livraison = Livraison::findOrFail($id);
         
         $validated = $request->validate([
@@ -74,58 +148,74 @@ class LivraisonController extends Controller
         if($validated['status'] === 'echec') {
             $livraison->update(['echec_livraison' => now()]);
         }
-       Notification::create([
-    'id_destinataire' => $livraison->livreur_id,  // livreur concerné
+        // 1) Notification "changement de statut"
+$notification = Notification::create([
+    'id_destinataire' => $livraison->livreur_id,
     'user_type' => 'livreur',
     'lu' => 'non',
     'commentaire' => "CMD-{$livraison->order_id} est passée à {$livraison->status}",
 ]);
 
+// 2) Diffusion WebSocket (Reverb)
+broadcast(new \App\Events\NotificationCreated($notification));
+
+
 
         return response()->json(['message' => 'Statut mis à jour', 'data' => $livraison]);
-    }
+    }*/
 
     public function dashboard(Request $request)
 {
     $livreurId = $request->user()->id;
 
+    // 1) Toutes les livraisons NON terminées (peu importe la date)
+    $active = Livraison::with('order.client')
+        ->where('livreur_id', $livreurId)
+        ->whereIn('status', ['assigned', 'en_route', 'en_cours'])
+        ->get();
+
+    // 2) Livraisons terminées aujourd’hui (optionnel si tu veux encore afficher livrée/echec du jour)
     $todayStart = now()->startOfDay();
     $todayEnd   = now()->endOfDay();
 
-    $livraisons = Livraison::with('order.client')
+    $doneToday = Livraison::with('order.client')
         ->where('livreur_id', $livreurId)
-        ->whereBetween('created_at', [$todayStart, $todayEnd])
+        ->whereIn('status', ['livrée', 'echec'])
+        ->whereBetween('updated_at', [$todayStart, $todayEnd]) // mieux que created_at
         ->get();
 
     return response()->json([
         'counts' => [
-            'assigned' => $livraisons->where('status', 'assigned')->count(),
-            'en_route' => $livraisons->where('status', 'en_route')->count(),
-            'en_cours' => $livraisons->where('status', 'en_cours')->count(),
-            'livrée'   => $livraisons->where('status', 'livrée')->count(),
-            'echec'    => $livraisons->where('status', 'echec')->count(),
+            // ✅ Comptage global des actives (même anciennes)
+            'assigned' => $active->where('status', 'assigned')->count(),
+            'en_route' => $active->where('status', 'en_route')->count(),
+            'en_cours' => $active->where('status', 'en_cours')->count(),
+
+            // ✅ Comptage “du jour” pour celles terminées (optionnel)
+            'livrée'   => $doneToday->where('status', 'livrée')->count(),
+            'echec'    => $doneToday->where('status', 'echec')->count(),
         ],
-        'ongoing' => $livraisons
-            ->whereIn('status', ['en_route', 'en_cours'])
+
+        // ✅ La liste ongoing doit inclure assigned + en_route + en_cours
+        'ongoing' => $active
             ->values()
-->map(function ($l) {
-    return [
-        'id' => $l->id,
-        'status' => $l->status,
-        'order_ref' => $l->order->id,
-        'client' => $l->order->client->name ?? 'Client',
-        'address' => $l->order->address,
-        'amount' => $l->order->total,
-        'time' => ($l->en_route || $l->en_cours)
-            ? \Carbon\Carbon::parse($l->en_route ?? $l->en_cours)->format('H:i')
-            : '',
-    ];
-})
-,
+            ->map(function ($l) {
+                return [
+                    'id' => $l->id,
+                    'status' => $l->status,
+                    'order_ref' => $l->order?->id ?? null,
+                    'client' => $l->order?->client?->name ?? 'Client',
+                    'address' => $l->order?->address ?? '',
+                    'amount' => $l->order?->total ?? 0,
+
+                    // heure (si assigned, on prend created_at)
+                    'time' => $l->status === 'en_route' && $l->en_route
+                        ? \Carbon\Carbon::parse($l->en_route)->format('H:i')
+                        : ($l->status === 'en_cours' && $l->en_cours
+                            ? \Carbon\Carbon::parse($l->en_cours)->format('H:i')
+                            : \Carbon\Carbon::parse($l->created_at)->format('H:i')),
+                ];
+            }),
     ]);
 }
-
-
-
-
 }
